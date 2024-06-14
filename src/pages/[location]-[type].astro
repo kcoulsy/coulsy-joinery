@@ -11,7 +11,7 @@ export const getStaticPaths = (() => {
     paths.push({
       params: {
         location,
-        type: "fire-door-services",
+        type: "joinery-services",
       },
     });
   });
@@ -61,5 +61,5 @@ console.log(Astro.params);
 
 
 
-{ type === 'fire-door-services' && <MainServicesPage location={location} type={type} /> }
+{ type === 'joinery-services' && <MainServicesPage location={location} type={type} /> }
 { !type && <MainPage location={location} type={type} /> }

@@ -7,6 +7,7 @@ export const LOCATIONS = [
   "preston",
   "salford",
   "sheffield",
+  "huddersfield",
 
   "wakefield",
   "castleford",
