@@ -62,4 +62,4 @@ console.log(Astro.params);
 
 
 { type === 'joinery-services' && <MainServicesPage location={location} type={type} /> }
-{ !type && <MainPage location={location} type={type} /> }
+{ type !== 'joinery-services' && <MainPage location={location} type={type} /> }

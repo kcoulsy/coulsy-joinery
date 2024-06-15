@@ -16,9 +16,14 @@ const { location, type } = Astro.params;
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-const typeFormated = type
+let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Carpentry and Joinery";
+
+if (type === 'joinery-services') {
+  typeFormated = 'Coulsy Joinery and Carpentry Services'
+}
+
 const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
 ---
 
@@ -31,10 +36,10 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
-      alt="COULSY Fire Door Services"
+      alt="COULSY Carpentry and joinery Services"
       loading="eager"
     />
-  </div>
+  </div>§
   <main class="mx-auto md:mt-16 relative z-10">
     <div class="flex flex-wrap max-w-screen overflow-x-hidden">
       <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
@@ -45,10 +50,11 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
           class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
         >
           <h1
-            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-80 text-center"
+            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
           >
-            Welcome to {locationFormated}
-            {typeFormated}
+            Welcome to 
+            {typeFormated} in
+            {locationFormated}
           </h1>
         </div>
       </div>
