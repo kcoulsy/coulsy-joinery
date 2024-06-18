@@ -4,11 +4,11 @@ import ContactForm from "./ContactForm.astro";
 import Layout from "../layouts/Layout.astro";
 import timber20joinery from "../assets/images/timber20joinery.jpg";
 import Image from "astro/components/Image.astro";
-import OurServices from "./OurServices.astro";
+// import OurServices from "./OurServices.astro";
 import Why from "./Why.astro";
-import CommonFaults from "./CommonFaults.astro";
+// import CommonFaults from "./CommonFaults.astro";
 import MainServices from "./MainServices.astro";
-import FireStats from "./FireStats.astro";
+// import FireStats from "./FireStats.astro";
 import NearbyAreas from "./NearbyAreas.astro";
 
 const { location, type } = Astro.params;
@@ -27,7 +27,7 @@ let typeFormated = type
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 ---
 
-<Layout title="">
+<Layout title={typeFormated}>
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
@@ -63,9 +63,9 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
     <MainServices />
     <Why />
-    <CommonFaults />
-    <FireStats />
-    <OurServices />
+    <!-- <CommonFaults />
+    <FireStats /> -->
+    <!-- <OurServices />  -->
     <NearbyAreas location={location} />
   </main>
 </Layout>
