@@ -2,10 +2,10 @@
 // import Carousel from "../components/CarouselNew.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Layout from "../layouts/Layout.astro";
-import doorCloserOpen from "../assets/images/door-closer-open.jpeg";
+import timber20joinery from "../assets/images/timber20joinery.jpg";
 import Image from "astro/components/Image.astro";
 import OurServices from "./OurServices.astro";
-import WhyFireDoors from "./WhyFireDoors.astro";
+import Why from "./Why.astro";
 import CommonFaults from "./CommonFaults.astro";
 import MainServices from "./MainServices.astro";
 import FireStats from "./FireStats.astro";
@@ -26,11 +26,11 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
     <Image
-      src={doorCloserOpen}
+      src={timber20joinery}
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
-      alt="COULSY Fire Door Services"
+      alt="COULSY Carpentry and joinery"
       loading="eager"
     />
   </div>
@@ -60,9 +60,9 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
     </div>
 
     <MainServices location={ location }/>
-    <WhyFireDoors />
-    <CommonFaults />
-    <FireStats />
-    <OurServices />
+    <Why />
+    <!-- <CommonFaults />
+    <FireStats /> 
+    <OurServices />-->
   </main>
 </Layout>
