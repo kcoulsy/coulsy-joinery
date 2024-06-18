@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import studWall from "../assets/images/stud-wall-new-build.jpeg";
+import mouldingPlane from "../assets/images/moulding_plane.png";
+import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
+import rooftop from "../assets/images/rooftop.jpg";
+import barnCutRoof from "../assets/images/barn-cut-roof.jpeg";
+import doorHanging from "../assets/images/door-hanging-1.jpeg";
+
+
+
+---
+
+<Layout title="About Us" classes="mt-8 mb-16">
+  <div class="container mx-auto sm:px-4 pb-12">
+    <div class="flex flex-wrap mt-5 mb-4">
+      <div class="relative flex-grow max-w-full flex-1 px-4 pb-12">
+          
+          <h1 class="text-3xl font-bold">Services - Coulsy Joinery</h1>
+          <h2 class="text-xl font-light mb-4 mt-1">Delivering to your needs and requiremnents</h2>
+          <p>
+            Providing the highest level of expertise and service
+          </p>
+
+
+    
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+
+      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+        <div class="relative overflow-hidden rounded-xl">
+
+          <Image src={rooftop} alt="truss and trussed roof installers" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+        </div>
+        <div class="mt-6 relative">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+            Truss Roofs
+          </h3>
+          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+            ...
+          </p>
+          <a class="inline-block" href="/services/truss-roofs">
+            <span class="text-info dark:text-blue-300">Read more</span>
+          </a>
+        </div>
+        
+      </div>
+      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+        <div class="relative overflow-hidden rounded-xl">
+          <Image src={barnCutRoof} alt="Tradtional Cut Roofs" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+        </div>
+        <div class="mt-6 relative">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+            Tradtional Cut Roofs
+          </h3>
+          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+            ...
+          </p>
+          <a class="inline-block" href="#">
+            <span class="text-info dark:text-blue-300">Read more</span>
+          </a>
+        </div>
+        
+      </div>
+      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+        <div class="relative overflow-hidden rounded-xl">
+          <Image src={studWall} alt="stud wall partitioning installers" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+        </div>
+        <div class="mt-6 relative">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+            Stud Wall Partitioning
+          </h3>
+          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+            ...
+          </p>
+          <a class="inline-block" href="#">
+            <span class="text-info dark:text-blue-300">Read more</span>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+        
+        <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+          <div class="relative overflow-hidden rounded-xl">
+  
+            <Image src={doorHanging} alt="Door Hanging and installers" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="mt-6 relative">
+            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Door Hanging
+            </h3>
+            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+              ...
+              </p>
+              <a class="inline-block" href="#">
+                <span class="text-info dark:text-blue-300">Read more</span>
+            </a>
+          </div>
+          
+        </div>
+        <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+          <div class="relative overflow-hidden rounded-xl">
+            <Image src={kitchenInstallers} alt="Kitchen Installers" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="mt-6 relative">
+            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Kitchen Installers
+            </h3>
+            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+              ...
+              </p>
+              <a class="inline-block" href="#">
+                <span class="text-info dark:text-blue-300">Read more</span>
+            </a>
+          </div>
+          
+        </div>
+        <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+          <div class="relative overflow-hidden rounded-xl">
+            <Image src={mouldingPlane} alt="Bespoke Joinery" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="mt-6 relative">
+            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Bespoke Joinery
+            </h3>
+            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+              ...
+              </p>
+              <a class="inline-block" href="#">
+                <span class="text-info dark:text-blue-300">Read more</span>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+  
+  </div>
+</Layout>

@@ -12,12 +12,12 @@ import AboutList from "../components/AboutList.astro";
     <div class="flex flex-wrap mt-5 mb-4">
       <div class="relative flex-grow max-w-full flex-1 px-4 pb-12">
           
-          <h1 class="text-3xl font-bold">About Coulsy</h1>
+          <h1 class="text-3xl font-bold">About - Coulsy Joinery</h1>
           <h2 class="text-xl font-light mb-4 mt-1">Delivering to your needs and requiremnents</h2>
           <p>
             Providing the highest level of expertise and service
           </p>
-      <div
+      <!-- <div
         class="px-4 mt-8 grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 items-start"
       >
       <div class="flex h-full flex-col items-center space-y-4 shadow-2xl p-8">
@@ -106,9 +106,69 @@ import AboutList from "../components/AboutList.astro";
               Learn more
             </button>          </a>
         </div>
-      </div>
+      </div> -->
+
+
     </div>
 
+
+    
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+        <div class="relative overflow-hidden rounded-xl">
+
+          <Image src={benchPlaneImage} alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+        </div>
+        <div class="mt-6 relative">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+            Fully Qualified
+          </h3>
+          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+            Our team are highly qualified to meet the demands of your project...
+          </p>
+          <a class="inline-block" href="/qualifications">
+            <span class="text-info dark:text-blue-300">Read more</span>
+          </a>
+        </div>
+        
+      </div>
+      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+        <div class="relative overflow-hidden rounded-xl">
+          <Image src={complianceImage} alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+        </div>
+        <div class="mt-6 relative">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+            Highly Compliant
+          </h3>
+          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+            We adhere to the highest standards of compliance and ethics...
+          </p>
+          <a class="inline-block" href="/compliance">
+            <span class="text-info dark:text-blue-300">Read more</span>
+          </a>
+        </div>
+        
+      </div>
+      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+        <div class="relative overflow-hidden rounded-xl">
+          <Image src={sustainabilityImage} alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+        </div>
+        <div class="mt-6 relative">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+            Sustainability
+          </h3>
+          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+            Making a difference...
+          </p>
+          <a class="inline-block" href="/sustainability">
+            <span class="text-info dark:text-blue-300">Read more</span>
+          </a>
+        </div>
+        
+      </div>
+    </div>
   
   </div>
+
+  
 </Layout>
