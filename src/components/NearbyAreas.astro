@@ -30,7 +30,7 @@ if (location && NEARBY_LOCATIONS[location]) {
         <p
           class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
         >
-        Discover the other areas we serve { location ? `near ${capitalizeFirstLetter(location)}` : null } and learn more about the fire door services we provide in each location.
+        Discover the other areas we serve { location ? `near ${capitalizeFirstLetter(location)}` : null } and learn more about the services we provide in each location.
 
         </p>
       </div>
@@ -38,6 +38,7 @@ if (location && NEARBY_LOCATIONS[location]) {
     <div
       class="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 sm:grid-cols-2 md:grid-cols-3 lg:gap-8"
     >
+    
       {
         nearbyLocations.map((loc) => (
           <a
@@ -45,7 +46,7 @@ if (location && NEARBY_LOCATIONS[location]) {
             href={`/${loc}-joinery-services`}
           >
             <div class="text-sm font-medium leading-none group-hover:underline">
-              {capitalizeFirstLetter(loc)} joinery services
+              {capitalizeFirstLetter(loc)}
             </div>
           </a>
         ))

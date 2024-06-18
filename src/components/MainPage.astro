@@ -4,20 +4,21 @@ import ContactForm from "../components/ContactForm.astro";
 import Layout from "../layouts/Layout.astro";
 import timber20joinery from "../assets/images/timber20joinery.jpg";
 import Image from "astro/components/Image.astro";
-import OurServices from "./OurServices.astro";
 import Why from "./Why.astro";
-import CommonFaults from "./CommonFaults.astro";
 import MainServices from "./MainServices.astro";
-import FireStats from "./FireStats.astro";
 
 const { location, type } = Astro.params;
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-const typeFormated = type
+let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Carpentry and Joinery";
+
+  if (type === 'joinery-services') {
+  typeFormated = 'Carpentry and Joinery Services'
+}
 const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
 ---
 
@@ -37,17 +38,13 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
   <main class="mx-auto md:mt-16 relative z-10">
     <div class="flex flex-wrap max-w-screen overflow-x-hidden">
       <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
-        <!-- <div class="block flex-wrap max-w-full">
-          <Carousel />
-        </div> -->
         <div
           class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
         >
           <h1
             class="text-[56px] leading-[56px] mt-4 font-bold text-white w-80 text-center"
           >
-            Welcome to {locationFormated}
-            {typeFormated}
+            Welcome to {locationFormated} {typeFormated}
           </h1>
         </div>
       </div>
@@ -61,8 +58,5 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "COULSY";
 
     <MainServices location={ location }/>
     <Why />
-    <!-- <CommonFaults />
-    <FireStats /> 
-    <OurServices />-->
   </main>
 </Layout>
