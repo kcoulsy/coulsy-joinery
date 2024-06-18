@@ -17,15 +17,6 @@ export const getStaticPaths = (() => {
   });
 
 
-  LOCATIONS.forEach((location) => {
-    paths.push({
-      params: {
-        location,
-        type: "fire-door-services",
-      },
-    });
-  });
-
 
   return paths;
 }) satisfies GetStaticPaths;
@@ -38,7 +29,3 @@ console.log(Astro.params);
 
 { type === 'joinery-services' && <MainServicesPage location={location} type={type} /> }
 { type !== 'joinery-services' && <MainPage location={location} type={type} /> }
-
-{ type === 'fire-door-services' && <MainServicesPage location={location} type={type} /> }
-{ type !== 'fire-door-services' && <MainPage location={location} type={type} /> }
-

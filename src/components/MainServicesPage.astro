@@ -2,7 +2,7 @@
 // import Carousel from "../components/CarouselNew.astro";
 import ContactForm from "./ContactForm.astro";
 import Layout from "../layouts/Layout.astro";
-import doorCloserOpen from "../assets/images/door-closer-open.jpeg";
+import timber20joinery from "../assets/images/timber20joinery.jpg";
 import Image from "astro/components/Image.astro";
 import OurServices from "./OurServices.astro";
 import Why from "./Why.astro";
@@ -17,14 +17,11 @@ function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Carpentry and Joinery Services";
+? type.split("-").map(capitalizeFirstLetter).join(" ")
+  : "Carpentry and Joinery";
 
   if (type === 'joinery-services') {
   typeFormated = 'Carpentry and Joinery Services in'
-}
-if (type === 'fire-door-services') {
-  typeFormated = 'Fire door Services in'
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
@@ -35,7 +32,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
     <Image
-      src={doorCloserOpen}
+      src={timber20joinery}
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
