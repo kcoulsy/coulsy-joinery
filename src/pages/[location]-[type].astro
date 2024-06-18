@@ -16,23 +16,6 @@ export const getStaticPaths = (() => {
     });
   });
 
-  LOCATIONS.forEach((location) => {
-    paths.push({
-      params: {
-        location,
-        type: "fire-door-inspectors",
-      },
-    });
-  });
-
-  LOCATIONS.forEach((location) => {
-    paths.push({
-      params: {
-        location,
-        type: "fire-door-installers",
-      },
-    });
-  });
 
   LOCATIONS.forEach((location) => {
     paths.push({
