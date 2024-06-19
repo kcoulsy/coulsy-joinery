@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import CITBImage from "../assets/images/citb.png";
-import cscsGoldImage from "../assets/images/cscs_gold.png";
-import cityAndGuildsImage from "../assets/images/cityandguilds_logo.png";
+import CITBImage from "../../assets/images/citb.png";
+import cscsGoldImage from "../../assets/images/cscs_gold.png";
+import cityAndGuildsImage from "../../assets/images/cityandguilds_logo.png";
 const currentPath = Astro.url.pathname;
 ---
 
@@ -23,7 +23,7 @@ const currentPath = Astro.url.pathname;
           </li>
           <li class="flex items-center">
             
-            <a href="#" class={currentPath === '/qualifications' ? 'text-yellow-600 font-semibold' : ''}>
+            <a href="#" class={currentPath === '/about/qualifications' ? 'text-yellow-600 font-semibold' : ''}>
               <span class="">Qualifications</span>
             </a>
             

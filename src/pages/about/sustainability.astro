@@ -1,8 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import sustainabilityLogo from "../assets/images/sustainability_logo.svg";
+import Layout from "../../layouts/Layout.astro";
+import sustainabilityLogo from "../../assets/images/sustainability_logo.svg";
 import Image from "astro/components/Image.astro";
 const currentPath = Astro.url.pathname;
+
+
 ---
 
 <Layout title="Sustainability">
@@ -21,7 +23,7 @@ const currentPath = Astro.url.pathname;
           </li>
           <li class="flex items-center">
             
-            <a href="#" class={currentPath === '/sustainability' ? 'text-yellow-600 font-semibold' : ''}>
+            <a href="#" class={currentPath === '/about/sustainability' ? 'text-yellow-600 font-semibold' : ''}>
               <span class="">Sustainability</span>
             </a>
             

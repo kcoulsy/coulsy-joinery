@@ -1,4 +1,5 @@
 ---
+
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import benchPlaneImage from "../assets/images/bench-plane-frog_adobe_express.svg";
@@ -32,111 +33,13 @@ const currentPath = Astro.url.pathname;
       </nav>
     </div>
 
-
-
-
-    <div class="flex flex-wrap mt-5 mb-4">
-      <div class="relative flex-grow max-w-full flex-1 px-4 pb-12">
-          
-          <h1 class="text-3xl font-bold">About - Coulsy Joinery</h1>
-          <h2 class="text-xl font-light mb-4 mt-1">Delivering to your needs and requiremnents</h2>
-          <p>
-            Providing the highest level of expertise and service
-          </p>
-      <!-- <div
-        class="px-4 mt-8 grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 items-start"
-      >
-      <div class="flex h-full flex-col items-center space-y-4 shadow-2xl p-8">
-        <h2 class="text-xl font-semibold tracking-tight">Fully Qualified</h2>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            Our team are highly qualified to meet the demands of your project
-          </p>
-          <Image
-            src={benchPlaneImage}
-            width="386"
-            height="256"
-            class="object-fit h-[300px]"
-            alt="Bench Plane"
-          />
-          <AboutList
-            items={[
-              { text: "CSCS registered" },
-              { text: "Fully qualified carpenters & joiners" },
-              { text: "City & Guilds with distinction" },
-              { text: "Advanced City & Guilds with distinction" },
-              { text: "Asbestos awareness" },
-              { text: "First aid at work" },
-            ]}
-          />
-            <a
-              href="/qualifications"
-            >
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-              Learn more
-            </button>
-            </a>
-        </div>
-        <div class="flex h-full flex-col items-center space-y-4 shadow-2xl p-8">
-          <h2 class="text-xl font-semibold tracking-tight">Highly Compliant</h2>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            We adhere to the highest standards of compliance and ethics
-          </p>
-          <Image
-            src={complianceImage}
-            width="382"
-            height="294"
-            class="object-fit h-[300px]"
-            alt="Compliance"
-          />
-          <AboutList
-            items={[
-              { text: "Be compliant with the law" },
-              { text: "Fully insured" },
-              { text: "Ensure your health and safety compliance" },
-              {
-                text: "Fire Safety Regulations 2022: fire door guidance",
-                link: "https://www.gov.uk/government/publications/fire-safety-england-regulations-2022-fire-door-guidance/fire-safety-england-regulations-2022-fire-door-guidance",
-              },
-            ]}
-          />
-          <a href="/compliance">
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-              Learn more
-            </button>
-          </a>
-        </div>
-        <div
-          class="flex flex-grow h-full flex-col items-center space-y-4 shadow-2xl p-8"
-        >
-          <h2 class="text-xl font-semibold tracking-tight">Sustainability</h2>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            Making a difference<br><br>
-          </p>
-          <Image 
-            src={sustainabilityImage}
-            width="416"
-            height="261"
-            class="object-fit h-[300px]"
-            alt="Sustainability image for coulsy"
-          />
-          <AboutList
-          items={[
-            { text: "Environmental and pollution prevention" },
-            { text: "Legislative and regulatory compliance" },
-            { text: "Clear communincation to everyone effected" },
-            { text: "Social" },
-          ]}
-        />
-          <a href="/sustainability">
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-              Learn more
-            </button>          </a>
-        </div>
-      </div> -->
-
-
-    </div>
-
+    <h1 class="text-3xl font-bold tracking-tight pb-4">
+      About
+    </h1>
+    <h2 class="text-xl font-light mb-4 mt-1">Delivering to your needs and requiremnents</h2>
+    <p class="pb-6">
+      Providing the highest level of expertise and service
+    </p>
 
     
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -152,7 +55,7 @@ const currentPath = Astro.url.pathname;
           <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
             Our team are highly qualified to meet the demands of your project...
           </p>
-          <a class="inline-block" href="/qualifications">
+          <a class="inline-block" href="/about/qualifications">
             <span class="text-info dark:text-blue-300">Read more</span>
           </a>
         </div>
@@ -169,7 +72,7 @@ const currentPath = Astro.url.pathname;
           <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
             We adhere to the highest standards of compliance and ethics...
           </p>
-          <a class="inline-block" href="/compliance">
+          <a class="inline-block" href="/about/compliance">
             <span class="text-info dark:text-blue-300">Read more</span>
           </a>
         </div>
@@ -186,7 +89,7 @@ const currentPath = Astro.url.pathname;
           <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
             Making a difference...
           </p>
-          <a class="inline-block" href="/sustainability">
+          <a class="inline-block" href="/about/sustainability">
             <span class="text-info dark:text-blue-300">Read more</span>
           </a>
         </div>

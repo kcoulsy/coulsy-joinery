@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 import ContactForm from "../components/ContactForm.astro";
 import timber20joinery from "../assets/images/timber20joinery.jpg";
 
-
 import Layout from "../layouts/Layout.astro";
 import studWall from "../assets/images/stud-wall-new-build.jpeg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
@@ -12,6 +11,9 @@ import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import rooftop from "../assets/images/rooftop.jpg";
 import barnCutRoof from "../assets/images/barn-cut-roof.jpeg";
 import doorHanging from "../assets/images/door-hanging-1.jpeg";
+
+import NearbyAreas from "../components/NearbyAreas.astro";
+
 
 const currentPath = Astro.url.pathname;
 const { location, type } = Astro.params;
@@ -66,7 +68,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
     </div>
 
-    <div class="w-full container mx-auto px-8 py-12">
+    <div class="w-full container mx-auto px-8 py-8">
 
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
@@ -221,4 +223,6 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
   
   </div>
+  <NearbyAreas location={location} />
+
 </Layout>
