@@ -16,17 +16,6 @@ export const getStaticPaths = (() => {
     });
   });
 
-
-  // LOCATIONS.forEach((location) => {
-  //   paths.push({
-  //     params: {
-  //       location,
-  //       type: "joinery-services/kitchen-installers",
-  //     },
-  //   });
-  // });
-
-
   return paths;
 }) satisfies GetStaticPaths;
 
@@ -34,7 +23,9 @@ const { location, type } = Astro.params;
 console.log(Astro.params);
 ---
 
-
-
-{ type === 'joinery-services' && <MainServicesPage location={location} type={type} /> }
-{ type !== 'joinery-services' && <MainPage location={location} type={type} /> }
+{
+  type === "joinery-services" && (
+    <MainServicesPage location={location} type={type} />
+  )
+}
+{type !== "joinery-services" && <MainPage location={location} type={type} />}
