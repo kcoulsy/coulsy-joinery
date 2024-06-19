@@ -14,6 +14,9 @@ import doorHanging from "../assets/images/door-hanging-1.jpeg";
 
 import NearbyAreas from "../components/NearbyAreas.astro";
 
+import Why from "./../components/Why.astro";
+
+
 
 const currentPath = Astro.url.pathname;
 const { location, type } = Astro.params;
@@ -101,14 +104,18 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
           
           <h1 class="text-3xl font-bold">Joinery Services</h1>
-          <h2 class="text-xl font-light mb-4 mt-1">Delivering to your needs and requiremnents</h2>
-          <p>
-            Providing the highest level of expertise and service
+          <h2 class="text-xl font-light mb-4 mt-4">Delivering to your needs and requirements.</h2>
+          <h4 class="text-xl font-light mb-4 mt-1">
+            At Coulsy Joinery, we deliver a comprehensive range of top-notch carpentry and joinery services including contracting and sub contracting solutions. 
+          </h4>
+          <p class="text-md font-light mb-4 mt-1">
+            Our services include annexe building, truss roofs, traditional cut roofs, stud wall partitioning, door and fire door installation, kitchen installing, custom joinery, bespoke refits, and complete project management, all tailored to meet your specific needs.
           </p>
 
 
+
     
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-6">
 
 
       <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
@@ -165,7 +172,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
     </div>
 
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-6">
 
         
         <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
@@ -223,6 +230,9 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
   
   </div>
+
+  <Why />
+
   <NearbyAreas location={location} />
 
 </Layout>
