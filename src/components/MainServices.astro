@@ -6,7 +6,6 @@ const { location } = Astro.params;
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 ---
 
 <section>
@@ -20,55 +19,75 @@ function capitalizeFirstLetter(string: string) {
         <h3 class="text-3xl font-bold sm:text-4xl">Our Joinery Services</h3>
 
         <p class="mt-4 mb-6 text-gray-600">
-          At Coulsy Joinery, we deliver a comprehensive range of top-notch carpentry and joinery services and contracting solutions. 
-          Our offerings include custom joinery, bespoke refits, intricate woodwork, and complete project management, 
-          all tailored to meet your specific needs { location ? `in ${capitalizeFirstLetter(location)}` : null }
+          At Coulsy Joinery, we deliver a comprehensive range of top-notch
+          carpentry and joinery services and contracting solutions. Our
+          offerings include custom joinery, bespoke refits, intricate woodwork,
+          and complete project management, all tailored to meet your specific
+          needs {location ? `in ${capitalizeFirstLetter(location)}` : null}
         </p>
-
       </div>
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 col-span-2">
         <div
           class="flex flex-col items-center rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
         >
           <CheckedBox className="h-6 w-6" />
-          <a class="mt-2 font-semibold" href="/joinery-services/truss-roofs">Trussed Rafter Roofs</a>
+          <a
+            class="mt-2 font-semibold text-center"
+            href="/joinery-services/truss-roofs">Trussed Rafter Roofs</a
+          >
         </div>
 
         <div
           class="flex flex-col items-center rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
         >
           <CheckedBox className="h-6 w-6" />
-          <a class="mt-2 font-semibold" href="/joinery-services/traditional-cut-roofs">Traditional Cut Roofs</a>
+          <a
+            class="mt-2 font-semibold text-center"
+            href="/joinery-services/traditional-cut-roofs"
+            >Traditional Cut Roofs</a
+          >
         </div>
 
         <div
           class="flex flex-col items-center rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
         >
           <CheckedBox className="h-6 w-6" />
-          <a class="mt-2 font-semibold" href="/joinery-services/stud-wall-partitioning">Stud Wall Partitioning</a>
+          <a
+            class="mt-2 font-semibold text-center"
+            href="/joinery-services/stud-wall-partitioning"
+            >Stud Wall Partitioning</a
+          >
         </div>
         <div
           class="flex flex-col items-center rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
         >
           <CheckedBox className="h-6 w-6" />
-          <a class="mt-2 font-semibold" href="/joinery-services/door-hanging">Supply and installation of fire doors and sets</a>
+          <a
+            class="mt-2 font-semibold text-center"
+            href="/joinery-services/door-hanging"
+            >Supply and installation of fire doors and sets</a
+          >
         </div>
         <div
           class="flex flex-col items-center rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
         >
           <CheckedBox className="h-6 w-6" />
-          <a class="mt-2 font-semibold" href="/joinery-services/bespoke-joinery">Bespoke Joinery</a>
+          <a
+            class="mt-2 font-semibold text-center"
+            href="/joinery-services/bespoke-joinery">Bespoke Joinery</a
+          >
         </div>
 
         <div
           class="flex flex-col items-center rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
         >
           <CheckedBox className="h-6 w-6" />
-          <a class="mt-2 font-semibold" href="/joinery-services/kitchen-installers">Kitchen Installers</a>
+          <a
+            class="mt-2 font-semibold text-center"
+            href="/joinery-services/kitchen-installers">Kitchen Installers</a
+          >
         </div>
       </div>
     </div>
   </div>
-
-
 </section>
