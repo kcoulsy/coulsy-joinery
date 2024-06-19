@@ -5,7 +5,7 @@ import timber20joinery from "../../assets/images/timber20joinery.jpg";
 
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import rooftop from "../../assets/images/rooftop.jpg";
+import mouldingPlane from "../../assets/images/moulding_plane.png";
 import NearbyAreas from "../../components/NearbyAreas.astro";
 const currentPath = Astro.url.pathname;
 
@@ -123,21 +123,20 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           </p>
         </div>
       </div>
+
       <div class="flex items-start flex-col space-y-4">
         <Image
-          src={rooftop}
+          src={mouldingPlane}
           width="350"
           class="object-fit max-w-full h-auto mx-auto block"
-          alt="Citb Logo"
+          alt={typeFormated}
         />
-
       </div>
+
     </div>
 
   </div>
 
     <NearbyAreas location={location} />
-
-
 
 </Layout>

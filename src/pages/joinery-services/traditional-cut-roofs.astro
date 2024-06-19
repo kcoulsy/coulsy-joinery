@@ -5,7 +5,9 @@ import timber20joinery from "../../assets/images/timber20joinery.jpg";
 
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import rooftop from "../../assets/images/rooftop.jpg";
+
+import barnCutRoof from "../../assets/images/barn-cut-roof.jpeg";
+
 import NearbyAreas from "../../components/NearbyAreas.astro";
 const currentPath = Astro.url.pathname;
 
@@ -16,10 +18,10 @@ function capitalizeFirstLetter(string: string) {
 }
 let typeFormated = type
 ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Stud Wall Partitioning";
+  : "Traditional Cut Roofs";
 
-  if (type === '/joinery-services/stud-walls') {
-  typeFormated = 'Stud Wall Partitioning'
+  if (type === '/joinery-services/traditional-cut-roofs') {
+  typeFormated = 'Traditional Cut Roofs'
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
@@ -78,8 +80,8 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           <li class="flex items-center">
 
             
-            <a href="#" class={currentPath === '/joinery-services/stud-walls' ? 'text-yellow-600 font-semibold' : ''}>
-              <span class="">Stud Wall Partitioning</span>
+            <a href="#" class={currentPath === '/joinery-services/traditional-cut-roofs' ? 'text-yellow-600 font-semibold' : ''}>
+              <span class="">Traditional Cut Roofs</span>
             </a>
             
           </li>
@@ -87,18 +89,38 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </nav>
     </div>
 
-    <h1 class="text-3xl font-bold tracking-tight pb-4">Stud Wall Partitioning</h1>
+    <h1 class="text-3xl font-bold tracking-tight pb-4">Traditional Cut Roofs</h1>
+    
     <div class="grid md:grid-cols-2 items-start gap-8">
+      
       <div class="space-y-4">
+        
         <div class="space-y-4 text-gray-600 prose">
 
-          <h2 class="font-semibold text-lg">Roof truss erection services</h2>
-          <p>
-            Coulsy Joinery, located in Yorkshire, offers roof truss erection services nationwide, tailored to customer specifications.
-          </p>
+          <p>Coulsy Joinery and building provide traditional cut roofs to client and architect specifications.</p>
+          <p>We are an experienced team of joiners at constructing wooden roofs.</p>
+          <ul>
+             <li>Design and surveys from your brief</li>
+             <li>Quality materials used from established suppliers</li>
+             <li>Sustainable timber materials from well managed forests</li>
+             <li>Expert joinery installation</li>
+             <li>Professional, tidy and a hardworking team</li>
+             <li>Safe and secure</li>
+          </ul>
+
+          <h2 class="font-semibold text-lg">Traditional cut roof benefits</h2>
+
+          <ul>
+             <li>No need for mechanical means such as a tele-handler or crane to load out material (roof size dependent)</span></li>
+             <li>Can create more room height on tighter buildings</span></li>
+             <li>Can be tailored made to any roof shape and size no matter how complex</span></li>
+             <li>Can later be adjusted to add Velux’s and or dormers</span></li>
+             <li>No need to worry about height restriction on access as all materials can be delivered on a flat bed</span></li>
+          </ul>
           <h2 class="font-semibold text-lg">Dependable</h2>
           <p>
-            If you need a truss roof contractor or subcontractor, we are a dependable provider capable of meeting your precise requirements and ensuring compliance with current regulations for proper roof installation.
+            If you are looking for a traditional cut roof you need to find a reliable provider with the ability to meet your exact requirements and ensure the perfect fit each and every time.
+              
           </p>
           <h2 class="font-semibold text-lg">Reliable</h2>
           <p>
@@ -106,7 +128,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           </p>
           <h2 class="font-semibold text-lg">Skilled</h2>
           <p>
-            They are highly skilled and professional, boasting extensive experience and qualifications in their craft.
+            All our joinery team are skilled and professional at their jobs, with experience in working at heights.
           </p>
           <h2 class="font-semibold text-lg">CSCS Certified</h2>
 
@@ -114,6 +136,9 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             When you choose us, you're choosing a team that's not only qualified
             but dedicated to excellence in every aspect of our work.
           </p>
+
+
+
           <p>
             We can provide more information and answer any questions you may
             have. Please feel free to <a
@@ -123,21 +148,20 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           </p>
         </div>
       </div>
+
       <div class="flex items-start flex-col space-y-4">
         <Image
-          src={rooftop}
+          src={barnCutRoof}
           width="350"
           class="object-fit max-w-full h-auto mx-auto block"
-          alt="Citb Logo"
+          alt={typeFormated}
         />
-
       </div>
+
     </div>
 
   </div>
 
     <NearbyAreas location={location} />
-
-
 
 </Layout>
