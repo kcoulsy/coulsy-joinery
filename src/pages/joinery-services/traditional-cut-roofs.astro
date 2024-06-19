@@ -29,7 +29,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
 ---
 
-<Layout title="Our Qualifications">
+<Layout title="Stud Wall Partitioning">
 
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
@@ -149,14 +149,41 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         </div>
       </div>
 
-      <div class="flex items-start flex-col space-y-4">
+      <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+        <Image
+          src={barnCutRoof}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={barnCutRoof}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={barnCutRoof}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={barnCutRoof}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+      </div>
+
+      <!-- <div class="flex items-start flex-col space-y-4">
         <Image
           src={barnCutRoof}
           width="350"
           class="object-fit max-w-full h-auto mx-auto block"
           alt={typeFormated}
         />
-      </div>
+      </div> -->
 
     </div>
 

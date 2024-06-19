@@ -27,7 +27,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
 ---
 
-<Layout title="Our Qualifications">
+<Layout title="Kitchen Installers">
 
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
@@ -76,44 +76,39 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           </li>
 
           <li class="flex items-center">
-
-            
             <a href="#" class={currentPath === '/joinery-services/kitchen-installers' ? 'text-yellow-600 font-semibold' : ''}>
               <span class="">Kitchen Installers</span>
             </a>
-            
           </li>
         </ol>
       </nav>
     </div>
 
     <h1 class="text-3xl font-bold tracking-tight pb-4">Kitchen Installers</h1>
+
     <div class="grid md:grid-cols-2 items-start gap-8">
       <div class="space-y-4">
         <div class="space-y-4 text-gray-600 prose">
 
-          <h2 class="font-semibold text-lg">Roof truss erection services</h2>
           <p>
-            Coulsy Joinery, located in Yorkshire, offers roof truss erection services nationwide, tailored to customer specifications.
+            Fully experienced in working on domestic and commercial kitchen install projects
           </p>
+          <p>Often working on single kitchen fit-outs as well as large commercial projects, installing kitchens in new housing and domestic homes.
+          </p>
+
           <h2 class="font-semibold text-lg">Dependable</h2>
           <p>
-            If you need a truss roof contractor or subcontractor, we are a dependable provider capable of meeting your precise requirements and ensuring compliance with current regulations for proper roof installation.
+            If you need a kitchen installation, we are dependable kitchen installers capable of meeting your precise requirements and ensuring a high end kitchen installation.
           </p>
           <h2 class="font-semibold text-lg">Reliable</h2>
           <p>
-            Our joinery team is consistently reliable and adaptable, working according to your designed roof specifications.
+            Our kitchen fitting team is consistently reliable and adaptable, working according to your kitchen layout, plan and design.
           </p>
           <h2 class="font-semibold text-lg">Skilled</h2>
           <p>
-            They are highly skilled and professional, boasting extensive experience and qualifications in their craft.
+            Our time served joiners provide high quality, accurate kitchen installs.
           </p>
-          <h2 class="font-semibold text-lg">CSCS Certified</h2>
 
-          <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
-          </p>
           <p>
             We can provide more information and answer any questions you may
             have. Please feel free to <a
@@ -124,14 +119,41 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         </div>
       </div>
 
-      <div class="flex items-start flex-col space-y-4">
+      <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+        <Image
+          src={kitchenInstallers}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={kitchenInstallers}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={kitchenInstallers}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={kitchenInstallers}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+      </div>
+
+      <!-- <div class="flex items-start flex-col space-y-4">
         <Image
           src={kitchenInstallers}
           width="350"
           class="object-fit max-w-full h-auto mx-auto block"
           alt={typeFormated}
         />
-      </div>
+      </div> -->
 
     </div>
 

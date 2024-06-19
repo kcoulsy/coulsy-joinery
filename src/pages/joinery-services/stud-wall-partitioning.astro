@@ -27,7 +27,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
 ---
 
-<Layout title="Our Qualifications">
+<Layout title="Stud Wall Partitioning">
 
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
@@ -93,15 +93,19 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         <div class="space-y-4 text-gray-600 prose">
 
           <p>
-            Coulsy Joinery, located in Yorkshire, offers roof truss erection services nationwide, tailored to customer specifications.
+            One of the services that Coulsy carpentry subcontractors offers is expert timber stud wall partitioning.
+           </p>
+           <p>Stud wall partitioning is building a wood framed wall using timber studs that are secured to the floor and the ceiling of an existing structure.</p>
+           <p>Each stud is part of the larger frame and is attached to both the sole plate and the top plate wood.</p>
+           <p>              This is re-enforced by staggered blocking across the wall between each stud, with headers or gaps for doorways and existing load bearing beams.
           </p>
           <h2 class="font-semibold text-lg">Dependable</h2>
           <p>
-            If you need a truss roof contractor or subcontractor, we are a dependable provider capable of meeting your precise requirements and ensuring compliance with current regulations for proper roof installation.
+            If you need a new bedroom or want to section off a room, hiring Coulsy to build some stud wall partitioning in your home is much more affordable than buying a new home.
           </p>
           <h2 class="font-semibold text-lg">Reliable</h2>
           <p>
-            Our joinery team is consistently reliable and adaptable, working according to your designed roof specifications.
+            The perfect choice for those who need a professional joinery service for expert stud wall partitioning and timber installation.
           </p>
           <h2 class="font-semibold text-lg">Skilled</h2>
           <p>
@@ -123,19 +127,46 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         </div>
       </div>
 
-        <div class="flex items-start flex-col space-y-4">
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block"
-            alt={typeFormated}
-          />
-        </div>
-  
+      <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+        <Image
+          src={studWall}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={studWall}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={studWall}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
+        <Image
+          src={studWall}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+          alt={typeFormated}
+        />
       </div>
-  
+
+      <!-- <div class="flex items-start flex-col space-y-4">
+        <Image
+          src={studWall}
+          width="350"
+          class="object-fit max-w-full h-auto mx-auto block"
+          alt={typeFormated}
+        />
+      </div> -->
+
     </div>
-  
-      <NearbyAreas location={location} />
-  
-  </Layout>
+
+  </div>
+
+    <NearbyAreas location={location} />
+
+</Layout>
