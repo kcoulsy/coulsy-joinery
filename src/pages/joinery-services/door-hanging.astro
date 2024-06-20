@@ -23,6 +23,7 @@ if (type === "/joinery-services/door-hanging") {
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
+const alt = typeFormated + " in " + locationFormated;
 ---
 
 <Layout title={typeFormated}>
@@ -34,7 +35,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
-      alt={typeFormated}
+      alt={alt}
       loading="eager"
     />
   </div>
@@ -104,22 +105,24 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
             <p>
-              As part of Coulsy Joinery's services {
+              As part of Coulsy Joinery's services, we specialise in installing
+              all types of doors, including fire doors {
                 location ? "in " + locationFormated : ""
-              }, we specialise in installing all types of doors, including fire
-              doors. We are happy to visit your location to install any number
-              of doors. You can supply the doors yourself, or we can provide
-              them for you. Doors vary greatly, from internal to external, and
-              can be made from a wide range of materials, including timber,
-              metal, composite, UPVC, and engineered wood. Designs range from
-              unpainted to pre-finished and can feature various veneers that
-              alter the species of timber.
+              }. We are happy to visit your location to install any number of
+              doors. You can supply the doors yourself, or we can provide them
+              for you. Doors vary greatly, from internal to external, and can be
+              made from a wide range of materials, including timber, metal,
+              composite, UPVC, and engineered wood. Designs range from unpainted
+              to pre-finished and can feature various veneers that alter the
+              species of timber.
             </p>
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you need door sets or fire doors, we are a dependable provider
-              capable of meeting your precise requirements and ensuring
-              compliance with current regulations for proper door installation.
+              If you need door sets or fire doors {
+                location ? "in " + locationFormated : ""
+              }, we are a dependable provider capable of meeting your precise
+              requirements and ensuring compliance with current regulations for
+              proper door installation.
             </p>
             <h2 class="font-semibold text-lg">Reliable</h2>
             <p>
@@ -160,25 +163,25 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             src={doorHanging}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={doorHanging}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={doorHanging}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={doorHanging}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
         </div>
       </div>

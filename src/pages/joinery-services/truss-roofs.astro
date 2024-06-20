@@ -20,6 +20,7 @@ if (type === "/joinery-services/truss-roofs") {
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
+const alt = typeFormated + " in " + locationFormated;
 ---
 
 <Layout title={typeFormated}>
@@ -31,7 +32,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
-      alt={typeFormated}
+      alt={alt}
       loading="eager"
     />
   </div>
@@ -94,7 +95,8 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        Truss Roofs {location ? "in " + locationFormated : ""}
+        {typeFormated}
+        {location ? "in " + locationFormated : ""}
       </h1>
 
       <div class="grid md:grid-cols-2 items-start gap-8">
@@ -106,10 +108,11 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             </p>
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you need a truss roof contractor or subcontractor, we are a
-              dependable provider capable of meeting your precise requirements
-              and ensuring compliance with current regulations for proper roof
-              installation.
+              If you need a truss roof contractor or subcontractor {
+                location ? "in " + locationFormated : ""
+              }, we are a dependable provider capable of meeting your precise
+              requirements and ensuring compliance with current regulations for
+              proper roof installation.
             </p>
             <h2 class="font-semibold text-lg">Reliable</h2>
             <p>
@@ -143,36 +146,27 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             src={rooftop}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={rooftop}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={rooftop}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={rooftop}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
         </div>
-
-        <!-- <div class="flex items-start flex-col space-y-4">
-        <Image
-          src={rooftop}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt={typeFormated}
-        />
-      </div> -->
       </div>
     </div>
 

@@ -22,6 +22,7 @@ if (type === "/joinery-services/bespoke-joinery") {
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
+const alt = typeFormated + " in " + locationFormated;
 ---
 
 <Layout title={typeFormated}>
@@ -33,7 +34,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
-      alt={typeFormated}
+      alt={alt}
       loading="eager"
     />
   </div>
@@ -88,14 +89,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             </li>
 
             <li class="flex items-center">
-              <a
-                href="#"
-                class={currentPath === "/joinery-services/bespoke-joinery"
-                  ? "text-yellow-600 font-semibold"
-                  : ""}
-              >
-                <span class="">Bespoke Joinery</span>
-              </a>
+              <span class="text-yellow-600 font-semibold">{typeFormated}</span>
             </li>
           </ol>
         </nav>
@@ -130,7 +124,9 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
               suppliers, we strive to provide the best possible service. Our
               range of services includes high-quality doors, windows,
               staircases, skirtings, architraves, ironmongery installation,
-              traditional roofs, truss roofs, and shop fitting.
+              traditional roofs, truss roofs, and shop fitting {
+                location ? "in " + locationFormated : ""
+              }.
             </p>
 
             <h2 class="font-semibold text-lg">Dependable</h2>
@@ -171,36 +167,27 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             src={mouldingPlane}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={mouldingPlane}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={mouldingPlane}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={mouldingPlane}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
         </div>
-
-        <!-- <div class="flex items-start flex-col space-y-4">
-        <Image
-          src={mouldingPlane}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt={typeFormated}
-        />
-      </div> -->
       </div>
     </div>
 

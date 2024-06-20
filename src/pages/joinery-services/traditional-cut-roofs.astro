@@ -21,6 +21,7 @@ if (type === "/joinery-services/traditional-cut-roofs") {
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
+const alt = typeFormated + " in " + locationFormated;
 ---
 
 <Layout title={typeFormated}>
@@ -32,7 +33,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
-      alt={typeFormated}
+      alt={alt}
       loading="eager"
     />
   </div>
@@ -174,25 +175,25 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             src={barnCutRoof}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={barnCutRoof}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={barnCutRoof}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
           <Image
             src={barnCutRoof}
             width="350"
             class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={typeFormated}
+            alt={alt}
           />
         </div>
       </div>
