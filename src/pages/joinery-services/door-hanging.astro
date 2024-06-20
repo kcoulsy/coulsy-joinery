@@ -1,13 +1,12 @@
 ---
 import ContactForm from "../../components/ContactForm.astro";
 import timber20joinery from "../../assets/images/timber20joinery.jpg";
-
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
 import doorHanging from "../../assets/images/door-hanging-1.jpeg";
-import NearbyAreas from "../../components/NearbyAreas.astro";
-const currentPath = Astro.url.pathname;
+import NearbyAreasDoorHanging from "../../components/NearbyAreasDoorHanging.astro";
 
+const currentPath = Astro.url.pathname;
 const { location, type } = Astro.params;
 
 function capitalizeFirstLetter(string: string) {
@@ -24,7 +23,7 @@ if (type === "/joinery-services/door-hanging") {
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 ---
 
-<Layout title="Door Hanging">
+<Layout title={typeFormated}>
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
@@ -37,6 +36,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       loading="eager"
     />
   </div>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <div class="flex flex-wrap max-w-screen overflow-x-hidden">
       <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
@@ -88,15 +88,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
             </li>
 
             <li class="flex items-center">
-              <span class="text-yellow-600 font-semibold">Door Hanging</span>
-              <!-- <a
-                href="#"
-                class={currentPath === "/joinery-services/door-hanging"
-                  ? "text-yellow-600 font-semibold"
-                  : ""}
-              >
-                <span class="text-yellow-600 font-semibold">Door Hanging</span>
-              </a> -->
+              <span class="text-yellow-600 font-semibold">{typeFormated}</span>
             </li>
           </ol>
         </nav>
@@ -105,6 +97,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       <h1 class="text-3xl font-bold tracking-tight pb-4">
         Door Hanging {location ? "in " + locationFormated : ""}
       </h1>
+
       <div class="grid md:grid-cols-2 items-start gap-8">
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
@@ -189,6 +182,6 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
     </div>
 
-    <NearbyAreas location={location} />
+    <NearbyAreasDoorHanging location={location} />
   </main></Layout
 >
