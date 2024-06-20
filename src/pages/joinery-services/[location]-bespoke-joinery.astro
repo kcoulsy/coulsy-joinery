@@ -17,7 +17,9 @@ export const getStaticPaths = (() => {
   return paths;
 }) satisfies GetStaticPaths;
 
-const { location, type } = Astro.params;
+// const { location, type } = Astro.params;
+const location = Astro.params;
+
 console.log(Astro.params);
 ---
 
