@@ -1,8 +1,8 @@
 ---
-import FacebookIcon from "../icons/FacebookIcon.astro";
-import InstagramIcon from "../icons/InstagramIcon.astro";
+// import FacebookIcon from "../icons/FacebookIcon.astro";
+// import InstagramIcon from "../icons/InstagramIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
-import TwitterIcon from "../icons/TwitterIcon.astro";
+// import TwitterIcon from "../icons/TwitterIcon.astro";
 import Dropdown from "./Dropdown.astro";
 
 const menuitems = [
@@ -10,17 +10,19 @@ const menuitems = [
     label: "Joinery Services",
     link: "/joinery-services",
     items: [
-      { label: "Our Joinery Services", link: "/joinery-services" },
+      { label: "Joinery Services", link: "/joinery-services" },
       { label: "Truss Roofs", link: "/joinery-services/truss-roofs" },
       { label: "Cut Roofs", link: "/joinery-services/traditional-cut-roofs" },
-      { label: "Stud Walls", link: "/joinery-services/stud-wall-partitioning" },
+      {
+        label: "Stud Walls Partitioning",
+        link: "/joinery-services/stud-wall-partitioning",
+      },
       { label: "Door Hanging", link: "/joinery-services/door-hanging" },
       {
         label: "Kitchen Installers",
         link: "/joinery-services/kitchen-installers",
       },
       { label: "Bespoke Joinery", link: "/joinery-services/bespoke-joinery" },
-      { label: "Old Joinery Services", link: "/joinery-services_old" },
     ],
   },
   {

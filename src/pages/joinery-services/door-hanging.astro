@@ -5,6 +5,8 @@ import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
 import doorHanging from "../../assets/images/door-hanging-1.jpeg";
 import NearbyAreasDoorHanging from "../../components/NearbyAreasDoorHanging.astro";
+import FireStats from "../../components/FireStats.astro";
+import CommonFaults from "../../components/CommonFaults.astro";
 
 const currentPath = Astro.url.pathname;
 const { location, type } = Astro.params;
@@ -181,6 +183,8 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         </div>
       </div>
     </div>
+    <FireStats />
+    <CommonFaults />
 
     <NearbyAreasDoorHanging location={location} />
   </main></Layout
