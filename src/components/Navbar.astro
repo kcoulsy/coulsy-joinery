@@ -1,8 +1,8 @@
 ---
-// import FacebookIcon from "../icons/FacebookIcon.astro";
-// import InstagramIcon from "../icons/InstagramIcon.astro";
+import FacebookIcon from "../icons/FacebookIcon.astro";
+import InstagramIcon from "../icons/InstagramIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
-// import TwitterIcon from "../icons/TwitterIcon.astro";
+import TwitterIcon from "../icons/TwitterIcon.astro";
 import Dropdown from "./Dropdown.astro";
 
 const menuitems = [
@@ -12,7 +12,10 @@ const menuitems = [
     items: [
       { label: "Joinery Services", link: "/joinery-services" },
       { label: "Truss Roofs", link: "/joinery-services/truss-roofs" },
-      { label: "Cut Roofs", link: "/joinery-services/traditional-cut-roofs" },
+      {
+        label: "Traditional Cut Roofs",
+        link: "/joinery-services/traditional-cut-roofs",
+      },
       {
         label: "Stud Walls Partitioning",
         link: "/joinery-services/stud-wall-partitioning",
@@ -77,7 +80,7 @@ const menuitems = [
                 <li>
                   <a
                     href={item.link}
-                    class="flex lg:px-3 py-2 items-center text-white hover:text-gray-200"
+                    class="flex lg:px-4 py-2 items-center text-white hover:text-gray-200"
                   >
                     {item.label}
                   </a>
