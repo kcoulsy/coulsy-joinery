@@ -1,104 +1,141 @@
 ---
-
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import benchPlaneImage from "../assets/images/bench-plane-frog_adobe_express.svg";
 import complianceImage from "../assets/images/compliance.jpeg";
 import sustainabilityImage from "../assets/images/sustainability_logo.svg";
-import AboutList from "../components/AboutList.astro";
 const currentPath = Astro.url.pathname;
-
 ---
 
 <Layout title="About Us">
-
-
   <div class="w-full container mx-auto px-8 py-12">
-
     <div class="flex justify-left">
       <nav class="text-sm sm:text-base pb-6">
         <ol class="list-none p-0 inline-flex space-x-2">
           <li class="flex items-center">
-            <svg onclick="window.location.href='/';" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" class="cursor-pointer hover:fill-blue-500 transition-colors duration-300 mr-2" fill="#4b5563"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>        <span class="mx-2">/</span>
+            <svg
+              onclick="window.location.href='/';"
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 576 512"
+              class="cursor-pointer hover:fill-blue-500 transition-colors duration-300 mr-2"
+              fill="#4b5563"
+              ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
+              ></path></svg
+            >
+            <span class="mx-2">/</span>
           </li>
 
           <li class="flex items-center">
-            
-            <a href="#" class={currentPath === '/about' ? 'text-yellow-600 font-semibold' : ''}>
+            <a
+              href="#"
+              class={currentPath === "/about"
+                ? "text-yellow-600 font-semibold"
+                : ""}
+            >
               <span class="">About</span>
             </a>
-            
           </li>
         </ol>
       </nav>
     </div>
 
-    <h1 class="text-3xl font-bold tracking-tight pb-4"> About </h1>
-    <h2 class="text-xl font-light mb-4 mt-4">Delivering to your needs and requiremnents</h2>
+    <h1 class="text-3xl font-bold tracking-tight pb-4">About</h1>
+    <h2 class="text-xl font-light mb-4 mt-4">
+      Delivering to your needs and requiremnents
+    </h2>
     <p class="text-md font-light mb-4 mt-1">
-      At Coulsy Joinery, we understand the need for rules and regulations. They are there for you, us and others, so that standards can be maintained, guidance followed and where possible go that extra mile in our efforts to make a sustainable company and protect our natural resources.
-  </p>
+      At Coulsy Joinery, we understand the need for rules and regulations. They
+      are there for you, us and others, so that standards can be maintained,
+      guidance followed and where possible go that extra mile in our efforts to
+      make a sustainable company and protect our natural resources.
+    </p>
     <h4 class="text-xl font-light mb-4 mt-1">
-      Providing the highest level of expertise and service in the carpentry and joinery sector.
+      Providing the highest level of expertise and service in the carpentry and
+      joinery sector.
     </h4>
 
-    
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+      <div
+        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+      >
         <div class="relative overflow-hidden rounded-xl">
-
-          <Image src={benchPlaneImage} alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
+          <Image
+            src={benchPlaneImage}
+            alt="art cover"
+            loading="lazy"
+            width="1000"
+            height="667"
+            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+          />
+          <div class="mt-6 relative">
+            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+              Fully Qualified
+            </h3>
+            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+              Our team are highly qualified to meet the demands of your
+              project...
+            </p>
+            <a class="inline-block" href="/about/qualifications">
+              <span class="text-info dark:text-blue-300">Read more</span>
+            </a>
+          </div>
         </div>
-        <div class="mt-6 relative">
-          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-            Fully Qualified
-          </h3>
-          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-            Our team are highly qualified to meet the demands of your project...
-          </p>
-          <a class="inline-block" href="/about/qualifications">
-            <span class="text-info dark:text-blue-300">Read more</span>
-          </a>
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="relative overflow-hidden rounded-xl">
+            <Image
+              src={complianceImage}
+              alt="art cover"
+              loading="lazy"
+              width="1000"
+              height="667"
+              class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            />
+            <div class="mt-6 relative">
+              <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Highly Compliant
+              </h3>
+              <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+                We adhere to the highest standards of compliance and ethics...
+              </p>
+              <a class="inline-block" href="/about/compliance">
+                <span class="text-info dark:text-blue-300">Read more</span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div class="relative overflow-hidden rounded-xl">
+              <Image
+                src={sustainabilityImage}
+                alt="art cover"
+                loading="lazy"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+              <div class="mt-6 relative">
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-white"
+                >
+                  Sustainability
+                </h3>
+                <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+                  Making a difference...
+                </p>
+                <a class="inline-block" href="/about/sustainability">
+                  <span class="text-info dark:text-blue-300">Read more</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        
-      </div>
-      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
-        <div class="relative overflow-hidden rounded-xl">
-          <Image src={complianceImage} alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
-        </div>
-        <div class="mt-6 relative">
-          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-            Highly Compliant
-          </h3>
-          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-            We adhere to the highest standards of compliance and ethics...
-          </p>
-          <a class="inline-block" href="/about/compliance">
-            <span class="text-info dark:text-blue-300">Read more</span>
-          </a>
-        </div>
-        
-      </div>
-      <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
-        <div class="relative overflow-hidden rounded-xl">
-          <Image src={sustainabilityImage} alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105">
-        </div>
-        <div class="mt-6 relative">
-          <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-            Sustainability
-          </h3>
-          <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-            Making a difference...
-          </p>
-          <a class="inline-block" href="/about/sustainability">
-            <span class="text-info dark:text-blue-300">Read more</span>
-          </a>
-        </div>
-        
       </div>
     </div>
-  
-  </div>
-
-  
-</Layout>
+  </div></Layout
+>
