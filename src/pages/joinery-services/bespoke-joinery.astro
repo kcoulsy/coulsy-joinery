@@ -5,6 +5,9 @@ import timber20joinery from "../../assets/images/timber20joinery.jpg";
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
 import mouldingPlane from "../../assets/images/moulding_plane.png";
+import benchPlane from "../../assets/images/bench-plane-frog.jpg";
+import garageDoors from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
+import panelling from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 import NearbyAreasBespokeJoinery from "../../components/NearbyAreasBespokeJoinery.astro";
 const currentPath = Astro.url.pathname;
 
@@ -161,33 +164,94 @@ const alt = typeFormated + " in " + locationFormated;
             </p>
           </div>
         </div>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
+          <div
+            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div class="relative overflow-hidden rounded-xl">
+              <Image
+                src={mouldingPlane}
+                alt={alt}
+                loading="lazy"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
 
-        <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <Image
-            src={mouldingPlane}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={mouldingPlane}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={mouldingPlane}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={mouldingPlane}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
+          <div
+            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div class="relative overflow-hidden rounded-xl">
+              <Image
+                src={benchPlane}
+                alt={alt}
+                loading="lazy"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
+
+          <div
+            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div class="relative overflow-hidden rounded-xl">
+              <Image
+                src={garageDoors}
+                alt={alt}
+                loading="lazy"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
+
+          <div
+            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div class="relative overflow-hidden rounded-xl">
+              <Image
+                src={panelling}
+                alt={alt}
+                loading="lazy"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
         </div>
+
+        <!-- <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+          <Image
+            src={mouldingPlane}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+            alt={alt}
+          />
+          <Image
+            src={mouldingPlane}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+            alt={alt}
+          />
+          <Image
+            src={mouldingPlane}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+            alt={alt}
+          />
+          <Image
+            src={mouldingPlane}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
+            alt={alt}
+          />
+        </div> -->
       </div>
     </div>
 
