@@ -3,11 +3,11 @@ import ContactForm from "../../components/ContactForm.astro";
 import timber20joinery from "../../assets/images/timber20joinery.jpg";
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import studWall from "../../assets/images/stud-wall-new-build.jpeg";
-import studWallImg1 from "../../assets/images/stud-walls/stud-walls1.JPG";
-import studWallImg2 from "../../assets/images/stud-walls/stud-walls2.JPG";
-import studWallImg3 from "../../assets/images/stud-walls/stud-walls3.JPG";
-import studWallImg4 from "../../assets/images/stud-walls/stud-walls4.JPG";
+import studWallHeader from "../../assets/images/stud-walls/stud-walls-header.png";
+import studWallImg1 from "../../assets/images/stud-walls/stud-walls1.jpg";
+import studWallImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
+import studWallImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
+import studWallImg4 from "../../assets/images/stud-walls/stud-walls4.png";
 import NearbyAreasStudWalls from "../../components/NearbyAreasStudWalls.astro";
 
 const currentPath = Astro.url.pathname;
@@ -33,7 +33,7 @@ const alt = typeFormated + " in " + locationFormated;
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
     <Image
-      src={timber20joinery}
+      src={studWallHeader}
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"

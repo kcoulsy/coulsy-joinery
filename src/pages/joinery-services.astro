@@ -2,15 +2,15 @@
 import { Image } from "astro:assets";
 
 import ContactForm from "../components/ContactForm.astro";
-import timber20joinery from "../assets/images/timber20joinery.jpg";
 
 import Layout from "../layouts/Layout.astro";
+import servicesHeaderImg from "../assets/images/timber20joinery.jpg";
 import studWall from "../assets/images/stud-wall-new-build.jpeg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
 import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import rooftop from "../assets/images/rooftop.jpg";
-import barnCutRoof from "../assets/images/barn-cut-roof.jpeg";
-import doorHanging from "../assets/images/door-hanging-1.jpeg";
+import cutRoofHeader from "../../src/assets/images/cut-roofs/cut-roof-header.jpg";
+import doorHanging from "../assets/images/doors/fire-doors-sign.jpg";
 
 import NearbyAreas from "../components/NearbyAreas.astro";
 
@@ -38,7 +38,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
     <Image
-      src={timber20joinery}
+      src={servicesHeaderImg}
       width="856"
       height="512"
       class="object-fit w-full h-[600px]"
@@ -147,7 +147,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         >
           <div class="relative overflow-hidden rounded-xl">
             <Image
-              src={barnCutRoof}
+              src={cutRoofHeader}
               alt="Tradtional Cut Roofs"
               loading="lazy"
               width="1000"
