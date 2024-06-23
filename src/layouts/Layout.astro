@@ -7,21 +7,26 @@ import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
   title: string;
+  description?: string;
   classes?: string;
 }
 
-const { title, classes } = Astro.props;
+const {
+  title,
+  classes,
+  description = "Coulsy carpentry and joinery contracting services",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Coulsy Carpentry and Joinery" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | Coulsy Carpentry and Joinery</title>
+    <title>{title} | {description}</title>
   </head>
   <body class="flex flex-col min-h-screen">
     <Navbar />
