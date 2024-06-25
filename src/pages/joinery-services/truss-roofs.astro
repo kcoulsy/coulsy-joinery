@@ -107,13 +107,14 @@ const alt = typeFormated + " in " + locationFormated;
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
             <p>
-              Coulsy Joinery, located in Yorkshire, offers roof truss erection
-              services nationwide, tailored to customer specifications.
+              Coulsy Joinery, offers roof truss erection services {
+                location ? " in " + locationFormated : "nationwide"
+              }, tailored to customer design specifications.
             </p>
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you need a truss roof contractor or subcontractor {
-                location ? "in " + locationFormated : ""
+              If you require a truss roof contractor, subcontractor or installer{
+                location ? " in " + locationFormated : ""
               }, we are a dependable provider capable of meeting your precise
               requirements and ensuring compliance with current regulations for
               proper roof installation.
@@ -125,8 +126,8 @@ const alt = typeFormated + " in " + locationFormated;
             </p>
             <h2 class="font-semibold text-lg">Skilled</h2>
             <p>
-              They are highly skilled and professional, boasting extensive
-              experience and qualifications in their craft.
+              We are highly skilled and professional, with extensive experience
+              and qualifications in our field.
             </p>
             <h2 class="font-semibold text-lg">CSCS Certified</h2>
 
