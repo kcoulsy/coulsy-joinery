@@ -2,7 +2,7 @@
 import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import rooftop from "../../assets/images/rooftop.jpg";
+import trussHeaderImg from "../../assets/images/truss-roofs/commercial-trusses-header.jpg";
 import trussImg1 from "../../assets/images/truss-roofs/attic-trusses.jpg";
 import trussImg2 from "../../assets/images/truss-roofs/attic-trusses2.jpg";
 import trussImg3 from "../../assets/images/truss-roofs/attic-trusses3.jpg";
@@ -32,9 +32,9 @@ const alt = typeFormated + " in " + locationFormated;
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
     <Image
-      src={rooftop}
-      width="856"
-      height="512"
+      src={trussHeaderImg}
+      widths={[240, 540, 720, trussHeaderImg.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${trussHeaderImg.width}px`}
       class="object-fit w-full h-[600px]"
       alt={alt}
       loading="eager"
