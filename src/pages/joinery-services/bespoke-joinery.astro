@@ -112,10 +112,11 @@ const alt = typeFormated + " in " + locationFormated;
               craftsmanship.
             </p>
             <p>
-              We offer tailor-made joinery products, available for supply only
-              or supply and installation. By adopting both traditional and
-              modern woodworking techniques, we produce high-quality products
-              with exceptional workmanship.
+              We offer tailor-made joinery products{
+                location ? " in " + locationFormated : ""
+              }, available for supply only or supply and installation. By
+              adopting both traditional and modern woodworking techniques, we
+              produce high-quality products with exceptional workmanship.
             </p>
             <p>
               Our joiners are proficient in both modern and traditional 1st Fix
@@ -134,9 +135,10 @@ const alt = typeFormated + " in " + locationFormated;
 
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you require bespoke joinery, Coulsy Joinery is the dependable
-              provider capable of meeting your precise requirements and ensuring
-              customer satisfaction.
+              If you require bespoke joinery{
+                location ? " in " + locationFormated : ""
+              }, Coulsy Joinery is the dependable provider capable of meeting
+              your precise requirements and ensuring customer satisfaction.
             </p>
             <h2 class="font-semibold text-lg">Reliable</h2>
             <p>

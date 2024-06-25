@@ -105,11 +105,12 @@ const alt = typeFormated + " in " + locationFormated;
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
             <p>
-              Coulsy Joinery and building provide traditional cut roofs to
-              client and architect specifications.
+              Coulsy Joinery provide traditional cut roofs {
+                location ? "in " + locationFormated : ""
+              } to client and architect specifications.
             </p>
             <p>
-              We are an experienced team of joiners at constructing wooden
+              We are an experienced team of joiners at constructing wooden cut
               roofs.
             </p>
             <ul>
@@ -141,9 +142,11 @@ const alt = typeFormated + " in " + locationFormated;
             </li>
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you are looking for a traditional cut roof you need to find a
-              reliable provider with the ability to meet your exact requirements
-              and ensure the perfect fit each and every time.
+              If you are looking for a traditional cut roof {
+                location ? "in " + locationFormated : ""
+              }, you need to find a reliable installer with the ability to meet
+              your exact requirements and ensure the perfect fit each and every
+              time.
             </p>
             <h2 class="font-semibold text-lg">Reliable</h2>
             <p>
