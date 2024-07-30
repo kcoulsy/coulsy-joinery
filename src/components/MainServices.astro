@@ -19,11 +19,12 @@ function capitalizeFirstLetter(string: string) {
         <h3 class="text-3xl font-bold sm:text-4xl">Our Joinery Services</h3>
 
         <p class="mt-4 mb-6 text-gray-600">
-          At Coulsy Joinery, we deliver a comprehensive range of top-notch
-          carpentry and joinery services and contracting solutions. Our
-          offerings include custom joinery, bespoke refits, intricate woodwork,
-          and complete project management, all tailored to meet your specific
-          needs {location ? `in ${capitalizeFirstLetter(location)}` : null}
+          At Coulsy Joinery, we offer a wide range of high-quality carpentry and
+          joinery services, along with joinery contracting. Our joinery services
+          also include bespoke joinery, refits, heritage woodwork and joinery,
+          complete project management, all tailored to your needs{
+            location ? `in ${capitalizeFirstLetter(location)}` : null
+          }.
         </p>
       </div>
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 col-span-2">
