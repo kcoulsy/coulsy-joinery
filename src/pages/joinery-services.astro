@@ -11,12 +11,9 @@ import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import rooftop from "../assets/images/rooftop.jpg";
 import cutRoofHeader from "../../src/assets/images/cut-roofs/cut-roof-header.jpg";
 import doorHanging from "../assets/images/doors/fire-doors-sign.png";
-
 import NearbyAreas from "../components/NearbyAreas.astro";
-
 import Why from "./../components/Why.astro";
 
-const currentPath = Astro.url.pathname;
 const { location, type } = Astro.params;
 
 function capitalizeFirstLetter(string: string) {
