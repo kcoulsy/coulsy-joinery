@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coulsyjoinery.co.uk/sitemap-index.xml
