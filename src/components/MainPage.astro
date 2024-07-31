@@ -16,8 +16,8 @@ let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Carpentry and Joinery";
 
-  if (type === 'joinery-services') {
-  typeFormated = 'Carpentry and Joinery Services'
+if (type === "joinery-services") {
+  typeFormated = "Carpentry and Joinery Services";
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
@@ -45,7 +45,8 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           <h1
             class="text-[56px] leading-[56px] mt-4 font-bold text-white w-80 text-center"
           >
-            Welcome to COULSY {locationFormated} {typeFormated}
+            Welcome to COULSY {locationFormated}
+            {typeFormated}
           </h1>
         </div>
       </div>
@@ -57,7 +58,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
       </div>
     </div>
 
-    <MainServices location={ location }/>
+    <MainServices location={location} />
     <Why />
   </main>
 </Layout>
