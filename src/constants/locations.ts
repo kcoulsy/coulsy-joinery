@@ -30,20 +30,20 @@ export const LOCATIONS = [
 
 
   "york",
-    "Selby",
-    "Malton",
-    "Tadcaster", 
-    "Pocklington",
-    "Elvington",
-    "Welburn",
-    "Stamford-Bridge",
-    "Towton",
+    "selby",
+    "malton",
+    "tadcaster",
+    "pocklington",
+    "elvington",
+    "welburn",
+    "stamford-Bridge",
+    "towton",
     "wetherby",
 
   "ripon",
     "thirsk",
     "masham",
-    "boroughbridge", 
+    "boroughbridge",
 
 
 
@@ -85,11 +85,10 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "skipton",
     "wetherby",
   ],
-    
     york: [
       "selby",
       "malton",
-      "tadcaster", 
+      "tadcaster",
       "pocklington",
       "elvington",
       "welburn",
@@ -102,7 +101,7 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     ripon: [
       "thirsk",
       "masham",
-      "boroughbridge", 
+      "boroughbridge",
       "leeds",
       "york",
 
