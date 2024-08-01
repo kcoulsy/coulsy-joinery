@@ -1,14 +1,11 @@
 ---
-// import Carousel from "../components/CarouselNew.astro";
 import ContactForm from "./ContactForm.astro";
 import Layout from "../layouts/Layout.astro";
 import timber20joinery from "../assets/images/timber20joinery.jpg";
 import Image from "astro/components/Image.astro";
 import OurServices from "./OurServices.astro";
 import Why from "./Why.astro";
-// import CommonFaults from "./CommonFaults.astro";
 import MainServices from "./MainServices.astro";
-// import FireStats from "./FireStats.astro";
 import NearbyAreas from "./NearbyAreas.astro";
 
 const { location, type } = Astro.params;
@@ -17,11 +14,11 @@ function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 let typeFormated = type
-? type.split("-").map(capitalizeFirstLetter).join(" ")
+  ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Carpentry and Joinery";
 
-  if (type === 'joinery-services') {
-  typeFormated = 'Carpentry and Joinery Services in'
+if (type === "joinery-services") {
+  typeFormated = "Carpentry and Joinery Services in";
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
@@ -49,7 +46,8 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           <h1
             class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
           >
-            Welcome to COULSY {typeFormated} {locationFormated}
+            Welcome to COULSY {typeFormated}
+            {locationFormated}
           </h1>
         </div>
       </div>
