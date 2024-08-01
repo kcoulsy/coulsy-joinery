@@ -2,12 +2,12 @@
 import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import studWallHeader from "../../assets/images/stud-walls/stud-walls-header.jpg";
-import studWallImg1 from "../../assets/images/stud-walls/stud-walls1.jpg";
-import studWallImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
-import studWallImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
-import studWallImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
-import NearbyAreasStudWalls from "../../components/NearbyAreasStudWalls.astro";
+import ImgHeader from "../../assets/images/joinery-subcontractors/header-image.jpg";
+import Img1 from "../../assets/images/joinery-subcontractors/stud-walls-commercial.jpg";
+import Img2 from "../../assets/images/joinery-subcontractors/sub-contract-joinery1.jpg";
+import Img3 from "../../assets/images/joinery-subcontractors/stud-walls3.jpg";
+import Img4 from "../../assets/images/joinery-subcontractors/stud-walls4.jpg";
+import NearbyAreasJoinerySubcontractors from "../../components/NearbyAreasJoinerySubcontractors.astro";
 
 const { location, type } = Astro.params;
 
@@ -16,10 +16,10 @@ function capitalizeFirstLetter(string: string) {
 }
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Stud Wall Partitioning";
+  : "Sub Contract Joinery Contractors";
 
-if (type === "/joinery-services/stud-wall-partitioning") {
-  typeFormated = "Stud Wall Partitioning";
+if (type === "/joinery-services/joinery-subcontractors") {
+  typeFormated = "Sub Contract Joinery Contractors";
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
@@ -28,10 +28,10 @@ const alt = typeFormated + " in " + locationFormated;
 
 <Layout title={typeFormated}>
   <div class="h-[600px] w-full absolute">
-    <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
+    <div class="w-full h-full backdrop-blur-[0.5px] absolute bg-gray-700/20">
     </div>
     <Image
-      src={studWallHeader}
+      src={ImgHeader}
       width="1545"
       height="600"
       class="object-fit w-full h-[600px]"
@@ -97,57 +97,71 @@ const alt = typeFormated + " in " + locationFormated;
       </div>
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        Stud Wall Partitioning {location ? "in " + locationFormated : ""}
+        Sub Contract Joinery Contractors {
+          location ? "in " + locationFormated : ""
+        }
       </h1>
       <div class="grid md:grid-cols-2 items-start gap-8">
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
             <p>
-              One of the services that we provide {
-                location ? "in " + locationFormated : ""
-              } is expert timber stud wall partitioning errecting.
+              One of the services that we provide{
+                location ? " in " + locationFormated : ""
+              } is sub contract joinery contracting.
             </p>
             <p>
-              Timber stud wall partitioning is building a wooden framed wall
-              using timber studs that are secured to the floor and the ceiling
-              of an existing structure.
+              Based in York, we are a joinery subcontractor offering both
+              labor-only and supply-and-fix services across Yorkshire,
+              Humberside, and surrounding areas.
             </p>
             <p>
-              Each stud is part of the larger frame and is attached to both the
-              sole plate and the top plate wood.
+              Our extensive range of subcontracting services is available to
+              contractors throughout the UK.
+            </p>
+            <h2 class="font-semibold text-lg">Dependable and Reliable</h2>
+            <p>
+              If you require a dependable joinery subcontractor, we are here to
+              meet your needs. With a reputation for delivering high-quality
+              workmanship and reliable service, we ensure that every project is
+              completed on time and to the highest standards.
             </p>
             <p>
-              This is re-enforced by staggered blocking across the wall between
-              each stud, with headers or gaps for doorways and existing load
-              bearing beams.
+              Whether working on residential properties, offices, schools, care
+              homes, universities, hotels, or hospitals, our team has the
+              expertise and dedication to bring your vision to life.
             </p>
-            <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you need a new bedroom or want to section off a room, hiring
-              Coulsy to build some stud wall partitioning in your home is much
-              more affordable than buying a new home.
+              Our commitment to excellence means that we provide all the
+              necessary fixings and work closely with contractors to ensure
+              seamless integration into any project.
             </p>
-            <h2 class="font-semibold text-lg">Reliable</h2>
+            <p>
+              By choosing us as your joinery subcontractor, you gain a partner
+              that understands the complexities of construction and prioritizes
+              your project’s success.
+            </p>
             <p>
               The perfect choice for those who need a professional joinery
-              service for expert stud wall partitioning and timber installation {
-                location ? "in " + locationFormated : ""
-              }.
+              subcontractor {location ? "in " + locationFormated : ""}.
             </p>
             <h2 class="font-semibold text-lg">Skilled</h2>
             <p>
-              They are highly skilled and professional, boasting extensive
-              experience and qualifications in their craft.
+              Highly skilled and professional joinery subcontractors, boasting
+              extensive joinery experience and joinery qualifications.
             </p>
-            <h2 class="font-semibold text-lg">CSCS Certified</h2>
+            <h2 class="font-semibold text-lg">Fully Certified</h2>
 
             <p>
               When you choose us, you're choosing a team that's not only
               qualified but dedicated to excellence in every aspect of our work.
             </p>
+            <p>Rams including site guidance at the ready.</p>
+            <h2 class="font-semibold text-lg">
+              Let us handle the joinery details, so you can focus on the bigger
+              picture.
+            </h2>
             <p>
-              We can provide more information and answer any questions you may
-              have. Please feel free to <a
+              Please feel free to <a
                 href="/contact"
                 class="font-semibold text-blue-700 hover:underline"
                 >contact us</a
@@ -162,7 +176,7 @@ const alt = typeFormated + " in " + locationFormated;
           >
             <div class="relative overflow-hidden rounded-xl">
               <Image
-                src={studWallImg1}
+                src={Img1}
                 alt={alt}
                 loading="eager"
                 width="1000"
@@ -177,7 +191,7 @@ const alt = typeFormated + " in " + locationFormated;
           >
             <div class="relative overflow-hidden rounded-xl">
               <Image
-                src={studWallImg2}
+                src={Img2}
                 alt={alt}
                 loading="eager"
                 width="1000"
@@ -192,7 +206,7 @@ const alt = typeFormated + " in " + locationFormated;
           >
             <div class="relative overflow-hidden rounded-xl">
               <Image
-                src={studWallImg3}
+                src={Img3}
                 alt={alt}
                 loading="eager"
                 width="1000"
@@ -207,7 +221,7 @@ const alt = typeFormated + " in " + locationFormated;
           >
             <div class="relative overflow-hidden rounded-xl">
               <Image
-                src={studWallImg4}
+                src={Img4}
                 alt={alt}
                 loading="eager"
                 width="1000"
@@ -217,45 +231,9 @@ const alt = typeFormated + " in " + locationFormated;
             </div>
           </div>
         </div>
-
-        <!-- <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-        </div> -->
-
-        <!-- <div class="flex items-start flex-col space-y-4">
-        <Image
-          src={studWall}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt={typeFormated}
-        />
-      </div> -->
       </div>
     </div>
 
-    <NearbyAreasStudWalls location={location} />
-  </main></Layout
->
+    <NearbyAreasJoinerySubcontractors location={location} />
+  </main>
+</Layout>
