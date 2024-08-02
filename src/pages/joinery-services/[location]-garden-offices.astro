@@ -1,0 +1,26 @@
+---
+import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+import { LOCATIONS } from "../../constants/locations";
+import GardenOffices from "./garden-offices.astro";
+
+export const getStaticPaths = (() => {
+  const paths: GetStaticPathsResult = [];
+
+  LOCATIONS.forEach((location) => {
+    paths.push({
+      params: {
+        location,
+      },
+    });
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+// const { location, type } = Astro.params;
+const { location } = Astro.params;
+
+console.log(Astro.params);
+---
+
+<GardenOffices location={location} />
