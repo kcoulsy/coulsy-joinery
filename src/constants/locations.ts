@@ -85,7 +85,7 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "skipton",
     "wetherby",
   ],
-    york: [
+  york: [
       "selby",
       "malton",
       "tadcaster",
@@ -104,8 +104,6 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
       "boroughbridge",
       "leeds",
       "york",
-
-
       ],
 
 
