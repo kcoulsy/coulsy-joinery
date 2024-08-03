@@ -46,6 +46,15 @@ export const LOCATIONS = [
     "boroughbridge",
 
 
+        "harrogate",
+        "knaresborough",
+        "spofforth",
+        "pannal",
+        "ripley",
+        "follifoot",
+
+
+
 
 ];
 
@@ -105,6 +114,14 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
       "leeds",
       "york",
       ],
+      harrogate: [
+        "knaresborough",
+        "spofforth",
+        "pannal",
+        "ripley",
+        "follifoot",
+        ],
+  
 
 
 };
