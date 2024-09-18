@@ -9,7 +9,6 @@ export const LOCATIONS = [
   "rothwell",
 
   "yorkshire",
-  "lancashire",
 
   "leeds",
     "bradford",
@@ -49,13 +48,11 @@ export const LOCATIONS = [
 
 export const NEARBY_LOCATIONS: Record<string, string[]> = {
   default: [
-    "leeds",
     "york",
-    "sheffield",
-    "bradford",
-    "huddersfield",
-    "yorkshire",
-    "lancashire",
+    "leeds",
+    "harrogate",
+    "wetherby",
+    "linton",
   ],
   leeds: [
     "york",
