@@ -7,6 +7,8 @@ export const LOCATIONS = [
   "pontefract",
   "garforth",
   "rothwell",
+  "boston-spa",
+  "tadcaster",
 
   "yorkshire",
 
@@ -20,6 +22,7 @@ export const LOCATIONS = [
     "otley",
     "skipton",
     "knaresborough",
+    "linton",
 
 
   "york",
@@ -53,6 +56,9 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "harrogate",
     "wetherby",
     "linton",
+    "boston-spa",
+    "tadcaster",
+  
   ],
   leeds: [
     "york",
