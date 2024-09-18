@@ -1,16 +1,10 @@
 export const LOCATIONS = [
   "doncaster",
-  "durham",
-  "lincoln",
-  "manchester",
-  "salford",
   "sheffield",
   "huddersfield",
-
   "wakefield",
   "castleford",
   "pontefract",
-
   "garforth",
   "rothwell",
 
@@ -45,23 +39,17 @@ export const LOCATIONS = [
     "masham",
     "boroughbridge",
 
-
         "harrogate",
         "knaresborough",
         "spofforth",
         "pannal",
         "ripley",
         "follifoot",
-
-
-
-
 ];
 
 export const NEARBY_LOCATIONS: Record<string, string[]> = {
   default: [
     "leeds",
-    "manchester",
     "york",
     "sheffield",
     "bradford",
