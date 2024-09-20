@@ -16,10 +16,10 @@ function capitalizeFirstLetter(string: string) {
 }
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Traditional Cut Roofs";
+  : "Traditional Hand Cut Roofs";
 
 if (type === "/joinery-services/traditional-cut-roofs") {
-  typeFormated = "Traditional Cut Roofs";
+  typeFormated = "Traditional Hand Cut Roofs";
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
@@ -96,7 +96,8 @@ const alt = typeFormated + " in " + locationFormated;
       </div>
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        Traditional Cut Roofs {location ? "in " + locationFormated : ""}
+        {typeFormated}
+        {location ? "in " + locationFormated : ""}
       </h1>
 
       <div class="grid md:grid-cols-2 items-start gap-8">

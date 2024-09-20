@@ -27,9 +27,9 @@ if (location && NEARBY_LOCATIONS[location]) {
         <p
           class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
         >
-          Discover the other areas we serve {
+          Other areas we provide a kitchen installer service {
             location ? `near ${capitalizeFirstLetter(location)}` : null
-          } and learn more about the services we provide in each location.
+          } and more about the kitche installation skills we have to offer.
         </p>
       </div>
     </div>
@@ -41,7 +41,9 @@ if (location && NEARBY_LOCATIONS[location]) {
         nearbyLocations.map((loc) => (
           <a
             class="group grid h-auto w-full items-center gap-1 rounded-md p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50-800-50-800-50"
-            href={`/joinery-services/${loc}-kitchen-installers`}
+            href={
+              `/joinery-services/${loc}-kitchen-installers` /* Modify this final url route */
+            }
           >
             <div class="text-sm font-medium leading-none">
               {capitalizeFirstLetter(loc)}
