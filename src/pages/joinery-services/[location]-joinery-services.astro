@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths, GetStaticPathsResult } from "astro";
 import { LOCATIONS } from "../../constants/locations";
-import DoorHanging from "./door-hanging.astro";
+import JoineryServices from "../joinery-services.astro";
 
 export const getStaticPaths = (() => {
   const paths: GetStaticPathsResult = [];
@@ -22,4 +22,4 @@ const { location } = Astro.params;
 console.log(Astro.params);
 ---
 
-<DoorHanging location={location} />
+<JoineryServices location={location} />

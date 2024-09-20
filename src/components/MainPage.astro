@@ -4,7 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import timber20joinery from "../assets/images/timber20joinery.jpg";
 import Image from "astro/components/Image.astro";
 import Why from "./Why.astro";
-import MainServices from "./MainServices.astro";
+import OurServicesDescription from "./OurServicesDescriptionCentreAligned.astro";
+import OurServicesBody from "./OurServicesBody.astro";
+import NearbyAreas from "../components/NearbyAreas.astro"; // this location is unique a specific for the service offered !! CHECK
 
 const { location, type } = Astro.params;
 
@@ -56,8 +58,9 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
         </div>
       </div>
     </div>
-
-    <MainServices location={location} />
+    <OurServicesDescription />
+    <OurServicesBody />
     <Why />
+    <NearbyAreas />
   </main>
 </Layout>

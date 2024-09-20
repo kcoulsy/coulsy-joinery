@@ -7,7 +7,7 @@ import mouldingPlane from "../../assets/images/moulding_plane.png";
 import benchPlane from "../../assets/images/bench-plane-frog.jpg";
 import garageDoors from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
 import panelling from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
-import NearbyAreasBespokeJoinery from "../../components/NearbyAreasBespokeJoinery.astro";
+import NearbyAreas from "../../components/NearbyAreasBespokeJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
 
 const { location, type } = Astro.params;
 
@@ -228,6 +228,6 @@ const alt = typeFormated + " in " + locationFormated;
       </div>
     </div>
 
-    <NearbyAreasBespokeJoinery location={location} />
+    <NearbyAreas location={location} />
   </main></Layout
 >

@@ -7,7 +7,7 @@ import studWallImg1 from "../../assets/images/stud-walls/stud-walls1.jpg";
 import studWallImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
 import studWallImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
 import studWallImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
-import NearbyAreasStudWalls from "../../components/NearbyAreasStudWalls.astro";
+import NearbyAreas from "../../components/NearbyAreasStudWalls.astro"; // this location is unique a specific for the service offered !! CHECK
 
 const { location, type } = Astro.params;
 
@@ -217,45 +217,9 @@ const alt = typeFormated + " in " + locationFormated;
             </div>
           </div>
         </div>
-
-        <!-- <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={studWall}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-        </div> -->
-
-        <!-- <div class="flex items-start flex-col space-y-4">
-        <Image
-          src={studWall}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt={typeFormated}
-        />
-      </div> -->
       </div>
     </div>
 
-    <NearbyAreasStudWalls location={location} />
+    <NearbyAreas location={location} />
   </main></Layout
 >
