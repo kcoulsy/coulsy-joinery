@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 interface Props {
   title: string;
   description?: string;
