@@ -4,6 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import benchPlaneImage from "../assets/images/bench-plane-frog_adobe_express.svg";
 import complianceImage from "../assets/images/compliance.jpeg";
 import sustainabilityImage from "../assets/images/sustainability_logo.svg";
+import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
+import DebbieProfileImage from "../assets/images/team/debbie-profile-image.jpg";
+import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
 ---
 
 <Layout title="About Us">
@@ -36,40 +39,255 @@ import sustainabilityImage from "../assets/images/sustainability_logo.svg";
 
     <h1 class="text-3xl font-bold tracking-tight pb-4">About</h1>
 
-    <h4 class="text-xl font-light mb-4 mt-1">
-      Crafting Exceptional Spaces with Heart and Expertise
-    </h4>
     <p class="text-md font-light mb-4 mt-1">
       Coulsy Joinery is a family-owned carpentry and joinery business, founded
-      and operated by Robert, a seasoned professional joiner with a passion for
-      creating beautiful, functional spaces. With over three decades of
-      experience in carpentry and joinery, Robert brings a wealth of knowledge
-      and craftsmanship to every project.
+      and operated by Robert, a seasoned professional joiner. Having over three
+      decades of experience in carpentry and joinery, trained and qualified in
+      1988, Robert brings a wealth of knowledge and craftsmanship to every
+      project.
     </p>
     <p class="text-md font-light mb-4 mt-1">
       A premier provider of carpentry and joinery services, including bespoke
-      garden offices and rooms. Robert's later journey began with a simple idea:
-      to help people make the most of their outdoor spaces. Today, he continue
-      to innovate and expand, guided by our core values of quality,
-      sustainability, and customer satisfaction.
+      garden offices and rooms.
     </p>
     <p class="text-md font-light mb-4 mt-1">
-      Working alongside him is his wife Debbie, whose dedication and skills are
-      integral to the success of the business. Together, they lead a small,
-      skilled team that shares their commitment to quality and customer
-      satisfaction. This close-knit team ensures that every project receives the
-      personal attention it deserves, resulting in bespoke solutions tailored to
-      each client’s needs.
+      Our later journey began with a simple idea: to help people make the most
+      of their outdoor spaces.
     </p>
-    <h2 class="text-xl font-light mb-4 mt-4">
-      Delivering to your needs and requiremnents
+    <p class="text-md font-light mb-4 mt-1">
+      Today, we continue to innovate and expand, guided by our core values of
+      quality, sustainability, and customer satisfaction.
+    </p>
+    <p class="text-md font-light mb-4 mt-1">
+      Working alongside me is my wife Debbie, whose dedication and skills are
+      integral to the success of the business.
+    </p>
+    <p class="text-md font-light mb-4 mt-1">
+      Together, we lead a small, carefully honed and trusted skilled team that
+      shares our commitment to quality and customer satisfaction. This
+      close-knit team ensures that every project receives the personal attention
+      it deserves, resulting in bespoke joinery and building solutions tailored
+      to each client’s needs.
+    </p>
+    <p class="text-md font-light mb-4 mt-1">Robert.</p>
+    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+    <h2
+      style="color: Gray"
+      class="text-2xl font-bold tracking-tight text-green-900 sm:text-3xl mb-4 mt-4"
+    >
+      Lead Team
     </h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div
+        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+      >
+        <div class="space-y-2">
+          <!-- <div
+          class="group flex flex-col gap-1 rounded-lg p-5 text-gray"
+          tabindex="1"
+        > -->
+          <div
+            class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+          >
+            <div
+              class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+            >
+              <Image
+                src={RobDebTeamImage}
+                alt="Team for coulsy joinery"
+                loading="eager"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div
+              style="background-color: Gray; width:70%;"
+              class="p-3 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+            >
+              <h1 class="text-lg font-bold text-white">Team</h1>
+              <h2 class="text-m font-light text-gray-200">Husband and Wife</h2>
+            </div>
+          </div>
+          <!-- <p class="pl-5 text-gray-400 hover:text-gray-500">
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/robert-coulson-20a60915/"
+            >
+              <span class="sr-only">LinkedIn</span>
+              <svg
+                style="display: inline;"
+                class="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                  clip-rule="evenodd"></path>
+              </svg>&nbsp;<span style="font-size: .8em; font-style: italic;"
+                >connect with Robert</span
+              >
+            </a>
+          </p> -->
+
+          <div
+            class="invisible h-auto max-h-0 p-5 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
+          >
+            <p
+              style="font-size: .9em;"
+              v-html="This is all about Robert and Debbie"
+            >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+      >
+        <div class="space-y-2">
+          <!-- <div
+            class="group flex flex-col gap-1 rounded-lg p-5 text-gray"
+            tabindex="1"
+          > -->
+          <div
+            class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+          >
+            <div
+              class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+            >
+              <Image
+                src={RobertProfileImage}
+                alt="Team for coulsy joinery"
+                loading="eager"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div
+              style="background-color: Gray; width:70%;"
+              class="p-3 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+            >
+              <h1 class="text-lg font-bold text-white">Robert</h1>
+              <h2 class="text-m font-light text-gray-200">
+                Joiner and Director
+              </h2>
+            </div>
+          </div>
+          <p class="pl-5 text-gray-400 hover:text-gray-500">
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/robert-coulson-20a60915/"
+            >
+              <span class="sr-only">LinkedIn</span>
+              <svg
+                style="display: inline;"
+                class="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                  clip-rule="evenodd"></path>
+              </svg>&nbsp;<span style="font-size: .8em; font-style: italic;"
+                >connect with Robert</span
+              >
+            </a>
+          </p>
+
+          <div
+            class="invisible h-auto max-h-0 p-5 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
+          >
+            <p style="font-size: .9em;" v-html="This is all about Robert"></p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+      >
+        <div class="space-y-2">
+          <!-- <div
+          class="group flex flex-col gap-1 rounded-lg p-5 text-gray"
+          tabindex="1"
+        > -->
+          <div
+            class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+          >
+            <div
+              class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+            >
+              <Image
+                src={DebbieProfileImage}
+                alt="Team for coulsy joinery"
+                loading="eager"
+                width="1000"
+                height="667"
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div
+              style="background-color: Gray; width:70%;"
+              class="p-3 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+            >
+              <h1 class="text-lg font-bold text-white">Debbie</h1>
+              <h2 class="text-m font-light text-gray-200">Assistant</h2>
+            </div>
+          </div>
+          <p class="pl-5 text-gray-400 hover:text-gray-500">
+            <a target="_blank" href="#">
+              <span class="sr-only">Facebook</span>
+              <svg
+                style="display: inline;"
+                class="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 320 512"
+                aria-hidden="true"
+              >
+                <path
+                  d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+                ></path>
+              </svg>&nbsp;<span style="font-size: .8em; font-style: italic;"
+                >connect with Debbie</span
+              >
+            </a>
+          </p>
+
+          <div
+            class="invisible h-auto max-h-0 p-5 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
+          >
+            <p style="font-size: .9em;" v-html="This is all about Debbie"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+    <h2
+      style="color: Gray"
+      class="text-2xl font-bold tracking-tight text-green-900 sm:text-3xl mb-4 mt-4"
+    >
+      Trust
+    </h2>
+
     <p class="text-md font-light mb-4 mt-1">
-      Here at Coulsy Joinery, we understand the need for required rules and
-      regulations. They are there for you, us and others, so that standards can
-      be maintained, guidance followed and where possible go that extra mile in
-      our efforts to make a sustainable company and protect our natural
-      resources.
+      At Coulsy Joinery, we recognise the importance of adhering to rules and
+      regulations.
+    </p>
+    <p class="text-md font-light mb-4 mt-1">
+      These guidelines exist to protect you, us, and the wider community,
+      ensuring high standards are upheld. We are committed to going the extra
+      mile, not only in delivering quality craftsmanship but also in building a
+      sustainable future.
+    </p>
+    <p class="text-md font-light mb-4 mt-1">
+      Our team is fully qualified, insured, and compliant with all industry
+      requirements. We are constantly learning and actively incorporating new
+      methods to protect the environment and promote sustainability in
+      everything we do.
     </p>
 
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -125,6 +343,7 @@ import sustainabilityImage from "../assets/images/sustainability_logo.svg";
           </div>
         </div>
       </div>
+
       <div
         class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
       >
