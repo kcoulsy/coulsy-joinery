@@ -21,9 +21,13 @@ if (type === "/joinery-services/traditional-cut-roofs") {
 }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
+
+const alt = location ? typeFormated + " in " + locationFormated : typeFormated;
 ---
 
-<Layout title="Joinery Services">
+<Layout
+  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+>
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
