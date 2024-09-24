@@ -22,7 +22,14 @@ if (type === "/joinery-services/traditional-cut-roofs") {
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
-const alt = location ? typeFormated + " in " + locationFormated : typeFormated;
+const alt = location
+  ? typeFormated +
+    " in " +
+    locationFormated +
+    " by Coulsy Joinery for all your " +
+    locationFormated +
+    " carpentry and joinery services"
+  : typeFormated;
 ---
 
 <Layout
