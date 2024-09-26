@@ -25,7 +25,6 @@ export const LOCATIONS = [
     "horsforth",
     "ilkley",
     "otley",
-    "skipton",
     "knaresborough",
     "linton",
 

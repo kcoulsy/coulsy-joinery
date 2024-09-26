@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+import { LOCATIONS } from "../../constants/locations";
+import Page from "./accessible-kitchen-installers.astro"; // import the Page, The unique path link for specific to the service
+
+export const getStaticPaths = (() => {
+  const paths: GetStaticPathsResult = [];
+
+  LOCATIONS.forEach((location) => {
+    paths.push({
+      params: {
+        location,
+      },
+    });
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { location } = Astro.params;
+
+console.log(Astro.params);
+---
+
+<Page location={location} />
