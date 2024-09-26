@@ -6,6 +6,7 @@ import servicesHeaderImg from "../assets/images/timber20joinery.jpg";
 import Why from "./../components/Why.astro";
 import OurServicesDescription from "../components/OurServicesDescriptionLeftAligned.astro";
 import OurServicesBody from "../components/OurServicesBody.astro";
+import NearbyAreas from "../../src/components/NearbyAreasJoineryServices.astro"; // this location is unique a specific for the service offered !! CHECK
 
 const { location, type } = Astro.params;
 
@@ -16,9 +17,9 @@ let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Our Joinery Services";
 
-// if (type === "/joinery-services/traditional-cut-roofs") {
-//   typeFormated = "Carpentry and Joinery Services in";
-// }
+if (type === "/joinery-services/traditional-cut-roofs") {
+  typeFormated = "Carpentry and Joinery Services in";
+}
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 

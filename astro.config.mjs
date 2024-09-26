@@ -14,7 +14,6 @@ export default defineConfig({
     changefreq: 'weekly',
     priority: 0.7,
     lastmod: new Date('2024-07-31'),
-    
     redirects: {
       '/joinery-services/truss-roofs': {
         status: 302,
