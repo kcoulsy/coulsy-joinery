@@ -1,5 +1,4 @@
 export const LOCATIONS = [
-  "huddersfield",
   "wakefield",
   "castleford",
   "pontefract",
