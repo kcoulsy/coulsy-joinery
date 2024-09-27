@@ -19,7 +19,6 @@ export const LOCATIONS = [
   "pannal",
   "alwoodley",
   "yorkshire",
-
   "leeds",
     "harrogate",
     "horsforth",
@@ -27,7 +26,6 @@ export const LOCATIONS = [
     "otley",
     "knaresborough",
     "linton",
-
   "york",
     "selby",
     "malton",
@@ -38,12 +36,10 @@ export const LOCATIONS = [
     "stamford-Bridge",
     "towton",
     "wetherby",
-
   "ripon",
     "thirsk",
     "masham",
     "boroughbridge",
-
   "harrogate",
     "ripley",
     "follifoot",
@@ -60,7 +56,6 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "collingham",
     "spofforth",
     "bramham",
-  
   ],
   leeds: [
     "york",
@@ -75,33 +70,29 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "wetherby",
   ],
   york: [
-      "selby",
-      "malton",
-      "tadcaster",
-      "pocklington",
-      "elvington",
-      "welburn",
-      "stamford-Bridge",
-      "towton",
-      "wetherby",
-      "leeds",
+    "selby",
+    "malton",
+    "tadcaster",
+    "pocklington",
+    "elvington",
+    "welburn",
+    "stamford-Bridge",
+    "towton",
+    "wetherby",
+    "leeds",
     ],
-
-    ripon: [
-      "thirsk",
-      "masham",
-      "boroughbridge",
-      "leeds",
-      "york",
-      ],
-      harrogate: [
-        "knaresborough",
-        "spofforth",
-        "pannal",
-        "ripley",
-        "follifoot",
-        ],
-  
-
-
+  ripon: [
+    "thirsk",
+    "masham",
+    "boroughbridge",
+    "leeds",
+    "york",
+    ],
+  harrogate: [
+    "knaresborough",
+    "spofforth",
+    "pannal",
+    "ripley",
+    "follifoot",
+    ],
 };

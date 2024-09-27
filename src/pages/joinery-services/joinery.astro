@@ -1,4 +1,6 @@
 ---
+// This is the page used to display for eg york-joinery-services
+
 import ContactForm from "../../components/ContactForm.astro";
 import timber20joinery from "../../assets/images/timber20joinery.jpg";
 import Layout from "../../layouts/Layout.astro";
@@ -7,7 +9,7 @@ import mouldingPlane from "../../assets/images/moulding_plane.png";
 import benchPlane from "../../assets/images/bench-plane-frog.jpg";
 import garageDoors from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
 import panelling from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
-import NearbyAreas from "../../components/NearbyAreasJoineryServices.astro"; // this location is unique a specific for the service offered
+import NearbyAreas from "../../components/NearbyAreasJoinery.astro"; // this location is unique a specific for the service offered
 
 const { location, type } = Astro.params;
 
@@ -16,11 +18,11 @@ function capitalizeFirstLetter(string: string) {
 }
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Joinery Services";
+  : "Joinery";
 
-if (type === "joinery-services") {
-  typeFormated = "Joinery Services";
-}
+// if (type === "joinery") {
+//   typeFormated = "Joinery Services";
+// }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
