@@ -3,10 +3,12 @@ import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
 import kitchenHeader from "../../assets/images/kitchens/kitchens-header.jpg";
-import kitchenInstallers4 from "../../assets/images/kitchens/Kitchen-fitter4.jpg";
-import kitchenInstallers1 from "../../assets/images/kitchens/kitchen-fitter5.jpg";
-import kitchenInstallers2 from "../../assets/images/kitchens/kitchen-fitter2.jpg";
-import kitchenInstallers3 from "../../assets/images/kitchens/kitchen-fitter3.png";
+import galleryImg1 from "../../assets/images/accessible-kitchens/accessible-kitchen-main.jpg";
+import galleryImg2 from "../../assets/images/accessible-kitchens/accessible-kitchen-wheelchair-user.jpg";
+import galleryImg3 from "../../assets/images/accessible-kitchens/accessible-kitchen-lowered-hob.jpg";
+import galleryImg4 from "../../assets/images/accessible-kitchens/accessible-kitchen-lowered-sink.jpg";
+import galleryImg5 from "../../assets/images/accessible-kitchens/accessible-kitchen-pull-out-unit.jpg";
+import galleryImg6 from "../../assets/images/accessible-kitchens/accessible-kitchen-remote-controlled.jpg";
 import NearbyAreas from "../../components/NearbyAreasAccessibleKitchenInstallers.astro"; // this location is unique a specific for the service offered !! CHECK
 
 const { location, type } = Astro.params;
@@ -113,45 +115,74 @@ const alt = location
       <div class="grid md:grid-cols-2 items-start gap-8">
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
-            <p>
-              We are experienced kitchen installers and fitters working on
-              domestic and commercial kitchen install and kitchen fitting
-              projects.
-            </p>
-
-            <h2 class="font-semibold text-lg">Accessible kitchens</h2>
+            <h2
+              style="color: grey"
+              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
+            >
+              Our Accessible Kitchens
+            </h2>
             <p>A Kitchen Designed for All Abilities</p>
-            <h3 class="font-semibold text-sm">What We Offer:</h3>
+
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              What We Offer
+            </h3>
             <p>
               Your kitchen should be more than just beautiful—it should work for
               you, no matter your mobility needs. <br />We can create
               functional, accessible kitchen spaces that promote independence
               and inclusive living without compromising on style or quality.
             </p>
-
-            <h3 class="font-semibold text-sm">Accessible Layouts:</h3>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Accessible Layouts
+            </h3>
             <p>
               Easy-to-navigate designs with wider pathways, lower countertops,
               and accessible storage that ensure every inch of your kitchen is
-              within reach.<br />Adjustable Features:
+              within reach.
             </p>
-            <h3 class="font-semibold text-sm">Adjustable Features:</h3>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Adjustable Features
+            </h3>
             <p>
               Height-adjustable worktops, pull-down cabinets, and smart
               technology that adapts to your needs, offering flexibility and
               ease of use.
             </p>
-            <h3 class="font-semibold text-sm">Barrier-Free Design:</h3>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Barrier-Free Design
+            </h3>
             <p>
               Seamless, open spaces free of obstacles or barriers, designed to
               accommodate wheelchairs, walkers, or other mobility aids.
             </p>
-            <h3 class="font-semibold text-sm">Ergonomic Solutions:</h3>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Ergonomic Solutions
+            </h3>
             <p>
               Thoughtful details like touch-free faucets, side-opening ovens,
               and pull-out drawers to enhance comfort and convenience.
             </p>
-            <h3 class="font-semibold text-sm">Safe & Stylish:</h3>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Safe & Stylish
+            </h3>
             <p>
               Anti-slip flooring, safety rails, and thoughtfully positioned
               appliances, all integrated into a beautifully designed kitchen
@@ -160,18 +191,34 @@ const alt = location
               tailored to your unique needs, ensuring your kitchen works with
               you, not against you.
             </p>
-
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Excellent Fitting
+            </h3>
             <p>
-              Ready to explore your options? Get in touch today for a free
-              consultation.
+              {
+                location ? "Our " + locationFormated + " team of " : "Our "
+              }Experienced accessible kitchen installers and fitters will take
+              care of your every need.
             </p>
+            <hr />
+
+            <h2
+              style="color: grey"
+              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
+            >
+              WE ARE
+            </h2>
 
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you are looking for a kitchen fitter {
+              If you are looking for an accessible kitchen fitter {
                 location ? "in " + locationFormated : ""
-              }, we are dependable kitchen installers capable of meeting your
-              precise requirements and ensuring a high end kitchen installation.
+              }, we are dependable accessible kitchen installers capable of
+              meeting your precise requirements and ensuring a high end kitchen
+              installation.
             </p>
             <h2 class="font-semibold text-lg">Reliable</h2>
             <p>
@@ -180,79 +227,178 @@ const alt = location
             </p>
             <h2 class="font-semibold text-lg">Skilled</h2>
             <p>
-              Our time served joiners provide high quality, accurate kitchen
-              installs.
+              Our time served joiners provide high quality, accessible accurate
+              kitchen installs.
             </p>
+            <hr />
 
-            <p>
-              We can provide more information and answer any questions you may
-              have. Please feel free to <a
+            <h2
+              style="color: grey"
+              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
+            >
+              Ready to explore your options? <a
                 href="/contact"
                 class="font-semibold text-blue-700 hover:underline"
-                >contact us</a
+                >Get in touch today</a
+              > for a <a
+                href="/contact"
+                class="font-semibold text-blue-700 hover:underline"
+                >free consultation</a
               >.
-            </p>
+            </h2>
           </div>
         </div>
 
+        <!-- Main wrapper -->
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers1}
-                alt={alt}
-                loading="lazy"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg1}
+                  alt="Team for coulsy joinery"
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Accessible kitchen</h4>
+              </div>
             </div>
           </div>
-
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers2}
-                alt={alt}
-                loading="lazy"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg2}
+                  alt="Team for coulsy joinery"
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Lowered Cabinets</h4>
+              </div>
             </div>
           </div>
-
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers3}
-                alt={alt}
-                loading="lazy"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg3}
+                  alt="Team for coulsy joinery"
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Lowered Hob</h4>
+              </div>
             </div>
           </div>
-
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers4}
-                alt={alt}
-                loading="lazy"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg4}
+                  alt="Team for coulsy joinery"
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Lowered Sink</h4>
+              </div>
+            </div>
+          </div>
+          <!-- Gallery Item -->
+          <div
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg5}
+                  alt="Team for coulsy joinery"
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Pull down</h4>
+              </div>
+            </div>
+          </div>
+          <!-- Gallery Item -->
+          <div
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg6}
+                  alt="Team for coulsy joinery"
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Remote Controlled</h4>
+              </div>
             </div>
           </div>
         </div>
