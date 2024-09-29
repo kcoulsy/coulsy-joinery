@@ -8,24 +8,9 @@ import Image from "astro/components/Image.astro";
 import Why from "./Why.astro";
 import OurServicesDescription from "./OurServicesDescriptionCentreAligned.astro";
 import OurServicesBody from "./OurServicesBody.astro";
-
-const { location, type } = Astro.params;
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Carpentry and Joinery";
-
-// if (type === "joinery-services") {
-//   typeFormated = "Carpentry and Joinery Services";
-// }
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
 ---
 
-<Layout title={typeFormated}>
+<Layout title="Coulsy carpentry and joijnery">
   <div class="h-[600px] w-full absolute">
     <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
     </div>
@@ -47,8 +32,7 @@ const locationFormated = location ? capitalizeFirstLetter(location) : "";
           <h1
             class="text-[56px] leading-[56px] mt-4 font-bold text-white w-80 text-center"
           >
-            Welcome to COULSY {locationFormated}
-            {typeFormated}
+            Welcome to Coulsy Joinery
           </h1>
         </div>
       </div>
