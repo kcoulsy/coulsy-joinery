@@ -3,10 +3,12 @@ import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
 import kitchenHeader from "../../assets/images/kitchens/kitchens-header.jpg";
-import kitchenInstallers4 from "../../assets/images/kitchens/Kitchen-fitter4.jpg";
-import kitchenInstallers1 from "../../assets/images/kitchens/kitchen-fitter5.jpg";
-import kitchenInstallers2 from "../../assets/images/kitchens/kitchen-fitter2.jpg";
-import kitchenInstallers3 from "../../assets/images/kitchens/kitchen-fitter3.png";
+import galleryImg1 from "../../assets/images/kitchens/Kitchen-fitter5.jpg";
+import galleryImg2 from "../../assets/images/kitchens/rutland-hall-kitchen.jpg";
+import galleryImg3 from "../../assets/images/kitchens/kitchen-fitter3.jpg";
+import galleryImg4 from "../../assets/images/accessible-kitchens/accessible-kitchen-main.jpg";
+import galleryImg5 from "../../assets/images/kitchens/birkby-kitchen.jpg";
+import galleryImg6 from "../../assets/images/kitchens/kitchen-fitter2.jpg";
 import NearbyAreas from "../../components/NearbyAreasKitchenInstallers.astro"; // this location is unique a specific for the service offered !! CHECK
 
 const { location, type } = Astro.params;
@@ -113,34 +115,93 @@ const alt = location
       <div class="grid md:grid-cols-2 items-start gap-8">
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
+            <h2
+              style="color: grey"
+              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
+            >
+              Our Fitted Kitchens
+            </h2>
+            <p>A Kitchen installed with care and attention</p>
+
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              What We Offer
+            </h3>
+
             <p>
               We are experienced kitchen installers and fitters working on
               domestic and commercial kitchen install and kitchen fitting
               projects.
             </p>
-
-            <h2 class="font-semibold text-lg">Domestic Kitchens</h2>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Domestic Kitchens
+            </h3>
             <p>
               Often working on single kitchen fit-outs as well as large
               commercial projects, installing kitchens in new housing and
               domestic homes {location ? "in " + locationFormated + "." : "."}
             </p>
-            <h2 class="font-semibold text-lg">Commercial Kitchens</h2>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Commercial Kitchens
+            </h3>
             <p>From small shops to restaurants to large university kitchens</p>
-            <h2 class="font-semibold text-lg">New build kitchens</h2>
-            <p>Apartment and house builders new installs</p>
-            <h2 class="font-semibold text-lg">
+
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              New build kitchens
+            </h3>
+            <p>Apartment and house builders new build installs</p>
+
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Accessible and reduced mobility kitchens
+            </h3>
+            <p>A kitchen designed and installed for all abilities</p>
+
+            <p>
               <a
                 href="/joinery-services/accessible-kitchen-installers"
                 class="font-semibold text-blue-700 hover:underline"
-                >Accessible kitchens - click me</a
               >
+                EXPLORE
+              </a>our Accessible kitchens
+            </p>
+            <h3
+              style="color: grey"
+              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
+            >
+              Excellent fitting
+            </h3>
+            <p>
+              {
+                location ? "Our " + locationFormated + " team of " : "Our "
+              }Experienced kitchen installers and fitters will take care of your
+              every need.
+            </p>
+            <hr />
+
+            <h2
+              style="color: grey"
+              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
+            >
+              WE ARE
             </h2>
-            <p>A kitchen designed and installed for all abilities</p>
 
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you are looking for a kitchen fitter {
+              If you are looking for an kitchen fitter {
                 location ? "in " + locationFormated : ""
               }, we are dependable kitchen installers capable of meeting your
               precise requirements and ensuring a high end kitchen installation.
@@ -156,82 +217,183 @@ const alt = location
               installs.
             </p>
 
-            <p>
-              We can provide more information and answer any questions you may
-              have. Please feel free to <a
+            <hr />
+
+            <h2
+              style="color: grey"
+              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
+            >
+              Ready to explore your options? <a
                 href="/contact"
                 class="font-semibold text-blue-700 hover:underline"
-                >contact us</a
+                >Get in touch today</a
+              > for a <a
+                href="/contact"
+                class="font-semibold text-blue-700 hover:underline"
+                >free consultation</a
               >.
-            </p>
-            <p>
-              Ready to explore your options? Get in touch today for a free
-              consultation.
-            </p>
+            </h2>
           </div>
         </div>
 
+        <!-- Main Gallery wrapper -->
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers1}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg1}
+                  alt={alt}
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Domestic Kitchens</h4>
+              </div>
             </div>
           </div>
-
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers2}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg2}
+                  alt={alt}
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">
+                  Commercial Kitchens
+                </h4>
+              </div>
             </div>
           </div>
-
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers3}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg3}
+                  alt={alt}
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">New Build Kitchens</h4>
+              </div>
             </div>
           </div>
-
+          <!-- Gallery Item -->
           <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
           >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={kitchenInstallers4}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg4}
+                  alt={alt}
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">
+                  Accessible Kitchens
+                </h4>
+              </div>
+            </div>
+          </div>
+          <!-- Gallery Item -->
+          <div
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg5}
+                  alt={alt}
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Bespoke Kitchens</h4>
+              </div>
+            </div>
+          </div>
+          <!-- Gallery Item -->
+          <div
+            class="group p-3 sm:p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+          >
+            <div
+              class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            >
+              <div
+                class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={galleryImg6}
+                  alt={alt}
+                  loading="eager"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                style="background-color: Gray; width:70%;"
+                class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h4 class="text-lg font-bold text-white">Painted Kitchens</h4>
+              </div>
             </div>
           </div>
         </div>
+        <!-- END Main Gallery wrapper -->
       </div>
     </div>
 
