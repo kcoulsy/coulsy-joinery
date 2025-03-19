@@ -36,6 +36,7 @@ export const LOCATIONS = [
     "stamford-Bridge",
     "towton",
     "wetherby",
+    "bramham",
   "ripon",
     "thirsk",
     "masham",
