@@ -4,6 +4,10 @@ import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import Dropdown from "./Dropdown.astro";
 import YouTubeIcon from "../icons/YouTubeIcon.astro";
 
+import Image from "astro/components/Image.astro";
+
+import coulsyLogo from "../assets/images/coulsy-logo-sm.jpg";
+
 const menuitems = [
   {
     label: "Our Services",
@@ -80,14 +84,14 @@ const menuitems = [
           class="h-24 lg:h-32 -mb-6 lg:-mb-8"
         />
 
-        <!-- <Image
+        <Image
           src={coulsyLogo}
           width="100"
           height="100"
           class="object-fit"
           alt="Coulsy Carpentry and joinery"
           loading="lazy"
-        /> -->
+        />
       </a>
     </div>
 
