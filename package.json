@@ -14,7 +14,7 @@
     "@astrojs/sitemap": "^3.3.0",
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.7.4",
-    "astro-carousel": "^2.0.8",
+    "astro-carousel": "^3.0.2",
     "flowbite": "^2.5.1",
     "posthog-js": "^1.115.0",
     "purgecss": "^5.0.0",
