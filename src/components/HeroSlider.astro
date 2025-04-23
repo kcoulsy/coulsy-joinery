@@ -1,0 +1,91 @@
+---
+// HeroSlider.astro
+interface Slide {
+  image: string;
+  text: string;
+}
+
+export interface Props {
+  slides: Slide[];
+}
+
+const { slides } = Astro.props;
+---
+
+<div class="relative overflow-hidden h-[400px] md:h-[536px]">
+  <div
+    id="hero-slides"
+    class="flex transition-transform duration-700 ease-in-out h-full"
+    style="transform: translateX(0%)"
+  >
+    {
+      slides.map(({ image, text }) => (
+        <div
+          class="min-w-full flex items-center justify-center bg-cover bg-center text-white"
+          style={`background-image: url(${image});`}
+        >
+          <div class="bg-black bg-opacity-50 p-4 rounded-xl">
+            <h3 class="text-[32px] md:text-[56px] font-bold text-center px-4">
+              {text}
+            </h3>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Controls -->
+  <button
+    id="prevSlide"
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-2 rounded-full hover:bg-opacity-80 z-20"
+    aria-label="Previous Slide"
+  >
+    ‹
+  </button>
+  <button
+    id="nextSlide"
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-2 rounded-full hover:bg-opacity-80 z-20"
+    aria-label="Next Slide"
+  >
+    ›
+  </button>
+</div>
+
+<script is:inline>
+  const slider = document.getElementById("hero-slides");
+  const slides = slider.children;
+  let currentIndex = 0;
+  let interval;
+
+  function goToSlide(index) {
+    currentIndex = (index + slides.length) % slides.length;
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  function startSlider() {
+    interval = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, 5000);
+  }
+
+  function stopSlider() {
+    clearInterval(interval);
+  }
+
+  slider.parentElement.addEventListener("mouseenter", stopSlider);
+  slider.parentElement.addEventListener("mouseleave", startSlider);
+
+  document.getElementById("prevSlide").addEventListener("click", () => {
+    stopSlider();
+    goToSlide(currentIndex - 1);
+    startSlider();
+  });
+
+  document.getElementById("nextSlide").addEventListener("click", () => {
+    stopSlider();
+    goToSlide(currentIndex + 1);
+    startSlider();
+  });
+
+  startSlider();
+</script>

@@ -73,24 +73,18 @@ const menuitems = [
 
 <header class="bg-brand text-white relative z-50">
   <div
-    class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-4 lg:py-0"
+    class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-4 lg:h-[100px]"
   >
     <!-- Logo -->
     <div class="relative z-10">
       <a href="/">
-        <!-- <img
-          src="/src/assets/images/coulsy-logo-sm.jpg"
-          alt="Coulsy Joinery Logo"
-          class="h-24 lg:h-32 -mb-6 lg:-mb-8"
-        /> -->
-
         <Image
           src={coulsyLogo}
           width="100"
           height="100"
-          class="object-fit"
-          alt="Coulsy Carpentry and joinery"
-          loading="lazy"
+          class="h-[100px] w-auto object-contain block -mb-4 lg:-mb-6"
+          alt="Coulsy Carpentry and Joinery"
+          loading="eager"
         />
       </a>
     </div>

@@ -1,7 +1,6 @@
 ---
-// This is the main index page
 import Layout from "../layouts/Layout.astro";
-
+import HeroSlider from "../components/HeroSlider.astro";
 import Why from "./Why.astro";
 import OurServicesDescription from "./OurServicesDescriptionCentreAligned.astro";
 import OurServicesBody from "./OurServicesBody.astro";
@@ -9,66 +8,28 @@ import OurServicesBody from "./OurServicesBody.astro";
 import TimberJoineryImg1 from "../assets/images/moulding_plane.png";
 import TimberJoineryImg2 from "../assets/images/Kitchen-Installers.jpg";
 import TimberJoineryImg3 from "../assets/images/timber20joinery.jpg";
+
+const slides = [
+  {
+    image: TimberJoineryImg1.src,
+    text: "Welcome to Coulsy Joinery and Building",
+  },
+  {
+    image: TimberJoineryImg2.src,
+    text: "Bespoke Joinery, Refurbs & Small Builds Across Yorkshire",
+  },
+  {
+    image: TimberJoineryImg3.src,
+    text: "Skilled, Reliable Craftsmanship — Every Time",
+  },
+];
 ---
 
 <Layout title="Coulsy carpentry and joinery">
   <main class="relative z-10 mx-auto md:mt-16">
-    <div class="relative overflow-hidden h-[400px] md:h-[536px]">
-      <div
-        id="hero-slides"
-        class="flex transition-transform duration-700 ease-in-out h-full"
-        style="transform: translateX(0%)"
-      >
-        <!-- Slide 1 -->
-        <div
-          class="min-w-full flex items-center justify-center text-white bg-cover bg-center"
-          style={`background-image: url(${TimberJoineryImg1.src});`}
-        >
-          <div class="bg-black bg-opacity-50 p-4 rounded-xl">
-            <h3 class="text-[32px] md:text-[56px] font-bold text-center px-4">
-              Welcome to Coulsy Joinery and Building
-            </h3>
-          </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div
-          class="min-w-full flex items-center justify-center text-white bg-cover bg-center"
-          style={`background-image: url(${TimberJoineryImg2.src});`}
-        >
-          <div class="bg-black bg-opacity-50 p-4 rounded-xl">
-            <h3 class="text-[32px] md:text-[56px] font-bold text-center px-4">
-              Bespoke Joinery, Refurbs & Small Builds Across Yorkshire
-            </h3>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div
-          class="min-w-full flex items-center justify-center text-white bg-cover bg-center"
-          style={`background-image: url(${TimberJoineryImg3.src});`}
-        >
-          <div class="bg-black bg-opacity-50 p-4 rounded-xl">
-            <h3 class="text-[32px] md:text-[56px] font-bold text-center px-4">
-              Skilled, Reliable Craftsmanship — Every Time
-            </h3>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <HeroSlider slides={slides} />
     <Why />
     <OurServicesDescription />
     <OurServicesBody />
   </main>
 </Layout>
-<script is:inline>
-  const slider = document.getElementById("hero-slides");
-  const slides = slider.children;
-  let currentIndex = 0;
-
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }, 5000); // every 5 seconds
-</script>
