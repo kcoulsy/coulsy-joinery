@@ -23,3 +23,5 @@ export const GET: APIRoute = async () => {
     },
   });
 };
+
+console.log("API KEY:", API_KEY);
