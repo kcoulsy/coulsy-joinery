@@ -13,13 +13,13 @@ const { slides } = Astro.props;
 ---
 
 <div class="relative overflow-hidden h-[400px] md:h-[536px]">
-  <div id="hero-slides" class="relative h-full">
+  <div class="relative h-full w-full">
     {
       slides.map(({ image, text }, index) => (
         <div
-          class="absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center bg-cover bg-center text-white"
-          style={`background-image: url(${image}); z-index: ${index === 0 ? "10" : "0"}; opacity: ${index === 0 ? "1" : "0"};`}
-          data-index={index}
+          class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-[2000ms] ease-in-out flex items-center justify-center bg-cover bg-center text-white"
+          style={`background-image: url(${image}); z-index: ${index === 0 ? 1 : 0};`}
+          data-slide={index}
         >
           <div class="bg-black bg-opacity-50 p-4 rounded-xl">
             <h3 class="text-[32px] md:text-[56px] font-bold text-center px-4">
@@ -49,29 +49,26 @@ const { slides } = Astro.props;
 </div>
 
 <script is:inline>
-  const slides = Array.from(
-    document.querySelectorAll("#hero-slides > [data-index]")
-  );
+  const slides = document.querySelectorAll(".hero-slide");
   let currentIndex = 0;
   let interval;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.style.opacity = i === index ? "1" : "0";
-      slide.style.zIndex = i === index ? "10" : "0";
+      slide.style.zIndex = i === index ? "1" : "0";
     });
-    currentIndex = index;
   }
 
   function goToSlide(index) {
-    const newIndex = (index + slides.length) % slides.length;
-    showSlide(newIndex);
+    currentIndex = (index + slides.length) % slides.length;
+    showSlide(currentIndex);
   }
 
   function startSlider() {
     interval = setInterval(() => {
       goToSlide(currentIndex + 1);
-    }, 5000);
+    }, 6000); // Slower transition between slides
   }
 
   function stopSlider() {
@@ -90,9 +87,6 @@ const { slides } = Astro.props;
     startSlider();
   });
 
-  const container = document.querySelector(".relative.overflow-hidden");
-  container.addEventListener("mouseenter", stopSlider);
-  container.addEventListener("mouseleave", startSlider);
-
+  showSlide(currentIndex);
   startSlider();
 </script>
