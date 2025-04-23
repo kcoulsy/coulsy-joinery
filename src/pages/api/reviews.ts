@@ -2,7 +2,9 @@
 import type { APIRoute } from "astro";
 
 const API_KEY = import.meta.env.GOOGLE_API_KEY; // secure this in your .env file
-const PLACE_ID = "ChIJ-cM-AEtIeUgRiwUaaopTiaQ";
+const PLACE_ID = "ChIJFREqq2Poe0gRFoS-2A2H_cg";
+
+
 
 export const GET: APIRoute = async () => {
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews,rating,user_ratings_total&key=${API_KEY}`;
