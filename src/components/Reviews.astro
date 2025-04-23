@@ -1,0 +1,87 @@
+---
+// src/components/Reviews.astro
+---
+
+<section class="overflow-hidden sm:grid sm:grid-cols-2 py-12">
+  <div class="p-8 md:p-12 lg:px-16 lg:py-24">
+    <div
+      class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
+    >
+      <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+        What Our Customers Say
+      </h2>
+
+      <p class="text-gray-500 mt-4 md:mt-4 md:block">
+        We're proud to have earned the trust of our clients across Yorkshire.
+        Here's what they have to say about working with Coulsy Joinery & Small
+        Build.
+      </p>
+
+      <div id="google-reviews" class="mt-6 space-y-4"></div>
+
+      <div class="mt-8">
+        <a
+          href="https://search.google.com/local/reviews?placeid=YOUR_PLACE_ID"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 bg-brand text-white rounded-sm text-lg p-4"
+        >
+          Leave a Google Review
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+  >
+    <div class="relative overflow-hidden rounded-xl">
+      <img
+        src="/images/reviews-background.jpg"
+        class="h-56 w-full object-cover sm:h-full transition duration-500 group-hover:scale-105"
+        alt="Happy customers"
+        loading="lazy"
+      />
+    </div>
+    <div class="mt-6 relative">
+      <h2
+        class="text-2xl font-semibold text-gray-800 dark:text-white text-center"
+      >
+        Trusted By Homeowners & Businesses Alike
+      </h2>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const reviewsContainer = document.getElementById("google-reviews");
+
+  // Example static data – you can replace this with data from a real API route later
+  const reviews = [
+    {
+      author: "Richard",
+      rating: 5,
+      text: "Fantastic quality and attention to detail. Highly recommend!",
+    },
+    {
+      author: "Sarah",
+      rating: 5,
+      text: "Professional from start to finish. Couldn't be happier with the work.",
+    },
+    {
+      author: "Tom",
+      rating: 5,
+      text: "Turned our ideas into reality – very happy with the final result!",
+    },
+  ];
+
+  reviews.forEach((review) => {
+    const el = document.createElement("div");
+    el.className = "p-4 border border-gray-200 rounded-lg shadow-sm bg-white";
+    el.innerHTML = `
+      <div class="font-semibold text-lg">${review.author}</div>
+      <div class="text-yellow-500 mb-2">${"★".repeat(review.rating)}</div>
+      <p class="text-gray-700">${review.text}</p>
+    `;
+    reviewsContainer.appendChild(el);
+  });
+</script>
