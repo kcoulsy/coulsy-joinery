@@ -2,8 +2,7 @@
 import type { APIRoute } from "astro";
 
 const API_KEY = import.meta.env.GOOGLE_API_KEY; // secure this in your .env file
-const PLACE_ID = "ChIJFREqq2Poe0gRFoS-2A2H_cg";
-
+const PLACE_ID = "ChIJ-cM-AEtIeUgRiwUaaopTiaQ";
 
 
 export const GET: APIRoute = async () => {
