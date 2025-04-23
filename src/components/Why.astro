@@ -1,6 +1,8 @@
 ---
 import mouldingPlane from "../assets/images/moulding_plane.png";
 import Image from "astro/components/Image.astro";
+import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
+
 const { location } = Astro.params;
 
 function capitalizeFirstLetter(string: string) {
@@ -18,42 +20,45 @@ function capitalizeFirstLetter(string: string) {
       </h2>
 
       <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Coulsy Ltd is a leading carpentry and joinery contractor located in
-        York, providing services to clients throughout Yorkshire, Lancashire,
-        and beyond.
+        Coulsy Joinery & Small Build is your trusted partner for high-quality
+        joinery, carpentry, and small build services, proudly based in York and
+        serving clients across Yorkshire and beyond.
       </p>
 
       <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Our specialties include carpentry, joinery, annexes, commercial joinery
-        contracting, refits, and refurbishments.
+        We specialise in bespoke joinery, annexes, property refurbishments, and
+        commercial contracting—tailored to suit your vision, space, and budget.
       </p>
 
       <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Delivering exceptional Carpentry and joinery craftsmanship and dedicated
-        service{location ? ` in  ${capitalizeFirstLetter(location)}` : null}.
+        Known for precision, reliability, and exceptional craftsmanship, our
+        skilled team ensures every project is completed on time and to the
+        highest standards.
       </p>
+
       <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Our skilled team ensures every project is completed to the highest
-        standards.
+        We collaborate with trusted trades and source premium materials from
+        local suppliers to deliver lasting quality with minimal environmental
+        impact.
       </p>
 
       <p>
         <span class="text-red-600 font-semibold block mt-4 md:mt-4 md:block">
-          At Coulsy Joinery, we are committed to making your vision a reality,
-          executing your projects with precision and care.
+          At Coulsy Joinery, we're committed to turning your ideas into
+          beautifully finished results—executed with care, clarity, and
+          attention to detail.
         </span>
       </p>
 
       <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Reach out to us today for any joinery or carpentry services you need{
+        Contact us today for a free consultation or no-obligation quote{
           location ? ` in ${capitalizeFirstLetter(location)}` : null
         }.
       </p>
 
       <div class="mt-8">
         <a
-          href="
-          /contact"
+          href="/contact"
           class="mt-4 bg-brand text-white rounded-sm text-lg p-4"
         >
           Contact Us
@@ -61,11 +66,33 @@ function capitalizeFirstLetter(string: string) {
       </div>
     </div>
   </div>
-  <Image
-    src={mouldingPlane}
-    width="640"
-    height="553"
-    class="h-56 w-full object-cover sm:h-full"
-    alt="Why coulsy joinery"
-  />
+  <div
+    class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+  >
+    <div class="relative overflow-hidden rounded-xl">
+      <Image
+        src={RobDebTeamImage}
+        width="640"
+        height="553"
+        class="h-56 w-full object-cover sm:h-full transition duration-500 group-hover:scale-105"
+        alt="Team photo of Robert and Debbie"
+      />
+    </div>
+    <div class="mt-6 relative">
+      <h2
+        class="text-2xl font-semibold text-gray-800 dark:text-white text-center"
+      >
+        Team Robert and Debbie
+      </h2>
+      <h2
+        class="text-1xl font-semibold text-gray-800 dark:text-white text-center"
+      >
+        <a
+          class="inline-block h-auto w-full items-center rounded-md p-1 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50-800-50-800-50"
+          href="/about"
+          >Learn more about us...
+        </a>
+      </h2>
+    </div>
+  </div>
 </section>
