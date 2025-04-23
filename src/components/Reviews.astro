@@ -1,87 +1,119 @@
 ---
 // src/components/Reviews.astro
+import { DETAILS } from '../constants/details';
+
+interface AuthorAttribution {
+  displayName: string;
+  photoUri: string;
+}
+
+interface ReviewText {
+  text: string;
+  languageCode: string;
+}
+
+interface Review {
+  authorAttribution: AuthorAttribution;
+  rating: number;
+  text: ReviewText;
+  relativePublishTimeDescription: string;
+}
+
+const API_KEY = import.meta.env.GOOGLE_API_KEY;
+const PLACE_ID = "ChIJFREqq2Poe0gRFoS-2A2H_cg";
+
+let reviews: Review[] = [];
+let error = null;
+
+try {
+  const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=id,displayName,formattedAddress,rating,userRatingCount,reviews&key=${API_KEY}`;
+  const response = await fetch(url, {
+    headers: {
+      'X-Goog-FieldMask': 'id,displayName,formattedAddress,rating,userRatingCount,reviews'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  reviews = data.reviews?.slice(0, 5) || [];
+} catch (e) {
+  error = e instanceof Error ? e.message : 'Failed to fetch reviews';
+  console.error('Error fetching reviews:', error);
+}
 ---
 
-<section class="overflow-hidden sm:grid sm:grid-cols-2 py-12">
-  <div class="p-8 md:p-12 lg:px-16 lg:py-24">
-    <div
-      class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
-    >
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
       <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
         What Our Customers Say
       </h2>
 
-      <p class="text-gray-500 mt-4 md:mt-4 md:block">
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
         We're proud to have earned the trust of our clients across Yorkshire.
         Here's what they have to say about working with Coulsy Joinery & Small
         Build.
       </p>
+    </div>
 
-      <div id="google-reviews" class="mt-6 space-y-4"></div>
-
-      <div class="mt-8">
-        <a
-          href="https://search.google.com/local/reviews?placeid=ChIJ-cM-AEtIeUgRiwUaaopTiaQ"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-4 bg-brand text-white rounded-sm text-lg p-4"
-        >
-          Leave a Google Review
-        </a>
+    {error ? (
+      <div class="text-center text-red-500 p-4 bg-red-50 rounded-lg max-w-2xl mx-auto">
+        Unable to load reviews at this time. Please try again later.
       </div>
-    </div>
-  </div>
-  <div
-    class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-  >
-    <div class="relative overflow-hidden rounded-xl">
-      <img
-        src="/images/reviews-background.jpg"
-        class="h-56 w-full object-cover sm:h-full transition duration-500 group-hover:scale-105"
-        alt="Happy customers"
-        loading="lazy"
-      />
-    </div>
-    <div class="mt-6 relative">
-      <h2
-        class="text-2xl font-semibold text-gray-800 dark:text-white text-center"
+    ) : reviews.length === 0 ? (
+      <div class="text-center text-gray-500 p-4 bg-gray-50 rounded-lg max-w-2xl mx-auto">
+        No reviews available at this time.
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {reviews.map((review) => {
+          const isLongReview = review.text.text.length > 300;
+          const truncatedText = isLongReview ? review.text.text.slice(0, 300) + '...' : review.text.text;
+          const reviewId = `review-${review.authorAttribution.displayName.replace(/\s+/g, '-').toLowerCase()}`;
+          
+          return (
+            <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow h-full flex flex-col">
+              <div class="flex items-center gap-4 mb-4">
+                <div>
+                  <div class="font-semibold text-lg">{review.authorAttribution.displayName}</div>
+                  <div class="text-yellow-500 flex gap-1 items-center">
+                    {"★".repeat(review.rating)}
+                    <span class="text-gray-500 text-sm ml-2">{review.relativePublishTimeDescription}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-grow">
+                <p id={reviewId} class="text-gray-700">{truncatedText}</p>
+                {isLongReview && (
+                  <button
+                    class="text-brand hover:text-brand/80 text-sm font-medium mt-2"
+                    onclick={`document.getElementById('${reviewId}').textContent = \`${review.text.text.replace(/`/g, '\\`')}\`; this.remove()`}
+                  >
+                    Read more
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+
+    <div class="text-center mt-12">
+      <a
+        href="https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-brand text-white rounded-sm text-lg px-6 py-3 hover:bg-brand/90 transition-colors"
       >
-        Trusted By Homeowners & Businesses Alike
-      </h2>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+        Leave a Google Review
+      </a>
     </div>
   </div>
 </section>
-
-<script is:inline>
-  const reviewsContainer = document.getElementById("google-reviews");
-
-  // Example static data – you can replace this with data from a real API route later
-  const reviews = [
-    {
-      author: "Richard",
-      rating: 5,
-      text: "Fantastic quality and attention to detail. Highly recommend!",
-    },
-    {
-      author: "Sarah",
-      rating: 5,
-      text: "Professional from start to finish. Couldn't be happier with the work.",
-    },
-    {
-      author: "Tom",
-      rating: 5,
-      text: "Turned our ideas into reality – very happy with the final result!",
-    },
-  ];
-
-  reviews.forEach((review) => {
-    const el = document.createElement("div");
-    el.className = "p-4 border border-gray-200 rounded-lg shadow-sm bg-white";
-    el.innerHTML = `
-      <div class="font-semibold text-lg">${review.author}</div>
-      <div class="text-yellow-500 mb-2">${"★".repeat(review.rating)}</div>
-      <p class="text-gray-700">${review.text}</p>
-    `;
-    reviewsContainer.appendChild(el);
-  });
-</script>
