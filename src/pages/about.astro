@@ -7,6 +7,7 @@ import sustainabilityImage from "../assets/images/sustainability_logo.svg";
 import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
 import DebbieProfileImage from "../assets/images/team/debbie-profile-image.jpg";
 import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
+import Reviews from "../components/Reviews.astro";
 ---
 
 <Layout title="About Us">
@@ -37,8 +38,7 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
       </nav>
     </div>
 
-    <h1 class="text-3xl font-bold tracking-tight pb-4">About</h1>
-
+    <h1 class="text-3xl font-bold tracking-tight pb-4">About Us</h1>
     <p class="text-md font-light mb-4 mt-1">
       Coulsy Joinery is a family-owned carpentry and joinery business, founded
       and operated by myself, Robert, a dedicated professional joiner and
@@ -49,25 +49,24 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
       in everything we do.
     </p>
     <p class="text-md font-light mb-4 mt-1">
-      A premier provider of carpentry and joinery services, including bespoke
-      garden offices, annexe building, small build works, alterations and
-      building maintenance services.
+      We offer a full range of carpentry and joinery services, including bespoke
+      garden offices, annexe buildings, small build works, alterations, and
+      maintenance.
     </p>
 
     <p class="text-md font-light mb-4 mt-1">
-      Today, we continue to innovate and expand, guided by our core values of
+      Today, we continue to innovate and grow, guided by our core values of
       quality, sustainability, and customer satisfaction.
     </p>
     <p class="text-md font-light mb-4 mt-1">
-      Working alongside me is my wife Debbie, whose dedication and skills are
-      integral to the success of the business.
+      Working alongside me is my wife, Debbie, whose dedication and expertise
+      are integral to the success of the business.
     </p>
     <p class="text-md font-light mb-4 mt-1">
-      Together, we lead a small, carefully honed and trusted skilled team that
-      shares our commitment to quality and customer satisfaction. This
-      close-knit team ensures that every project receives the personal attention
-      it deserves, resulting in bespoke joinery and building solutions tailored
-      to each client’s needs.
+      Together, we lead a small, trusted team of skilled professionals who share
+      our passion for quality and care. This close-knit approach ensures every
+      project receives the personal attention it deserves—resulting in
+      tailor-made joinery and building solutions for each client.
     </p>
     <p class="text-md font-light mb-4 mt-1">Robert.</p>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
@@ -77,24 +76,22 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
     >
       Lead Team
     </h2>
+
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Team Card -->
       <div
         class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
       >
         <div class="space-y-2">
-          <!-- <div
-          class="group flex flex-col gap-1 rounded-lg p-5 text-gray"
-          tabindex="1"
-        > -->
           <div
-            class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
           >
             <div
-              class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
             >
               <Image
                 src={RobDebTeamImage}
-                alt="Team for coulsy joinery"
+                alt="Robert and Debbie Coulson"
                 loading="eager"
                 width="1000"
                 height="667"
@@ -102,65 +99,29 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
               />
             </div>
             <div
-              style="background-color: Gray; width:70%;"
-              class="p-3 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
             >
-              <h1 class="text-lg font-bold text-white">Team</h1>
-              <h2 class="text-m font-light text-gray-200">Husband and Wife</h2>
+              <h1 class="text-lg font-bold">Team</h1>
+              <h2 class="text-sm font-light text-gray-200">Husband and Wife</h2>
             </div>
-          </div>
-          <!-- <p class="pl-5 text-gray-400 hover:text-gray-500">
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/robert-coulson-20a60915/"
-            >
-              <span class="sr-only">LinkedIn</span>
-              <svg
-                style="display: inline;"
-                class="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
-                  clip-rule="evenodd"></path>
-              </svg>&nbsp;<span style="font-size: .8em; font-style: italic;"
-                >connect with Robert</span
-              >
-            </a>
-          </p> -->
-
-          <div
-            class="invisible h-auto max-h-0 p-5 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-          >
-            <p
-              style="font-size: .9em;"
-              v-html="This is all about Robert and Debbie"
-            >
-            </p>
           </div>
         </div>
       </div>
 
+      <!-- Robert Card -->
       <div
         class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
       >
         <div class="space-y-2">
-          <!-- <div
-            class="group flex flex-col gap-1 rounded-lg p-5 text-gray"
-            tabindex="1"
-          > -->
           <div
-            class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
           >
             <div
-              class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
             >
               <Image
                 src={RobertProfileImage}
-                alt="Team for coulsy joinery"
+                alt="Robert Coulson"
                 loading="eager"
                 width="1000"
                 height="667"
@@ -168,23 +129,23 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
               />
             </div>
             <div
-              style="background-color: Gray; width:70%;"
-              class="p-3 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
             >
-              <h1 class="text-lg font-bold text-white">Robert</h1>
-              <h2 class="text-m font-light text-gray-200">
+              <h1 class="text-lg font-bold">Robert</h1>
+              <h2 class="text-sm font-light text-gray-200">
                 Joiner and Director
               </h2>
             </div>
           </div>
-          <p class="pl-5 text-gray-400 hover:text-gray-500">
+          <p
+            class="pl-5 text-gray-500 hover:text-blue-600 flex items-center space-x-2"
+          >
             <a
               target="_blank"
               href="https://www.linkedin.com/in/robert-coulson-20a60915/"
+              class="flex items-center"
             >
-              <span class="sr-only">LinkedIn</span>
               <svg
-                style="display: inline;"
                 class="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -192,38 +153,30 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
               >
                 <path
                   fill-rule="evenodd"
+                  clip-rule="evenodd"
                   d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
-                  clip-rule="evenodd"></path>
-              </svg>&nbsp;<span style="font-size: .8em; font-style: italic;"
-                >connect with Robert</span
-              >
+                ></path>
+              </svg>
+              <span class="text-sm italic">Connect with Robert</span>
             </a>
           </p>
-
-          <div
-            class="invisible h-auto max-h-0 p-5 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-          >
-            <p style="font-size: .9em;" v-html="This is all about Robert"></p>
-          </div>
         </div>
       </div>
+
+      <!-- Debbie Card -->
       <div
         class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
       >
         <div class="space-y-2">
-          <!-- <div
-          class="group flex flex-col gap-1 rounded-lg p-5 text-gray"
-          tabindex="1"
-        > -->
           <div
-            class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
+            class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
           >
             <div
-              class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
             >
               <Image
                 src={DebbieProfileImage}
-                alt="Team for coulsy joinery"
+                alt="Debbie Coulson"
                 loading="eager"
                 width="1000"
                 height="667"
@@ -231,40 +184,29 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
               />
             </div>
             <div
-              style="background-color: Gray; width:70%;"
-              class="p-3 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
             >
-              <h1 class="text-lg font-bold text-white">Debbie</h1>
-              <h2 class="text-m font-light text-gray-200">Assistant</h2>
+              <h1 class="text-lg font-bold">Debbie</h1>
+              <h2 class="text-sm font-light text-gray-200">Assistant</h2>
             </div>
           </div>
-          <p class="pl-5 text-gray-400 hover:text-gray-500">
-            <a target="_blank" href="#">
-              <span class="sr-only">Facebook</span>
-              <svg
-                style="display: inline;"
-                class="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 320 512"
-                aria-hidden="true"
-              >
-                <path
-                  d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
-                ></path>
-              </svg>&nbsp;<span style="font-size: .8em; font-style: italic;"
-                >connect with Debbie</span
-              >
-            </a>
+          <p class="pl-5 text-gray-500 flex items-center space-x-2">
+            <svg
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 320 512"
+              aria-hidden="true"
+            >
+              <path
+                d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+              ></path>
+            </svg>
+            <span class="text-sm italic">Connect with Debbie</span>
           </p>
-
-          <div
-            class="invisible h-auto max-h-0 p-5 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-          >
-            <p style="font-size: .9em;" v-html="This is all about Debbie"></p>
-          </div>
         </div>
       </div>
     </div>
+
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
     <h2
       style="color: Gray"
@@ -381,4 +323,6 @@ import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
       </div>
     </div>
   </div>
+
+  <Reviews />
 </Layout>
