@@ -1,5 +1,5 @@
 ---
-
+import { DETAILS } from "../constants/details";
 ---
 
 <div
@@ -7,10 +7,10 @@
 >
   <h2 class="text-3xl">Enquire</h2>
   <h3 class="text-3xl font-bold mb-1">
-    Call or text : Robert <a
-      href="tel:07544 030486"
+    Call or text : {DETAILS.FIRST_NAME} <a
+      href={`tel:${DETAILS.PHONE}`}
       style="text-decoration: none; color: #ff1d1d; font-weight: bold; letter-spacing: 1px;"
-      >07544 030486</a
+      >{DETAILS.PHONE}</a
     >
   </h3>
   <hr />

@@ -1,33 +1,35 @@
 ---
+// This is the main index page
+
 import Layout from "../layouts/Layout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
-import Why from "./Why.astro";
-import OurServicesDescription from "./OurServicesDescriptionCentreAligned.astro";
-import OurServicesBody from "./OurServicesBody.astro";
+import Why from "../components/Why.astro";
+import OurServicesDescription from "../components/OurServicesDescriptionCentreAligned.astro";
+import OurServicesBody from "../components/OurServicesBody.astro";
 
-import TimberJoineryImg1 from "../assets/images/moulding_plane.png";
-import TimberJoineryImg2 from "../assets/images/kitchens/kitchen-fitter-domestic.jpg";
-import TimberJoineryImg3 from "../assets/images/timber20joinery.jpg";
 import Reviews from "../components/Reviews.astro";
+import timber20joinery from "../assets/images/timber20joinery.jpg";
+import mouldingPlane from "../assets/images/moulding_plane.png";
+import kitchenFitter from "../assets/images/kitchens/kitchen-fitter-domestic.jpg";
 
 const slides = [
   {
-    image: TimberJoineryImg1.src,
+    image: mouldingPlane,
     text: "Welcome to Coulsy Joinery and Building",
   },
   {
-    image: TimberJoineryImg2.src,
+    image: kitchenFitter,
     text: "Fitted Kitchens, Refurbs & Small Builds Works",
   },
   {
-    image: TimberJoineryImg3.src,
+    image: timber20joinery,
     text: "Bespoke Joinery, Skilled, Reliable Craftsmanship — Every Time",
   },
 ];
 ---
 
-<Layout title="Coulsy carpentry and joinery">
-  <main class="relative z-10 mx-auto md:mt-16">
+<Layout title="Coulsy carpentry and joinery" transparentHeader={true}>
+  <div class="relative z-10 mx-auto">
     <HeroSlider slides={slides} />
     <Why />
     <OurServicesDescription />

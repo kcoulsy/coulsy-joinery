@@ -5,6 +5,7 @@ import CardChecklist from "../icons/CardChecklist.astro";
 import EnvelopeIcon from "../icons/EnvelopeIcon.astro";
 import PhoneIcon from "../icons/PhoneIcon.astro";
 import Layout from "../layouts/Layout.astro";
+import { DETAILS } from "../constants/details";
 ---
 
 <Layout title="Contact Us" classes="mt-8 mb-16">
@@ -128,20 +129,20 @@ import Layout from "../layouts/Layout.astro";
           <h4 class="text-color-dark mb-1 pb-2">Office</h4>
 
           <ul class="list list-icons mt-3 mb-3">
-            <p class="text-4 mb-0"></p><li style="list-style: none;">Rose Cottage<br
-              />1 Post Office Row<br />Bilton-in-Ainsty<br />York<br />YO26 7NW
+            <p class="text-4 mb-0"></p><li style="list-style: none;">{DETAILS.ADDRESS.LINE_1}<br
+              />{DETAILS.ADDRESS.LINE_2}<br />{DETAILS.ADDRESS.TOWN}<br />{DETAILS.ADDRESS.COUNTY}<br />{DETAILS.ADDRESS.POSTCODE}
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">
               <PhoneIcon className="h-4 w-4 inline-block" />
-              <a href="tel:07544 030486" style="text-decoration: none"
-                >07544 030486</a
+              <a href={`tel:${DETAILS.PHONE}`} style="text-decoration: none"
+                >{DETAILS.PHONE}</a
               >
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">
               <EnvelopeIcon className="h-4 w-4 inline-block" />
-              <a href="mailto:robert@coulsy.co.uk">robert@coulsy.co.uk</a>
+              <a href={`mailto:${DETAILS.EMAIL}`}>{DETAILS.EMAIL}</a>
             </li>
             <p></p>
           </ul>
@@ -155,17 +156,17 @@ import Layout from "../layouts/Layout.astro";
           <ul class="list list-icons mt-3 mb-3">
             <p class="text-4 mb-0"></p><li style="list-style: none;">
               <CardChecklist className="h-4 w-4 inline-block" /> Registered Company
-              : Coulsy Ltd
+              : {DETAILS.COMPANY.NAME}
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">
               <CardChecklist className="h-4 w-4 inline-block" /> Company number :
-              8575688
+              {DETAILS.COMPANY.REGISTRATION_NUMBER}
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">
               <CardChecklist className="h-4 w-4 inline-block" /> Commenced trading
-              : July 2013
+              : {DETAILS.COMPANY.SINCE}
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">

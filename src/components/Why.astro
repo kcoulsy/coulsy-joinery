@@ -10,7 +10,7 @@ function capitalizeFirstLetter(string: string) {
 }
 ---
 
-<section class="overflow-hidden sm:grid sm:grid-cols-2 py-12">
+<section class="overflow-hidden flex flex-col lg:flex-row py-12 items-center justify-center">
   <div class="p-8 md:p-12 lg:px-16 lg:py-24">
     <div
       class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
@@ -66,10 +66,9 @@ function capitalizeFirstLetter(string: string) {
       </div>
     </div>
   </div>
-  <div
-    class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-  >
-    <div class="relative overflow-hidden rounded-xl">
+  <div class="p-4">
+  <div class="group p-3 rounded-sm border border-gray-100 shadow-xl flex-grow-0">
+    <div class="relative overflow-hidden rounded-sm">
       <Image
         src={RobDebTeamImage}
         width="640"
@@ -81,19 +80,20 @@ function capitalizeFirstLetter(string: string) {
     </div>
     <div class="mt-6 relative">
       <h2
-        class="text-2xl font-semibold text-gray-800 dark:text-white text-center"
+        class="text-2xl font-semibold text-gray-800 text-center"
       >
         Team Robert and Debbie
       </h2>
       <h2
-        class="text-1xl font-semibold text-gray-800 dark:text-white text-center"
+        class="text-1xl font-semibold text-gray-800 text-center mb-2"
       >
         <a
-          class="inline-block h-auto w-full items-center rounded-md p-1 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50-800-50-800-50"
+          class="inline-block h-auto w-full items-center rounded-sm p-1 transition-colors hover:text-brand"
           href="/about"
           >Learn more about us...
         </a>
       </h2>
     </div>
+  </div>
   </div>
 </section>

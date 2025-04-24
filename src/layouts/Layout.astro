@@ -11,12 +11,14 @@ interface Props {
   title: string;
   description?: string;
   classes?: string;
+  transparentHeader?: boolean;
 }
 
 const {
   title,
   classes,
   description = "Coulsy carpentry and joinery services",
+  transparentHeader = false,
 } = Astro.props;
 ---
 
@@ -37,8 +39,8 @@ const {
 
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
-  <body class="flex flex-col min-h-screen">
-    <Navbar />
+  <body class="flex flex-col min-h-screen overflow-x-hidden">
+    <Navbar transparent={transparentHeader} />
     <main class={`flex-1 ${classes}`}>
       <slot />
     </main>
