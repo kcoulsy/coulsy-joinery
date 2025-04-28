@@ -27,6 +27,10 @@ const menuitems = [
         link: "/joinery-services/heritage-restoration-joinery",
       },
       {
+        label: "General Joinery",
+        link: "/joinery-services/general-joinery",
+      },
+      {
         label: "Kitchen Installers",
         link: "/joinery-services/kitchen-installers",
       },
@@ -91,7 +95,9 @@ const socialLinks = [
 ];
 ---
 
-<header class={`${transparent ? 'bg-transparent' : 'bg-brand-light'} text-white relative z-50`}>
+<header
+  class={`${transparent ? "bg-transparent" : "bg-brand-light"} text-white relative z-50`}
+>
   <div
     class="container mx-auto flex lg:flex-row items-center justify-between px-4 py-2 lg:py-4 h-[70px] lg:h-[80px]"
   >
@@ -110,7 +116,10 @@ const socialLinks = [
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center space-x-6 ml-4" aria-label="Main navigation">
+    <nav
+      class="hidden lg:flex items-center space-x-6 ml-4"
+      aria-label="Main navigation"
+    >
       <ul class="flex items-center gap-4">
         {
           menuitems.map((item) =>
@@ -120,7 +129,7 @@ const socialLinks = [
                   class="text-white hover:text-gray-200 px-2 py-2 flex items-center gap-1"
                   aria-expanded="false"
                   aria-haspopup="true"
-                  aria-controls={`dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  aria-controls={`dropdown-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {item.label}
                   <svg
@@ -140,7 +149,7 @@ const socialLinks = [
                   </svg>
                 </button>
                 <ul
-                  id={`dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  id={`dropdown-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   class="absolute top-full left-0 w-64 bg-white shadow-lg rounded-sm transform origin-top transition-all duration-200 ease-in-out scale-y-0 group-hover:scale-y-100 pointer-events-none group-hover:pointer-events-auto"
                   role="menu"
                   aria-orientation="vertical"
@@ -194,17 +203,43 @@ const socialLinks = [
     </button>
 
     <!-- Social Icons -->
-    <div class="hidden lg:flex items-center gap-4 ml-auto" aria-label="Social media links">
-      <a href={`mailto:${DETAILS.EMAIL}`} class="flex items-center gap-2 mr-4 text-white hover:text-gray-200 transition-colors duration-200">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-          <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
-          <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+    <div
+      class="hidden lg:flex items-center gap-4 ml-auto"
+      aria-label="Social media links"
+    >
+      <a
+        href={`mailto:${DETAILS.EMAIL}`}
+        class="flex items-center gap-2 mr-4 text-white hover:text-gray-200 transition-colors duration-200"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
+          ></path>
+          <path
+            d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
+          ></path>
         </svg>
         <span>{DETAILS.EMAIL}</span>
       </a>
-      <a href={`tel:${DETAILS.PHONE}`} class="flex items-center gap-2 mr-4 text-white hover:text-gray-200 transition-colors duration-200">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-          <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+      <a
+        href={`tel:${DETAILS.PHONE}`}
+        class="flex items-center gap-2 mr-4 text-white hover:text-gray-200 transition-colors duration-200"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+            clip-rule="evenodd"></path>
         </svg>
         <span>{DETAILS.PHONE}</span>
       </a>
@@ -228,7 +263,8 @@ const socialLinks = [
     id="mobile-nav-overlay"
     class="fixed inset-0 bg-black/50 z-[55] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
     aria-hidden="true"
-  ></div>
+  >
+  </div>
 
   <!-- Mobile Menu -->
   <nav
@@ -238,7 +274,9 @@ const socialLinks = [
     aria-hidden="true"
   >
     <!-- Mobile Menu Header -->
-    <div class="flex items-center justify-between px-6 py-4 border-b border-brand-lighter sticky top-0 bg-brand-light z-10">
+    <div
+      class="flex items-center justify-between px-6 py-4 border-b border-brand-lighter sticky top-0 bg-brand-light z-10"
+    >
       <a href="/" class="flex items-center">
         <Image
           src={coulsyLogo}
@@ -249,11 +287,7 @@ const socialLinks = [
           loading="eager"
         />
       </a>
-      <button
-        id="mobile-nav-close"
-        class="p-2"
-        aria-label="Close menu"
-      >
+      <button id="mobile-nav-close" class="p-2" aria-label="Close menu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -263,7 +297,10 @@ const socialLinks = [
           class="w-6 h-6 text-white"
           aria-hidden="true"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
@@ -277,7 +314,7 @@ const socialLinks = [
                 <button
                   class="flex w-full px-6 py-5 text-white hover:text-gray-200 text-xl justify-between items-center border-b border-brand-lighter"
                   aria-expanded="false"
-                  aria-controls={`mobile-dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  aria-controls={`mobile-dropdown-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {item.label}
                   <svg
@@ -297,7 +334,7 @@ const socialLinks = [
                   </svg>
                 </button>
                 <ul
-                  id={`mobile-dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  id={`mobile-dropdown-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   class="hidden group-[.is-open]:block w-full bg-brand-lighter transform origin-top transition-all duration-300 ease-in-out max-h-0 group-[.is-open]:max-h-[500px] overflow-hidden"
                   role="menu"
                   aria-orientation="vertical"
@@ -327,7 +364,10 @@ const socialLinks = [
         ))
       }
       <!-- Social Icons in Mobile Menu -->
-      <li class="flex items-center justify-center gap-6 px-6 py-6 border-b border-brand-lighter" aria-label="Social media links">
+      <li
+        class="flex items-center justify-center gap-6 px-6 py-6 border-b border-brand-lighter"
+        aria-label="Social media links"
+      >
         {
           socialLinks.map((social) => (
             <a
@@ -354,35 +394,39 @@ const socialLinks = [
   const dropdowns = menu?.querySelectorAll("button");
 
   // Handle keyboard navigation for desktop dropdowns
-  document.querySelectorAll("nav.lg\\:flex li.group button").forEach((button) => {
-    button.addEventListener("keydown", ((e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const dropdown = button.closest("li.group");
-        if (dropdown) {
-          const ul = dropdown.querySelector("ul");
-          const isExpanded = button.getAttribute("aria-expanded") === "true";
-          
-          // Close all other dropdowns
-          document.querySelectorAll("nav.lg\\:flex li.group").forEach((otherDropdown) => {
-            if (otherDropdown !== dropdown) {
-              const otherButton = otherDropdown.querySelector("button");
-              const otherUl = otherDropdown.querySelector("ul");
-              if (otherButton && otherUl) {
-                otherButton.setAttribute("aria-expanded", "false");
-                otherUl.classList.remove("scale-y-100");
-              }
-            }
-          });
+  document
+    .querySelectorAll("nav.lg\\:flex li.group button")
+    .forEach((button) => {
+      button.addEventListener("keydown", ((e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const dropdown = button.closest("li.group");
+          if (dropdown) {
+            const ul = dropdown.querySelector("ul");
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
 
-          button.setAttribute("aria-expanded", String(!isExpanded));
-          if (ul) {
-            ul.classList.toggle("scale-y-100");
+            // Close all other dropdowns
+            document
+              .querySelectorAll("nav.lg\\:flex li.group")
+              .forEach((otherDropdown) => {
+                if (otherDropdown !== dropdown) {
+                  const otherButton = otherDropdown.querySelector("button");
+                  const otherUl = otherDropdown.querySelector("ul");
+                  if (otherButton && otherUl) {
+                    otherButton.setAttribute("aria-expanded", "false");
+                    otherUl.classList.remove("scale-y-100");
+                  }
+                }
+              });
+
+            button.setAttribute("aria-expanded", String(!isExpanded));
+            if (ul) {
+              ul.classList.toggle("scale-y-100");
+            }
           }
         }
-      }
-    }) as EventListener);
-  });
+      }) as EventListener);
+    });
 
   // Handle keyboard navigation for mobile menu
   const toggleMenu = () => {
@@ -420,7 +464,7 @@ const socialLinks = [
         e.preventDefault();
         const group = dropdown.closest("li");
         const isExpanded = dropdown.getAttribute("aria-expanded") === "true";
-        
+
         // Close all other dropdowns
         menu?.querySelectorAll("li.is-open").forEach((openGroup) => {
           if (openGroup !== group) {
@@ -441,7 +485,7 @@ const socialLinks = [
           e.preventDefault();
           const group = dropdown.closest("li");
           const isExpanded = dropdown.getAttribute("aria-expanded") === "true";
-          
+
           // Close all other dropdowns
           menu?.querySelectorAll("li.is-open").forEach((openGroup) => {
             if (openGroup !== group) {
@@ -468,16 +512,18 @@ const socialLinks = [
   document.querySelectorAll("nav.lg\\:flex li.group").forEach((dropdown) => {
     dropdown.addEventListener("mouseenter", () => {
       // Close all other dropdowns
-      document.querySelectorAll("nav.lg\\:flex li.group").forEach((otherDropdown) => {
-        if (otherDropdown !== dropdown) {
-          const button = otherDropdown.querySelector("button");
-          const ul = otherDropdown.querySelector("ul");
-          if (button && ul) {
-            button.setAttribute("aria-expanded", "false");
-            ul.classList.remove("scale-y-100");
+      document
+        .querySelectorAll("nav.lg\\:flex li.group")
+        .forEach((otherDropdown) => {
+          if (otherDropdown !== dropdown) {
+            const button = otherDropdown.querySelector("button");
+            const ul = otherDropdown.querySelector("ul");
+            if (button && ul) {
+              button.setAttribute("aria-expanded", "false");
+              ul.classList.remove("scale-y-100");
+            }
           }
-        }
-      });
+        });
 
       // Open current dropdown
       const button = dropdown.querySelector("button");
