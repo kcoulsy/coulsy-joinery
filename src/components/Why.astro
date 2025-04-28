@@ -10,7 +10,9 @@ function capitalizeFirstLetter(string: string) {
 }
 ---
 
-<section class="overflow-hidden flex flex-col lg:flex-row py-12 items-center justify-center">
+<section
+  class="overflow-hidden flex flex-col lg:flex-row py-12 items-center justify-center"
+>
   <div class="p-8 md:p-12 lg:px-16 lg:py-24">
     <div
       class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
@@ -18,6 +20,10 @@ function capitalizeFirstLetter(string: string) {
       <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
         Why Coulsy Joinery?
       </h2>
+
+      <h1 class="text-gray-500 mt-4 md:mt-4 md:block">
+        Expert Joinery and Small Building Services in York
+      </h1>
 
       <p class="text-gray-500 mt-4 md:mt-4 md:block">
         Coulsy Joinery & Small Build is your trusted partner for high-quality
@@ -67,33 +73,31 @@ function capitalizeFirstLetter(string: string) {
     </div>
   </div>
   <div class="p-4">
-  <div class="group p-3 rounded-sm border border-gray-100 shadow-xl flex-grow-0">
-    <div class="relative overflow-hidden rounded-sm">
-      <Image
-        src={RobDebTeamImage}
-        width="640"
-        height="553"
-        class="h-56 w-full object-cover sm:h-full transition duration-500 group-hover:scale-105"
-        alt="Team Robert and Debbie"
-        loading="eager"
-      />
+    <div
+      class="group p-3 rounded-sm border border-gray-100 shadow-xl flex-grow-0"
+    >
+      <div class="relative overflow-hidden rounded-sm">
+        <Image
+          src={RobDebTeamImage}
+          width="640"
+          height="553"
+          class="h-56 w-full object-cover sm:h-full transition duration-500 group-hover:scale-105"
+          alt="Team Robert and Debbie"
+          loading="eager"
+        />
+      </div>
+      <div class="mt-6 relative">
+        <h2 class="text-2xl font-semibold text-gray-800 text-center">
+          Team Robert and Debbie
+        </h2>
+        <h2 class="text-1xl font-semibold text-gray-800 text-center mb-2">
+          <a
+            class="inline-block h-auto w-full items-center rounded-sm p-1 transition-colors hover:text-brand"
+            href="/about"
+            >Learn more about us...
+          </a>
+        </h2>
+      </div>
     </div>
-    <div class="mt-6 relative">
-      <h2
-        class="text-2xl font-semibold text-gray-800 text-center"
-      >
-        Team Robert and Debbie
-      </h2>
-      <h2
-        class="text-1xl font-semibold text-gray-800 text-center mb-2"
-      >
-        <a
-          class="inline-block h-auto w-full items-center rounded-sm p-1 transition-colors hover:text-brand"
-          href="/about"
-          >Learn more about us...
-        </a>
-      </h2>
-    </div>
-  </div>
   </div>
 </section>
