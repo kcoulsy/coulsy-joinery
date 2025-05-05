@@ -8,314 +8,303 @@ import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
 import DebbieProfileImage from "../assets/images/team/debbie-profile-image.jpg";
 import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
 import Reviews from "../components/Reviews.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 ---
 
 <Layout title="About Us">
-  <div class="w-full container mx-auto px-8 py-12">
-    <div class="flex justify-left">
-      <nav class="text-sm sm:text-base pb-6">
-        <ol class="list-none p-0 inline-flex space-x-2">
-          <li class="flex items-center">
-            <svg
-              onclick="window.location.href='/';"
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 576 512"
-              class="cursor-pointer hover:fill-blue-500 transition-colors duration-300 mr-2"
-              fill="#4b5563"
-              ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-              <path
-                d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
-              ></path></svg
-            >
-            <span class="mx-2">/</span>
-          </li>
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+      <div class="flex justify-left">
+        <Breadcrumb
+          crumbs={[
+            // { label: "Home", href: "/" },
+            { label: "About", current: true },
+          ]}
+        />
+      </div>
 
-          <li class="flex items-center">
-            <span class="text-yellow-600 font-semibold">About</span>
-          </li>
-        </ol>
-      </nav>
-    </div>
-
-    <h1 class="text-3xl font-bold tracking-tight pb-4">About Us</h1>
-    <p class="text-md font-light mb-4 mt-1">
-      I'm Robert, and along with my wife Debbie, we run Coulsy Joinery and Small
-      Build — a small, family-run outfit based in North Yorkshire. I’ve been
-      working in joinery since the late '80s, and even after all these years, I
-      still get stuck in on the tools every day. We’ve built our name by
-      focusing on quality, not quantity.
-    </p>
-    <p class="text-md font-light mb-4 mt-1">
-      We handle all kinds of carpentry and joinery, from custom garden offices
-      and annexes to small building projects, maintenance work, and thoughtful
-      renovations. Every job is treated with care — no cutting corners, no
-      outsourcing to strangers.
-    </p>
-    <p class="text-md font-light mb-4 mt-1">
-      Debbie is not just behind the scenes — she plays an active role in keeping
-      everything organised and running smoothly, and is often on site with me.
-      We work with a small, trusted team who we know personally and rely on
-      completely.
-    </p>
-    <p class="text-md font-light mb-4 mt-1">
-      We don’t try to be the biggest company around — just a dependable one. We
-      show up when we say we will, we’re easy to talk to, and we take real pride
-      in leaving a job well done.
-    </p>
-    <p class="text-md font-light mb-4 mt-1">– Robert</p>
-    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-    <h3
-      style="color: Gray"
-      class="text-2xl font-bold tracking-tight text-green-900 sm:text-3xl mb-4 mt-4"
-    >
-      Lead Team
-    </h3>
-
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Team Card -->
-      <div
-        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+      <h1 class="text-3xl font-bold tracking-tight pb-4">About Us</h1>
+      <p class="text-md font-light mb-4 mt-1">
+        I'm Robert, and along with my wife Debbie, we run Coulsy Joinery and
+        Small Build — a small, family-run outfit based in North Yorkshire. I’ve
+        been working in joinery since the late '80s, and even after all these
+        years, I still get stuck in on the tools every day. We’ve built our name
+        by focusing on quality, not quantity.
+      </p>
+      <p class="text-md font-light mb-4 mt-1">
+        We handle all kinds of carpentry and joinery, from custom garden offices
+        and annexes to small building projects, maintenance work, and thoughtful
+        renovations. Every job is treated with care — no cutting corners, no
+        outsourcing to strangers.
+      </p>
+      <p class="text-md font-light mb-4 mt-1">
+        Debbie is not just behind the scenes — she plays an active role in
+        keeping everything organised and running smoothly, and is often on site
+        with me. We work with a small, trusted team who we know personally and
+        rely on completely.
+      </p>
+      <p class="text-md font-light mb-4 mt-1">
+        We don’t try to be the biggest company around — just a dependable one.
+        We show up when we say we will, we’re easy to talk to, and we take real
+        pride in leaving a job well done.
+      </p>
+      <p class="text-md font-light mb-4 mt-1">– Robert</p>
+      <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+      <h3
+        style="color: Gray"
+        class="text-2xl font-bold tracking-tight text-green-900 sm:text-3xl mb-4 mt-4"
       >
-        <div class="space-y-2">
-          <div
-            class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
-          >
+        Lead Team
+      </h3>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Team Card -->
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="space-y-2">
             <div
-              class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
             >
-              <Image
-                src={RobDebTeamImage}
-                alt="Robert and Debbie Coulson"
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div
-              class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
-            >
-              <h3 class="text-lg font-bold">Team</h3>
-              <h3 class="text-sm font-light text-gray-200">Husband and Wife</h3>
+              <div
+                class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={RobDebTeamImage}
+                  alt="Robert and Debbie Coulson"
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h3 class="text-lg font-bold">Team</h3>
+                <h3 class="text-sm font-light text-gray-200">
+                  Husband and Wife
+                </h3>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Robert Card -->
-      <div
-        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-      >
-        <div class="space-y-2">
-          <div
-            class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
-          >
+        <!-- Robert Card -->
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="space-y-2">
             <div
-              class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
             >
-              <Image
-                src={RobertProfileImage}
-                alt="Robert Coulson"
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+              <div
+                class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={RobertProfileImage}
+                  alt="Robert Coulson"
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h3 class="text-lg font-bold">Robert</h3>
+                <h3 class="text-sm font-light text-gray-200">
+                  Joiner and Owner
+                </h3>
+              </div>
             </div>
-            <div
-              class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+            <p
+              class="pl-5 text-gray-500 hover:text-blue-600 flex items-center space-x-2"
             >
-              <h3 class="text-lg font-bold">Robert</h3>
-              <h3 class="text-sm font-light text-gray-200">Joiner and Owner</h3>
-            </div>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/robert-coulson-20a60915/"
+                class="flex items-center"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M16.338 16.338h33.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h3.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1h3.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h35.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                  ></path>
+                </svg>
+                <span class="text-sm italic">Connect with Robert</span>
+              </a>
+            </p>
           </div>
-          <p
-            class="pl-5 text-gray-500 hover:text-blue-600 flex items-center space-x-2"
-          >
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/robert-coulson-20a60915/"
-              class="flex items-center"
+        </div>
+
+        <!-- Debbie Card -->
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="space-y-2">
+            <div
+              class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
             >
+              <div
+                class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
+              >
+                <Image
+                  src={DebbieProfileImage}
+                  alt="Debbie Coulson"
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div
+                class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+              >
+                <h3 class="text-lg font-bold">Debbie</h3>
+                <h3 class="text-sm font-light text-gray-200">Assistant</h3>
+              </div>
+            </div>
+            <p class="pl-5 text-gray-500 flex items-center space-x-2">
               <svg
                 class="h-5 w-5"
                 fill="currentColor"
-                viewBox="0 0 20 20"
+                viewBox="0 0 320 512"
                 aria-hidden="true"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M16.338 16.338h33.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h3.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1h3.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h35.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                  d="M80 299.3V512h396V299.3h86.5l18-97.8h396V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1h34v97.8H80z"
                 ></path>
               </svg>
-              <span class="text-sm italic">Connect with Robert</span>
-            </a>
-          </p>
+              <span class="text-sm italic">Connect with Debbie</span>
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- Debbie Card -->
-      <div
-        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+      <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+      <h3
+        style="color: Gray"
+        class="text-2xl font-bold tracking-tight text-green-900 sm:text-3xl mb-4 mt-4"
       >
-        <div class="space-y-2">
-          <div
-            class="group relative flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg"
-          >
-            <div
-              class="z-10 w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70"
-            >
-              <Image
-                src={DebbieProfileImage}
-                alt="Debbie Coulson"
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+        Trust
+      </h3>
+
+      <p class="text-md font-light mb-4 mt-1">
+        At Coulsy Joinery, we recognise the importance of adhering to rules and
+        regulations.
+      </p>
+      <p class="text-md font-light mb-4 mt-1">
+        These guidelines exist to protect you, us, and the wider community,
+        ensuring high standards are upheld. We are committed to going the extra
+        mile, not only in delivering quality craftsmanship but also in building
+        a sustainable future.
+      </p>
+      <p class="text-md font-light mb-4 mt-1">
+        Our team is fully qualified, insured, and compliant with all industry
+        requirements. We are constantly learning and actively incorporating new
+        methods to protect the environment and promote sustainability in
+        everything we do.
+      </p>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="relative overflow-hidden rounded-xl">
+            <Image
+              src={benchPlaneImage}
+              alt="woodworking bench plane"
+              loading="lazy"
+              width="1000"
+              height="667"
+              class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            />
+            <div class="mt-6 relative">
+              <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Fully Qualified
+              </h3>
+              <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+                Our team are highly qualified to meet the demands of your
+                project...
+              </p>
+              <a
+                href="/about/qualifications"
+                class="inline-block text-yellow-600 font-semibold hover:underline"
+                >View our Qualifications and Insurances
+              </a>
             </div>
-            <div
-              class="absolute bottom-0 z-20 p-3 w-[70%] rounded-xl bg-gray-700 bg-opacity-60 text-white transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
-            >
-              <h3 class="text-lg font-bold">Debbie</h3>
-              <h3 class="text-sm font-light text-gray-200">Assistant</h3>
+          </div>
+        </div>
+
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="relative overflow-hidden rounded-xl">
+            <Image
+              src={complianceImage}
+              alt="compliance"
+              loading="lazy"
+              width="1000"
+              height="667"
+              class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            />
+            <div class="mt-6 relative">
+              <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Highly Compliant
+              </h3>
+              <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+                We adhere to the highest standards of compliance and ethics...
+              </p>
+              <a
+                class="inline-block text-yellow-600 font-semibold hover:underline"
+                href="/about/compliance"
+              >
+                View our Compliance and Safety
+              </a>
             </div>
           </div>
-          <p class="pl-5 text-gray-500 flex items-center space-x-2">
-            <svg
-              class="h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 320 512"
-              aria-hidden="true"
-            >
-              <path
-                d="M80 299.3V512h396V299.3h86.5l18-97.8h396V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1h34v97.8H80z"
-              ></path>
-            </svg>
-            <span class="text-sm italic">Connect with Debbie</span>
-          </p>
         </div>
-      </div>
-    </div>
 
-    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-    <h3
-      style="color: Gray"
-      class="text-2xl font-bold tracking-tight text-green-900 sm:text-3xl mb-4 mt-4"
-    >
-      Trust
-    </h3>
-
-    <p class="text-md font-light mb-4 mt-1">
-      At Coulsy Joinery, we recognise the importance of adhering to rules and
-      regulations.
-    </p>
-    <p class="text-md font-light mb-4 mt-1">
-      These guidelines exist to protect you, us, and the wider community,
-      ensuring high standards are upheld. We are committed to going the extra
-      mile, not only in delivering quality craftsmanship but also in building a
-      sustainable future.
-    </p>
-    <p class="text-md font-light mb-4 mt-1">
-      Our team is fully qualified, insured, and compliant with all industry
-      requirements. We are constantly learning and actively incorporating new
-      methods to protect the environment and promote sustainability in
-      everything we do.
-    </p>
-
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <div
-        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-      >
-        <div class="relative overflow-hidden rounded-xl">
-          <Image
-            src={benchPlaneImage}
-            alt="woodworking bench plane"
-            loading="lazy"
-            width="1000"
-            height="667"
-            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-          />
-          <div class="mt-6 relative">
-            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-              Fully Qualified
-            </h3>
-            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-              Our team are highly qualified to meet the demands of your
-              project...
-            </p>
-            <a
-              href="/about/qualifications"
-              class="inline-block text-yellow-600 font-semibold hover:underline"
-              >View our Qualifications and Insurances
-            </a>
+        <div
+          class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        >
+          <div class="relative overflow-hidden rounded-xl">
+            <Image
+              src={sustainabilityImage}
+              alt="sustainability"
+              loading="lazy"
+              width="1000"
+              height="667"
+              class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            />
+            <div class="mt-6 relative">
+              <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                Sustainability
+              </h3>
+              <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
+                Making a difference...
+                <br />
+                <br />
+              </p>
+              <a
+                class="inline-block text-yellow-600 font-semibold hover:underline"
+                href="/about/sustainability"
+              >
+                View our Sustainability Efforts
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
-      <div
-        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-      >
-        <div class="relative overflow-hidden rounded-xl">
-          <Image
-            src={complianceImage}
-            alt="compliance"
-            loading="lazy"
-            width="1000"
-            height="667"
-            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-          />
-          <div class="mt-6 relative">
-            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-              Highly Compliant
-            </h3>
-            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-              We adhere to the highest standards of compliance and ethics...
-            </p>
-            <a
-              class="inline-block text-yellow-600 font-semibold hover:underline"
-              href="/about/compliance"
-            >
-              View our Compliance and Safety
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-      >
-        <div class="relative overflow-hidden rounded-xl">
-          <Image
-            src={sustainabilityImage}
-            alt="sustainability"
-            loading="lazy"
-            width="1000"
-            height="667"
-            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-          />
-          <div class="mt-6 relative">
-            <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-              Sustainability
-            </h3>
-            <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-              Making a difference...
-              <br />
-              <br />
-            </p>
-            <a
-              class="inline-block text-yellow-600 font-semibold hover:underline"
-              href="/about/sustainability"
-            >
-              View our Sustainability Efforts
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <Reviews />
+      <Reviews />
+    </section>
+  </main>
 </Layout>

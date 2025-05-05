@@ -2,124 +2,100 @@
 import Layout from "../../layouts/Layout.astro";
 import complianceImage from "../../assets/images/compliance.jpeg";
 import Image from "astro/components/Image.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 ---
 
-<Layout title="Compliance">
-  <div class="w-full container mx-auto px-8 py-12">
-    <div class="flex justify-left">
-      <nav class="text-sm sm:text-base pb-6">
-        <ol class="list-none p-0 inline-flex space-x-2">
-          <li class="flex items-center">
-            <svg
-              onclick="window.location.href='/';"
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 576 512"
-              class="cursor-pointer hover:fill-blue-500 transition-colors duration-300 mr-2"
-              fill="#4b5563"
-              ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-              <path
-                d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
-              ></path></svg
-            >
-            <span class="mx-2">/</span>
-          </li>
-          <li class="flex items-center">
-            <a
-              href="/about"
-              class="text-gray-600 hover:text-blue-500 transition-colors duration-300"
-              >About</a
-            >
-            <span class="mx-2">/</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-yellow-600 font-semibold"
-              >Compliance &amp; Safety</span
-            >
-          </li>
-        </ol>
-      </nav>
-    </div>
-
-    <h1 class="text-3xl font-bold tracking-tight pb-4">
-      Compliance &amp; Safety
-    </h1>
-    <div class="grid md:grid-cols-2 items-start gap-8">
-      <div class="space-y-4">
-        <div class="space-y-4 text-gray-600 prose">
-          <h2>We take safety seriously — for you and for us.</h2>
-          <p>
-            We’re not a big company, and we don’t pretend to be. It’s my
-            experience and hands-on approach that allows us to go that one step
-            further — making sure things are done properly, with care and
-            attention that’s often missing from larger outfits.
-          </p>
-          <p>
-            Health and safety isn’t a tick-box exercise for us — it’s about
-            doing the job properly and protecting everyone involved. Whether
-            you’re a property owner, landlord, site manager or just need work
-            done at home, you can rely on us to meet the necessary safety and
-            compliance standards.
-          </p>
-          <p>
-            If you're responsible for a building or work environment, it's
-            important to be aware of your duties under UK fire and safety law.
-            You can read more at
-            <a
-              href="https://www.gov.uk/workplace-fire-safety-your-responsibilities"
-              target="_blank"
-              class="font-semibold text-blue-700 hover:underline"
-              >www.gov.uk/workplace-fire-safety-your-responsibilities</a
-            >.
-          </p>
-          <h3>We’re fully insured</h3>
-          <p>We hold:</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li>£10 million Public Liability Insurance</li>
-            <li>£10 million Employers Liability Insurance</li>
-          </ul>
-
-          <h3>We comply with key regulations, including:</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Fire Safety Regulations (England) 2022</li>
-            <li>Construction (Design and Management) Regulations 2015</li>
-            <li>Health & Safety at Work Act 1974</li>
-            <li>Management of Health & Safety at Work Regulations 1999</li>
-            <li>COSHH – Control of Substances Hazardous to Health (2002)</li>
-          </ul>
-
-          <h3>Policies and Procedures</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Risk Assessments</li>
-            <li>Method Statements</li>
-            <li>Equality Policy</li>
-          </ul>
-
-          <p>
-            All site operatives are trained in health and safety awareness and
-            competency. We can provide pre-tender documentation, RAMS, or any
-            specific policy on request.
-          </p>
-          <p>
-            If you’d like to know more or need something in writing, just
-            <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            >.
-          </p>
-        </div>
-      </div>
-      <div class="flex items-start">
-        <Image
-          src={complianceImage}
-          width="526"
-          height="405"
-          class="object-fit max-w-full h-auto mx-auto block mb-4"
-          alt="Compliance"
-          loading="eager"
+<Layout title="Compliance & Safety">
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+      <div class="flex justify-left">
+        <Breadcrumb
+          crumbs={[
+            { href: "/about", label: "About" },
+            { label: "Compliance & Safety", current: true },
+          ]}
         />
       </div>
-    </div>
-  </div>
+      <h1 class="text-3xl font-bold tracking-tight">Compliance & Safety</h1>
+      <div class="grid md:grid-cols-2 items-start gap-8">
+        <div class="space-y-4">
+          <div class="space-y-4 text-gray-600 prose">
+            <h3>We take safety seriously — for you and for us.</h3>
+            <p>
+              We’re not a big company, and we don’t pretend to be. It’s my
+              experience and hands-on approach that allows us to go that one
+              step further — making sure things are done properly, with care and
+              attention that’s often missing from larger outfits.
+            </p>
+            <p>
+              Health and safety isn’t a tick-box exercise for us — it’s about
+              doing the job properly and protecting everyone involved. Whether
+              you’re a property owner, landlord, site manager or just need work
+              done at home, you can rely on us to meet the necessary safety and
+              compliance standards.
+            </p>
+            <p>
+              If you're responsible for a building or work environment, it's
+              important to be aware of your duties under UK fire and safety law.
+              You can read more at
+              <a
+                href="https://www.gov.uk/workplace-fire-safety-your-responsibilities"
+                target="_blank"
+                class="font-semibold text-blue-700 hover:underline"
+              >
+                www.gov.uk/workplace-fire-safety-your-responsibilities
+              </a>.
+            </p>
+            <h3>We’re fully insured</h3>
+            <p>We hold:</p>
+            <ul class="list-disc list-inside space-y-2">
+              <li>£10 million Public Liability Insurance</li>
+              <li>£10 million Employers Liability Insurance</li>
+            </ul>
+
+            <h3>We comply with key regulations, including:</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>Fire Safety Regulations (England) 2022</li>
+              <li>Construction (Design and Management) Regulations 2015</li>
+              <li>Health & Safety at Work Act 1974</li>
+              <li>Management of Health & Safety at Work Regulations 1999</li>
+              <li>COSHH – Control of Substances Hazardous to Health (2002)</li>
+            </ul>
+
+            <h3>Policies and Procedures</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>Risk Assessments</li>
+              <li>Method Statements</li>
+              <li>Equality Policy</li>
+            </ul>
+
+            <p>
+              All site operatives are trained in health and safety awareness and
+              competency. We can provide pre-tender documentation, RAMS, or any
+              specific policy on request.
+            </p>
+            <p>
+              If you’d like to know more or need something in writing, just
+              <a
+                href="/contact"
+                class="font-semibold text-blue-700 hover:underline"
+              >
+                get in touch
+              </a>.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <Image
+            src={complianceImage}
+            width="526"
+            height="405"
+            class="object-fit max-w-full h-auto mx-auto block mb-4"
+            alt="Compliance and safety standards followed by Coulsy Joinery"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

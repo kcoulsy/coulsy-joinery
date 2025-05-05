@@ -1,143 +1,140 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import CITBImage from "../../assets/images/citb.png";
 import cscsGoldImage from "../../assets/images/cscs_gold.png";
 import cityAndGuildsImage from "../../assets/images/cityandguilds_logo.png";
 ---
 
 <Layout title="Our Qualifications">
-  <div class="w-full container mx-auto px-8 py-12">
-    <div class="flex justify-left">
-      <nav class="text-sm sm:text-base pb-6">
-        <ol class="list-none p-0 inline-flex space-x-2">
-          <li class="flex items-center">
-            <svg
-              onclick="window.location.href='/';"
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 576 512"
-              class="cursor-pointer hover:fill-blue-500 transition-colors duration-300 mr-2"
-              fill="#4b5563"
-            >
-              <path
-                d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
-              ></path>
-            </svg>
-            <span class="mx-2">/</span>
-          </li>
-          <li class="flex items-center">
-            <a
-              href="/about"
-              class="text-gray-600 hover:text-blue-500 transition-colors duration-300"
-              >About</a
-            >
-            <span class="mx-2">/</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-yellow-600 font-semibold">Qualifications</span>
-          </li>
-        </ol>
-      </nav>
-    </div>
-
-    <h1 class="text-3xl font-bold tracking-tight pb-4">Our Qualifications</h1>
-    <div class="grid md:grid-cols-2 items-start gap-8">
-      <div class="space-y-4">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            At Coulsy Joinery and Small Build, I (Robert) don’t just lead the
-            team — I work right alongside them. With years of hands-on
-            experience and a solid foundation in both craftsmanship and
-            construction management, I make sure every job is done right, by the
-            right people.
-          </p>
-
-          <h2 class="font-semibold text-lg">My Qualifications</h2>
-          <ul class="list-disc list-inside space-y-2">
-            <li>NVQ Level 7 in Construction Senior Management</li>
-            <li>
-              Advanced City & Guilds in Carpentry & Joinery – Distinction - 1990
-            </li>
-            <li>
-              City & Guilds Craft in Carpentry & Joinery – Distinction - 1987 ~
-              1989
-            </li>
-
-            <li>CSCS Gold Card Certified – Health & Safety tested</li>
-          </ul>
-
-          <h2 class="font-semibold text-lg">
-            Additional Training & Certifications (Myself and My Team)
-          </h2>
-          <ul class="list-disc list-inside space-y-2">
-            <li>CITB Director’s Role for Health & Safety</li>
-            <li>CITB Temporary Works & General Awareness</li>
-            <li>CITB Fire Safety in Construction & the Built Environment</li>
-            <li>FireQual Fire Door Inspection</li>
-            <li>FireQual Fire Door Maintenance</li>
-            <li>FireQual Fire Door Survey</li>
-            <li>Face Fit Tested</li>
-            <li>Asbestos Awareness (Cat A)</li>
-            <li>MEWP (Reach & Boom) Trained</li>
-            <li>COSHH Awareness</li>
-          </ul>
-          <h2 class="font-semibold text-lg">Insurance</h2>
-          <p>
-            We are fully insured for all the work we carry out — including
-            public liability and employer’s liability cover. This gives you
-            complete peace of mind, knowing that your property and our team are
-            protected at all times.
-          </p>
-          <h2 class="font-semibold text-lg">RAMS</h2>
-          <p>
-            Risk Assessments and Method Statements are prepared and available on
-            request for every project.
-          </p>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Risk Assessments</li>
-            <li>Method Statements</li>
-          </ul>
-
-          <p>
-            When you work with us, you're not just hiring a contractor — you're
-            getting a team that's fully qualified, personally committed, and
-            chosen because they’re right for the task. I make sure every person
-            on site is competent, experienced, and someone I trust completely.
-          </p>
-
-          <p>
-            If you’d like to know more or see our documents, just <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            >.
-          </p>
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+      <div class="w-full mb-4">
+        <div class="flex justify-left">
+          <Breadcrumb
+            crumbs={[
+              { href: "/about", label: "About" },
+              { label: "Qualifications", current: true },
+            ]}
+          />
         </div>
       </div>
-      <div class="flex items-start flex-col space-y-4">
-        <Image
-          src={CITBImage}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt="Citb Logo"
-          loading="eager"
-        />
-        <Image
-          src={cscsGoldImage}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt="CSCS Gold Logo"
-          loading="eager"
-        />
-        <Image
-          src={cityAndGuildsImage}
-          width="350"
-          class="object-fit max-w-full h-auto mx-auto block"
-          alt="City and Guilds Logo"
-          loading="eager"
-        />
+
+      <h1 class="text-3xl font-bold tracking-tight pb-4">Our Qualifications</h1>
+
+      <div
+        class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm mb-8"
+      >
+        <h2 class="text-2xl font-semibold text-yellow-800 mb-2">
+          Experienced, Qualified, and Trusted
+        </h2>
+        <p class="text-gray-700">
+          With decades of hands-on experience, my qualifications and
+          certifications ensure each job is done properly, safely, and to the
+          highest standards — every time.
+        </p>
       </div>
-    </div>
-  </div>
+
+      <div class="grid md:grid-cols-2 items-start gap-8">
+        <div class="space-y-4">
+          <div class="space-y-4 text-gray-600 prose">
+            <p>
+              At Coulsy Joinery and Small Build, I (Robert) don’t just lead the
+              team — I work right alongside them. With years of hands-on
+              experience and a solid foundation in both craftsmanship and
+              construction management, I make sure every job is done right, by
+              the right people.
+            </p>
+
+            <h3 class="font-semibold text-lg">My Qualifications</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>NVQ Level 7 in Construction Senior Management</li>
+              <li>
+                Advanced City & Guilds in Carpentry & Joinery – Distinction -
+                1990
+              </li>
+              <li>
+                City & Guilds Craft in Carpentry & Joinery – Distinction - 1987
+                ~ 1989
+              </li>
+
+              <li>CSCS Gold Card Certified – Health & Safety tested</li>
+            </ul>
+
+            <h3 class="font-semibold text-lg">
+              Additional Training & Certifications (Myself and My Team)
+            </h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>CITB Director’s Role for Health & Safety</li>
+              <li>CITB Temporary Works & General Awareness</li>
+              <li>CITB Fire Safety in Construction & the Built Environment</li>
+              <li>FireQual Fire Door Inspection</li>
+              <li>FireQual Fire Door Maintenance</li>
+              <li>FireQual Fire Door Survey</li>
+              <li>Face Fit Tested</li>
+              <li>Asbestos Awareness (Cat A)</li>
+              <li>MEWP (Reach & Boom) Trained</li>
+              <li>COSHH Awareness</li>
+            </ul>
+            <h3 class="font-semibold text-lg">Insurance</h3>
+            <p>
+              We are fully insured for all the work we carry out — including
+              public liability and employer’s liability cover. This gives you
+              complete peace of mind, knowing that your property and our team
+              are protected at all times.
+            </p>
+            <h3 class="font-semibold text-lg">RAMS</h3>
+            <p>
+              Risk Assessments and Method Statements are prepared and available
+              on request for every project.
+            </p>
+            <ul class="list-disc list-inside space-y-2">
+              <li>Risk Assessments</li>
+              <li>Method Statements</li>
+            </ul>
+
+            <p>
+              When you work with us, you're not just hiring a contractor —
+              you're getting a team that's fully qualified, personally
+              committed, and chosen because they’re right for the task. I make
+              sure every person on site is competent, experienced, and someone I
+              trust completely.
+            </p>
+
+            <p>
+              If you’d like to know more or see our documents, just <a
+                href="/contact"
+                class="font-semibold text-blue-700 hover:underline"
+                >get in touch</a
+              >.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start flex-col space-y-4">
+          <Image
+            src={CITBImage}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block"
+            alt="Citb Logo"
+            loading="eager"
+          />
+          <Image
+            src={cscsGoldImage}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block"
+            alt="CSCS Gold Logo"
+            loading="eager"
+          />
+          <Image
+            src={cityAndGuildsImage}
+            width="350"
+            class="object-fit max-w-full h-auto mx-auto block"
+            alt="City and Guilds Logo"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
