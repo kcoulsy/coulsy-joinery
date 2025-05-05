@@ -39,42 +39,8 @@ const alt = location
 <Layout
   title={location ? typeFormated + " in " + locationFormated : typeFormated}
 >
-  <div class="h-[600px] w-full absolute">
-    <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
-    </div>
-    <Image
-      src={doorHeaderImg}
-      width="856"
-      height="512"
-      class="object-fit w-full h-[600px]"
-      alt={alt}
-      loading="eager"
-    />
-  </div>
-
-  <main class="mx-auto md:mt-16 relative z-10">
-    <div class="flex flex-wrap max-w-screen overflow-x-hidden">
-      <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
-        <div
-          class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
-        >
-          <h1
-            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
-          >
-            {typeFormated}
-            {locationFormated}
-          </h1>
-        </div>
-      </div>
-
-      <div class="lg:w-1/3 md:w-1/3 pr-4 pl-4">
-        <div class="flex flex-wrap flex-col lg:pb-2">
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full container mx-auto px-8 py-8">
+  <div class="w-full container mx-auto px-4 sm:px-6 py-8">
+    <div class="w-full container mx-auto px-4 sm:px-6 py-8">
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
           <ol class="list-none p-0 inline-flex space-x-2">
@@ -109,7 +75,9 @@ const alt = location
         </nav>
       </div>
 
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
+      <h1
+        class="text-3xl font-bold tracking-tight pb-4 text-center sm:text-left"
+      >
         {typeFormated}
         {location ? "in " + locationFormated : ""}
       </h1>
@@ -118,152 +86,130 @@ const alt = location
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
             <p>
-              As part of Coulsy Joinery's services, we specialise in installing
-              all types of doors, including fire doors {
-                location ? "in " + locationFormated : ""
-              }. We are happy to visit your location to install any number of
-              doors. Doors vary greatly, from internal to external, and can be
-              made from a wide range of materials, including timber, metal,
-              composite, UPVC, and engineered wood. Designs range from unpainted
-              to pre-finished and can feature various veneers that alter the
-              species of timber.
+              I’ve been fitting doors for years — from single internal doors to
+              full fire door packages. If you're after reliable, tidy work and
+              someone who turns up when they say they will, you're in the right
+              place. I work with all kinds of doors: wood, metal, composite,
+              even UPVC — and I’ll help make sure what you choose is right for
+              your space and needs.
             </p>
             <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
               If you need door sets or fire doors {
                 location ? "in " + locationFormated : ""
-              }, we are a dependable provider capable of meeting your precise
-              requirements and ensuring compliance with current regulations for
-              proper fire door and frame installation.
+              }, I’ll make sure they're fitted right first time. I stick to the
+              regulations and make sure everything’s safe and solid.
             </p>
             <h2 class="font-semibold text-lg">Reliable</h2>
             <p>
-              Our joinery team is consistently reliable and adaptable, working
-              according to your door and frame specifications.
+              I turn up when I say I will and get the job done without fuss. I
+              know your time’s valuable, and I don’t waste it.
             </p>
             <h2 class="font-semibold text-lg">Skilled</h2>
             <p>
-              They are highly skilled and professional, boasting extensive
-              experience and qualifications in their craft.
+              With years of experience and proper qualifications behind me, I
+              take real pride in what I do — and it shows in the finish.
             </p>
-
-            <h2 class="font-semibold text-lg">City &amp; Guilds Certified</h2>
+            <h2 class="font-semibold text-lg">City & Guilds Certified</h2>
             <p>
-              When you choose us, you're choosing a joinery team that's not only
-              qualified but dedicated to excellence in every aspect of our
-              joinery work.
+              City & Guilds qualified and trained, I always aim for a high
+              standard of work and take pride in every job.
             </p>
-
             <h2 class="font-semibold text-lg">CSCS Certified</h2>
-
             <p>
-              When you choose us, you're choosing a team that's not only
-              qualified but dedicated to excellence in every aspect of our work.
+              I hold a CSCS Gold card, so you know I’m up to date with health
+              and safety for on-site work — giving you peace of mind.
             </p>
             <p>
-              We can provide more information and answer any questions you may
-              have. Please feel free to <a
+              If you’ve got questions or want to chat through what you need,
+              just <a
                 href="/contact"
                 class="font-semibold text-blue-700 hover:underline"
-                >contact us</a
-              >.
+                >get in touch</a
+              >. I’ll get back to you as soon as I can.
             </p>
           </div>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={doorImg1}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+        <div class="flex flex-col gap-6 mt-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            >
+              <div class="relative overflow-hidden rounded-xl">
+                <Image
+                  src={doorImg1}
+                  alt={alt}
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            <div
+              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            >
+              <div class="relative overflow-hidden rounded-xl">
+                <Image
+                  src={doorImg2}
+                  alt={alt}
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            <div
+              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            >
+              <div class="relative overflow-hidden rounded-xl">
+                <Image
+                  src={doorImg3}
+                  alt={alt}
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            <div
+              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+            >
+              <div class="relative overflow-hidden rounded-xl">
+                <Image
+                  src={doorImg4}
+                  alt={alt}
+                  loading="eager"
+                  width="1000"
+                  height="667"
+                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
+              </div>
             </div>
           </div>
 
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={doorImg2}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={doorImg3}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={doorImg4}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 text-center">
+              Get in Touch
+            </h2>
+            <p class="text-gray-600 mb-6 text-center">
+              Need help with your doors or have a question? I’d love to hear
+              from you.
+            </p>
+            <ContactForm />
           </div>
         </div>
-
-        <!-- <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <Image
-            src={doorHanging}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={doorHanging}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={doorHanging}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-          <Image
-            src={doorHanging}
-            width="350"
-            class="object-fit max-w-full h-auto mx-auto block rounded-md bg-gray-100"
-            alt={alt}
-          />
-        </div> -->
       </div>
     </div>
     <FireStats />
     <CommonFaults />
 
     <NearbyAreas location={location} />
-  </main></Layout
+  </div></Layout
 >
