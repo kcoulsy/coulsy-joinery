@@ -25,7 +25,9 @@ import { DETAILS } from "../constants/details";
         />
       </a>
       <div class="mt-4">
-        <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+        <div
+          class="flex justify-center md:justify-start items-center space-x-3 mt-4"
+        >
           <!-- LinkedIn -->
           <a
             href={DETAILS.SOCIALS.LINKEDIN}
@@ -204,7 +206,9 @@ import { DETAILS } from "../constants/details";
             >
           </li>
           <li class="mt-3">
-            <a class="text-gray-500 hover:text-gray-900" href={`tel:${DETAILS.PHONE}`}
+            <a
+              class="text-gray-500 hover:text-gray-900"
+              href={`tel:${DETAILS.PHONE}`}
               >{DETAILS.FIRST_NAME} {DETAILS.PHONE}</a
             >
           </li>
@@ -215,9 +219,10 @@ import { DETAILS } from "../constants/details";
 
   <!-- Copyright -->
 
-    <div class="container px-5 py-4 mx-auto">
-      <p class="text-sm text-gray-700 capitalize text-center">
-        Copyright © {new Date().getFullYear()} {DETAILS.COMPANY.NAME}. All rights reserved
-      </p>
-    </div>
+  <div class="container px-5 py-4 mx-auto">
+    <p class="text-sm text-gray-700 capitalize text-center">
+      Copyright © {new Date().getFullYear()}
+      {DETAILS.COMPANY.NAME}. All rights reserved
+    </p>
+  </div>
 </footer>
