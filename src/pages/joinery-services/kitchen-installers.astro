@@ -12,6 +12,11 @@ import galleryImg4 from "../../assets/images/accessible-kitchens/accessible-kitc
 import galleryImg5 from "../../assets/images/kitchens/birkby-kitchen.jpg";
 import galleryImg6 from "../../assets/images/kitchens/kitchen-fitter2.jpg";
 
+import { Image } from "astro:assets";
+import howdensLogo from "../../assets/images/logos/howdens-logo.png";
+import magnetLogo from "../../assets/images/logos/magnet-logo.png";
+import diyKitchensLogo from "../../assets/images/logos/diy-kitchens-logo.png";
+
 const { location, type } = Astro.params;
 
 function capitalizeFirstLetter(string: string) {
@@ -52,13 +57,19 @@ const alt = location
         class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
       >
         <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-          Bespoke Kitchens Installed with Care — From Consultation to Completion
+          Expert Kitchen Fitters & Joiners – Local, Qualified, Trusted
         </h1>
         <p class="text-gray-700 text-lg mb-4">
           I’m Robert, the owner and joiner behind Coulsy Joinery. When you work
           with me, you’re getting more than a kitchen fitter — you’re getting
           personal, expert service from the first conversation to the final
           handover.
+        </p>
+        <p class="text-gray-700 text-base">
+          Whether you're in need of a local kitchen fitter, a full kitchen
+          renovation, or a professional joiner to install trade-supplied
+          kitchens from Howdens or Magnet – I'm here to deliver high quality,
+          efficient, and reliable service every time.
         </p>
         <a
           href="/contact"
@@ -89,6 +100,40 @@ const alt = location
               project. Domestic or commercial, every kitchen is fitted with
               quality and pride.
             </p>
+            <p>
+              I supply and fit kitchens from leading trade names such as
+              Howdens, Magnet, and DIY Kitchens. Whether you've already chosen
+              your kitchen or need guidance selecting the right setup, I’ll help
+              ensure every detail is covered — from measuring to final
+              installation. My reputation as a local kitchen fitter is built on
+              trust, tidy work, and a reliable finish.
+            </p>
+            <div class="flex items-center gap-4 mt-2">
+              <Image
+                src={howdensLogo}
+                alt="Howdens Joinery Logo"
+                width={100}
+                height={40}
+                class="h-8 w-auto"
+                loading="lazy"
+              />
+              <Image
+                src={magnetLogo}
+                alt="Magnet Kitchens Logo"
+                width={100}
+                height={40}
+                class="h-8 w-auto"
+                loading="lazy"
+              />
+              <Image
+                src={diyKitchensLogo}
+                alt="Magnet Kitchens Logo"
+                width={100}
+                height={40}
+                class="h-8 w-auto"
+                loading="lazy"
+              />
+            </div>
             <h3 class="text-lg font-semibold text-gray-700 mt-4">
               Domestic Kitchens
             </h3>
@@ -163,7 +208,7 @@ const alt = location
             <hr />
 
             <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mt-10 mb-4">
-              Ready to explore your options?
+              Ready to Work With a Qualified Kitchen Joiner?
             </h2>
             <p>
               <a
@@ -188,7 +233,7 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Domestic kitchen installation ${locationInText}by Coulsy Joinery`,
+                  alt: `Domestic kitchen installation by Coulsy Joinery ${locationInText}`,
                   label: "Domestic Kitchen Installation",
                 },
                 {
@@ -198,7 +243,7 @@ const alt = location
                 },
                 {
                   src: galleryImg3,
-                  alt: `Modern kitchen design and installation by skilled kitchen fitter ${locationInText}`,
+                  alt: `Modern kitchen design and installation ${locationInText}by a skilled kitchen fitter`,
                   label: "Contemporary Kitchen Setup",
                 },
                 {
@@ -208,13 +253,13 @@ const alt = location
                 },
                 {
                   src: galleryImg5,
-                  alt: `Modern kitchen installed ${locationInText}by experienced joiners`,
+                  alt: `Modern kitchen installed by experienced joiners ${locationInText}`,
                   label: "Modern Kitchen Installed",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg6,
-                  alt: `Precision joinery during kitchen fitting project ${locationInText}`,
+                  alt: `Precision joinery during kitchen fitting project ${locationInText}, supplied and fitted trade kitchens including Howdens and Magnet`,
                   label: "Precision Kitchen Fitting",
                   loading: "lazy",
                 },
@@ -238,6 +283,11 @@ const alt = location
         </aside>
       </div>
 
+      <p class="text-sm text-gray-600 text-center mt-10">
+        Searching for a trusted local kitchen installer or joiner in your area?
+        Coulsy Joinery fits kitchens across the region — delivering quality
+        joinery services tailored to your project.
+      </p>
       <NearbyAreas location={location} />
     </section>
   </main>
