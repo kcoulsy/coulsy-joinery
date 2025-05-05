@@ -23,6 +23,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -232,33 +234,33 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Main accessible kitchen installation showing wheelchair-friendly design with lowered surfaces",
+                  alt: `Accessible kitchen installation with wheelchair-friendly layout and lowered counters for independent living ${locationInText}`,
                   label: "Accessible Kitchen Overview",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Accessible kitchen layout with wheelchair user demonstrating open space and reachability",
+                  alt: `Wheelchair user using an accessible kitchen layout with open space and reachable storage ${locationInText}`,
                   label: "Wheelchair User Accessibility",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Lowered hob in an accessible kitchen for easy and safe use",
+                  alt: `Height-adjustable hob in accessible kitchen for easier and safer cooking access ${locationInText}`,
                   label: "Lowered Hob Feature",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Accessible kitchen sink design with clearance for seated use",
+                  alt: `Accessible sink with under-counter clearance for seated use ${locationInText} — ideal for wheelchair access`,
                   label: "Accessible Sink Area",
                 },
                 {
                   src: galleryImg5,
-                  alt: "Pull-out unit designed for accessible kitchen storage",
+                  alt: `Accessible pull-out kitchen storage unit for easy reach and organisation ${locationInText}`,
                   label: "Pull-Out Storage Unit",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg6,
-                  alt: "Remote-controlled adjustable worktop in accessible kitchen",
+                  alt: `Accessible kitchen with remote-controlled height-adjustable worktop for flexible use ${locationInText}`,
                   label: "Remote-Controlled Worktop",
                   loading: "lazy",
                 },

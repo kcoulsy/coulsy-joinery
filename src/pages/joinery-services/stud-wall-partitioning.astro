@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -112,22 +114,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Timber stud wall frame construction in progress showing vertical studs and noggins",
+                  alt: `Timber stud wall frame construction in progress showing vertical studs and noggins ${locationInText}`,
                   label: "Timber Stud Wall Framing",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Completed timber partition wall with door opening prepared for plasterboard finish",
+                  alt: `Completed timber partition wall with door opening prepared for plasterboard finish ${locationInText}`,
                   label: "Partition Wall with Door Opening",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Internal wooden stud wall installation dividing a large space into rooms",
+                  alt: `Internal wooden stud wall installation dividing a large space into rooms ${locationInText}`,
                   label: "Room Division with Stud Wall",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Detailed view of timber stud wall showing accurate spacing and secure fixings",
+                  alt: `Detailed view of timber stud wall showing accurate spacing and secure fixings ${locationInText}`,
                   label: "Precision Timber Stud Detailing",
                 },
               ]}

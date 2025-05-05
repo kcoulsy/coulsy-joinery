@@ -24,6 +24,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -179,22 +181,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Installed internal fire door with intumescent strip",
+                  alt: `Installed internal fire door with intumescent strip ${locationInText}`,
                   label: "Internal Fire Door with Intumescent Strip",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Commercial-grade fire door set with professional fitting",
+                  alt: `Commercial-grade fire door set with professional fitting ${locationInText}`,
                   label: "Commercial Fire Door Installation",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Close-up view of fire seal and smoke protection strip",
+                  alt: `Close-up view of fire seal and smoke protection strip ${locationInText}`,
                   label: "Fire Door Seal Detail",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Official fire door signage fixed to timber door",
+                  alt: `Official fire door signage fixed to timber door ${locationInText}`,
                   label: "Fire Door Safety Signage",
                 },
               ]}

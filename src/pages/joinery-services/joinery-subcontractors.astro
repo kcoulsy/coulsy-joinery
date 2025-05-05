@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -128,22 +130,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Professional timber stud wall framing for commercial interior fit-out by trusted joinery subcontractors",
+                  alt: `Professional timber stud wall framing for commercial interior fit-out ${locationInText}by trusted joinery subcontractors`,
                   label: "Commercial Stud Wall Joinery",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Timber joinery subcontractors working on live construction site in Yorkshire",
+                  alt: `Timber joinery subcontractors working on live construction site ${locationInText}across Yorkshire and nearby regions`,
                   label: "Site-Based Joinery Work",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Expert bespoke joinery installation on-site with high attention to detail",
+                  alt: `Expert bespoke joinery installation on-site ${locationInText}with high attention to detail`,
                   label: "On-Site Bespoke Joinery",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Complete commercial joinery subcontractor fit-out in progress, showcasing quality workmanship",
+                  alt: `Complete commercial joinery subcontractor fit-out ${locationInText}in progress, showcasing quality workmanship`,
                   label: "Full Fit-Out Joinery Team",
                 },
               ]}

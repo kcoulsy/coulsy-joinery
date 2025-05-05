@@ -23,6 +23,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -46,38 +48,48 @@ const alt = location
         />
       </div>
 
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
-      </h1>
+      <div
+        class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
+      >
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+          Bespoke Kitchens Installed with Care — From Consultation to Completion
+        </h1>
+        <p class="text-gray-700 text-lg mb-4">
+          I’m Robert, the owner and joiner behind Coulsy Joinery. When you work
+          with me, you’re getting more than a kitchen fitter — you’re getting
+          personal, expert service from the first conversation to the final
+          handover.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+        >
+          Request Your Free Consultation
+        </a>
+      </div>
 
       <div class="grid md:grid-cols-2 items-start gap-8">
         <div class="space-y-4">
           <div class="space-y-4 text-gray-600 prose">
-            <h2
-              style="color: grey"
-              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
-            >
-              Our Kitchen Fitting Services
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+              Kitchen Fitting with a Personal Touch
             </h2>
-            <p>A Kitchen installed with care and attention</p>
-
-            <h3
-              style="color: grey"
-              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
-            >
-              What We Offer
-            </h3>
-
             <p>
-              We are experienced kitchen installers and fitters working on
-              domestic and commercial kitchen install and kitchen fitting
-              projects.
+              As a skilled joiner, I take care of every stage — from measuring
+              and planning through to a clean, precise installation. No sales
+              teams, no subcontractors — just honest work done right.
             </p>
-            <h3
-              style="color: grey"
-              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
-            >
+
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-4">
+              What We Offer
+            </h2>
+            <p>
+              Whether you need a single kitchen fit or full installations across
+              multiple units, I bring the same care and expertise to each
+              project. Domestic or commercial, every kitchen is fitted with
+              quality and pride.
+            </p>
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">
               Domestic Kitchens
             </h3>
             <p>
@@ -85,29 +97,23 @@ const alt = location
               commercial projects, installing kitchens in new housing and
               domestic homes {location ? "in " + locationFormated + "." : "."}
             </p>
-            <h3
-              style="color: grey"
-              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
-            >
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">
               Commercial Kitchens
             </h3>
             <p>From small shops to restaurants to large university kitchens</p>
 
-            <h3
-              style="color: grey"
-              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
-            >
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">
               New build kitchens
             </h3>
             <p>Apartment and house builders new build installs</p>
 
-            <h3
-              style="color: grey"
-              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
-            >
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">
               Accessible and reduced mobility kitchens
             </h3>
-            <p>A kitchen designed and installed for all abilities</p>
+            <p>
+              Inclusive kitchen solutions tailored for independent living —
+              safe, stylish, and practical for all abilities.
+            </p>
 
             <p>
               <a
@@ -117,10 +123,7 @@ const alt = location
                 EXPLORE
               </a>our Accessible kitchens
             </p>
-            <h3
-              style="color: grey"
-              class="font-bold tracking-tight sm:text-2xl mb-4 mt-4"
-            >
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">
               Excellent fitting
             </h3>
             <p>
@@ -131,26 +134,27 @@ const alt = location
             </p>
             <hr />
 
-            <h2
-              style="color: grey"
-              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
-            >
-              WE ARE
+            <h2 class="text-2xl sm:text-3xl font-bold text-blue-800 mt-10 mb-4">
+              Why Choose Coulsy Joinery?
             </h2>
-
-            <h2 class="font-semibold text-lg">Dependable</h2>
             <p>
-              If you are looking for an kitchen fitter {
+              At Coulsy Joinery, your kitchen project is personally managed by
+              me, Robert. I ensure every step meets high standards, with clear
+              communication, expert craftsmanship, and results you’ll love.
+            </p>
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">Dependable</h3>
+            <p>
+              If you are looking for a kitchen fitter {
                 location ? "in " + locationFormated : ""
               }, we are dependable kitchen installers capable of meeting your
               precise requirements and ensuring a high end kitchen installation.
             </p>
-            <h2 class="font-semibold text-lg">Reliable</h2>
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">Reliable</h3>
             <p>
               Our kitchen fitting team is consistently reliable and adaptable,
               working according to your kitchen layout, plan and design.
             </p>
-            <h2 class="font-semibold text-lg">Skilled</h2>
+            <h3 class="text-lg font-semibold text-gray-700 mt-4">Skilled</h3>
             <p>
               Our time served joiners provide high quality, accurate kitchen
               installs.
@@ -158,20 +162,21 @@ const alt = location
 
             <hr />
 
-            <h2
-              style="color: grey"
-              class="text-4xl font-bold tracking-tight text-green-900 sm:text-4xl mb-4 mt-4"
-            >
-              Ready to explore your options? <a
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mt-10 mb-4">
+              Ready to explore your options?
+            </h2>
+            <p>
+              <a
                 href="/contact"
                 class="font-semibold text-blue-700 hover:underline"
                 >Get in touch today</a
-              > for a <a
+              > for a
+              <a
                 href="/contact"
                 class="font-semibold text-blue-700 hover:underline"
                 >free consultation</a
-              >.
-            </h2>
+              >. Let's make your dream kitchen a reality.
+            </p>
           </div>
         </div>
 
@@ -183,33 +188,33 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Domestic kitchen installation by Coulsy Joinery",
+                  alt: `Domestic kitchen installation ${locationInText}by Coulsy Joinery`,
                   label: "Domestic Kitchen Installation",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Commercial kitchen fitting for hospitality premises",
+                  alt: `Commercial kitchen fitting for hospitality premises ${locationInText}`,
                   label: "Large Commercial Kitchen Fit-Out",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Modern kitchen design and installation by skilled fitter",
+                  alt: `Modern kitchen design and installation by skilled kitchen fitter ${locationInText}`,
                   label: "Contemporary Kitchen Setup",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Accessible kitchen installation for reduced mobility",
+                  alt: `Accessible kitchen installation for reduced mobility ${locationInText}`,
                   label: "Accessible Kitchen Design",
                 },
                 {
                   src: galleryImg5,
-                  alt: "Modern Kitchen Installed",
+                  alt: `Modern kitchen installed ${locationInText}by experienced joiners`,
                   label: "Modern Kitchen Installed",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg6,
-                  alt: "Precision joinery during kitchen fitting project",
+                  alt: `Precision joinery during kitchen fitting project ${locationInText}`,
                   label: "Precision Kitchen Fitting",
                   loading: "lazy",
                 },

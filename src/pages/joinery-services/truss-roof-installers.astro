@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -99,22 +101,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Installation of attic truss roof showing framing and structure",
+                  alt: `Installation of attic truss roof showing framing and structure ${locationInText}`,
                   label: "Attic Truss Roof Install",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Truss roof construction with insulation and support beams visible",
+                  alt: `Truss roof construction with insulation and support beams visible ${locationInText}`,
                   label: "Completed Truss Roof",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Internal view of roof trusses in place on new build",
+                  alt: `Internal view of roof trusses in place on new build ${locationInText}`,
                   label: "Roof Trusses Installed",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Commercial roof trusses installed with crane assistance",
+                  alt: `Commercial roof trusses installed with crane assistance ${locationInText}`,
                   label: "Commercial Truss Installation",
                 },
               ]}

@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -123,22 +125,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Close-up of traditional moulding plane used in bespoke joinery",
+                  alt: `Close-up of traditional moulding plane used in bespoke joinery ${locationInText}`,
                   label: "Traditional Moulding Plane Joinery Tool",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Detail of bench plane for fine woodworking and joinery precision",
+                  alt: `Detail of bench plane for fine woodworking and joinery precision ${locationInText}`,
                   label: "Precision Bench Plane Joinery",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Handcrafted wooden garage door created by experienced carpenter",
+                  alt: `Handcrafted wooden garage door created by experienced carpenter ${locationInText}`,
                   label: "Custom Wooden Garage Door",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Raised panel detailing in heritage joinery project",
+                  alt: `Raised panel detailing in heritage joinery project ${locationInText}`,
                   label: "Heritage Raised Panel Joinery",
                 },
               ]}

@@ -25,6 +25,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -118,45 +120,45 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Vintage moulding plane used in traditional joinery",
+                  alt: `Vintage moulding plane used in traditional joinery ${locationInText}`,
                   label: "Antique Moulding Plane Tool",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Restoration of Victorian-era timber flooring",
+                  alt: `Restoration of Victorian-era timber flooring ${locationInText}`,
                   label: "Victorian Timber Floor Repair",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Hand-shaped moulding bead for heritage woodwork",
+                  alt: `Hand-shaped moulding bead for heritage woodwork ${locationInText}`,
                   label: "Handcrafted Moulding Bead",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Repaired joists in a period property floor structure",
+                  alt: `Repaired joists in a period property floor structure ${locationInText}`,
                   label: "Historic Floor Joist Repair",
                 },
                 {
                   src: galleryImg5,
-                  alt: "Oak window repair on heritage building",
+                  alt: `Oak window repair on heritage building ${locationInText}`,
                   label: "Oak Frame Window Repair",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg6,
-                  alt: "Refinished church pew in restoration project",
+                  alt: `Refinished church pew in restoration project ${locationInText}`,
                   label: "Restored Church Pew Seating",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg7,
-                  alt: "Raised panel wall joinery installation",
+                  alt: `Raised panel wall joinery installation ${locationInText}`,
                   label: "Raised Panel Wall Joinery",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg8,
-                  alt: "Heritage oak window restored with original features",
+                  alt: `Heritage oak window restored with original features ${locationInText}`,
                   label: "Repaired Heritage Oak Window",
                   loading: "lazy",
                 },

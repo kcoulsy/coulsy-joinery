@@ -22,6 +22,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -121,27 +123,27 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Traditional wooden moulding plane used in bespoke joinery craftsmanship",
+                  alt: `Traditional wooden moulding plane used in bespoke joinery craftsmanship ${locationInText}`,
                   label: "Wooden Moulding Plane",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Close-up of a bench plane frog component for precision woodworking",
+                  alt: `Close-up of a bench plane frog component for precision woodworking ${locationInText}`,
                   label: "Bench Plane Frog",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Custom handmade wooden garage door by Coulsy Joinery",
+                  alt: `Custom handmade wooden garage door by Coulsy Joinery ${locationInText}`,
                   label: "Handmade Wooden Garage Door",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Detailed view of raised wood paneling in custom joinery work",
+                  alt: `Detailed view of raised wood paneling in custom joinery work ${locationInText}`,
                   label: "Raised Panelling Detail",
                 },
                 {
                   src: galleryImg5,
-                  alt: "Herringbone patterned hardwood flooring installed by skilled joiners",
+                  alt: `Herringbone patterned hardwood flooring installed by skilled joiners ${locationInText}`,
                   label: "Herringbone Flooring",
                   loading: "lazy",
                 },

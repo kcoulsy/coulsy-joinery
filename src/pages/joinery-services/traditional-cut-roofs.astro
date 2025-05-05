@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -130,22 +132,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Hand-cut timber roof frame under construction with ridge beam and rafters in view",
+                  alt: `Hand-cut timber roof frame under construction with ridge beam and rafters in view ${locationInText}`,
                   label: "Hand-Cut Roof Structure",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Completed traditional timber roof with intricate cuts and tight joints",
+                  alt: `Completed traditional timber roof with intricate cuts and tight joints ${locationInText}`,
                   label: "Completed Cut Roof",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Roof framing in progress showing joists and trusses installed by hand",
+                  alt: `Roof framing in progress showing joists and trusses installed by hand ${locationInText}`,
                   label: "Roof Framing Detail",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Close-up view of precise joinery in traditional roof construction",
+                  alt: `Close-up view of precise joinery in traditional roof construction ${locationInText}`,
                   label: "Joinery Detail in Cut Roof",
                 },
               ]}

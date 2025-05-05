@@ -23,6 +23,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -215,33 +217,33 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: "Steel fire exit door with emergency bar installed by professional door fitters",
+                  alt: `Steel fire exit door with emergency bar installed by professional door fitters ${locationInText}`,
                   label: "Steel Fire Exit with Emergency Push Bar",
                 },
                 {
                   src: galleryImg2,
-                  alt: "Top shoot bolt locking system on steel fire exit door installed for added security",
+                  alt: `Top shoot bolt locking system on steel fire exit door installed for added security ${locationInText}`,
                   label: "Top Bolt Locking on Steel Exit Door",
                 },
                 {
                   src: galleryImg3,
-                  alt: "Range of fire exit security door variations fitted to commercial specifications",
+                  alt: `Range of fire exit security door variations fitted to commercial specifications ${locationInText}`,
                   label: "Range of Commercial Fire Exit Door Designs",
                 },
                 {
                   src: galleryImg4,
-                  alt: "Steel security hinged fire exit door installation for high-traffic areas",
+                  alt: `Steel security hinged fire exit door installation for high-traffic areas ${locationInText}`,
                   label: "Hinged Steel Door for High-Security Areas",
                 },
                 {
                   src: galleryImg5,
-                  alt: "Optional anti-drill and panic bar configurations for emergency fire exit doors",
+                  alt: `Optional anti-drill and panic bar configurations for emergency fire exit doors ${locationInText}`,
                   label: "Anti-Drill & Panic Bar Fire Exit Features",
                   loading: "lazy",
                 },
                 {
                   src: galleryImg6,
-                  alt: "Exterior view of steel fire exit door professionally installed for safety compliance",
+                  alt: `Exterior view of steel fire exit door professionally installed for safety compliance ${locationInText}`,
                   label: "Exterior Steel Fire Exit with Safety Signage",
                   loading: "lazy",
                 },

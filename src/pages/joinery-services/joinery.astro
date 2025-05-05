@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -126,10 +128,26 @@ const alt = location
           <div class="w-full order-last md:order-none">
             <GalleryGrid
               items={[
-                { src: galleryImg1, alt, label: "Timber Joinery" },
-                { src: galleryImg2, alt, label: "Moulding Plane" },
-                { src: galleryImg3, alt, label: "Handmade Wooden Garage Door" },
-                { src: galleryImg4, alt, label: "Raised Panelling" },
+                {
+                  src: galleryImg1,
+                  alt: `Timber joinery craftsmanship ${locationInText}`,
+                  label: `Timber joinery craftsmanship`,
+                },
+                {
+                  src: galleryImg2,
+                  alt: `Traditional moulding plane technique ${locationInText}`,
+                  label: `Traditional moulding plane technique`,
+                },
+                {
+                  src: galleryImg3,
+                  alt: `Bespoke handmade wooden garage door ${locationInText}`,
+                  label: `Bespoke handmade wooden garage door`,
+                },
+                {
+                  src: galleryImg4,
+                  alt: `Raised wood panelling detail ${locationInText}`,
+                  label: `Raised wood panelling detail`,
+                },
               ]}
             />
           </div>

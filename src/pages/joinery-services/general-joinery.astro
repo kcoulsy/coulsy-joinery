@@ -23,6 +23,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -141,33 +143,33 @@ const alt = location
                 {
                   src: galleryImg1,
                   label: "Traditional Timber Joinery Project",
-                  alt: "Traditional timber joinery work including door and frame by Coulsy Joinery",
+                  alt: `Traditional timber joinery work including door and frame by Coulsy Joinery ${locationInText}`,
                 },
                 {
                   src: galleryImg2,
                   label: "Handcrafted Moulding Plane",
-                  alt: "Detailed view of a traditional moulding plane used in joinery projects",
+                  alt: `Detailed view of a traditional moulding plane used in joinery projects ${locationInText}`,
                 },
                 {
                   src: galleryImg3,
                   label: "Precision Bench Plane Work",
-                  alt: "Joinery bench plane showing clean cuts and precision craftsmanship",
+                  alt: `Joinery bench plane showing clean cuts and precision craftsmanship ${locationInText}`,
                 },
                 {
                   src: galleryImg4,
                   label: "Bespoke Wooden Garage Door",
-                  alt: "Handmade wooden garage door installed by Coulsy Joinery",
+                  alt: `Handmade wooden garage door installed by Coulsy Joinery ${locationInText}`,
                 },
                 {
                   src: galleryImg5,
                   label: "Elegant Raised Wood Panelling",
-                  alt: "Raised wood panelling crafted for interior joinery projects",
+                  alt: `Raised wood panelling crafted for interior joinery projects ${locationInText}`,
                   loading: "lazy",
                 },
                 {
                   src: galleryImg6,
                   label: "Herringbone Hardwood Flooring",
-                  alt: "Installation of herringbone hardwood floor pattern by skilled joiners",
+                  alt: `Installation of herringbone hardwood floor pattern by skilled joiners ${locationInText}`,
                   loading: "lazy",
                 },
               ]}

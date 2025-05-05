@@ -21,6 +21,8 @@ let typeFormated = type
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
+const locationInText = location ? `in ${locationFormated} ` : "";
+
 const alt = location
   ? typeFormated +
     " in " +
@@ -139,22 +141,22 @@ const alt = location
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Exterior view of a bespoke garden office in ${locationFormated}`,
+                  alt: `Exterior view of a bespoke garden office ${locationInText}`,
                   label: "Bespoke Garden Office Exterior",
                 },
                 {
                   src: galleryImg2,
-                  alt: `Interior of custom-built garden office workspace in ${locationFormated}`,
+                  alt: `Interior of custom-built garden office workspace ${locationInText}`,
                   label: "Custom Garden Office Interior",
                 },
                 {
                   src: galleryImg3,
-                  alt: `Modern insulated garden room build in ${locationFormated}`,
+                  alt: `Modern insulated garden room build ${locationInText}`,
                   label: "Modern Insulated Garden Room",
                 },
                 {
                   src: galleryImg4,
-                  alt: `Compact timber garden office build by Coulsy Joinery in ${locationFormated}`,
+                  alt: `Compact timber garden office build by Coulsy Joinery ${locationInText}`,
                   label: "Compact Timber Garden Office",
                 },
               ]}
