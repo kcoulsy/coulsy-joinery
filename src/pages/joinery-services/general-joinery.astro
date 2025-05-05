@@ -1,14 +1,15 @@
 ---
 import ContactForm from "../../components/ContactForm.astro";
-import timber20joinery from "../../assets/images/timber20joinery.jpg";
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
-import mouldingPlane from "../../assets/images/moulding_plane.png";
-import benchPlane from "../../assets/images/bench-plane-frog.jpg";
-import garageDoors from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
-import panelling from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
-import herringboneFlooring from "../../assets/images/bespoke-joinery/herringbone-flooring.jpg";
 import NearbyAreas from "../../components/NearbyAreasGeneralJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/timber20joinery.jpg";
+import galleryImg2 from "../../assets/images/moulding_plane.png";
+import galleryImg3 from "../../assets/images/bench-plane-frog.jpg";
+import galleryImg4 from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
+import galleryImg5 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
+import galleryImg6 from "../../assets/images/bespoke-joinery/herringbone-flooring.jpg";
 
 const { location, type } = Astro.params;
 
@@ -18,10 +19,6 @@ function capitalizeFirstLetter(string: string) {
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "General Joinery";
-
-// if (type === "/joinery-services/bespoke-joinery") {
-//   typeFormated = "Bespoke Joinery";
-// }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
@@ -38,41 +35,8 @@ const alt = location
 <Layout
   title={location ? typeFormated + " in " + locationFormated : typeFormated}
 >
-  <div class="h-[600px] w-full absolute">
-    <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
-    </div>
-    <Image
-      src={timber20joinery}
-      width="856"
-      height="512"
-      class="object-fit w-full h-[600px]"
-      alt={alt}
-      loading="eager"
-    />
-  </div>
   <main class="mx-auto md:mt-16 relative z-10">
-    <div class="flex flex-wrap max-w-screen overflow-x-hidden">
-      <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
-        <div
-          class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
-        >
-          <h1
-            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
-          >
-            {typeFormated}
-            {locationFormated}
-          </h1>
-        </div>
-      </div>
-
-      <div class="lg:w-1/3 md:w-1/3 pr-4 pl-4">
-        <div class="flex flex-wrap flex-col lg:pb-2">
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full container mx-auto px-8 py-8">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
           <ol class="list-none p-0 inline-flex space-x-2">
@@ -140,11 +104,11 @@ const alt = location
               }.
             </p>
 
-            <h2 class="font-semibold text-lg">
+            <h3 class="font-semibold text-lg">
               General Joinery Services{
                 location ? " in " + locationFormated : ""
               }
-            </h2>
+            </h3>
             <ul>
               <li>Door hanging and adjustments</li>
               <li>Skirting and architrave fitting</li>
@@ -158,14 +122,14 @@ const alt = location
               <li>General internal joinery and finishing work</li>
             </ul>
 
-            <h2 class="font-semibold text-lg">Dependable Craftsmanship</h2>
+            <h3 class="font-semibold text-lg">Dependable Craftsmanship</h3>
             <p>
               When you choose Coulsy Joinery, you're choosing real tradesmen who
               care about the finish and the small details. We take the same care
               on a simple door hanging as we do on a full renovation.
             </p>
 
-            <h2 class="font-semibold text-lg">Reliable Service</h2>
+            <h3 class="font-semibold text-lg">Reliable Service</h3>
             <p>
               We believe in doing what we say, turning up when we say, and
               leaving your home clean and tidy. No corporate nonsense — just
@@ -174,14 +138,14 @@ const alt = location
               }.
             </p>
 
-            <h2 class="font-semibold text-lg">Skilled and Experienced</h2>
+            <h3 class="font-semibold text-lg">Skilled and Experienced</h3>
             <p>
               As a fully qualified City & Guilds joiner, I’ve built a reputation
               for honest advice, quality workmanship, and treating every home
               like my own.
             </p>
 
-            <h2 class="font-semibold text-lg">Get in Touch</h2>
+            <h3 class="font-semibold text-lg">Get in Touch</h3>
             <p>
               If you're planning any joinery work{
                 location ? " in " + locationFormated : ""
@@ -194,84 +158,61 @@ const alt = location
             </p>
           </div>
         </div>
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={mouldingPlane}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+        <aside class="w-full flex flex-col items-stretch gap-6">
+          <div class="w-full order-last md:order-none">
+            <GalleryGrid
+              items={[
+                {
+                  src: galleryImg1,
+                  label: "Traditional Timber Joinery Project",
+                  alt: "Traditional timber joinery work including door and frame by Coulsy Joinery",
+                },
+                {
+                  src: galleryImg2,
+                  label: "Handcrafted Moulding Plane",
+                  alt: "Detailed view of a traditional moulding plane used in joinery projects",
+                },
+                {
+                  src: galleryImg3,
+                  label: "Precision Bench Plane Work",
+                  alt: "Joinery bench plane showing clean cuts and precision craftsmanship",
+                },
+                {
+                  src: galleryImg4,
+                  label: "Bespoke Wooden Garage Door",
+                  alt: "Handmade wooden garage door installed by Coulsy Joinery",
+                },
+                {
+                  src: galleryImg5,
+                  label: "Elegant Raised Wood Panelling",
+                  alt: "Raised wood panelling crafted for interior joinery projects",
+                },
+                {
+                  src: galleryImg6,
+                  label: "Herringbone Hardwood Flooring",
+                  alt: "Installation of herringbone hardwood floor pattern by skilled joiners",
+                },
+              ]}
+            />
+          </div>
+          <div class="w-full order-last md:order-none">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+              <h2
+                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+              >
+                Get in Touch
+              </h2>
+              <p class="text-gray-600 mb-6 text-center">
+                Need help with a heritage or restoration joinery project? I’d be
+                happy to discuss how we can help.
+              </p>
+              <ContactForm />
             </div>
           </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={benchPlane}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={garageDoors}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={panelling}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={herringboneFlooring}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
 
-    <NearbyAreas location={location} />
-  </main></Layout
->
+      <NearbyAreas location={location} />
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  location?: string;
+  type?: string;
+  label?: string;
+  linkPrefix?: string;
+}
+
+import { NEARBY_LOCATIONS } from "../constants/locations";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+
+const { location, type, label, linkPrefix } = Astro.props;
+
+let nearbyLocations: string[] = NEARBY_LOCATIONS.default;
+
+if (location && NEARBY_LOCATIONS[location]) {
+  nearbyLocations = NEARBY_LOCATIONS[location];
+}
+
+const formattedType = type
+  ? type.split("-").map(capitalizeFirstLetter).join(" ")
+  : "Our Service";
+---

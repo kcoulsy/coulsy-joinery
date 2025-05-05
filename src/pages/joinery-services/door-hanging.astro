@@ -1,13 +1,14 @@
 ---
 import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
-import doorHeaderImg from "../../assets/images/doors/fire-doors1.jpg";
-import doorImg1 from "../../assets/images/doors/fire-doors1.jpg";
-import doorImg2 from "../../assets/images/doors/fire-doors2.jpg";
-import doorImg3 from "../../assets/images/doors/fire-seal.jpg";
-import doorImg4 from "../../assets/images/doors/fire-doors-sign.png";
 import NearbyAreas from "../../components/NearbyAreasDoorHanging.astro"; // this location is unique a specific for the service offered !! CHECK
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/doors/fire-doors1.jpg";
+import galleryImg2 from "../../assets/images/doors/fire-doors2.jpg";
+import galleryImg3 from "../../assets/images/doors/fire-seal.jpg";
+import galleryImg4 from "../../assets/images/doors/fire-doors-sign.png";
+
 import FireStats from "../../components/FireStats.astro";
 import CommonFaults from "../../components/CommonFaults.astro";
 
@@ -19,10 +20,6 @@ function capitalizeFirstLetter(string: string) {
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Door Hanging";
-
-// if (type === "/joinery-services/door-hanging") {
-//   typeFormated = "Door Hanging5sssss";
-// }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
@@ -39,8 +36,8 @@ const alt = location
 <Layout
   title={location ? typeFormated + " in " + locationFormated : typeFormated}
 >
-  <div class="w-full container mx-auto px-4 sm:px-6 py-8">
-    <div class="w-full container mx-auto px-4 sm:px-6 py-8">
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
           <ol class="list-none p-0 inline-flex space-x-2">
@@ -200,87 +197,56 @@ const alt = location
           </div>
         </div>
 
-        <div class="flex flex-col gap-6 mt-6">
-          <div class="grid grid-cols-2 gap-4">
-            <div
-              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-            >
-              <div class="relative overflow-hidden rounded-xl">
-                <Image
-                  src={doorImg1}
-                  alt={alt}
-                  loading="eager"
-                  width="1000"
-                  height="667"
-                  class="h-48 sm:h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-                />
-              </div>
-            </div>
-
-            <div
-              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-            >
-              <div class="relative overflow-hidden rounded-xl">
-                <Image
-                  src={doorImg2}
-                  alt={alt}
-                  loading="eager"
-                  width="1000"
-                  height="667"
-                  class="h-48 sm:h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-                />
-              </div>
-            </div>
-
-            <div
-              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-            >
-              <div class="relative overflow-hidden rounded-xl">
-                <Image
-                  src={doorImg3}
-                  alt={alt}
-                  loading="eager"
-                  width="1000"
-                  height="667"
-                  class="h-48 sm:h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-                />
-              </div>
-            </div>
-
-            <div
-              class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-            >
-              <div class="relative overflow-hidden rounded-xl">
-                <Image
-                  src={doorImg4}
-                  alt={alt}
-                  loading="eager"
-                  width="1000"
-                  height="667"
-                  class="h-48 sm:h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-                />
-              </div>
+        <aside
+          class="w-full flex flex-col items-stretch gap-6 order-last md:order-none"
+        >
+          <div class="w-full">
+            <GalleryGrid
+              items={[
+                {
+                  src: galleryImg1,
+                  alt: "Installed internal fire door with intumescent strip",
+                  label: "Internal Fire Door with Intumescent Strip",
+                },
+                {
+                  src: galleryImg2,
+                  alt: "Commercial-grade fire door set with professional fitting",
+                  label: "Commercial Fire Door Installation",
+                },
+                {
+                  src: galleryImg3,
+                  alt: "Close-up view of fire seal and smoke protection strip",
+                  label: "Fire Door Seal Detail",
+                },
+                {
+                  src: galleryImg4,
+                  alt: "Official fire door signage fixed to timber door",
+                  label: "Fire Door Safety Signage",
+                },
+              ]}
+            />
+          </div>
+          <div class="w-full">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+              <h2
+                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+              >
+                Get in Touch
+              </h2>
+              <p class="text-gray-600 mb-6 text-center">
+                Thinking about a garden office or room? I’d love to help bring
+                your ideas to life.
+              </p>
+              <ContactForm />
             </div>
           </div>
-
-          <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-            <h2
-              class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-            >
-              Get in Touch
-            </h2>
-            <p class="text-gray-600 mb-6 text-center">
-              Need help with your doors or have a question? I’d love to hear
-              from you.
-            </p>
-            <ContactForm />
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
-    <FireStats />
-    <CommonFaults />
 
-    <NearbyAreas location={location} />
-  </div></Layout
->
+      <FireStats />
+      <CommonFaults />
+
+      <NearbyAreas location={location} />
+    </section>
+  </main>
+</Layout>

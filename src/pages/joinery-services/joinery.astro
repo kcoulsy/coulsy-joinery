@@ -1,15 +1,13 @@
 ---
-// This is the page used to display for eg york-joinery-services
-
 import ContactForm from "../../components/ContactForm.astro";
-import timber20joinery from "../../assets/images/timber20joinery.jpg";
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
-import mouldingPlane from "../../assets/images/moulding_plane.png";
-import benchPlane from "../../assets/images/bench-plane-frog.jpg";
-import garageDoors from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
-import panelling from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
-import NearbyAreas from "../../components/NearbyAreasJoinery.astro"; // this location is unique a specific for the service offered
+import NearbyAreas from "../../components/NearbyAreasJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/moulding_plane.png";
+import galleryImg2 from "../../assets/images/bench-plane-frog.jpg";
+import galleryImg3 from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
+import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 
 const { location, type } = Astro.params;
 
@@ -19,10 +17,6 @@ function capitalizeFirstLetter(string: string) {
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Joinery";
-
-// if (type === "joinery") {
-//   typeFormated = "Joinery Services";
-// }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
@@ -39,41 +33,8 @@ const alt = location
 <Layout
   title={location ? typeFormated + " in " + locationFormated : typeFormated}
 >
-  <div class="h-[600px] w-full absolute">
-    <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
-    </div>
-    <Image
-      src={timber20joinery}
-      width="856"
-      height="512"
-      class="object-fit w-full h-[600px]"
-      alt={alt}
-      loading="eager"
-    />
-  </div>
   <main class="mx-auto md:mt-16 relative z-10">
-    <div class="flex flex-wrap max-w-screen overflow-x-hidden">
-      <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
-        <div
-          class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
-        >
-          <h1
-            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
-          >
-            {location ? "" + locationFormated : ""}
-            {typeFormated}
-          </h1>
-        </div>
-      </div>
-
-      <div class="lg:w-1/3 md:w-1/3 pr-4 pl-4">
-        <div class="flex flex-wrap flex-col lg:pb-2">
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full container mx-auto px-8 py-8">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
           <ol class="list-none p-0 inline-flex space-x-2">
@@ -92,14 +53,14 @@ const alt = location
               >
               <span class="mx-2">/</span>
             </li>
-            <!-- <li class="flex items-center">
+            <li class="flex items-center">
               <a
                 href="/joinery-services"
                 class="text-gray-600 hover:text-blue-500 transition-colors duration-300"
                 >Joinery Services</a
               >
               <span class="mx-2">/</span>
-            </li> -->
+            </li>
 
             <li class="flex items-center">
               <span class="text-yellow-600 font-semibold">{typeFormated}</span>
@@ -144,25 +105,33 @@ const alt = location
               }.
             </p>
 
-            <h2 class="font-semibold text-lg">Dependable</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Dependable
+            </h3>
             <p>
               If you require {typeFormated}{
                 location ? " in " + locationFormated : ""
               }, Coulsy Joinery is the dependable provider capable of meeting
               your precise requirements and ensuring customer satisfaction.
             </p>
-            <h2 class="font-semibold text-lg">Reliable</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Reliable
+            </h3>
             <p>
               Our joinery team is consistently reliable and adaptable, working
               precisely according to your bespoke joinery specifications.
             </p>
-            <h2 class="font-semibold text-lg">Skilled</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Skilled
+            </h3>
             <p>
               They are highly skilled and professional, with extensive
               experience and qualifications in their field.
             </p>
 
-            <h2 class="font-semibold text-lg">City &amp; Guilds Certified</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              City &amp; Guilds Certified
+            </h3>
             <p>
               When you choose us, you're choosing a team that's not only
               qualified but dedicated to excellence in every aspect of our work.
@@ -177,70 +146,35 @@ const alt = location
             </p>
           </div>
         </div>
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={mouldingPlane}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+        <aside class="w-full flex flex-col items-stretch gap-6">
+          <div class="w-full order-last md:order-none">
+            <GalleryGrid
+              items={[
+                { src: galleryImg1, alt, label: "Timber Joinery" },
+                { src: galleryImg2, alt, label: "Moulding Plane" },
+                { src: galleryImg3, alt, label: "Handmade Wooden Garage Door" },
+                { src: galleryImg4, alt, label: "Raised Panelling" },
+              ]}
+            />
+          </div>
+          <div class="w-full">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+              <h2
+                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+              >
+                Get in Touch
+              </h2>
+              <p class="text-gray-600 mb-6 text-center">
+                Need help with a heritage or restoration joinery project? I’d be
+                happy to discuss how we can help.
+              </p>
+              <ContactForm />
             </div>
           </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={benchPlane}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={garageDoors}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={panelling}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
 
-    <NearbyAreas location={location} />
-  </main></Layout
->
+      <NearbyAreas location={location} />
+    </section>
+  </main>
+</Layout>

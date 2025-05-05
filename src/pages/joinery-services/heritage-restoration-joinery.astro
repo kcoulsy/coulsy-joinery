@@ -1,17 +1,18 @@
 ---
 import ContactForm from "../../components/ContactForm.astro";
-import timber20joinery from "../../assets/images/timber20joinery.jpg";
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
-import mouldingPlane from "../../assets/images/moulding_plane.png";
-import joistRepair from "../../assets/images/heritage/floor-repair-victorian-house.jpg";
-import mouldingBead from "../../assets/images/heritage/hand-made-moulding-bead.jpg";
-import oldJoistRepair from "../../assets/images/heritage/old-floor-joist-repairs.jpg";
-import oakWindowRepair from "../../assets/images/heritage/oak-window-repair.jpg";
-import churchPew from "../../assets/images/heritage/church-pew-restoration.jpg";
-import panelling from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 import NearbyAreas from "../../components/NearbyAreasHeritage.astro"; // this location is unique a specific for the service offered !! CHECK
-import heritage from "../../assets/images/heritage/oak-window-restoration.jpg";
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/moulding_plane.png";
+import galleryImg2 from "../../assets/images/heritage/floor-repair-victorian-house.jpg";
+import galleryImg3 from "../../assets/images/heritage/hand-made-moulding-bead.jpg";
+import galleryImg4 from "../../assets/images/heritage/old-floor-joist-repairs.jpg";
+import galleryImg5 from "../../assets/images/heritage/oak-window-repair.jpg";
+import galleryImg6 from "../../assets/images/heritage/church-pew-restoration.jpg";
+import galleryImg7 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
+import galleryImg8 from "../../assets/images/heritage/oak-window-restoration.jpg";
+
 const { location, type } = Astro.params;
 
 function capitalizeFirstLetter(string: string) {
@@ -20,10 +21,6 @@ function capitalizeFirstLetter(string: string) {
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Heritage and Restoration Joinery";
-
-// if (type === "/joinery-services/heritage-restoration-joinery") {
-//   typeFormated = "Heritage and Restoration Joinery";
-// }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
@@ -40,41 +37,8 @@ const alt = location
 <Layout
   title={location ? typeFormated + " in " + locationFormated : typeFormated}
 >
-  <div class="h-[600px] w-full absolute">
-    <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
-    </div>
-    <Image
-      src={timber20joinery}
-      width="856"
-      height="512"
-      class="object-fit w-full h-[600px]"
-      alt={alt}
-      loading="eager"
-    />
-  </div>
   <main class="mx-auto md:mt-16 relative z-10">
-    <div class="flex flex-wrap max-w-screen overflow-x-hidden">
-      <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
-        <div
-          class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
-        >
-          <h1
-            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
-          >
-            {typeFormated}
-            {locationFormated}
-          </h1>
-        </div>
-      </div>
-
-      <div class="lg:w-1/3 md:w-1/3 pr-4 pl-4">
-        <div class="flex flex-wrap flex-col lg:pb-2">
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full container mx-auto px-8 py-8">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
           <ol class="list-none p-0 inline-flex space-x-2">
@@ -172,127 +136,73 @@ const alt = location
             </p>
           </div>
         </div>
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={heritage}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+        <aside
+          class="w-full flex flex-col items-stretch gap-6 order-last md:order-none"
+        >
+          <div class="w-full">
+            <GalleryGrid
+              items={[
+                {
+                  src: galleryImg1,
+                  alt: "Vintage moulding plane used in traditional joinery",
+                  label: "Antique Moulding Plane Tool",
+                },
+                {
+                  src: galleryImg2,
+                  alt: "Restoration of Victorian-era timber flooring",
+                  label: "Victorian Timber Floor Repair",
+                },
+                {
+                  src: galleryImg3,
+                  alt: "Hand-shaped moulding bead for heritage woodwork",
+                  label: "Handcrafted Moulding Bead",
+                },
+                {
+                  src: galleryImg4,
+                  alt: "Repaired joists in a period property floor structure",
+                  label: "Historic Floor Joist Repair",
+                },
+                {
+                  src: galleryImg5,
+                  alt: "Oak window repair on heritage building",
+                  label: "Oak Frame Window Repair",
+                },
+                {
+                  src: galleryImg6,
+                  alt: "Refinished church pew in restoration project",
+                  label: "Restored Church Pew Seating",
+                },
+                {
+                  src: galleryImg7,
+                  alt: "Raised panel wall joinery installation",
+                  label: "Raised Panel Wall Joinery",
+                },
+                {
+                  src: galleryImg8,
+                  alt: "Heritage oak window restored with original features",
+                  label: "Repaired Heritage Oak Window",
+                },
+              ]}
+            />
+          </div>
+          <div class="w-full">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+              <h2
+                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+              >
+                Get in Touch
+              </h2>
+              <p class="text-gray-600 mb-6 text-center">
+                Need help with a heritage or restoration joinery project? I’d be
+                happy to discuss how we can help.
+              </p>
+              <ContactForm />
             </div>
           </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={mouldingPlane}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={churchPew}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={joistRepair}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={mouldingBead}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={oldJoistRepair}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={oakWindowRepair}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={panelling}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
 
-    <NearbyAreas location={location} />
-  </main></Layout
->
+      <NearbyAreas location={location} />
+    </section>
+  </main>
+</Layout>

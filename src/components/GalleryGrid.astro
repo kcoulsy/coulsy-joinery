@@ -1,0 +1,48 @@
+---
+interface GalleryItem {
+  src: any;
+  alt: string;
+  label: string;
+  link?: string;
+}
+
+interface Props {
+  items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+import Image from "astro/components/Image.astro";
+---
+
+<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
+  {
+    items.map((item) => (
+      <div class="group p-3 rounded-3xl bg-white border border-gray-100 shadow-2xl shadow-gray-600/10 dark:border-gray-700 dark:bg-gray-800 bg-opacity-50">
+        <div class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
+          <div class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+            <Image
+              src={item.src}
+              alt={item.alt}
+              loading="eager"
+              class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div
+            style="background-color: Gray; width:70%;"
+            class="p-3 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+          >
+            <h4 class="text-sm font-medium text-white">
+              {item.link ? (
+                <a href={item.link} class="hover:underline">
+                  {item.label}
+                </a>
+              ) : (
+                item.label
+              )}
+            </h4>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

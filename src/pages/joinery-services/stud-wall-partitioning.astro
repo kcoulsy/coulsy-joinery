@@ -1,13 +1,13 @@
 ---
 import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
-import studWallHeader from "../../assets/images/stud-walls/stud-walls-header.jpg";
-import studWallImg1 from "../../assets/images/stud-walls/stud-walls1.jpg";
-import studWallImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
-import studWallImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
-import studWallImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
 import NearbyAreas from "../../components/NearbyAreasStudWalls.astro"; // this location is unique a specific for the service offered !! CHECK
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/stud-walls/stud-walls1.jpg";
+import galleryImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
+import galleryImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
+import galleryImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
 
 const { location, type } = Astro.params;
 
@@ -17,10 +17,6 @@ function capitalizeFirstLetter(string: string) {
 let typeFormated = type
   ? type.split("-").map(capitalizeFirstLetter).join(" ")
   : "Stud Wall Partitioning";
-
-// if (type === "/joinery-services/stud-wall-partitioning") {
-//   typeFormated = "Stud Wall Partitioning";
-// }
 
 const locationFormated = location ? capitalizeFirstLetter(location) : "";
 
@@ -37,41 +33,8 @@ const alt = location
 <Layout
   title={location ? typeFormated + " in " + locationFormated : typeFormated}
 >
-  <div class="h-[600px] w-full absolute">
-    <div class="w-full h-full backdrop-blur-[2px] absolute bg-gray-700/20">
-    </div>
-    <Image
-      src={studWallHeader}
-      width="1545"
-      height="600"
-      class="object-fit w-full h-[600px]"
-      alt={alt}
-      loading="eager"
-    />
-  </div>
   <main class="mx-auto md:mt-16 relative z-10">
-    <div class="flex flex-wrap max-w-screen overflow-x-hidden">
-      <div class="w-full md:w-2/3 lg:w-2/3 md:px-4">
-        <div
-          class="flex justify-center items-center h-80 md:h-[536px] pt-16 md:pt-0 pb-16"
-        >
-          <h1
-            class="text-[56px] leading-[56px] mt-4 font-bold text-white w-96 text-center"
-          >
-            {typeFormated}
-            {locationFormated}
-          </h1>
-        </div>
-      </div>
-
-      <div class="lg:w-1/3 md:w-1/3 pr-4 pl-4">
-        <div class="flex flex-wrap flex-col lg:pb-2">
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full container mx-auto px-8 py-8">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
       <div class="flex justify-left">
         <nav class="text-sm sm:text-base pb-6">
           <ol class="list-none p-0 inline-flex space-x-2">
@@ -167,70 +130,51 @@ const alt = location
           </div>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={studWallImg1}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
+        <aside class="w-full flex flex-col items-stretch gap-6 mt-6">
+          <div class="w-full">
+            <GalleryGrid
+              items={[
+                {
+                  src: galleryImg1,
+                  alt: "Timber stud wall frame construction in progress showing vertical studs and noggins",
+                  label: "Timber Stud Wall Framing",
+                },
+                {
+                  src: galleryImg2,
+                  alt: "Completed timber partition wall with door opening prepared for plasterboard finish",
+                  label: "Partition Wall with Door Opening",
+                },
+                {
+                  src: galleryImg3,
+                  alt: "Internal wooden stud wall installation dividing a large space into rooms",
+                  label: "Room Division with Stud Wall",
+                },
+                {
+                  src: galleryImg4,
+                  alt: "Detailed view of timber stud wall showing accurate spacing and secure fixings",
+                  label: "Precision Timber Stud Detailing",
+                },
+              ]}
+            />
+          </div>
+          <div class="w-full">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+              <h2
+                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+              >
+                Get in Touch
+              </h2>
+              <p class="text-gray-600 mb-6 text-center">
+                Need help with a heritage or restoration joinery project? I’d be
+                happy to discuss how we can help.
+              </p>
+              <ContactForm />
             </div>
           </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={studWallImg2}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={studWallImg3}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div
-            class="group p-3 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10"
-          >
-            <div class="relative overflow-hidden rounded-xl">
-              <Image
-                src={studWallImg4}
-                alt={alt}
-                loading="eager"
-                width="1000"
-                height="667"
-                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
 
-    <NearbyAreas location={location} />
-  </main></Layout
->
+      <NearbyAreas location={location} />
+    </section>
+  </main>
+</Layout>
