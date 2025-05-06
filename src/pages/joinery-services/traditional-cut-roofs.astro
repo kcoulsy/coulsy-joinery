@@ -38,92 +38,87 @@ const alt = location
 >
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-12">
-      <div class="flex justify-left">
-        <Breadcrumb
-          crumbs={[
-            { label: "Joinery Services", href: "/joinery-services" },
-            { label: typeFormated, current: true },
-          ]}
-        />
-      </div>
+      <Breadcrumb
+        crumbs={[
+          { label: "Joinery Services", href: "/joinery-services" },
+          { label: typeFormated, current: true },
+        ]}
+      />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
         {typeFormated}
         {location ? "in " + locationFormated : ""}
       </h1>
-      <div class="grid md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4">
-          <div class="space-y-4 text-gray-600 prose">
-            <p>
-              Coulsy Joinery provide traditional cut roofs {
-                location ? "in " + locationFormated : ""
-              } to client and architect specifications.
-            </p>
-            <p>
-              We are an experienced team of joiners at constructing wooden cut
-              roofs.
-            </p>
-            <ul>
-              <li>Design and surveys from your brief</li>
-              <li>Quality materials used from established suppliers</li>
-              <li>Sustainable timber materials from well managed forests</li>
-              <li>Expert joinery installation</li>
-              <li>Professional, tidy and a hardworking team</li>
-              <li>Safe and secure</li>
-            </ul>
+      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
+        <div class="space-y-4 text-gray-600 prose">
+          <p>
+            Coulsy Joinery provide traditional cut roofs {
+              location ? "in " + locationFormated : ""
+            } to client and architect specifications.
+          </p>
+          <p>
+            We are an experienced team of joiners at constructing wooden cut
+            roofs.
+          </p>
+          <ul>
+            <li>Design and surveys from your brief</li>
+            <li>Quality materials used from established suppliers</li>
+            <li>Sustainable timber materials from well managed forests</li>
+            <li>Expert joinery installation</li>
+            <li>Professional, tidy and a hardworking team</li>
+            <li>Safe and secure</li>
+          </ul>
 
-            <h2 class="font-semibold text-lg">Traditional cut roof benefits</h2>
+          <h2 class="font-semibold text-lg">Traditional cut roof benefits</h2>
 
-            <ul>
-              <li>
-                No need for mechanical means such as a tele-handler or crane to
-                load out material (roof size dependent)
-              </li>
-            </ul>
-            <li>Can create more room height on tighter buildings</li>
+          <ul>
             <li>
-              Can be tailored made to any roof shape and size no matter how
-              complex
+              No need for mechanical means such as a tele-handler or crane to
+              load out material (roof size dependent)
             </li>
-            <li>Can later be adjusted to add Velux's and or dormers</li>
-            <li>
-              No need to worry about height restriction on access as all
-              materials can be delivered on a flat bed
-            </li>
-            <h2 class="font-semibold text-lg">Dependable</h2>
-            <p>
-              If you are looking for a traditional cut roof {
-                location ? "in " + locationFormated : ""
-              }, you need to find a reliable installer with the ability to meet
-              your exact requirements and ensure the perfect fit each and every
-              time.
-            </p>
-            <h2 class="font-semibold text-lg">Reliable</h2>
-            <p>
-              Our joinery team is consistently reliable and adaptable, working
-              according to your designed roof specifications.
-            </p>
-            <h2 class="font-semibold text-lg">Skilled</h2>
-            <p>
-              All our joinery team are skilled and professional at their jobs,
-              with experience in working at heights.
-            </p>
-            <h2 class="font-semibold text-lg">CSCS Certified</h2>
+          </ul>
+          <li>Can create more room height on tighter buildings</li>
+          <li>
+            Can be tailored made to any roof shape and size no matter how
+            complex
+          </li>
+          <li>Can later be adjusted to add Velux's and or dormers</li>
+          <li>
+            No need to worry about height restriction on access as all materials
+            can be delivered on a flat bed
+          </li>
+          <h2 class="font-semibold text-lg">Dependable</h2>
+          <p>
+            If you are looking for a traditional cut roof {
+              location ? "in " + locationFormated : ""
+            }, you need to find a reliable installer with the ability to meet
+            your exact requirements and ensure the perfect fit each and every
+            time.
+          </p>
+          <h2 class="font-semibold text-lg">Reliable</h2>
+          <p>
+            Our joinery team is consistently reliable and adaptable, working
+            according to your designed roof specifications.
+          </p>
+          <h2 class="font-semibold text-lg">Skilled</h2>
+          <p>
+            All our joinery team are skilled and professional at their jobs,
+            with experience in working at heights.
+          </p>
+          <h2 class="font-semibold text-lg">CSCS Certified</h2>
 
-            <p>
-              When you choose us, you're choosing a team that's not only
-              qualified but dedicated to excellence in every aspect of our work.
-            </p>
+          <p>
+            When you choose us, you're choosing a team that's not only qualified
+            but dedicated to excellence in every aspect of our work.
+          </p>
 
-            <p>
-              We can provide more information and answer any questions you may
-              have. Please feel free to <a
-                href="/contact"
-                class="font-semibold text-blue-700 hover:underline"
-                >contact us</a
-              >.
-            </p>
-          </div>
+          <p>
+            We can provide more information and answer any questions you may
+            have. Please feel free to <a
+              href="/contact"
+              class="font-semibold text-blue-700 hover:underline">contact us</a
+            >.
+          </p>
         </div>
 
         <aside class="w-full flex flex-col items-stretch gap-6 mt-6">

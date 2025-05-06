@@ -44,14 +44,12 @@ const alt = location
 >
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <div class="flex justify-left">
-        <Breadcrumb
-          crumbs={[
-            { label: "Joinery Services", href: "/joinery-services" },
-            { label: typeFormated, current: true },
-          ]}
-        />
-      </div>
+      <Breadcrumb
+        crumbs={[
+          { label: "Joinery Services", href: "/joinery-services" },
+          { label: typeFormated, current: true },
+        ]}
+      />
 
       <div
         class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
@@ -79,7 +77,7 @@ const alt = location
         </a>
       </div>
 
-      <div class="grid md:grid-cols-2 items-start gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
             Kitchen Fitting with a Personal Touch

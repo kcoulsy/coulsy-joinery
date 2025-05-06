@@ -14,14 +14,12 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 <Layout title="About Us">
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <div class="flex justify-left">
-        <Breadcrumb
-          crumbs={[
-            // { label: "Home", href: "/" },
-            { label: "About", current: true },
-          ]}
-        />
-      </div>
+      <Breadcrumb
+        crumbs={[
+          // { label: "Home", href: "/" },
+          { label: "About", current: true },
+        ]}
+      />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">About Us</h1>
       <p class="text-md font-light mb-4 mt-1">

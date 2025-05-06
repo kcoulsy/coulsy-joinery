@@ -8,17 +8,15 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 <Layout title="Sustainability">
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <div class="flex justify-left">
-        <Breadcrumb
-          crumbs={[
-            { href: "/about", label: "About" },
-            { label: "Sustainability", current: true },
-          ]}
-        />
-      </div>
+      <Breadcrumb
+        crumbs={[
+          { href: "/about", label: "About" },
+          { label: "Sustainability", current: true },
+        ]}
+      />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">Sustainability</h1>
-      <div class="grid md:grid-cols-2 items-start gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <h3 class="font-semibold text-lg">Our Approach to Sustainability</h3>
           <p>
