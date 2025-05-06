@@ -52,7 +52,7 @@ const alt = location
         {location ? "in " + locationFormated : ""}
       </h1>
       <div class="grid md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4">
+        <div class="space-y-4 w-full">
           <div class="space-y-4 text-gray-600 prose">
             <p>
               With over 30 years of experience in carpentry and joinery, we
@@ -82,30 +82,40 @@ const alt = location
               }.
             </p>
 
-            <h2 class="font-semibold text-lg">Dependable</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Dependable
+            </h3>
             <p>
               If you require bespoke joinery service{
                 location ? " in " + locationFormated : ""
               }, Coulsy Joinery is the dependable provider capable of meeting
               your precise requirements and ensuring customer satisfaction.
             </p>
-            <h2 class="font-semibold text-lg">Reliable</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Reliable
+            </h3>
             <p>
               Our joinery team is consistently reliable and adaptable, working
               precisely according to your bespoke joinery specifications.
             </p>
-            <h2 class="font-semibold text-lg">Skilled</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Skilled
+            </h3>
             <p>
               They are highly skilled and professional, with extensive
               experience and qualifications in their field.
             </p>
 
-            <h2 class="font-semibold text-lg">City &amp; Guilds Certified</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              City &amp; Guilds Certified
+            </h3>
             <p>
               When you choose me, you're getting a qualified craftsman who takes
               real pride in delivering proper joinery the right way.
             </p>
-            <h2 class="font-semibold text-lg">Our Commitment</h2>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+              Our Commitment
+            </h3>
             <p>
               We take pride not just in the joinery, but in how we leave the
               job. Task areas are always protected, and we tidy up thoroughly
@@ -122,10 +132,8 @@ const alt = location
             </p>
           </div>
         </div>
-        <aside
-          class="w-full flex flex-col items-stretch gap-6 order-last md:order-none"
-        >
-          <div class="w-full">
+        <aside class="w-full flex flex-col items-stretch gap-6">
+          <div class="w-full order-last md:order-none">
             <GalleryGrid
               items={[
                 {
@@ -151,19 +159,17 @@ const alt = location
               ]}
             />
           </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-              >
-                Get in Touch
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Need help with a heritage or restoration joinery project? I’d be
-                happy to discuss how we can help.
-              </p>
-              <ContactForm />
-            </div>
+          <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md w-full">
+            <h2
+              class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+            >
+              Get in Touch
+            </h2>
+            <p class="text-gray-600 mb-6 text-center">
+              Need help with a heritage or restoration joinery project? I’d be
+              happy to discuss how we can help.
+            </p>
+            <ContactForm />
           </div>
         </aside>
       </div>
