@@ -1,0 +1,240 @@
+---
+import ContactForm from "../../components/ContactForm.astro";
+import Layout from "../../layouts/Layout.astro";
+import NearbyAreas from "../../components/NearbyAreasGardenRooms.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/garden-rooms/garden-rooms-image1.jpg";
+import galleryImg2 from "../../assets/images/garden-rooms/garden-rooms-image2.jpg";
+import galleryImg3 from "../../assets/images/garden-rooms/garden-rooms-image3.jpg";
+import galleryImg4 from "../../assets/images/garden-rooms/garden-rooms-image4.jpg";
+
+const { location, type } = Astro.params;
+
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+let typeFormated = type
+  ? type.split("-").map(capitalizeFirstLetter).join(" ")
+  : "Garden Rooms";
+
+const locationFormated = location ? capitalizeFirstLetter(location) : "";
+
+const locationInText = location ? `in ${locationFormated} ` : "";
+
+const alt = location
+  ? typeFormated +
+    " in " +
+    locationFormated +
+    " by Coulsy Joinery for all your " +
+    locationFormated +
+    " carpentry and joinery services"
+  : typeFormated;
+---
+
+<Layout
+  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+>
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+      <Breadcrumb
+        crumbs={[
+          { label: "Joinery Services", href: "/joinery-services" },
+          { label: typeFormated, current: true },
+        ]}
+      />
+
+      <h1 class="text-3xl font-bold tracking-tight pb-4">
+        {typeFormated}
+        {location ? " in " + locationFormated : ""}
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
+        <div class="space-y-4 text-gray-600 prose">
+          <p>
+            I'm Robert Coulson, a fully time-served joiner based in Yorkshire,
+            and one of the services I’m proud to offer{
+              location ? " in " + locationFormated : ""
+            } is crafting beautiful, versatile {typeFormated}.
+          </p>
+          <p>Elevate Your Outdoor Living with a Custom Garden Room</p>
+          <p>
+            Imagine a space that blends the comfort of your home with the beauty
+            of the outdoors {location ? "in " + locationFormated : ""} — perfect
+            for hobbies, relaxation, or a quiet retreat.
+          </p>
+          <p>
+            I collaborate closely with each client from initial concept to final
+            build. I specialise in designing and constructing bespoke garden
+            rooms at the heart of{location ? " " + locationFormated : ""}.
+            Whether you want a creative studio, a wellness space, or a peaceful
+            reading lounge, I bring your vision to life with care and
+            craftsmanship.
+          </p>
+          <p>
+            If you have architectural plans or a clear idea, I’m happy to work
+            alongside you or your design team. From detailed blueprints to
+            simple sketches, I’ll help create a stunning, functional garden room
+            that reflects your lifestyle and needs.
+          </p>
+
+          <h3 class="font-semibold text-lg">
+            Tailored Designs for Every Lifestyle
+          </h3>
+          <p>
+            Each garden room we build is customised to suit your personal tastes
+            and requirements. From modern aesthetics to classic charm, your new
+            space will enhance your garden and daily life.
+          </p>
+          <h3 class="font-semibold text-lg">
+            Built for Comfort and Efficiency
+          </h3>
+          <p>
+            Our garden rooms are designed to be comfortable year-round. Using
+            insulated timber frames and breathable membranes, we ensure your
+            space stays cozy in winter and cool in summer, all while being
+            energy efficient.
+          </p>
+          <p>
+            Whether you prefer traditional cladding or sleek finishes, your
+            garden room is crafted for durability and long-term enjoyment. Plus,
+            a well-designed garden room can add significant value to your
+            property.
+          </p>
+          <h3 class="font-semibold text-lg">Exceptional Craftsmanship</h3>
+          <p>
+            I use premium materials and expert techniques to guarantee lasting
+            quality and comfort. I don’t compromise on standards — your garden
+            room will be built to the highest level of workmanship.
+          </p>
+          <h3 class="font-semibold text-lg">Eco-Friendly Options</h3>
+          <p>
+            Committed to sustainability, we offer environmentally conscious
+            solutions that blend seamlessly with your garden while reducing your
+            carbon footprint.
+          </p>
+          <h3 class="font-semibold text-lg">Local Knowledge and Expertise</h3>
+          <p>
+            Based in York, I understand the regional architecture and landscape,
+            allowing me to design garden rooms that complement and enhance your
+            property’s unique character.
+          </p>
+          <h3 class="font-semibold text-lg">
+            Your Ideal Garden Room Awaits {
+              location ? "in " + locationFormated : ""
+            }
+          </h3>
+          <p>
+            Envision a personal sanctuary just steps from your door—a space for
+            creativity, wellness, or quiet reflection. We’re passionate about
+            helping you create a garden room that perfectly fits your lifestyle,
+            blending indoor comfort with outdoor charm.
+          </p>
+          <h3 class="font-semibold text-lg">Explore Our Portfolio</h3>
+          <p>
+            Browse our gallery of completed garden rooms and see how we’ve
+            helped homeowners throughout {
+              location ? " " + locationFormated : ""
+            } bring their outdoor living dreams to life. Each project showcases our
+            dedication to quality and customer satisfaction.
+          </p>
+
+          <h3 class="font-semibold text-lg">
+            Planning & Regulations — What You Should Know
+          </h3>
+          <p>
+            Many garden rooms can be constructed without planning permission
+            under permitted development rights, but certain guidelines apply.
+            Typically, your garden room should not exceed 2.5m in height if
+            within 2 metres of a boundary, and total height limits are 4m for
+            pitched roofs or 3m for flat roofs. The structure must be located
+            behind your home, not in front of the main elevation.
+          </p>
+          <p>
+            If your property is in a conservation area, an Area of Outstanding
+            Natural Beauty (AONB), or is listed, additional rules may apply. I’m
+            happy to provide advice tailored to your site.
+          </p>
+          <p>
+            Even if planning permission is not required, Building Regulations
+            may still apply—especially if the garden room is over 15m², used for
+            sleeping, or includes electrical or plumbing installations. I always
+            ensure compliance with relevant standards for insulation,
+            ventilation, and safety.
+          </p>
+          <p>
+            If you intend to use the garden room for business purposes involving
+            customers or deliveries, local planning authority approval may be
+            necessary. For quiet home use, this is usually not an issue.
+          </p>
+
+          <p class="font-semibold text-blue-700 hover:underline text-lg">
+            <a href="/contact">Get in Touch Today</a>
+          </p>
+          <p>
+            Contact me for a friendly conversation and a complimentary
+            consultation. Let’s discuss how we can design and build the perfect
+            garden room to enhance your lifestyle. For us, your garden is more
+            than just an outdoor space — it’s a place to thrive.
+          </p>
+          <p>
+            Looking for a dedicated workspace instead? You might be interested
+            in our <a
+              href="/joinery-services/garden-offices"
+              class="text-blue-700 underline hover:text-blue-900"
+              >bespoke garden offices</a
+            >, purpose-built for home working with enhanced thermal performance
+            and professional finishes.
+          </p>
+        </div>
+
+        <aside
+          class="w-full flex flex-col items-stretch gap-6 order-last md:order-none"
+        >
+          <div class="w-full">
+            <GalleryGrid
+              items={[
+                {
+                  src: galleryImg1,
+                  alt: `Exterior view of a bespoke garden room ${locationInText}`,
+                  label: "Bespoke Garden Room Exterior",
+                },
+                {
+                  src: galleryImg2,
+                  alt: `Relaxing garden room interior space ${locationInText}`,
+                  label: "Relaxing Garden Room Interior",
+                },
+                {
+                  src: galleryImg3,
+                  alt: `Modern insulated garden room build ${locationInText}`,
+                  label: "Modern Insulated Garden Room",
+                },
+                {
+                  src: galleryImg4,
+                  alt: `Compact timber garden room build by Coulsy Joinery ${locationInText}`,
+                  label: "Compact Timber Garden Room",
+                },
+              ]}
+            />
+          </div>
+          <div class="w-full">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+              <h2
+                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+              >
+                Get in Touch
+              </h2>
+              <p class="text-gray-600 mb-6 text-center">
+                Considering a garden room? I'd love to discuss your ideas and
+                help bring them to life.
+              </p>
+              <ContactForm />
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <NearbyAreas location={location} />
+    </section>
+  </main>
+</Layout>
