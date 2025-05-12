@@ -9,8 +9,7 @@ export const getStaticPaths = (() => {
   LOCATIONS.forEach((location) => {
     paths.push({
       params: {
-        location,
-        type: "joinery",
+        location: location.slug,
       },
     });
   });
