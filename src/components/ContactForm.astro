@@ -172,6 +172,9 @@ import { DETAILS } from "../constants/details";
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
       }
+      if (locationInput instanceof HTMLInputElement) {
+        locationInput.value = "";
+      }
     } else if (slugParts.length >= 2) {
       // Location + service like "bramham-general-joinery"
       const location = slugParts[0];
