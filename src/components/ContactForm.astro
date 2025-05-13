@@ -154,4 +154,15 @@ import { DETAILS } from "../constants/details";
   };
 
   document.querySelector("form")?.addEventListener("submit", handleSubmit);
+
+  // Auto-fill site_location if it's not set already
+  const locInput = document.getElementById("site_location");
+  if (locInput instanceof HTMLInputElement && !locInput.value) {
+    const match = window.location.pathname.match(/\/joinery-services\/([^/]+)/);
+    if (match && match[1]) {
+      const locationName = match[1].replace("-joinery", "").replace(/-/g, " ");
+      locInput.value =
+        locationName.charAt(0).toUpperCase() + locationName.slice(1);
+    }
+  }
 </script>
