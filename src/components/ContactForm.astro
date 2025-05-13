@@ -177,8 +177,8 @@ import { DETAILS } from "../constants/details";
       }
     } else if (slugParts.length >= 2) {
       // Location + service like "bramham-general-joinery"
-      const location = slugParts[0];
-      const service = slugParts.slice(1).join(" ");
+      const location = slugParts.slice(0, -1).join(" ");
+      const service = slugParts.slice(-1).join(" ");
 
       if (locationInput instanceof HTMLInputElement) {
         locationInput.value =
