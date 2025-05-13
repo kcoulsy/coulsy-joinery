@@ -60,11 +60,13 @@ const businessSchema = {
   telephone: "+44 7544 030486",
 };
 
-const description = "contstant description";
+const description = location
+  ? `Expert ${typeFormated.toLowerCase()} services in ${locationFormated}. Bespoke carpentry, kitchens, and joinery solutions from a trusted local craftsman.`
+  : `Expert ${typeFormated.toLowerCase()} services. Bespoke carpentry, kitchens, and joinery solutions from a trusted local craftsman.`;
 ---
 
 <Layout
-  title={`${typeFormated}${location ? ` in ${locationFormated}` : ""}`}
+  title={`${typeFormated}${locationFormated ? ` in ${locationFormated}` : ""}`}
   description={description}
 />
 
