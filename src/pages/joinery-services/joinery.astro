@@ -60,150 +60,143 @@ const businessSchema = {
   telephone: "+44 7544 030486",
 };
 
-const location2 = "Wetherby";
-const title = "Constant title";
 const description = "contstant description";
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
->
-  <Fragment slot="head">
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(businessSchema)}
+  title={`${typeFormated}${location ? ` in ${locationFormated}` : ""}`}
+  description={description}
+/>
+
+<Fragment slot="head">
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(businessSchema)}
+  />
+</Fragment>
+
+{/* The rest of your content remains unchanged */}
+<main class="mx-auto md:mt-16 relative z-10">
+  <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+    <Breadcrumb
+      crumbs={[
+        { label: "Joinery Services", href: "/joinery-services" },
+        { label: typeFormated, current: true },
+      ]}
     />
-  </Fragment>
 
-  {/* The rest of your content remains unchanged */}
-  <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
-        ]}
-      />
+    <h1 class="text-3xl font-bold tracking-tight pb-4">
+      {typeFormated}
+      {location ? "in " + locationFormated : ""}
+    </h1>
 
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
-      </h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
+      <div class="space-y-4 text-gray-600 prose">
+        <p>
+          With over 30 years of hands-on experience in carpentry and joinery,
+          I’ve worked across domestic, commercial, and industrial projects. My
+          aim is always to deliver truly bespoke joinery with top-quality
+          craftsmanship.
+        </p>
+        <p>
+          I offer tailor-made joinery products{
+            location ? " in " + locationFormated : ""
+          }, available either for supply only or fully installed. Using a mix of
+          traditional skills and modern techniques, I take pride in producing
+          work that’s built to last.
+        </p>
+        <p>
+          I'm trained in both modern and traditional joinery methods — including
+          1st Fix, 2nd Fix, and Final Fix. I use the right tools like jigs and
+          routers to ensure consistent quality and craftsmanship.
+        </p>
+        <p>
+          I offer a full range of joinery services — from handmade pieces to
+          high-quality products sourced from trusted suppliers. That includes
+          doors, windows, staircases, skirtings, architraves, ironmongery
+          fitting, traditional roofs, truss roofs, and shop fitting{
+            location ? " in " + locationFormated : ""
+          }.
+        </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            With over 30 years of hands-on experience in carpentry and joinery,
-            I’ve worked across domestic, commercial, and industrial projects. My
-            aim is always to deliver truly bespoke joinery with top-quality
-            craftsmanship.
-          </p>
-          <p>
-            I offer tailor-made joinery products{
-              location ? " in " + locationFormated : ""
-            }, available either for supply only or fully installed. Using a mix
-            of traditional skills and modern techniques, I take pride in
-            producing work that’s built to last.
-          </p>
-          <p>
-            I'm trained in both modern and traditional joinery methods —
-            including 1st Fix, 2nd Fix, and Final Fix. I use the right tools
-            like jigs and routers to ensure consistent quality and
-            craftsmanship.
-          </p>
-          <p>
-            I offer a full range of joinery services — from handmade pieces to
-            high-quality products sourced from trusted suppliers. That includes
-            doors, windows, staircases, skirtings, architraves, ironmongery
-            fitting, traditional roofs, truss roofs, and shop fitting{
-              location ? " in " + locationFormated : ""
-            }.
-          </p>
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+          Dependable
+        </h3>
+        <p>
+          If you're after dependable, high-quality {typeFormated}{
+            location ? " in " + locationFormated : ""
+          }, I’d be glad to talk through how I can help.
+        </p>
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-700">Reliable</h3>
+        <p>
+          I’m reliable, adaptable, and always work to your exact specifications
+          to get the finish just right.
+        </p>
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-700">Skilled</h3>
+        <p>
+          I bring years of experience, traditional training, and an eye for
+          detail to every project I take on.
+        </p>
 
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Dependable
-          </h3>
-          <p>
-            If you're after dependable, high-quality {typeFormated}{
-              location ? " in " + locationFormated : ""
-            }, I’d be glad to talk through how I can help.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Reliable
-          </h3>
-          <p>
-            I’m reliable, adaptable, and always work to your exact
-            specifications to get the finish just right.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Skilled
-          </h3>
-          <p>
-            I bring years of experience, traditional training, and an eye for
-            detail to every project I take on.
-          </p>
-
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            City & Guilds Certified
-          </h3>
-          <p>
-            I’m City & Guilds certified and always focused on delivering work
-            I’m proud to put my name to.
-          </p>
-          <p>
-            Got a question or want to talk through a joinery idea? Feel free to <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            > — I’m happy to help.
-          </p>
-        </div>
-
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  alt: `Timber joinery craftsmanship ${locationInText}`,
-                  label: `Timber joinery craftsmanship`,
-                },
-                {
-                  src: galleryImg2,
-                  alt: `Traditional moulding plane technique ${locationInText}`,
-                  label: `Traditional moulding plane technique`,
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Bespoke handmade wooden garage door ${locationInText}`,
-                  label: `Bespoke handmade wooden garage door`,
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Raised wood panelling detail ${locationInText}`,
-                  label: `Raised wood panelling detail`,
-                },
-              ]}
-            />
-          </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-              >
-                Get in Touch
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Need help with a heritage or restoration joinery project? I’d be
-                happy to discuss how we can help.
-              </p>
-              <ContactForm />
-            </div>
-          </div>
-        </aside>
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
+          City & Guilds Certified
+        </h3>
+        <p>
+          I’m City & Guilds certified and always focused on delivering work I’m
+          proud to put my name to.
+        </p>
+        <p>
+          Got a question or want to talk through a joinery idea? Feel free to <a
+            href="/contact"
+            class="font-semibold text-blue-700 hover:underline">get in touch</a
+          > — I’m happy to help.
+        </p>
       </div>
 
-      <NearbyAreas location={location} />
-    </section>
-  </main>
-</Layout>
+      <aside class="w-full flex flex-col items-stretch gap-6">
+        <div class="w-full order-last md:order-none">
+          <GalleryGrid
+            items={[
+              {
+                src: galleryImg1,
+                alt: `Timber joinery craftsmanship ${locationInText}`,
+                label: `Timber joinery craftsmanship`,
+              },
+              {
+                src: galleryImg2,
+                alt: `Traditional moulding plane technique ${locationInText}`,
+                label: `Traditional moulding plane technique`,
+              },
+              {
+                src: galleryImg3,
+                alt: `Bespoke handmade wooden garage door ${locationInText}`,
+                label: `Bespoke handmade wooden garage door`,
+              },
+              {
+                src: galleryImg4,
+                alt: `Raised wood panelling detail ${locationInText}`,
+                label: `Raised wood panelling detail`,
+              },
+            ]}
+          />
+        </div>
+        <div class="w-full">
+          <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+            <h2
+              class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+            >
+              Get in Touch
+            </h2>
+            <p class="text-gray-600 mb-6 text-center">
+              Need help with a heritage or restoration joinery project? I’d be
+              happy to discuss how we can help.
+            </p>
+            <ContactForm />
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <NearbyAreas location={location} />
+  </section>
+</main>
