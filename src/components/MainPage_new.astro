@@ -4,7 +4,6 @@
 import Layout from "../layouts/Layout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import Why from "../components/Why.astro";
-import OurServicesDescription from "../components/OurServicesDescriptionCentreAligned.astro";
 import OurServicesBody from "../components/OurServicesBody.astro";
 
 import Reviews from "../components/Reviews.astro";
@@ -32,7 +31,13 @@ const slides = [
   <div class="relative z-10 mx-auto">
     <HeroSlider slides={slides} />
     <Why />
-    <OurServicesDescription />
+
+    <section class="w-full py-8 flex flex-col items-center">
+      <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+        Our Services
+      </h2>
+    </section>
+
     <OurServicesBody />
     <Reviews />
   </div>
