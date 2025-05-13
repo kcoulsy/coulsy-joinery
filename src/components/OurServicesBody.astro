@@ -19,72 +19,84 @@ const services = [
     href: "/joinery-services/bespoke-joinery",
     image: mouldingPlane,
     alt: "Bespoke Joinery",
+    description: "Made-to-measure joinery tailored to your space and style.",
   },
   {
     title: "Heritage Joinery",
     href: "/joinery-services/heritage-restoration-joinery",
     image: heritage,
     alt: "Heritage Joinery",
+    description: "Expert restoration and reproduction of period joinery.",
   },
   {
     title: "Sub Contract Joinery",
     href: "/joinery-services/joinery-subcontractors",
     image: SubcontractImg,
     alt: "Sub contract Joinery",
+    description: "Joinery labour and support services for larger projects.",
   },
   {
     title: "Fitted Kitchens",
     href: "/joinery-services/kitchen-installers",
     image: kitchenInstallers,
     alt: "Fitted Kitchen and Installers York",
+    description: "Full kitchen installs tailored to your layout and finish.",
   },
   {
     title: "Accessible Kitchens",
     href: "/joinery-services/accessible-kitchen-installers",
     image: accessibleKitchen,
     alt: "Accessible kitchens York",
+    description: "Practical kitchen solutions designed for accessibility.",
   },
   {
     title: "Doors",
     href: "/joinery-services/door-hanging",
     image: doorHanging,
     alt: "Door Hanging and installers",
+    description: "Internal and external doors fitted with care and precision.",
   },
   {
     title: "Steel Fire Exit Doors",
     href: "/joinery-services/steel-fire-exit-doors-installers",
     image: steelFireExit,
     alt: "Steel fire exit and fire escape doors",
+    description: "Robust, compliant fire exit doors for commercial spaces.",
   },
   {
     title: "Truss Roofs",
     href: "/joinery-services/truss-roof-installers",
     image: rooftop,
     alt: "Truss and trussed roof installers",
+    description: "Pre-engineered truss roof installation and setting out.",
   },
   {
     title: "Traditional Cut Roofs",
     href: "/joinery-services/traditional-cut-roofs",
     image: cutRoofHeader,
     alt: "Traditional Cut Roofs",
+    description: "Hand-cut timber roof structures built to spec.",
   },
   {
     title: "Stud Walls",
     href: "/joinery-services/stud-wall-partitioning",
     image: studWall,
     alt: "stud wall and partitioning installers in York",
+    description: "Room layouts adapted with solid timber studwork.",
   },
   {
     title: "Garden Offices and Rooms",
     href: "/joinery-services/garden-offices",
     image: gardenOffice,
     alt: "Garden Offices and Rooms York",
+    description: "Insulated timber garden offices built for all seasons.",
   },
   {
     title: "General Joinery",
     href: "/joinery-services/general-joinery",
     image: herringboneFlooring,
     alt: "General joinery services in York",
+    description: "From floors and skirtings to shelves and storage.",
   },
 ];
 ---
@@ -97,7 +109,7 @@ const services = [
     services.map((service) => (
       <a
         href={service.href}
-        class="group p-2 rounded-3xl bg-white border-sm border-gray-100 bg-opacity-50 shadow-2xl shadow-gray-600/10"
+        class="group p-2 rounded-3xl bg-white border-sm border-gray-100 bg-opacity-50 shadow-2xl shadow-gray-600/10 transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1"
       >
         <div class="relative overflow-hidden rounded-sm">
           <Image
@@ -109,10 +121,9 @@ const services = [
             class="aspect-square w-full object-cover object-top transition duration-500 group-hover:scale-105"
           />
         </div>
-        <div class="mt-6 relative">
-          <h2 class="text-2xl font-semibold text-gray-800 text-center">
-            {service.title}
-          </h2>
+        <div class="mt-6 relative text-center">
+          <h2 class="text-xl font-semibold text-gray-800">{service.title}</h2>
+          <p class="text-sm text-gray-600 mt-1">{service.description}</p>
         </div>
       </a>
     ))

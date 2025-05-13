@@ -20,51 +20,52 @@ import Breadcrumb from "../components/Breadcrumb.astro";
         />
       </div>
 
-      <div class="w-full space-y-6 mb-10">
+      <!-- Removed to declutter the top of the page -->
+
+      <h1 class="text-3xl font-bold">A selection of my Joinery Services</h1>
+      <p class="text-md text-gray-700 mt-2 mb-4">
+        I'm Robert, a time-served joiner offering reliable, high-quality work
+        across York and beyond. From bespoke doors to full project management —
+        this page shows a selection of just some of the joinery services I can
+        help you with.
+      </p>
+
+      <p class="text-sm text-gray-600 italic mb-6">
+        Here’s a selection of the kind of work I take on regularly:
+      </p>
+      <OurServicesBody />
+      <p class="text-center mt-10 text-blue-700 font-semibold">
+        Not sure if your job is too small or type of project not shown? <a
+          href="/contact"
+          class="hover:underline">Just ask — I'm happy to help.</a
+        >
+      </p>
+
+      <div class="w-full space-y-6 mt-12">
         <div
           class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm"
         >
           <h2 class="text-2xl font-semibold text-yellow-800 mb-2">
-            Crafted with Care, Built to Last
+            Craftsmanship You Can Trust
           </h2>
           <p class="text-gray-700">
-            From minor home fixes to fully bespoke builds, I’m here to help
-            bring your ideas to life with honesty, skill, and experience you can
-            rely on.
+            Whatever your project — big or small — I take pride in delivering
+            proper joinery work that lasts. I treat every job with care and a
+            hands-on approach, using the skills I’ve built over decades in the
+            trade.
           </p>
         </div>
         <blockquote
           class="border-l-4 border-yellow-500 pl-4 italic text-gray-800 mb-6"
         >
-          I'm Robert, and I personally handle every project with care — whether
-          it’s hanging a new door or building a complete garden room. I bring
-          years of hands-on experience and a real commitment to doing things
-          properly. I enjoy working with homeowners, landlords, and small
-          business owners who appreciate honest, reliable craftsmanship.
+          I’m Robert — a time-served joiner with over 30 years of experience.
+          Every job I take on is personally managed by me, from the first chat
+          to the final fitting. Whether it’s a custom door, kitchen install, or
+          a full build, I believe in doing things properly, with no shortcuts. I
+          enjoy working with homeowners, landlords, and businesses who
+          appreciate honest, reliable work and clear communication.
         </blockquote>
       </div>
-      <h1 class="text-3xl font-bold">Our Joinery Services</h1>
-      <h2 class="text-xl font-light mb-4 mt-4">
-        Delivering to your needs and requirements.
-      </h2>
-      <h4 class="text-xl font-light mb-4 mt-1">
-        At Coulsy Joinery, we deliver a comprehensive range of top-notch
-        carpentry and joinery services including contracting and sub contracting
-        solutions.
-      </h4>
-      <p class="text-md font-light mb-4 mt-1">
-        Our services include annexe building, truss roofs, traditional cut
-        roofs, stud wall partitioning, door and fire door installation, kitchen
-        installing, custom joinery, bespoke refits, and complete project
-        management, all tailored to meet your specific needs.
-      </p>
-      <OurServicesBody />
-      <p class="text-center mt-10 text-blue-700 font-semibold">
-        Not sure if your job is too small? <a
-          href="/contact"
-          class="hover:underline">Just ask — we’re happy to help.</a
-        >
-      </p>
     </section>
   </main>
 </Layout>
