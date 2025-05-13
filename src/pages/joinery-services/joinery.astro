@@ -37,31 +37,35 @@ const alt = location
     locationFormated +
     " carpentry and joinery services"
   : typeFormated;
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Coulsy Joinery",
+  description: `Bespoke joinery and carpentry services in ${locationFormated || "Yorkshire"}`,
+  url: `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-joinery` : "joinery"}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: locationFormated || "York",
+    postalCode: "YO26 7NW",
+    addressCountry: "GB",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: geo.lat,
+    longitude: geo.lng,
+  },
+  openingHours: "Mo-Fr 08:00-17:00",
+  telephone: "+44 7544 030486",
+};
 ---
 
 <head>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Coulsy Joinery",
-      "description": "Bespoke joinery and carpentry services in ${locationFormated || 'Yorkshire'}",
-      "url": "https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-joinery` : 'joinery'}",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "${locationFormated || 'York'}",
-        "postalCode": "YO26 7NW",
-        "addressCountry": "GB"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": ${geo.lat},
-        "longitude": ${geo.lng}
-      },
-      "openingHours": "Mo-Fr 08:00-17:00",
-      "telephone": "+44 7544 030486"
-    }
-  </script>
+  <meta charset="UTF-8" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(businessSchema)}
+  />
 </head>
 
 <Layout
