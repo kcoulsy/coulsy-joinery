@@ -1,50 +1,15 @@
 ---
-import { LOCATIONS, NEARBY_LOCATIONS } from "../constants/locations";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+import { getNearbyLocations } from "../utils/getNearbyLocations";
 
 interface Props {
   location?: string;
 }
 
 const { location } = Astro.props;
-
-const radius = 30;
-const BASE_LAT = 53.9655;
-const BASE_LNG = -1.205;
-
-function toRadians(degrees: number): number {
-  return degrees * (Math.PI / 180);
-}
-
-function haversineDistance(
-  lat1: number,
-  lng1: number,
-  lat2: number,
-  lng2: number
-): number {
-  const dLat = toRadians(lat2 - lat1);
-  const dLng = toRadians(lng2 - lng1);
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRadians(lat1)) *
-      Math.cos(toRadians(lat2)) *
-      Math.sin(dLng / 2) ** 2;
-  return 3958.8 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
-
-const curated =
-  location && NEARBY_LOCATIONS[location]
-    ? NEARBY_LOCATIONS[location]
-    : NEARBY_LOCATIONS.default;
-
-const curatedWithCoords = LOCATIONS.filter((loc) => curated.includes(loc.slug));
-
-const nearbyLocations = curatedWithCoords
-  .filter(
-    ({ lat, lng }) => haversineDistance(BASE_LAT, BASE_LNG, lat, lng) <= radius
-  )
-  .map((loc) => loc.slug)
-  .filter((slug) => slug !== location);
+// Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
+const radius = 40;
+const nearbyLocations = getNearbyLocations(location, radius);
 ---
 
 <section class="w-full py-12 md:py-24 lg:py-30">
@@ -56,10 +21,9 @@ const nearbyLocations = curatedWithCoords
         <p
           class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
         >
-          We also offer expert accessible kitchen installer service in nearby
-          areas
-          {location ? ` near ${capitalizeFirstLetter(location)}` : ""}. If your
-          town isn’t listed, just get in touch — we’re happy to help.
+          I regularly fit accessible kitchens — whether you're based in a
+          village, town, or city nearby. Just let me know where you are and I’ll
+          do my best to help.
         </p>
       </div>
     </div>
@@ -68,13 +32,13 @@ const nearbyLocations = curatedWithCoords
       class="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 text-center"
     >
       {
-        nearbyLocations.map((loc) => (
+        nearbyLocations.map(({ slug }) => (
           <a
             class="group rounded-lg bg-white p-3 shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
-            href={`/joinery-services/${loc}-accessible-kitchen-installers`}
+            href={`/joinery-services/${slug}-accessible-kitchen-installers`}
           >
             <div class="text-base font-medium text-gray-800 group-hover:text-yellow-700">
-              {capitalizeFirstLetter(loc)}
+              {capitalizeFirstLetter(slug)}
             </div>
           </a>
         ))
@@ -83,13 +47,11 @@ const nearbyLocations = curatedWithCoords
 
     <div class="text-center mt-8">
       <p class="text-gray-600">
-        Don’t see your area? Just
-        <a
+        Don’t see your area? <a
           href="/contact"
           class="text-yellow-700 font-semibold underline hover:text-yellow-800"
-          >get in touch</a
-        >
-        — we may still be able to help.
+          >Get in touch</a
+        > — I might still be able to help.
       </p>
     </div>
   </div>

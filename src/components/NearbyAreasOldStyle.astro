@@ -1,15 +1,18 @@
 ---
+import { NEARBY_LOCATIONS } from "../constants/locations";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
-import { getNearbyLocations } from "../utils/getNearbyLocations";
 
 interface Props {
   location?: string;
 }
 
 const { location } = Astro.props;
-// Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
-const radius = 20;
-const nearbyLocations = getNearbyLocations(location, radius);
+
+let nearbyLocations: string[] = NEARBY_LOCATIONS.default;
+
+if (location && NEARBY_LOCATIONS[location]) {
+  nearbyLocations = NEARBY_LOCATIONS[location];
+}
 ---
 
 <section class="w-full py-12 md:py-24 lg:py-30">
@@ -21,10 +24,9 @@ const nearbyLocations = getNearbyLocations(location, radius);
         <p
           class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
         >
-          I provide joinery services in nearby towns
-          {location ? ` near ${capitalizeFirstLetter(location)}` : ""}, whether
-          it’s a village, town or city. Let me know where you are — I’ll do my
-          best to help.
+          We also offer expert truss roof installing services in nearby areas
+          {location ? ` near ${capitalizeFirstLetter(location)}` : ""}. If your
+          town isn’t listed, just get in touch — we’re happy to help.
         </p>
       </div>
     </div>
@@ -33,13 +35,13 @@ const nearbyLocations = getNearbyLocations(location, radius);
       class="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 text-center"
     >
       {
-        nearbyLocations.map(({ slug }) => (
+        nearbyLocations.map((loc) => (
           <a
             class="group rounded-lg bg-white p-3 shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
-            href={`/joinery-services/${slug}-joiner`}
+            href={`/joinery-services/${loc}-truss-roof-installers`}
           >
             <div class="text-base font-medium text-gray-800 group-hover:text-yellow-700">
-              {capitalizeFirstLetter(slug)}
+              {capitalizeFirstLetter(loc)}
             </div>
           </a>
         ))
@@ -48,11 +50,13 @@ const nearbyLocations = getNearbyLocations(location, radius);
 
     <div class="text-center mt-8">
       <p class="text-gray-600">
-        Don’t see your area listed? <a
+        Don’t see your area? Just
+        <a
           href="/contact"
           class="text-yellow-700 font-semibold underline hover:text-yellow-800"
-          >Get in touch</a
-        > — I might still be able to help.
+          >get in touch</a
+        >
+        — we may still be able to help.
       </p>
     </div>
   </div>
