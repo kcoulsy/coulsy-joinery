@@ -159,26 +159,36 @@ import { DETAILS } from "../constants/details";
   // Auto-fill site_location and service_type if possible
   const match = window.location.pathname.match(/\/joinery-services\/([^/]+)/);
   if (match && match[1]) {
-    const slugParts = match[1].replace("-joinery", "").split("-");
-    const locationPart = slugParts[0];
+    const slug = match[1].replace("-joinery", ""); // remove "-joinery"
 
-    const locationFormatted =
-      locationPart.charAt(0).toUpperCase() + locationPart.slice(1);
-
-    const locInput = document.getElementById("site_location");
-    if (locInput instanceof HTMLInputElement) {
-      locInput.value = locationFormatted;
-    }
-
-    const rawServiceType = slugParts.slice(1).join(" ");
-    const serviceTypeFormatted = rawServiceType
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
+    const slugParts = slug.split("-");
+    const locationInput = document.getElementById("site_location");
     const serviceInput = document.getElementById("service_type");
-    if (serviceInput instanceof HTMLInputElement && serviceTypeFormatted) {
-      serviceInput.value = serviceTypeFormatted;
+
+    if (slugParts.length === 1) {
+      // General service page like "general"
+      if (serviceInput instanceof HTMLInputElement) {
+        serviceInput.value =
+          slugParts[0].charAt(0).toUpperCase() +
+          slugParts[0].slice(1) +
+          " Joinery";
+      }
+    } else if (slugParts.length >= 2) {
+      // Location + service like "bramham-general"
+      const location = slugParts[0];
+      const service = slugParts.slice(1).join(" ");
+
+      if (locationInput instanceof HTMLInputElement) {
+        locationInput.value =
+          location.charAt(0).toUpperCase() + location.slice(1);
+      }
+
+      if (serviceInput instanceof HTMLInputElement) {
+        serviceInput.value = service
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+      }
     }
   }
 </script>
