@@ -14,9 +14,10 @@ import { LOCATIONS } from "../../constants/locations";
 
 const { location, type } = Astro.params;
 
+const fallbackGeo = { lat: 53.9655, lng: -1.205 }; // fallback: Bilton in Ainsty (YO26 7NW)
 const geo = location
-  ? LOCATIONS.find((l) => l.slug === location)
-  : { lat: 53.9655, lng: -1.205 }; // fallback: Bilton in Ainsty (YO26 7NW)
+  ? LOCATIONS.find((l) => l.slug === location) || fallbackGeo
+  : fallbackGeo;
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
