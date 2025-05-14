@@ -34,7 +34,7 @@ export function getFormattedPageData(Astro: any): {
   const fallbackGeo = { lat: 53.9655, lng: -1.205 };
   const geo = LOCATIONS.find((l) => l.slug === location) ?? fallbackGeo;
 
-  const defaultDescription = `Trusted local joiner offering bespoke joinery services${locationInText.trim()}, including kitchens, staircases, windows, doors, and heritage woodwork. Over 30 years' experience. Free quotes across Yorkshire.`;
+  const defaultDescription = `Trusted local joiner offering bespoke joinery services ${locationInText.trim()}, including kitchens, staircases, windows, doors, and heritage woodwork. Over 30 years' experience. Free quotes across Yorkshire.`;
 
   const businessSchema = {
     "@context": "https://schema.org",
