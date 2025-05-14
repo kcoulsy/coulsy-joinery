@@ -16,6 +16,7 @@ import { getFormattedPageData } from "../../utils/pageMeta";
 const {
   formattedServiceName,
   locationInText,
+  locationFormated,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -117,11 +118,14 @@ const finalDescription = description || defaultDescription;
             I’m proud to put my name to.
           </p>
           <p>
-            Got a question or want to talk through a joinery idea? Feel free to <a
+            Got a question or planning a joinery project{locationInText}?
+            Whether it’s custom woodwork, structural timber, or restoration
+            joinery — I’d be happy to help. Just <a
               href="/contact"
               class="font-semibold text-blue-700 hover:underline"
               >get in touch</a
-            > — I’m happy to help.
+            > to discuss your ideas and get a no-obligation quote from a trusted
+            local joiner.
           </p>
         </div>
 
@@ -131,23 +135,23 @@ const finalDescription = description || defaultDescription;
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Timber joinery craftsmanship${locationInText}`,
-                  label: `Timber joinery craftsmanship`,
+                  alt: `Traditional moulding plane used in fine carpentry work in ${locationFormated}`,
+                  label: "Traditional Moulding Plane Joinery Tool",
                 },
                 {
                   src: galleryImg2,
-                  alt: `Traditional moulding plane technique${locationInText}`,
-                  label: `Traditional moulding plane technique`,
+                  alt: `Bench plane used in structural woodworking and carpentry in ${locationFormated}`,
+                  label: "Precision Bench Plane Joinery",
                 },
                 {
                   src: galleryImg3,
-                  alt: `Bespoke handmade wooden garage door${locationInText}`,
-                  label: `Bespoke handmade wooden garage door`,
+                  alt: `Custom wooden garage door built by structural carpenter in ${locationFormated}`,
+                  label: "Custom Wooden Garage Door",
                 },
                 {
                   src: galleryImg4,
-                  alt: `Raised wood panelling detail${locationInText}`,
-                  label: `Raised wood panelling detail`,
+                  alt: `Raised wood panel feature from heritage carpentry project in ${locationFormated}`,
+                  label: "Heritage Raised Panel Joinery",
                 },
               ]}
             />

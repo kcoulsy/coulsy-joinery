@@ -16,6 +16,7 @@ import { getFormattedPageData } from "../../utils/pageMeta";
 const {
   formattedServiceName,
   locationInText,
+  locationFormated,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -114,22 +115,22 @@ const finalDescription = description || defaultDescription;
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Close-up of traditional moulding plane used in bespoke joinery${locationInText}`,
+                  alt: `Traditional moulding plane used in fine carpentry work in ${locationFormated}`,
                   label: "Traditional Moulding Plane Joinery Tool",
                 },
                 {
                   src: galleryImg2,
-                  alt: `Detail of bench plane for fine woodworking and joinery precision${locationInText}`,
+                  alt: `Bench plane used in structural woodworking and carpentry in ${locationFormated}`,
                   label: "Precision Bench Plane Joinery",
                 },
                 {
                   src: galleryImg3,
-                  alt: `Handcrafted wooden garage door created by experienced carpenter${locationInText}`,
+                  alt: `Custom wooden garage door built by structural carpenter in ${locationFormated}`,
                   label: "Custom Wooden Garage Door",
                 },
                 {
                   src: galleryImg4,
-                  alt: `Raised panel detailing in heritage joinery project${locationInText}`,
+                  alt: `Raised wood panel feature from heritage carpentry project in ${locationFormated}`,
                   label: "Heritage Raised Panel Joinery",
                 },
               ]}
