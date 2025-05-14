@@ -1,53 +1,50 @@
 ---
-import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
-import NearbyAreas from "../../components/NearbyAreasCarpenter.astro"; // this location is unique a specific for the service offered !! CHECK
 import Breadcrumb from "../../components/Breadcrumb.astro";
-
+import ContactForm from "../../components/ContactForm.astro";
 import GalleryGrid from "../../components/GalleryGrid.astro";
+
+import NearbyAreas from "../../components/NearbyAreasCarpenter.astro"; // this location is unique a specific for the service offered !! CHECK
+
 import galleryImg1 from "../../assets/images/moulding_plane.png";
 import galleryImg2 from "../../assets/images/bench-plane-frog.jpg";
 import galleryImg3 from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
 import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 
-const { location, type } = Astro.params;
+import { getFormattedPageData } from "../../utils/pageMeta";
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Carpenter";
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Reliable structural carpentry services${locationInText.trim()}, from roofs and floors to studwork and timber framing. 30+ years' experience with new builds, renovations, and extensions.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText.trim()}`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}{locationInText}
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
@@ -88,8 +85,8 @@ const alt = location
 
           <p>
             I’m based in North Yorkshire and work in and around {
-              location
-                ? capitalizeFirstLetter(location)
+              locationInText.trim()
+                ? locationInText.trim().replace(/^in\s*/, "")
                 : "the surrounding area"
             }. If you’re looking for a dependable carpenter who turns up, gets
             stuck in, and delivers work that lasts — I’d be glad to help.
@@ -152,7 +149,7 @@ const alt = location
         </aside>
       </div>
 
-      <NearbyAreas location={location} />
+      <NearbyAreas />
     </section>
   </main>
 </Layout>
