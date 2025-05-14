@@ -65,10 +65,10 @@ export function getFormattedPageData(Astro: any): {
       "Harrogate",
       "Yorkshire"
     ],
-    hasMap: `https://www.google.com/maps/place/${encodeURIComponent(locationFormated || "York")}`,
+    hasMap: `https://www.google.com/maps?q=${geo.lat},${geo.lng}`,
     sameAs: [
-      "https://www.facebook.com/coulsyjoinery",
-      "https://www.instagram.com/coulsyjoinery"
+      "https://www.linkedin.com/company/coulsy-limited/?viewAsMember=true",
+      "https://www.facebook.com/coulsyjoinery/"
     ]
   };
 
