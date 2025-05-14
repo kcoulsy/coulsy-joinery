@@ -22,10 +22,14 @@ const {
 
 const description = `Personal, high-quality joinery services ${locationInText.trim()} from a time-served joiner with over 30 years of experience. Bespoke woodwork, repairs, and installations done the right way.`;
 const finalDescription = description || defaultDescription;
+
+// const areaName = locationInText.trim()
+//   ? locationInText.trim().replace(/^in\s*/, "")
+//   : "the surrounding area";
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText.trim()}`}
+  title={`${formattedServiceName} ${locationInText.trim()} | Structural Carpentry for Roofs, Floors & Timber Frames`}
   description={finalDescription}
 >
   <Fragment slot="head">
@@ -55,7 +59,9 @@ const finalDescription = description || defaultDescription;
             With over 30 years of hands-on experience in carpentry and joinery,
             I’ve worked across domestic, commercial, and industrial projects. My
             aim is always to deliver truly bespoke joinery with top-quality
-            craftsmanship.
+            craftsmanship. Whether you're after site carpentry, roof carcassing,
+            or floor joist installation, I offer practical solutions tailored to
+            each build.
           </p>
           <p>
             I offer tailor-made joinery products{locationInText}, available
@@ -67,7 +73,9 @@ const finalDescription = description || defaultDescription;
             I'm trained in both modern and traditional joinery methods —
             including 1st Fix, 2nd Fix, and Final Fix. I use the right tools
             like jigs and routers to ensure consistent quality and
-            craftsmanship.
+            craftsmanship. I also work closely with builders and project
+            managers to ensure timber frames are correctly aligned and set out
+            from the start.
           </p>
           <p>
             I offer a full range of joinery services — from handmade pieces to
