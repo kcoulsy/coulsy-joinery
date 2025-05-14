@@ -1,73 +1,31 @@
 ---
-import ContactForm from "../../components/ContactForm.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import Layout from "../../layouts/Layout.astro";
-import NearbyAreas from "../../components/NearbyAreasJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
-
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import ContactForm from "../../components/ContactForm.astro";
 import GalleryGrid from "../../components/GalleryGrid.astro";
+import NearbyAreas from "../../components/NearbyAreasJoinery.astro";
+
 import galleryImg1 from "../../assets/images/moulding_plane.png";
 import galleryImg2 from "../../assets/images/bench-plane-frog.jpg";
 import galleryImg3 from "../../assets/images/bespoke-joinery/handmade-wooden-garage-door.jpg";
 import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 
-import { LOCATIONS } from "../../constants/locations";
+import { getFormattedPageData } from "../../utils/pageMeta";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-const fallbackGeo = { lat: 53.9655, lng: -1.205 }; // fallback: Bilton in Ainsty (YO26 7NW)
-const geo = location
-  ? LOCATIONS.find((l) => l.slug === location) || fallbackGeo
-  : fallbackGeo;
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Joinery";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
-
-const businessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Coulsy Joinery",
-  description: `Bespoke joinery and carpentry services in ${locationFormated || "Yorkshire"}`,
-  url: `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-joinery` : "joinery"}`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: locationFormated || "York",
-    postalCode: "YO26 7NW",
-    addressCountry: "GB",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: geo.lat,
-    longitude: geo.lng,
-  },
-  openingHours: "Mo-Fr 07:00-18:00",
-  telephone: "+44 7544 030486",
-};
-
-const description = location
-  ? `Expert ${typeFormated.toLowerCase()} services in ${locationFormated}. Bespoke carpentry, kitchens, and joinery solutions from a trusted local craftsman.`
-  : `Expert ${typeFormated.toLowerCase()} services. Bespoke carpentry, kitchens, and joinery solutions from a trusted local craftsman.`;
+const description = `High-quality bespoke joinery services${locationInText.trim()} — including kitchens, doors, windows, staircases, and custom woodwork. Trusted by homeowners and businesses across Yorkshire.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={`${typeFormated}${locationFormated ? ` in ${locationFormated}` : ""}`}
-  description={description}
+  title={`${formattedServiceName} ${locationInText.trim()}`}
+  description={finalDescription}
 >
   <Fragment slot="head">
     <script
@@ -82,13 +40,13 @@ const description = location
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {locationInText}
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
@@ -100,11 +58,10 @@ const description = location
             craftsmanship.
           </p>
           <p>
-            I offer tailor-made joinery products{
-              location ? " in " + locationFormated : ""
-            }, available either for supply only or fully installed. Using a mix
-            of traditional skills and modern techniques, I take pride in
-            producing work that’s built to last.
+            I offer tailor-made joinery products{locationInText}, available
+            either for supply only or fully installed. Using a mix of
+            traditional skills and modern techniques, I take pride in producing
+            work that’s built to last.
           </p>
           <p>
             I'm trained in both modern and traditional joinery methods —
@@ -117,7 +74,7 @@ const description = location
             high-quality products sourced from trusted suppliers. That includes
             doors, windows, staircases, skirtings, architraves, ironmongery
             fitting, traditional roofs, truss roofs, and shop fitting{
-              location ? " in " + locationFormated : ""
+              locationInText
             }.
           </p>
 
@@ -125,8 +82,8 @@ const description = location
             Dependable
           </h3>
           <p>
-            If you're after dependable, high-quality {typeFormated}{
-              location ? " in " + locationFormated : ""
+            If you're after dependable, high-quality {formattedServiceName}{
+              locationInText
             }, I’d be glad to talk through how I can help.
           </p>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
@@ -202,9 +159,8 @@ const description = location
             </div>
           </div>
         </aside>
-
-        <NearbyAreas location={location} />
       </div>
+      <NearbyAreas />
     </section>
   </main>
 </Layout>
