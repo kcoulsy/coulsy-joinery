@@ -44,7 +44,13 @@ const finalDescription = description || defaultDescription;
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}{locationInText}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
