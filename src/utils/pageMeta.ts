@@ -15,9 +15,13 @@ export function getFormattedPageData(Astro: any): {
   const pathname = Astro.url.pathname;
   const rawType = pathname.replace(/\/$/, "").split("/").pop() ?? "";
 
+  const cleanRawType = rawType.replace(/\.html$/i, "");
+
   const baseType = location
-    ? rawType.replace(new RegExp(location, "i"), "").replace(/^-|-$/g, "")
-    : rawType;
+    ? cleanRawType
+        .replace(new RegExp(`^${location}-`, "i"), "")
+        .replace(new RegExp(`-${location}$`, "i"), "")
+    : cleanRawType;
 
   const formattedServiceName = baseType
     .split("-")
