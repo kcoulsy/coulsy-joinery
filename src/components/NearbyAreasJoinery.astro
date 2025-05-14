@@ -12,15 +12,13 @@ const radius = 20;
 const nearbyLocations = getNearbyLocations(location, radius);
 ---
 
-<section class="w-full py-12 md:py-24 lg:py-30">
+<section class="w-full py-6 md:py-10 lg:py-12">
   <div class="px-4 md:px-6">
     <div
       class="flex flex-col items-center justify-center space-y-4 text-center"
     >
       <div class="space-y-2">
-        <p
-          class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
-        >
+        <p class="max-w-[700px] text-gray-500 text-sm md:text-base">
           I carry out joinery work for clients
           {location ? ` near ${capitalizeFirstLetter(location)}` : ""}, whether
           you’re in a village, town or city. Just let me know where you are —
@@ -30,18 +28,19 @@ const nearbyLocations = getNearbyLocations(location, radius);
     </div>
 
     <div
-      class="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 text-center"
+      class="mx-auto grid max-w-5xl grid-cols-1 gap-4 py-6 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-6 text-center"
     >
       {
         nearbyLocations.map(({ slug, distance }) => (
           <a
-            class="group rounded-lg bg-white p-3 shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
+            class="group rounded-lg bg-white p-2 text-sm shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
             href={`/joinery-services/${slug}-joinery`}
           >
             <div class="text-base font-medium text-gray-800 group-hover:text-yellow-700">
-              {capitalizeFirstLetter(slug)}
+              {slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
             </div>
-            <div class="text-xs text-gray-500">
+
+            <div class="text-[11px] text-gray-500">
               {distance.toFixed(1)} miles away
             </div>
           </a>
