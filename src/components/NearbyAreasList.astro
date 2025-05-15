@@ -1,0 +1,98 @@
+---
+import { getNearbyLocations } from "../utils/getNearbyLocations";
+import Footer from "./NearbyAreasFooter.astro";
+
+interface Props {
+  location?: string;
+}
+
+const { location } = Astro.props;
+const url = Astro.url.pathname;
+
+const segments = url.split("/").filter(Boolean);
+const currentSlug = segments[1] || segments[0] || "";
+
+const isJoiner = currentSlug.endsWith("-joiner") || url === "/joiner";
+const isJoinery = currentSlug.endsWith("-joinery") || url === "/joinery";
+const isCarpenter = currentSlug.endsWith("-carpenter") || url === "/carpenter";
+
+let serviceText = "I provide my services in nearby areas";
+let suffix = "";
+let radius = 20;
+let basePath = "joinery-services";
+
+if (
+  url === "/joiner" ||
+  url.startsWith("/joiner/") ||
+  currentSlug.endsWith("-joiner")
+) {
+  serviceText = "I work as a joiner in nearby areas";
+  suffix = "-joiner";
+  radius = 15;
+} else if (
+  url === "/joinery" ||
+  url.startsWith("/joinery/") ||
+  currentSlug.endsWith("-joinery")
+) {
+  serviceText = "I provide joinery services in nearby areas";
+  suffix = "-joinery";
+  radius = 10;
+} else if (
+  url === "/carpenter" ||
+  url.startsWith("/carpenter/") ||
+  currentSlug.endsWith("-carpenter")
+) {
+  serviceText = "I offer carpenter services in nearby areas";
+  suffix = "-carpenter";
+  radius = 12;
+}
+basePath = "joinery-services";
+
+const nearbyLocations = getNearbyLocations(location, radius);
+
+// Helper to format slugs as nice titles
+const formatSlug = (s: string) =>
+  s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Helper to strip suffix from slug
+const stripSuffix = (slug: string, suffix: string) => {
+  if (!suffix || !slug.endsWith(suffix)) return slug;
+  return slug.slice(0, -suffix.length);
+};
+---
+
+<section class="w-full py-6 md:py-10 lg:py-12">
+  <div class="px-4 md:px-6">
+    <div class="text-center">
+      <p class="max-w-[700px] text-gray-500 text-sm md:text-base mx-auto">
+        {
+          `${serviceText}${location ? ` around ${formatSlug(location)}` : ""}, whether it’s a village, town or city. Let me know where you are — I’ll always try to help.`
+        }
+      </p>
+    </div>
+
+    <div
+      class="mx-auto grid max-w-5xl grid-cols-1 gap-4 py-6 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-6 text-center"
+    >
+      {
+        nearbyLocations.map(({ slug, distance }) => {
+          const finalSlug = slug.endsWith(suffix) ? slug : `${slug}${suffix}`;
+          return (
+            <a
+              class="group rounded-lg bg-white p-2 text-sm shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
+              href={`/${basePath}/${finalSlug}`}
+            >
+              <div class="text-base font-medium text-gray-800 group-hover:text-yellow-700">
+                {formatSlug(stripSuffix(finalSlug, suffix))}
+              </div>
+              <div class="text-xs text-gray-500">
+                {distance.toFixed(1)} miles from here
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+    <Footer />
+  </div>
+</section>
