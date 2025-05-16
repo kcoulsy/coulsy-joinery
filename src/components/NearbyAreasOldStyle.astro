@@ -1,6 +1,7 @@
 ---
 import { NEARBY_LOCATIONS } from "../constants/locations";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+import Footer from "./NearbyAreasFooter.astro";
 
 interface Props {
   location?: string;
@@ -47,17 +48,6 @@ if (location && NEARBY_LOCATIONS[location]) {
         ))
       }
     </div>
-
-    <div class="text-center mt-8">
-      <p class="text-gray-600">
-        Don’t see your area? Just
-        <a
-          href="/contact"
-          class="text-yellow-700 font-semibold underline hover:text-yellow-800"
-          >get in touch</a
-        >
-        — we may still be able to help.
-      </p>
-    </div>
+    <Footer />
   </div>
 </section>
