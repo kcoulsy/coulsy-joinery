@@ -6,6 +6,7 @@ import GalleryGrid from "../../components/GalleryGrid.astro";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
 import NearbyAreas from "../../components/NearbyAreasGeneralJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
 
 import galleryImg1 from "../../assets/images/timber20joinery.jpg";
 import galleryImg2 from "../../assets/images/moulding_plane.png";
@@ -31,7 +32,7 @@ const alt = location
   ? typeFormated +
     " in " +
     locationFormated +
-    " by Coulsy Joinery for all your " +
+    " by Robert, local joiner for all your " +
     locationFormated +
     " carpentry and joinery services"
   : typeFormated;
@@ -57,12 +58,12 @@ const alt = location
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            At Coulsy Joinery, we take pride in providing reliable, high-quality
-            general joinery services{location ? " in " + locationFormated : ""}.
-            I'm Robert Coulson, a fully time-served joiner with a lifelong
-            passion for construction and joinery. With over 30 years of hands-on
-            experience, I lead our small, trusted team delivering work we are
-            genuinely proud of.
+            I take pride in providing reliable, high-quality general joinery
+            services{location ? " in " + locationFormated : ""}. I’m Robert, a
+            fully time-served joiner with a lifelong passion for construction
+            and woodwork. With over 30 years of hands-on experience, I
+            personally carry out and oversee every job, working with a small,
+            trusted team to deliver work we're proud of.
           </p>
 
           <p>
@@ -95,23 +96,34 @@ const alt = location
 
           <h3 class="font-semibold text-lg">Dependable Craftsmanship</h3>
           <p>
-            When you choose Coulsy Joinery, you're choosing real tradesmen who
-            care about the finish and the small details. We take the same care
-            on a simple door hanging as we do on a full renovation.
+            When you work with me, you’re getting real craftsmanship — I care
+            about the finish and the finer details. We take the same care on a
+            simple door hanging as we do on a full renovation.
+          </p>
+          <p>
+            I'm a <a
+              href="/qualifications"
+              class="text-blue-700 font-semibold hover:underline"
+            >
+              fully qualified City & Guilds joiner</a
+            > with decades of practical site experience.
           </p>
 
           <h3 class="font-semibold text-lg">Reliable Service</h3>
           <p>
-            We believe in doing what we say, turning up when we say, and leaving
-            your home clean and tidy. No corporate nonsense — just honest,
-            reliable joinery work{location ? " in " + locationFormated : ""}.
+            I believe in doing what I say, turning up on time, and leaving your
+            home clean and tidy. No corporate nonsense — just honest, reliable
+            joinery work{location ? " in " + locationFormated : ""}.
           </p>
 
           <h3 class="font-semibold text-lg">Skilled and Experienced</h3>
           <p>
-            As a fully qualified City & Guilds joiner, I’ve built a reputation
-            for honest advice, quality workmanship, and treating every home like
-            my own.
+            I’m a <a
+              href="/about#qualifications"
+              class="text-blue-700 font-semibold hover:underline"
+              >fully qualified City & Guilds joiner</a
+            > and I’ve built a reputation for honest advice, quality workmanship,
+            and treating every home with care.
           </p>
 
           <h3 class="font-semibold text-lg">Get in Touch</h3>
@@ -122,9 +134,11 @@ const alt = location
             a no-pressure quote. Please feel free to <a
               href="/contact"
               class="font-semibold text-blue-700 hover:underline">contact us</a
-            >.
+            >
           </p>
+          <ReviewsLinkSection />
         </div>
+
         <aside class="w-full flex flex-col items-stretch gap-6">
           <div class="w-full order-last md:order-none">
             <GalleryGrid
@@ -132,7 +146,7 @@ const alt = location
                 {
                   src: galleryImg1,
                   label: "Traditional Timber Joinery Project",
-                  alt: `Traditional timber joinery work including door and frame by Coulsy Joinery ${locationInText}`,
+                  alt: `Traditional timber joinery work including door and frame by Robert, local joiner ${locationInText}`,
                 },
                 {
                   src: galleryImg2,
@@ -147,7 +161,7 @@ const alt = location
                 {
                   src: galleryImg4,
                   label: "Bespoke Wooden Garage Door",
-                  alt: `Handmade wooden garage door installed by Coulsy Joinery ${locationInText}`,
+                  alt: `Handmade wooden garage door installed by Robert, local joiner ${locationInText}`,
                 },
                 {
                   src: galleryImg5,
@@ -181,7 +195,7 @@ const alt = location
         </aside>
       </div>
 
-      <NearbyAreas location={location} />
+      <NearbyAreas />
     </section>
   </main>
 </Layout>
