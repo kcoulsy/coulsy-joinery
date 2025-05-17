@@ -1,20 +1,25 @@
 ---
+import Layout from "../layouts/Layout.astro";
+
 import ContactForm from "../components/ContactForm.astro";
 import OfficeIcon from "../icons/OfficeIcon.astro";
 import CardChecklist from "../icons/CardChecklist.astro";
 import EnvelopeIcon from "../icons/EnvelopeIcon.astro";
 import PhoneIcon from "../icons/PhoneIcon.astro";
-import Layout from "../layouts/Layout.astro";
 import { DETAILS } from "../constants/details";
 ---
 
 <Layout title="Contact Us" classes="mt-8 mb-16">
-  
   <div class="container mx-auto sm:px-4 pb-12">
     <div class="flex flex-wrap mt-5 mb-4">
       <div class="relative flex-grow max-w-full flex-1 px-4 pb-12">
-        <h1 class="text-3xl font-bold">Contact Us</h1>
-        <p class="text-xl font-light mb-4 mt-1">Getting in touch is so easy.</p>
+        <h1 class="text-3xl font-bold">
+          Contact a Trusted York-Based Joinery Business
+        </h1>
+        <p class="text-xl font-light mb-4 mt-1">
+          Let’s talk about your project — from small repairs to full
+          renovations, I’d be happy to help.
+        </p>
         <p>
           We always look forward to hearing from you and being able to assist
           where we can.
@@ -29,6 +34,10 @@ import { DETAILS } from "../constants/details";
         >
           <h4 class="text-color-dark mb-1 pb-3">Instant message</h4> -->
         <ContactForm />
+        <p class="mt-4 text-sm text-gray-700 text-center">
+          Prefer to chat directly? Give me a ring — I’m happy to talk things
+          through.
+        </p>
         <!-- <form id="contact-form" method="post" action="submit-form">
             <div class="mb-4">
               <label for="form-name">Name</label>
@@ -125,12 +134,14 @@ import { DETAILS } from "../constants/details";
         <div
           class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 p-6 shadow-2xl"
         >
-        <OfficeIcon className="h-4 w-4 inline-block" />
+          <OfficeIcon className="h-4 w-4 inline-block" />
           <h4 class="text-color-dark mb-1 pb-2">Office</h4>
 
           <ul class="list list-icons mt-3 mb-3">
-            <p class="text-4 mb-0"></p><li style="list-style: none;">{DETAILS.ADDRESS.LINE_1}<br
-              />{DETAILS.ADDRESS.LINE_2}<br />{DETAILS.ADDRESS.TOWN}<br />{DETAILS.ADDRESS.COUNTY}<br />{DETAILS.ADDRESS.POSTCODE}
+            <p class="text-4 mb-0"></p><li style="list-style: none;">
+              {DETAILS.ADDRESS.LINE_1}<br />{DETAILS.ADDRESS.LINE_2}<br />{
+                DETAILS.ADDRESS.TOWN
+              }<br />{DETAILS.ADDRESS.COUNTY}<br />{DETAILS.ADDRESS.POSTCODE}
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">
@@ -170,7 +181,8 @@ import { DETAILS } from "../constants/details";
             </li>
             <p></p>
             <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <CardChecklist className="h-4 w-4 inline-block" /> VAT registered: upon request
+              <CardChecklist className="h-4 w-4 inline-block" /> VAT registered:
+              upon request
             </li>
             <p></p>
           </ul>

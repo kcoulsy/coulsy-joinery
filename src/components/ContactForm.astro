@@ -7,10 +7,10 @@ import { DETAILS } from "../constants/details";
 >
   <h2 class="text-3xl">Enquire</h2>
   <h3 class="text-3xl font-bold mb-1">
-    Call or text : {DETAILS.FIRST_NAME}
+    Call or text: {DETAILS.FIRST_NAME}
     <a
       href={`tel:${DETAILS.PHONE}`}
-      style="text-decoration: none; color: #ff1d1d; font-weight: bold; letter-spacing: 1px;"
+      class="text-blue-700 font-semibold hover:underline ml-1"
       >{DETAILS.PHONE}</a
     >
   </h3>
@@ -92,14 +92,14 @@ import { DETAILS } from "../constants/details";
     <button
       type="submit"
       id="submit-form"
-      class="mt-2 bg-brand text-white rounded-sm p-2 text-lg"
+      class="mt-2 bg-green-600 hover:bg-green-700 text-white rounded-sm p-2 text-lg"
       >Submit Form</button
     >
   </form>
 
   <div
     id="contact-error-alert"
-    class="p-6 bg-red-700 text-white mt-2 mb-0"
+    class="p-6 bg-blue-800 text-white mt-2 mb-0"
     role="alert"
     style="display: none;"
   >
@@ -108,7 +108,7 @@ import { DETAILS } from "../constants/details";
 
   <div
     id="contact-success-alert"
-    class="p-6 bg-brand text-white mt-2 mb-0"
+    class="p-6 bg-green-600 text-white mt-2 mb-0"
     role="alert"
     style="display: none;"
   >
