@@ -1,8 +1,12 @@
 ---
-import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
-import NearbyAreas from "../../components/NearbyAreasSteelExitDoors.astro"; // this location is unique a specific for the service offered !! CHECK
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+
+// import NearbyAreas from "../../components/NearbyAreasList.astro";
+import NearbyAreas from "../../components/NearbyAreasSteelExitDoors.astro"; // this location is unique a specific for the service offered !! CHECK
 
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/steel-exit-doors/Security-Fire-Exit-Bar-510x510.jpg";
@@ -207,6 +211,7 @@ const alt = location
               >free consultation</a
             >.
           </h2>
+          <ReviewsLinkSection />
         </div>
 
         <aside class="w-full flex flex-col items-stretch gap-6 mt-6">
@@ -264,8 +269,7 @@ const alt = location
           </div>
         </aside>
       </div>
-
-      <NearbyAreas location={location} />
+      <NearbyAreas />
     </section>
   </main>
 </Layout>

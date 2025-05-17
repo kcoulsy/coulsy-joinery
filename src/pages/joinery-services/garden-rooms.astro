@@ -1,8 +1,12 @@
 ---
-import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
-import NearbyAreas from "../../components/NearbyAreasGardenRooms.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+
+// import NearbyAreas from "../../components/NearbyAreasList.astro";
+import NearbyAreas from "../../components/NearbyAreasGardenRooms.astro"; // this location is unique a specific for the service offered !! CHECK
 
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/garden-rooms/garden-rooms-image1.jpg";
@@ -186,6 +190,7 @@ const alt = location
             >, purpose-built for home working with enhanced thermal performance
             and professional finishes.
           </p>
+          <ReviewsLinkSection />
         </div>
 
         <aside
@@ -233,8 +238,7 @@ const alt = location
           </div>
         </aside>
       </div>
-
-      <NearbyAreas location={location} />
+      <NearbyAreas />
     </section>
   </main>
 </Layout>

@@ -1,8 +1,12 @@
 ---
-import ContactForm from "../../components/ContactForm.astro";
 import Layout from "../../layouts/Layout.astro";
-import NearbyAreas from "../../components/NearbyAreasKitchenInstallers.astro"; // this location is unique a specific for the service offered !! CHECK
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+
+// import NearbyAreas from "../../components/NearbyAreasList.astro";
+import NearbyAreas from "../../components/NearbyAreasKitchenInstallers.astro"; // this location is unique a specific for the service offered !! CHECK
 
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/kitchens/kitchen-fitter-domestic.jpg";
@@ -222,6 +226,7 @@ const alt = location
               >free consultation</a
             >. Let's make your dream kitchen a reality.
           </p>
+          <ReviewsLinkSection />
         </div>
 
         <aside
@@ -287,7 +292,7 @@ const alt = location
         Coulsy Joinery fits kitchens across the region — delivering quality
         joinery services tailored to your project.
       </p>
-      <NearbyAreas location={location} />
+      <NearbyAreas />
     </section>
   </main>
 </Layout>
