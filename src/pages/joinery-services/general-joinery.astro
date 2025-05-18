@@ -16,59 +16,60 @@ import galleryImg4 from "../../assets/images/bespoke-joinery/handmade-wooden-gar
 import galleryImg5 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 import galleryImg6 from "../../assets/images/bespoke-joinery/herringbone-flooring.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "General Joinery";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Robert, local joiner for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Friendly, high-quality joinery services ${locationInText} from a time-served local joiner with 30+ years’ experience. From bespoke woodwork to careful repairs — all finished to a standard I’d want in my own home.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Trusted Local Joiner for Doors, Floors, Stairs & Repairs`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
             I take pride in providing reliable, high-quality general joinery
-            services{location ? " in " + locationFormated : ""}. I’m Robert, a
-            fully time-served joiner with a lifelong passion for construction
-            and woodwork. With over 30 years of hands-on experience, I
-            personally carry out and oversee every job, working with a small,
-            trusted team to deliver work we're proud of.
+            services{locationInText}. I’m Robert, a fully time-served joiner
+            with a lifelong passion for construction and woodwork. With over 30
+            years of hands-on experience, I personally carry out and oversee
+            every job, working with a small, trusted team to deliver work we're
+            proud of.
           </p>
 
           <p>
-            Whether you need a door hanging, new skirting boards, or a complete
+            Whether you need a door hung, new skirting boards, or a complete
             internal refurbishment, you’ll always deal directly with experienced
             craftsmen. We bring traditional skills and modern techniques
             together, ensuring your project is completed properly, first time.
@@ -77,12 +78,12 @@ const alt = location
           <p>
             From small repairs to larger improvements, we offer a personal,
             straightforward service for homeowners, landlords, and businesses{
-              location ? " in " + locationFormated : ""
+              locationInText
             }.
           </p>
 
           <h3 class="font-semibold text-lg">
-            General Joinery Services{location ? " in " + locationFormated : ""}
+            General Joinery Services{locationInText}
           </h3>
           <ul>
             <li>Door hanging and adjustments</li>
@@ -114,7 +115,7 @@ const alt = location
           <p>
             I believe in doing what I say, turning up on time, and leaving your
             home clean and tidy. No corporate nonsense — just honest, reliable
-            joinery work{location ? " in " + locationFormated : ""}.
+            joinery work{locationInText}.
           </p>
 
           <h3 class="font-semibold text-lg">Skilled and Experienced</h3>
@@ -129,10 +130,9 @@ const alt = location
 
           <h3 class="font-semibold text-lg">Get in Touch</h3>
           <p>
-            If you're planning any joinery work{
-              location ? " in " + locationFormated : ""
-            }, we'd be happy to have a friendly chat, offer advice, and provide
-            a no-pressure quote. Please feel free to <a
+            If you're planning any joinery work{locationInText}, we'd be happy
+            to have a friendly chat, offer advice, and provide a no-pressure
+            quote. Please feel free to <a
               href="/contact"
               class="font-semibold text-blue-700 hover:underline">contact us</a
             >
@@ -187,9 +187,9 @@ const alt = location
                 Get in Touch About Joinery Work
               </h2>
               <p class="text-gray-600 mb-6 text-center">
-                Thinking about general joinery improvements? Whether it’s
-                repairs, upgrades, or a full interior refit — I’d be happy to
-                have a chat and see how I can help.
+                Considering general joinery work? Whether it’s repairs,
+                upgrades, or a complete interior refit — I’d be happy to chat
+                and see how I can help.
               </p>
               <ContactForm />
             </div>

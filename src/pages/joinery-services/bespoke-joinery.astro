@@ -15,59 +15,60 @@ import galleryImg3 from "../../assets/images/bespoke-joinery/handmade-wooden-gar
 import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 import galleryImg5 from "../../assets/images/bespoke-joinery/herringbone-flooring.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Bespoke Joinery";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Bespoke joinery services ${locationInText.trim()} — handcrafted woodwork, staircases, doors, windows and more. 30+ years of trusted local expertise for unique commissions and quality installations.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText.trim()} | Bespoke Joinery for Doors, Windows & Staircases`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            With over 30 years of experience in carpentry and joinery, we serve
-            clients in the domestic, commercial, and industrial sectors. Our
-            truly bespoke joinery service ensures high-quality craftsmanship.
+            Hi, I’m Robert — a time-served joiner with over 30 years of hands-on
+            experience in bespoke carpentry. I work on one-off commissions, site
+            joinery, traditional framing, and fine finishing — offering reliable
+            bespoke joinery services {locationInText}.
           </p>
           <p>
-            We offer tailor-made joinery products{
-              location ? " in " + locationFormated : ""
-            }, available for supply only or supply and installation. By adopting
-            both traditional and modern woodworking techniques, we produce
-            high-quality products with exceptional workmanship.
+            Whether you need something unique crafted from scratch or a reliable
+            install, I provide tailor-made joinery solutions{locationInText}.
+            Every job is different, so I combine traditional craftsmanship with
+            precision tools and quality materials to get it just right.
           </p>
           <p>
             Our joiners are proficient in both modern and traditional 1st Fix
@@ -79,17 +80,14 @@ const alt = location
             suppliers, we strive to provide the best possible service. Our range
             of services includes high-quality doors, windows, staircases,
             skirtings, architraves, ironmongery installation, traditional roofs,
-            truss roofs, and shop fitting {
-              location ? "in " + locationFormated : ""
-            }.
+            truss roofs, and shop fitting {locationInText}.
           </p>
 
           <h2 class="font-semibold text-lg">Dependable</h2>
           <p>
-            If you require bespoke joinery{
-              location ? " in " + locationFormated : ""
-            }, Coulsy Joinery is the dependable provider capable of meeting your
-            precise requirements and ensuring customer satisfaction.
+            If you require bespoke joinery{locationInText}, Coulsy Joinery is
+            the dependable provider capable of meeting your precise requirements
+            and ensuring customer satisfaction.
           </p>
           <h2 class="font-semibold text-lg">Reliable</h2>
           <p>
@@ -104,15 +102,17 @@ const alt = location
 
           <h2 class="font-semibold text-lg">City &amp; Guilds Certified</h2>
           <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
+            I hold a City & Guilds Advanced Craft Certificate and bring genuine
+            pride to every job. If you'd like to know more about my background
+            and qualifications, feel free to <a
+              href="/qualifications"
+              class="font-semibold text-blue-700 hover:underline"
+              >view my credentials</a
+            >.
           </p>
           <p>
-            We can provide more information and answer any questions you may
-            have. Please feel free to <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
-            >.
+            If you're looking for bespoke joinery{locationInText} — with honest advice
+            and a finish you'll be proud of — I'd love to hear from you.
           </p>
           <ReviewsLinkSection />
         </div>
@@ -149,21 +149,17 @@ const alt = location
               ]}
             />
           </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-              >
-                Get in Touch About Your Bespoke Joinery Project
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Whether you’re planning fitted furniture, custom woodwork, or
-                handcrafted doors and windows — feel free to get in touch. I’d
-                be happy to discuss how we can help with your bespoke joinery
-                needs.
-              </p>
-              <ContactForm />
-            </div>
+          <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md w-full">
+            <h2
+              class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+            >
+              Get in Touch About Your Joinery Project
+            </h2>
+            <p class="text-gray-600 mb-6 text-center">
+              Whether it’s a bespoke staircase, sash window repair, or a full
+              joinery refit — I’d be happy to chat and see how I can help..
+            </p>
+            <ContactForm />
           </div>
         </aside>
       </div>

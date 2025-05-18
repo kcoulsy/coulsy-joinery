@@ -6,7 +6,7 @@ import { getFormattedPageData } from "../../utils/pageMeta";
 import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
-import NearbyAreas from "../../components/NearbyAreasJoiner.astro";
+import NearbyAreas from "../../components/NearbyAreasJoiner.astro"; // this location is unique a specific for the service offered !! CHECK
 
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/moulding_plane.png";
@@ -20,17 +20,13 @@ const {
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
-const cleanLocation = locationInText
-  .trim()
-  .replace(/^in\s*/, "")
-  .replace(/-/g, " ");
 
-const description = `Personal, high-quality joinery services ${locationInText.trim()} from a time-served joiner with over 30 years of experience. Bespoke woodwork, repairs, and installations done the right way.`;
+const description = `Personal, high-quality joinery services ${locationInText} from a time-served joiner with over 30 years of experience. Bespoke woodwork, repairs, and installations done the right way.`;
 const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText.trim()} | Expert Local Joiner for Doors, Windows & Staircases`}
+  title={`${formattedServiceName} ${locationInText} | Expert Local Joiner for Doors, Windows & Staircases`}
   description={finalDescription}
 >
   <Fragment slot="head">
@@ -106,11 +102,9 @@ const finalDescription = description || defaultDescription;
             >.
           </p>
           <p>
-            If you’re in{
-              locationInText.trim() ? locationInText : " the local area"
-            } and you’re looking for a joiner who’s easy to deal with, does things
-            properly, and really cares about the result — I’d be glad to have a chat.
-            Just
+            If you’re in{locationInText ? locationInText : " the local area"} and
+            you’re looking for a joiner who’s easy to deal with, does things properly,
+            and really cares about the result — I’d be glad to have a chat. Just
             <a
               href="/contact"
               class="font-semibold text-blue-700 hover:underline"
@@ -155,12 +149,7 @@ const finalDescription = description || defaultDescription;
             </h2>
             <p class="text-gray-600 mb-6 text-center">
               Whether it’s a bespoke staircase, sash window repair, or a full
-              joinery refit — I’d be happy to chat and see how I can help. You
-              can also <a
-                href="/about#reviews"
-                class="font-semibold text-blue-700 hover:underline"
-                >check out our reviews here</a
-              >.
+              joinery refit — I’d be happy to chat and see how I can hel.
             </p>
             <ContactForm />
           </div>

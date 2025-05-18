@@ -31,6 +31,7 @@ export function getFormattedPageData(Astro: any): {
   const locationFormated = location ? capitalizeFirstLetter(location) : "";
   const locationInText = location ? ` in ${locationFormated}` : "";
 
+
   const fallbackGeo = { lat: 53.9655, lng: -1.205 };
   const geo = LOCATIONS.find((l) => l.slug === location) ?? fallbackGeo;
 

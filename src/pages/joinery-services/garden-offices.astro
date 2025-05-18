@@ -14,189 +14,103 @@ import galleryImg2 from "../../assets/images/garden-offices/garden-office-image2
 import galleryImg3 from "../../assets/images/garden-offices/garden-office-image3.jpg";
 import galleryImg4 from "../../assets/images/garden-offices/garden-office-image4.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Garden Offices";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Beautifully designed, fully insulated garden offices ${locationInText} — built by a time-served joiner with 30+ years of experience. Bespoke, energy-efficient, and built to last.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Beautiful Bespoke Garden Offices — Designed & Built to Last`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? " in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
+
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            I'm Robert Coulson, a fully time-served joiner based in Yorkshire,
-            and one of the services I’m proud to offer{
-              location ? " in " + locationFormated : ""
-            } is building exceptional {typeFormated}.
-          </p>
-          <p>Transform Your Garden into a Personal Oasis</p>
-          <p>
-            Are you dreaming of a space that combines the tranquility of nature
-            with the functionality of a modern workspace {
-              location ? "in " + locationFormated : ""
-            }?
+            I'm Robert, a time-served joiner based near York. I design and build
+            bespoke garden offices that balance form and function — crafted with
+            care, precision, and over 30 years of hands-on experience. If you’re
+            looking for a garden office that feels truly part of your home, I’d
+            love to help.
           </p>
           <p>
-            I work closely with each client from first sketch to final screw. I
-            specialise in designing and building bespoke garden offices in the
-            heart of{location ? " " + locationFormated : ""}. Whether you need a
-            calm workspace, a creative studio, or a personal retreat, I take
-            care to bring your vision to life with thoughtful, handcrafted
-            solutions.
+            Transform your outdoor space into a peaceful, practical escape —
+            ideal for working, creating, or simply unwinding.
           </p>
           <p>
-            If you already have an architect’s design or a clear vision in mind,
-            I’m more than happy to work collaboratively with you or your design
-            team. Whether it’s a fully detailed architectural drawing or a rough
-            sketch on paper, I’ll help turn it into a beautifully built,
-            functional space that reflects your ideas and meets all practical
-            requirements.
-          </p>
-
-          <h3 class="font-semibold text-lg">Custom Designs</h3>
-          <p>
-            Every garden office we create is tailored to your specific needs and
-            preferences. From contemporary designs to classic styles, we ensure
-            your new space complements your garden and lifestyle.
-          </p>
-          <h3 class="font-semibold text-lg">Engineered for Performance</h3>
-          <p>
-            Our garden offices aren't just good looking — they're built to
-            perform. We use high-performance wall systems with insulated timber
-            frames and breathable membranes, finished to suit your style. These
-            structures meet or exceed modern thermal efficiency expectations,
-            keeping you warm in winter and cool in summer — with lower energy
-            costs, too.
+            Every project starts with a conversation. Whether you have a sketch,
+            a full set of plans, or just a rough idea, I’ll work with you to
+            shape it into a beautiful, durable garden office that suits your
+            needs and your site.
           </p>
           <p>
-            Whether you choose traditional cladding or contemporary finishes,
-            your new garden office is crafted for year-round use and long-term
-            durability. Plus, a well-built garden office can significantly boost
-            your property’s value by adding premium, versatile space with strong
-            aesthetic appeal.
-          </p>
-          <h3 class="font-semibold text-lg">Quality Craftsmanship</h3>
-          <p>
-            I use only the finest materials and cutting-edge construction
-            techniques to ensure long-term durability and all-season comfort.
-            Unlike some, I don’t cut corners or compromise on quality — I choose
-            premium-grade materials because it matters. That might not make us
-            the cheapest option, but it ensures your garden office is built to
-            the highest standards, with no shortcuts.
-          </p>
-          <h3 class="font-semibold text-lg">Sustainable Solutions</h3>
-          <p>
-            I care about the environment as much as you do. That’s why we offer
-            eco-friendly options that integrate seamlessly with your garden and
-            reduce your carbon footprint..
-          </p>
-          <h3 class="font-semibold text-lg">Local Expertise</h3>
-          <p>
-            Based in York, I understand the local architecture and landscape,
-            allowing us to design garden spaces that enhance the beauty and
-            value of your property.
-          </p>
-          <h3 class="font-semibold text-lg">
-            Your Perfect Garden Office Awaits {
-              location ? "in " + locationFormated : ""
-            }
-          </h3>
-          <p>
-            Imagine stepping into your own private retreat without leaving your
-            property. Whether it’s a cozy reading nook, a fully equipped office,
-            or a vibrant studio, your ideal space is just a few steps away. Our
-            team is passionate about helping you create a garden office that is
-            as unique as you are, providing a seamless blend of indoor comfort
-            and outdoor charm.
-          </p>
-          <h3 class="font-semibold text-lg">Discover the Possibilities</h3>
-          <p>
-            Explore our gallery of completed projects and discover how we’ve
-            helped homeowners throughout {
-              location ? " " + locationFormated : ""
-            } transform their gardens. Each project reflects our commitment to excellence
-            and our dedication to customer satisfaction.
-          </p>
-
-          <h3 class="font-semibold text-lg">
-            Rules & Regulations — What You Need to Know
-          </h3>
-          <p>
-            Most garden offices can be built without planning permission thanks
-            to permitted development rights, but there are important rules to
-            keep in mind. In general, your garden office must be no taller than
-            2.5m if it’s within 2 metres of a boundary, and the total height
-            should not exceed 4m for pitched roofs or 3m for flat roofs. It must
-            be located behind your home—not in front of the principal elevation.
+            I use high-quality, insulated timber frames and premium materials to
+            make sure your garden office is warm, efficient, and built to last.
+            Each build is tailored to your style, space, and how you want to use
+            it — from a focused workspace to a creative studio or a relaxing
+            retreat.
           </p>
           <p>
-            If you live in a conservation area, an Area of Outstanding Natural
-            Beauty (AONB), or in a listed property, additional restrictions may
-            apply. I’m happy to advise you based on your site and layout.
+            As a local joiner working across {locationInText}, I know how to
+            tailor garden rooms to your space, property style, and planning
+            context — making sure they sit naturally and add real value.
           </p>
           <p>
-            Even if planning isn’t needed, certain features may trigger Building
-            Regulations—for example, if the office is over 15m², used for
-            sleeping, or includes electrics or plumbing. While small offices are
-            often exempt, I always build to meet or exceed Building Regulation
-            standards where relevant, including proper insulation, ventilation,
-            and electrical safety.
+            Your ideal garden office is just a few steps away. Let’s design
+            something warm, welcoming, and built to last — whether it's a quiet
+            studio, a work-from-home hub, or a retreat from the daily rush.
+          </p>
+          <h3 class="font-semibold text-lg">Rules & Regulations</h3>
+          <p>
+            Most garden offices can be built without planning permission, as
+            long as they meet certain limits on height, placement, and use. I’ll
+            talk you through what applies and make sure the build complies with
+            relevant Building Regs, especially for insulation and electrics.
           </p>
           <p>
-            If you're planning to use the space for business, and it involves
-            regular customers or deliveries, we’ll need to check with your local
-            planning authority. For quiet home working, you’re usually fine.
-          </p>
-
-          <p class="font-semibold text-blue-700 hover:underline text-lg">
-            <a href="/contact">Contact Us Today</a>
+            Ready to get started? <a
+              href="/contact"
+              class="text-blue-700 underline hover:text-blue-900"
+              >Get in touch</a
+            > for a free consultation.
           </p>
           <p>
-            Contact me today for a friendly chat and a free consultation, and
-            let’s discuss how we can create the perfect garden office for you.
-            For us, your garden isn’t just a backyard—it’s a destination.
-          </p>
-
-          <p>
-            Just looking for a cozy escape without all the insulation,
-            electrics, or office-grade requirements? You may prefer one of our <a
+            After something simpler? My <a
               href="/joinery-services/garden-rooms"
               class="text-blue-700 underline hover:text-blue-900"
               >bespoke garden rooms</a
-            > — perfect for relaxing, hobbies, or simply enjoying your outdoor space
-            in comfort.
+            > are perfect for relaxing, hobbies, or enjoying your garden in comfort.
           </p>
           <ReviewsLinkSection />
         </div>

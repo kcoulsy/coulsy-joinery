@@ -6,7 +6,7 @@ import { getFormattedPageData } from "../../utils/pageMeta";
 import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
-import NearbyAreas from "../../components/NearbyAreasJoinery.astro";
+import NearbyAreas from "../../components/NearbyAreasJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
 
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/moulding_plane.png";
@@ -20,10 +20,6 @@ const {
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
-const cleanLocation = locationInText
-  .trim()
-  .replace(/^in\s*/, "")
-  .replace(/-/g, " ");
 
 const description = `Personal, high-quality joinery services ${locationInText.trim()} from a time-served joiner with over 30 years of experience. Bespoke woodwork, repairs, and installations done the right way.`;
 const finalDescription = description || defaultDescription;

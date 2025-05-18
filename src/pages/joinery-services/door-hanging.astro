@@ -17,69 +17,60 @@ import galleryImg4 from "../../assets/images/doors/fire-doors-sign.png";
 import FireStats from "../../components/FireStats.astro";
 import CommonFaults from "../../components/CommonFaults.astro";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Door Hanging";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery door and frame fitting services"
-  : typeFormated;
+const description = `Professional door hanging services ${locationInText} by a City & Guilds qualified joiner. Internal, external, and fire door installation with precision and care. Over 30 years' experience.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Professional Door Hanging Services by a Qualified Joiner`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            I’ve been fitting doors for years — from single internal doors to
-            full fire door packages. If you're after reliable, tidy work and
-            someone who turns up when they say they will, you're in the right
-            place. I work with all kinds of doors: wood, metal, composite, even
-            UPVC — and I’ll help make sure what you choose is right for your
-            space and needs.
-            <br />
-            You can also take a look at my <a
-              href="/about/qualifications"
-              class="text-blue-700 font-semibold hover:underline"
-              >Qualifications</a
-            > to see the skills and training I bring to every job.
+            I’m Robert, a City & Guilds qualified joiner with over 30 years of
+            experience fitting all types of doors — from standard internal doors
+            to full fire door packages. I take real pride in doing things
+            properly, with neat finishes and solid installs that last.
           </p>
           <p>
-            It’s not just about hanging a door — it’s about doing it right. As a
-            fully qualified joiner, I make sure your doors are fitted properly
-            the first time, avoiding the common problems you get with poor
-            installs: draughts, sticking doors, uneven gaps, or unsafe fittings.
-            When you hire someone trained and certified, you're investing in a
-            job that lasts.
+            I cover all door types — timber, composite, metal, and more — and
+            I’ll help you find the right solution for your property. Whether
+            it’s a new door set, a fire-rated upgrade, or replacing tired old
+            doors, I make sure the fit and finish are spot on.
           </p>
           <p>
             If you're specifically looking for a steel fire escape door, check
@@ -94,81 +85,57 @@ const alt = location
           <hr class="my-6 border-gray-200" />
 
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">
-            What Makes Us Different
+            Why Clients Choose Me
           </h2>
           <p>
-            A lot of people can hang a door — but only a qualified joiner knows
-            how to do it to a professional standard. From fire doors to
-            high-traffic internal doors, my training and experience mean I spot
-            and avoid the issues that lead to faults later on.
+            A lot of trades can fit a door — but not everyone does it to a
+            proper standard. I don’t rush, I don’t bodge, and I don’t leave you
+            with gaps, draughts, or sticking doors. Everything gets checked and
+            fitted with care.
           </p>
           <p>
-            We take extra care in everything we do — not just the joinery
-            itself, but how we work around your home or site. Every task area is
-            fully protected before we start, and we make sure everything is
-            thoroughly cleaned afterwards.
+            I treat your home with respect: floors are protected, mess is kept
+            to a minimum, and everything’s left tidy. You’ll always get a full
+            walk-through of the work, and I make sure you’re happy before I
+            leave.
           </p>
           <p>
-            Once the work is complete, we don’t just pack up and go. We’ll walk
-            you through everything we’ve done, demonstrate the work so you can
-            see it in action, and ask you to sign off once you’re happy. We’ll
-            also provide a handover form for your records — it’s all part of how
-            we work.
+            I also supply a signed handover form for your records — ideal if
+            it’s a rental property, commercial premises, or part of a larger
+            fire strategy.
           </p>
-          <p>
-            These small steps add up to something big: confidence. When you hire
-            us, you’re hiring a team that cares about the detail, the finish,
-            and your experience as a customer.
-          </p>
-          <hr class="my-6 border-gray-200" />
 
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
             Dependable
           </h3>
           <p>
-            If you need door sets or fire doors {
-              location ? "in " + locationFormated : ""
-            }, I’ll make sure they're fitted right first time. I stick to the
-            regulations and make sure everything’s safe and solid.
+            I show up on time and finish when I say I will. It’s how I’ve built
+            long-term trust with my clients.
           </p>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Reliable
+            Qualified
           </h3>
           <p>
-            I turn up when I say I will and get the job done without fuss. I
-            know your time’s valuable, and I don’t waste it.
+            I hold City & Guilds and CSCS Gold card certification, so you know
+            the job’s done by someone trained and competent.
           </p>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Skilled
+            Detail-Focused
           </h3>
           <p>
-            With years of experience and proper qualifications behind me, I take
-            real pride in what I do — and it shows in the finish. That means
-            cleaner finishes, smoother operation, and peace of mind that it's
-            built to last.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            City & Guilds Certified
-          </h3>
-          <p>
-            City & Guilds qualified and trained, I always aim for a high
-            standard of work and take pride in every job.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            CSCS Certified
-          </h3>
-          <p>
-            I hold a CSCS Gold card, so you know I’m up to date with health and
-            safety for on-site work — giving you peace of mind.
+            From frame prep to seal alignment and closing action — I take the
+            time to get it right, because the finish matters.
           </p>
           <hr class="my-6 border-gray-200" />
 
           <p>
-            If you’ve got questions or want to chat through what you need, just <a
+            If you're {locationInText} and need help with door fitting or fire door
+            installation, I’d be happy to have a chat. Just
+            <a
               href="/contact"
               class="font-semibold text-blue-700 hover:underline"
               >get in touch</a
-            >. I’ll get back to you as soon as I can.
+            >.
           </p>
           <ReviewsLinkSection />
         </div>

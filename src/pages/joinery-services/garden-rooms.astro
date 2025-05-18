@@ -14,72 +14,75 @@ import galleryImg2 from "../../assets/images/garden-rooms/garden-rooms-image2.jp
 import galleryImg3 from "../../assets/images/garden-rooms/garden-rooms-image3.jpg";
 import galleryImg4 from "../../assets/images/garden-rooms/garden-rooms-image4.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Garden Rooms";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Thoughtfully crafted garden rooms ${locationInText}, built by a local joiner with 30+ years' experience. Warm, insulated spaces — perfect for work, relaxation, or retreat.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Handcrafted Timber Garden Rooms for Work or Relaxation`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? " in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
+
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            I'm Robert Coulson, a fully time-served joiner based in Yorkshire,
-            and one of the services I’m proud to offer{
-              location ? " in " + locationFormated : ""
-            } is crafting beautiful, versatile {typeFormated}.
-          </p>
-          <p>Elevate Your Outdoor Living with a Custom Garden Room</p>
-          <p>
-            Imagine a space that blends the comfort of your home with the beauty
-            of the outdoors {location ? "in " + locationFormated : ""} — perfect
-            for hobbies, relaxation, or a quiet retreat.
+            Hi, I’m Robert — a time-served joiner with over three decades of
+            hands-on experience. I really enjoy building garden rooms {
+              locationInText
+            } — they’re a great way to bring the comfort of indoors outside, and
+            every one I build is tailored to the person who’s going to use it.
           </p>
           <p>
-            I collaborate closely with each client from initial concept to final
-            build. I specialise in designing and constructing bespoke garden
-            rooms at the heart of{location ? " " + locationFormated : ""}.
-            Whether you want a creative studio, a wellness space, or a peaceful
-            reading lounge, I bring your vision to life with care and
+            Whether you want a quiet place to unwind, a creative workspace, or
+            somewhere to enjoy time with friends and family, I’ll help you shape
+            a space that fits naturally with your garden and lifestyle {
+              locationInText
+            }.
+          </p>
+          <p>
+            I take care of the whole process — from early ideas and sketches
+            through to the final touches, right here {locationInText}. Whether
+            you're after a home studio, a reading nook, or just your own
+            peaceful escape, I’ll build something with genuine care and
             craftsmanship.
           </p>
           <p>
-            If you have architectural plans or a clear idea, I’m happy to work
-            alongside you or your design team. From detailed blueprints to
-            simple sketches, I’ll help create a stunning, functional garden room
-            that reflects your lifestyle and needs.
+            If you’ve already got plans or a design in mind, I’m happy to work
+            with them — or we can start with a rough idea and shape things
+            together. Either way, we’ll end up with something that feels just
+            right for you.
           </p>
 
           <h3 class="font-semibold text-lg">
@@ -88,59 +91,54 @@ const alt = location
           <p>
             Each garden room we build is customised to suit your personal tastes
             and requirements. From modern aesthetics to classic charm, your new
-            space will enhance your garden and daily life.
+            space will enhance your garden and daily life {locationInText}.
           </p>
           <h3 class="font-semibold text-lg">
             Built for Comfort and Efficiency
           </h3>
           <p>
-            Our garden rooms are designed to be comfortable year-round. Using
-            insulated timber frames and breathable membranes, we ensure your
-            space stays cozy in winter and cool in summer, all while being
-            energy efficient.
+            I build garden rooms that feel good to use all year round — warm in
+            winter, cool in summer — using proper materials like insulated
+            timber frames and breathable membranes to make them energy efficient
+            and long-lasting.
           </p>
           <p>
             Whether you prefer traditional cladding or sleek finishes, your
             garden room is crafted for durability and long-term enjoyment. Plus,
             a well-designed garden room can add significant value to your
-            property.
+            property {locationInText}.
           </p>
           <h3 class="font-semibold text-lg">Exceptional Craftsmanship</h3>
           <p>
-            I use premium materials and expert techniques to guarantee lasting
-            quality and comfort. I don’t compromise on standards — your garden
-            room will be built to the highest level of workmanship.
+            I only use good-quality materials and I don’t cut corners — every
+            project {locationInText} gets my full attention. It matters to me that
+            your garden room feels solid, looks great, and lasts for years.
           </p>
           <h3 class="font-semibold text-lg">Eco-Friendly Options</h3>
           <p>
-            Committed to sustainability, we offer environmentally conscious
-            solutions that blend seamlessly with your garden while reducing your
-            carbon footprint.
+            If sustainability’s important to you, I can suggest greener options
+            too — whether it’s using FSC-certified timber, breathable materials,
+            or low-impact insulation.
           </p>
           <h3 class="font-semibold text-lg">Local Knowledge and Expertise</h3>
           <p>
-            Based in York, I understand the regional architecture and landscape,
-            allowing me to design garden rooms that complement and enhance your
-            property’s unique character.
+            Being based near York, I know the local style and what works best in
+            different settings — whether your garden room needs to blend in or
+            stand out.
           </p>
           <h3 class="font-semibold text-lg">
-            Your Ideal Garden Room Awaits {
-              location ? "in " + locationFormated : ""
-            }
+            Let’s Build Something Unique Together
           </h3>
           <p>
-            Envision a personal sanctuary just steps from your door—a space for
-            creativity, wellness, or quiet reflection. We’re passionate about
-            helping you create a garden room that perfectly fits your lifestyle,
-            blending indoor comfort with outdoor charm.
+            I treat every garden room {locationInText} like I’m building it for my
+            own home — properly planned, neatly built, and made to last.
           </p>
           <h3 class="font-semibold text-lg">Explore Our Portfolio</h3>
           <p>
             Browse our gallery of completed garden rooms and see how we’ve
-            helped homeowners throughout {
-              location ? " " + locationFormated : ""
-            } bring their outdoor living dreams to life. Each project showcases our
-            dedication to quality and customer satisfaction.
+            helped homeowners throughout {locationInText} bring their outdoor living
+            dreams to life. Each project showcases our dedication to quality and
+            customer satisfaction.
           </p>
 
           <h3 class="font-semibold text-lg">
@@ -176,10 +174,9 @@ const alt = location
             <a href="/contact">Get in Touch Today</a>
           </p>
           <p>
-            Contact me for a friendly conversation and a complimentary
-            consultation. Let’s discuss how we can design and build the perfect
-            garden room to enhance your lifestyle. For us, your garden is more
-            than just an outdoor space — it’s a place to thrive.
+            Give me a shout if you’d like to chat about what’s possible here in {
+              locationInText
+            } — happy to have a no-pressure chat and see what might work for you.
           </p>
           <p>
             Looking for a dedicated workspace instead? You might be interested
