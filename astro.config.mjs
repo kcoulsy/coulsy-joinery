@@ -12,20 +12,14 @@ export default defineConfig({
   },
   integrations: [
     tailwind(),
-    sitemap({
-      // configuration options
-      changefreq: "weekly",
-      priority: 0.7,
-      filter: (page) => ({
-  ...page,
-  lastmod: page.data?.lastmod || new Date().toISOString(),
+    
+sitemap({
+  changefreq: "weekly",
+  priority: 0.7,
+  serialize: (page) => ({
+    ...page,
+    lastmod: page.data?.lastmod || new Date().toISOString(),
+  }),
 }),
-      redirects: {
-        "/joinery-services/truss-roofs": {
-          status: 302,
-          destination: "/joinery-services/truss-roof-installers",
-        },
-      },
-    }),
   ],
 });
