@@ -10,6 +10,7 @@ export function getFormattedPageData(Astro: any): {
   locationInText: string;
   defaultDescription: string;
   businessSchema: any;
+  lastmod: string;
 } {
   const { location } = Astro.params;
   const pathname = Astro.url.pathname;
@@ -73,11 +74,14 @@ export function getFormattedPageData(Astro: any): {
     ]
   };
 
+  const lastmod = new Date().toISOString();
+
   return {
     formattedServiceName,
     locationFormated,
     locationInText,
     defaultDescription,
     businessSchema,
+    lastmod,
   };
 }

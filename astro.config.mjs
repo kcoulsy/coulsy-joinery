@@ -17,9 +17,9 @@ export default defineConfig({
       changefreq: "weekly",
       priority: 0.7,
       filter: (page) => ({
-        ...page,
-        lastmod: new Date().toISOString(),
-      }),
+  ...page,
+  lastmod: page.data?.lastmod || new Date().toISOString(),
+}),
       redirects: {
         "/joinery-services/truss-roofs": {
           status: 302,
