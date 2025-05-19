@@ -21,12 +21,17 @@ import Image from "astro/components/Image.astro";
       <div class="group p-3 rounded-3xl bg-white border border-gray-100 shadow-2xl shadow-gray-600/10 dark:border-gray-700 dark:bg-gray-800 bg-opacity-50">
         <div class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
           <div class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
-            <Image
-              src={item.src}
-              alt={item.alt}
-              loading={(item.loading as "eager" | "lazy") || "eager"}
-              class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-            />
+            <button
+              onclick="document.getElementById('lightbox-img').src=this.querySelector('img').src; document.getElementById('lightbox').classList.remove('hidden')"
+              class="block w-full"
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                loading={(item.loading as "eager" | "lazy") || "eager"}
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
+            </button>
           </div>
           <div
             style="background-color: Gray; width:70%;"
@@ -46,4 +51,26 @@ import Image from "astro/components/Image.astro";
       </div>
     ))
   }
+  <script>
+    // Placeholder for future JavaScript hooks if needed
+  </script>
+</div>
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 hidden"
+>
+  <div class="relative">
+    <button
+      class="absolute top-2 right-2 text-white text-2xl"
+      onclick="document.getElementById('lightbox').classList.add('hidden')"
+    >
+      &times;
+    </button>
+    <img
+      id="lightbox-img"
+      src=""
+      class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-lg"
+    />
+  </div>
 </div>
