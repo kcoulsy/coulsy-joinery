@@ -14,96 +14,90 @@ import galleryImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
 import galleryImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
 import galleryImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Stud Wall Partitioning";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Expert stud wall partitioning services ${locationInText}, tailored for home improvements, room conversions, and commercial fit-outs. Reliable timber stud framing from a qualified, time-served joiner.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Timber Stud Wall Partitioning for Homes & Commercial Spaces`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            One of the services that we provide {
-              location ? "in " + locationFormated : ""
-            } is expert timber stud wall partitioning errecting.
+            Need to divide up a space {locationInText}? I offer expert stud wall
+            partitioning with a personal touch. Whether you’re converting a
+            room, creating a new bedroom, or fitting out a commercial unit, I
+            can help make it happen.
           </p>
           <p>
-            Timber stud wall partitioning is building a wooden framed wall using
-            timber studs that are secured to the floor and the ceiling of an
-            existing structure.
+            A timber stud wall is a simple but effective way to add structure to
+            a space. Using solid timber studs securely fixed top and bottom,
+            I’ll build clean, straight partitions with all the right spacing and
+            solid noggins to support whatever finish you need — plasterboard,
+            panelling, or soundproofing.
           </p>
           <p>
-            Each stud is part of the larger frame and is attached to both the
-            sole plate and the top plate wood.
+            Every job is built to last, with blocking and support where it
+            matters. I can include door openings, reinforcements for shelves or
+            TVs, and work around beams and awkward features.
+          </p>
+          <h2 class="font-semibold text-lg">
+            Trusted Joinery {locationInText}
+          </h2>
+          <p>
+            I’ve been building stud walls and timber partitions for over 30
+            years, and I bring proper trade know-how to every job. You’ll get a
+            clean, careful install with tidy finishing — no rough edges or gaps,
+            just solid work that’s ready to plaster or decorate.
+          </p>
+          <h2 class="font-semibold text-lg">CSCS Certified and Time-Served</h2>
+          <p>
+            I'm CSCS-certified and City & Guilds qualified. That means you’re
+            getting skilled, experienced joinery work — no guesswork or cut
+            corners.
           </p>
           <p>
-            This is re-enforced by staggered blocking across the wall between
-            each stud, with headers or gaps for doorways and existing load
-            bearing beams.
-          </p>
-          <h2 class="font-semibold text-lg">Dependable</h2>
-          <p>
-            If you need a new bedroom or want to section off a room, hiring
-            Coulsy to build some stud wall partitioning in your home is much
-            more affordable than buying a new home.
-          </p>
-          <h2 class="font-semibold text-lg">Reliable</h2>
-          <p>
-            The perfect choice for those who need a professional joinery service
-            for expert stud wall partitioning and timber installation {
-              location ? "in " + locationFormated : ""
-            }.
-          </p>
-          <h2 class="font-semibold text-lg">Skilled</h2>
-          <p>
-            They are highly skilled and professional, boasting extensive
-            experience and qualifications in their craft.
-          </p>
-          <h2 class="font-semibold text-lg">CSCS Certified</h2>
-
-          <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
-          </p>
-          <p>
-            We can provide more information and answer any questions you may
-            have. Please feel free to <a
+            If you’re based {locationInText} and thinking of a new stud wall layout,
+            feel free to
+            <a
               href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
-            >.
+              class="font-semibold text-blue-700 hover:underline"
+              >get in touch</a
+            >. I’ll be happy to talk through your ideas and give you an honest
+            quote.
           </p>
           <ReviewsLinkSection />
         </div>

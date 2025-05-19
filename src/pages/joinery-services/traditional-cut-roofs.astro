@@ -14,114 +14,87 @@ import galleryImg2 from "../../assets/images/cut-roofs/cut-roof2.png";
 import galleryImg3 from "../../assets/images/cut-roofs/cut-roof3.jpg";
 import galleryImg4 from "../../assets/images/cut-roofs/cut-roof4.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Traditional Hand Cut Roofs";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Traditional cut roof installation ${locationInText}, designed and built to suit any shape or layout. Expert timber roof framing from a time-served joiner with over 30 years of experience.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Traditional Cut Roofs & Timber Roof Framing`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            Coulsy Joinery provide traditional cut roofs {
-              location ? "in " + locationFormated : ""
-            } to client and architect specifications.
+            If you’re considering a traditional cut roof {locationInText}, I’d
+            be happy to help. I’m Robert — a time-served joiner with over 30
+            years of hands-on experience in bespoke timber framing and roof
+            construction.
           </p>
           <p>
-            We are an experienced team of joiners at constructing wooden cut
-            roofs.
+            Cut roofs give you more flexibility than trusses — especially for
+            awkward layouts, vaulted ceilings, or future attic conversions. I
+            build them the proper way using strong, well-sourced timber and a
+            practical layout that suits your build.
+          </p>
+          <p>
+            My team and I take care of everything from timber selection and
+            design to precise onsite assembly. We don’t rely on mechanical
+            handling where it’s not needed — so access issues or tight spaces {
+              locationInText
+            } are no problem.
           </p>
           <ul>
-            <li>Design and surveys from your brief</li>
-            <li>Quality materials used from established suppliers</li>
-            <li>Sustainable timber materials from well managed forests</li>
-            <li>Expert joinery installation</li>
-            <li>Professional, tidy and a hardworking team</li>
-            <li>Safe and secure</li>
+            <li>Custom-built for your plans and elevations</li>
+            <li>Solid timber from sustainable sources</li>
+            <li>Great for adding Velux or dormers later on</li>
+            <li>Delivered and built without heavy plant</li>
+            <li>Ideal where headroom is tight or complex</li>
           </ul>
-
-          <h2 class="font-semibold text-lg">Traditional cut roof benefits</h2>
-
-          <ul>
-            <li>
-              No need for mechanical means such as a tele-handler or crane to
-              load out material (roof size dependent)
-            </li>
-          </ul>
-          <li>Can create more room height on tighter buildings</li>
-          <li>
-            Can be tailored made to any roof shape and size no matter how
-            complex
-          </li>
-          <li>Can later be adjusted to add Velux's and or dormers</li>
-          <li>
-            No need to worry about height restriction on access as all materials
-            can be delivered on a flat bed
-          </li>
-          <h2 class="font-semibold text-lg">Dependable</h2>
           <p>
-            If you are looking for a traditional cut roof {
-              location ? "in " + locationFormated : ""
-            }, you need to find a reliable installer with the ability to meet
-            your exact requirements and ensure the perfect fit each and every
-            time.
+            Whether you’re a homeowner, contractor, or architect {
+              locationInText
+            }, I work closely with your team to make sure the structure is spot
+            on. No drama, no hassle — just a proper cut roof, built to last.
           </p>
-          <h2 class="font-semibold text-lg">Reliable</h2>
           <p>
-            Our joinery team is consistently reliable and adaptable, working
-            according to your designed roof specifications.
-          </p>
-          <h2 class="font-semibold text-lg">Skilled</h2>
-          <p>
-            All our joinery team are skilled and professional at their jobs,
-            with experience in working at heights.
-          </p>
-          <h2 class="font-semibold text-lg">CSCS Certified</h2>
-
-          <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
-          </p>
-
-          <p>
-            We can provide more information and answer any questions you may
-            have. Please feel free to <a
+            If you’ve got plans you’d like me to take a look at or just want to
+            run through an idea, feel free to <a
               href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
-            >.
+              class="font-semibold text-blue-700 hover:underline"
+              >get in touch</a
+            >. I'd be glad to help.
           </p>
           <ReviewsLinkSection />
         </div>

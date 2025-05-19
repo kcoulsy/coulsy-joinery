@@ -21,47 +21,47 @@ import howdensLogo from "../../assets/images/logos/howdens-logo.png";
 import magnetLogo from "../../assets/images/logos/magnet-logo.png";
 import diyKitchensLogo from "../../assets/images/logos/diy-kitchens-logo.png";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Kitchen Installers";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for your local kitchen fitter and kitchen installer services in " +
-    locationFormated
-  : typeFormated;
+const description = `Professional kitchen fitting and joinery services ${locationInText}, delivered personally by a qualified joiner with 30+ years’ experience. From bespoke domestic kitchens to commercial installations — fitted properly, with care.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Experienced Kitchen Installer & Fitter for Domestic & Trade Projects`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
-
       <div
         class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
       >
-        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-          Expert Kitchen Fitters & Joiners {
-            location ? "in " + locationFormated + " – " : " – "
-          } Local, Qualified, Trusted
+        <h1 class="text-3xl font-bold tracking-tight pb-4">
+          {formattedServiceName}
+          {
+            locationInText
+              .trim()
+              .replace(/-/g, " ")
+              .replace(/\b\w/g, (c) => c.toUpperCase())
+          }
         </h1>
         <p class="text-gray-700 text-lg mb-4">
           I’m Robert, the owner and joiner behind Coulsy Joinery. When you work
@@ -79,37 +79,35 @@ const alt = location
           href="/contact"
           class="inline-block bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
         >
-          Request Your Free Consultation
+          Get in Touch About Your Kitchen
         </a>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-            Kitchen Fitting with a Personal Touch
+            Local Kitchen Fitting {locationInText} with a Joiner You Can Trust
           </h2>
           <p>
-            As a skilled joiner, I take care of every stage — from measuring and
-            planning through to a clean, precise installation. No sales teams,
-            no subcontractors — just honest work done right.
+            I’m Robert — a qualified joiner with over 30 years of experience
+            fitting kitchens {locationInText}. I personally handle everything
+            from the first measurement to the final handover. No middlemen, no
+            fuss — just a reliable job done right.
+          </p>
+          <p>
+            Whether it’s your home, a rental property, or a commercial kitchen,
+            I bring the same care and precision to every fit. I’ve worked on
+            everything from one-off domestic kitchens to multi-unit housing
+            developments and trade-supplied kitchen installs.
           </p>
 
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-4">
-            What We Offer
+            Fitting Kitchens from All Major Brands
           </h2>
           <p>
-            Whether you need a single kitchen fit or full installations across
-            multiple units, I bring the same care and expertise to each project.
-            Domestic or commercial, every kitchen is fitted with quality and
-            pride.
-          </p>
-          <p>
-            I supply and fit kitchens from leading trade names such as Howdens,
-            Magnet, and DIY Kitchens. Whether you've already chosen your kitchen
-            or need guidance selecting the right setup, I’ll help ensure every
-            detail is covered — from measuring to final installation. My
-            reputation as a local kitchen fitter is built on trust, tidy work,
-            and a reliable finish.
+            I fit kitchens from Howdens, Magnet, DIY Kitchens, and others —
+            always to a high standard. Whether you’ve already got your kitchen
+            ready or need help choosing the right setup, I’ll make sure it’s
+            measured, installed, and finished properly.
           </p>
           <div class="flex items-center gap-4 mt-2">
             <Image
@@ -130,101 +128,86 @@ const alt = location
             />
             <Image
               src={diyKitchensLogo}
-              alt="Magnet Kitchens Logo"
+              alt="DIY Kitchens Logo"
               width={100}
               height={40}
               class="h-8 w-auto"
               loading="lazy"
             />
           </div>
+
           <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Domestic Kitchens
+            Domestic Kitchen Fitting
           </h3>
           <p>
-            Often working on single kitchen fit-outs as well as large commercial
-            projects, installing kitchens in new housing and domestic homes {
-              location ? "in " + locationFormated + "." : "."
-            }
+            I fit kitchens in homes {locationInText} — whether it’s a fresh renovation
+            or part of a new build. You get a clean, precise finish every time.
           </p>
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Commercial Kitchens
-          </h3>
-          <p>From small shops to restaurants to large university kitchens</p>
 
           <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            New build kitchens
-          </h3>
-          <p>Apartment and house builders new build installs</p>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Accessible and reduced mobility kitchens
+            Commercial Installations
           </h3>
           <p>
-            Inclusive kitchen solutions tailored for independent living — safe,
-            stylish, and practical for all abilities.
+            I also fit kitchens for offices, retail units, and hospitality
+            spaces {locationInText}. Always on time and built to last.
           </p>
 
+          <h3 class="text-lg font-semibold text-gray-700 mt-4">
+            Accessible Kitchens
+          </h3>
+          <p>
+            I can adapt kitchens for wheelchair users or reduced mobility — with
+            safety, comfort, and independence in mind.
+          </p>
           <p>
             <a
               href="/joinery-services/accessible-kitchen-installers"
               class="font-semibold text-blue-700 hover:underline"
             >
-              EXPLORE
-            </a>our Accessible kitchens
+              Explore Accessible Options
+            </a>
           </p>
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Excellent fitting
-          </h3>
-          <p>
-            {
-              location ? "Our " + locationFormated + " team of " : "Our "
-            }Experienced kitchen installers and fitters will take care of your
-            every need.
-          </p>
-          <hr />
 
           <h2 class="text-2xl sm:text-3xl font-bold text-blue-800 mt-10 mb-4">
-            Why Choose Coulsy Joinery?
+            Why Choose Me for Your Kitchen Installation {locationInText}?
           </h2>
           <p>
-            At Coulsy Joinery, your kitchen project is personally managed by me,
-            Robert. I ensure every step meets high standards, with clear
-            communication, expert craftsmanship, and results you’ll love.
+            As the person who will actually be carrying out the work, you get
+            direct communication and consistent quality. I don’t cut corners,
+            and I treat your space with respect — everything covered and cleaned
+            before I leave.
           </p>
+
           <h3 class="text-lg font-semibold text-gray-700 mt-4">Dependable</h3>
           <p>
-            If you are looking for a kitchen fitter {
-              location ? "in " + locationFormated : ""
-            }, we are dependable kitchen installers capable of meeting your
-            precise requirements and ensuring a high end kitchen installation.
-          </p>
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">Reliable</h3>
-          <p>
-            Our kitchen fitting team is consistently reliable and adaptable,
-            working according to your kitchen layout, plan and design.
-          </p>
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">Skilled</h3>
-          <p>
-            Our time served joiners provide high quality, accurate kitchen
-            installs.
+            From start to finish, I’ll keep things running smoothly — turning up
+            when I say and getting it done to a high standard.
           </p>
 
-          <hr />
+          <h3 class="text-lg font-semibold text-gray-700 mt-4">Experienced</h3>
+          <p>
+            With three decades of hands-on experience, I bring joinery skill and
+            kitchen-fitting know-how that makes a difference.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-700 mt-4">
+            Trusted Locally
+          </h3>
+          <p>
+            Many of my kitchen projects {locationInText} come from word of mouth.
+            I take pride in that, and I work hard to keep it that way.
+          </p>
 
           <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mt-10 mb-4">
-            Ready to Work With a Qualified Kitchen Joiner?
+            Let’s Chat About Your Kitchen
           </h2>
           <p>
             <a
               href="/contact"
               class="font-semibold text-blue-700 hover:underline"
-              >Get in touch today</a
-            > for a
-            <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >free consultation</a
-            >. Let's make your dream kitchen a reality.
+              >Get in touch</a
+            > to arrange a no-pressure quote. I’ll help make your dream kitchen a
+            reality — fitted properly and built to last.
           </p>
           <ReviewsLinkSection />
         </div>
@@ -286,9 +269,9 @@ const alt = location
       </div>
 
       <p class="text-sm text-gray-600 text-center mt-10">
-        Searching for a trusted local kitchen installer or joiner in your area?
-        Coulsy Joinery fits kitchens across the region — delivering quality
-        joinery services tailored to your project.
+        Looking for a trusted kitchen installer or joiner {locationInText}? I
+        fit kitchens across the region with care, precision, and over 30 years
+        of hands-on experience.
       </p>
       <NearbyAreas />
     </section>

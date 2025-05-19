@@ -14,114 +14,102 @@ import galleryImg2 from "../../assets/images/joinery-subcontractors/sub-contract
 import galleryImg3 from "../../assets/images/joinery-subcontractors/sub-contract-joinery2.jpg";
 import galleryImg4 from "../../assets/images/joinery-subcontractors/sub-contract-joinery3.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Sub Contract Joinery Contractors";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Skilled and reliable joinery subcontractors ${locationInText}, offering supply-and-fix or labour-only services for commercial, public sector and residential projects. Fully qualified and trusted for high-quality site joinery ${locationInText}.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Site Joinery Subcontractors for Construction & Fit-Out`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
+
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            One of the services that we provide{
-              location ? " in " + locationFormated : ""
-            } is sub contract joinery contracting.
+            I provide subcontract joinery services {locationInText} for main contractors,
+            developers, and builders who need a skilled, reliable, and straightforward
+            tradesperson on site.
           </p>
           <p>
-            Based in York, we are a joinery subcontractor offering both
-            labor-only and supply-and-fix services across Yorkshire, Humberside,
-            and surrounding areas.
+            Based in York, I work across {locationInText} and the wider Yorkshire
+            and Humberside areas. I’m happy to work on a labour-only or supply-and-fix
+            basis, depending on what suits your job best.
           </p>
           <p>
-            Our extensive range of subcontracting services is available to
-            contractors throughout the UK.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Dependable and Reliable
-          </h3>
-          <p>
-            If you require a dependable joinery subcontractor, we are here to
-            meet your needs. With a reputation for delivering high-quality
-            workmanship and reliable service, we ensure that every project is
-            completed on time and to the highest standards.
-          </p>
-          <p>
-            Whether working on residential properties, offices, schools, care
-            homes, universities, hotels, or hospitals, our team has the
-            expertise and dedication to bring your vision to life.
-          </p>
-          <p>
-            Our commitment to excellence means that we provide all the necessary
-            fixings and work closely with contractors to ensure seamless
-            integration into any project.
-          </p>
-          <p>
-            By choosing us as your joinery subcontractor, you gain a partner
-            that understands the complexities of construction and prioritizes
-            your project’s success.
-          </p>
-          <p>
-            The perfect choice for those who need a professional joinery
-            subcontractor {location ? "in " + locationFormated : ""}.
+            My background includes projects across housing, offices, education,
+            healthcare and more — always with a commitment to high standards and
+            site-friendly professionalism.
           </p>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Skilled
+            Straightforward and Dependable
           </h3>
           <p>
-            Highly skilled and professional joinery subcontractors, boasting
-            extensive joinery experience and joinery qualifications.
+            If you need a dependable subcontract joiner who turns up and gets on
+            with the job, I’m your man. I take pride in delivering clean,
+            accurate joinery work that aligns with programme goals and
+            contractor expectations.
+          </p>
+          <p>
+            Whether it’s first fix, stud walls, doors or finishings, I work
+            closely with site managers and other trades to keep things running
+            smoothly.
+          </p>
+          <p>
+            I’m fully qualified, time-served, and understand the pace and
+            pressures of site-based joinery — especially when dealing with live
+            environments like schools or care homes.
           </p>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
             Fully Certified
           </h3>
-
           <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
+            All relevant paperwork is sorted — including RAMS and site guidance.
+            You’ll get a professional setup that doesn’t create extra work or
+            risk.
           </p>
-          <p>Rams including site guidance at the ready.</p>
+          <p>
+            Need to see qualifications or past examples? No problem — just ask.
+            I’m always happy to provide details or references.
+          </p>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Let us handle the joinery details, so you can focus on the bigger
-            picture.
+            Let's Talk
           </h3>
           <p>
-            Please feel free to <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
-            >.
+            If you’re looking for a joinery subcontractor {locationInText} who’s
+            committed to getting it done properly, get in touch — I’d be happy to
+            have a chat and see how I can help.
           </p>
           <ReviewsLinkSection />
         </div>

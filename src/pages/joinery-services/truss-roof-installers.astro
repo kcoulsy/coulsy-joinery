@@ -14,83 +14,80 @@ import galleryImg2 from "../../assets/images/truss-roofs/attic-trusses2.jpg";
 import galleryImg3 from "../../assets/images/truss-roofs/attic-trusses3.jpg";
 import galleryImg4 from "../../assets/images/truss-roofs/commercial-trusses.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Truss Roof Installers";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Professional truss roof installation services ${locationInText} — from attic conversions to large-scale commercial projects. Over 30 years' experience in bespoke joinery, structural work, and compliant roofing.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Truss Roof Installers & Structural Joinery`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            Coulsy Joinery, offers roof truss erection services {
-              location ? " in " + locationFormated : "nationwide"
-            }, tailored to customer design specifications.
-          </p>
-          <h2 class="font-semibold text-lg">Dependable</h2>
-          <p>
-            If you require a truss roof contractor, subcontractor or installer{
-              location ? " in " + locationFormated : ""
-            }, we are a dependable provider capable of meeting your precise
-            requirements and ensuring compliance with current regulations for
-            proper roof installation.
-          </p>
-          <h2 class="font-semibold text-lg">Reliable</h2>
-          <p>
-            Our joinery team is consistently reliable and adaptable, working
-            according to your designed roof specifications.
-          </p>
-          <h2 class="font-semibold text-lg">Skilled</h2>
-          <p>
-            We are highly skilled and professional, with extensive experience
-            and qualifications in our field.
-          </p>
-          <h2 class="font-semibold text-lg">CSCS Certified</h2>
-
-          <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
+            If you're planning a roof structure and need a reliable team to
+            erect your trusses {locationInText}, I’d be happy to help. I’m
+            Robert — a time-served joiner with decades of hands-on experience in
+            structural joinery and truss roof installs.
           </p>
           <p>
-            We can provide more information and answer any questions you may
-            have. Please feel free to <a
+            I work closely with builders, developers, and private clients to
+            deliver well-fitted, regulation-compliant truss roofs on everything
+            from home extensions and attic conversions to full new builds and
+            commercial units.
+          </p>
+          <p>
+            Whether you need attic trusses, raised tie trusses, or a full
+            prefabricated roof system — I make sure everything is properly
+            aligned, securely fixed, and completed with care.
+          </p>
+          <p>
+            I hold the relevant CSCS card and work alongside trusted colleagues
+            to handle both domestic and commercial-scale truss roof projects {
+              locationInText
+            }. Safety, tidiness, and clear communication are all part of the
+            service.
+          </p>
+          <p>
+            If you’re looking for a dependable installer to get your trusses up
+            safely and accurately, just <a
               href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
-            >.
+              class="font-semibold text-blue-700 hover:underline"
+              >get in touch</a
+            > — I’d be happy to discuss the project.
           </p>
           <ReviewsLinkSection />
         </div>

@@ -23,7 +23,7 @@ const {
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Friendly, high-quality joinery services ${locationInText} from a time-served local joiner with 30+ years’ experience. From bespoke woodwork to careful repairs — all finished to a standard I’d want in my own home.`;
+const description = `Reliable, hands-on joinery services ${locationInText}, delivered personally by a time-served local joiner with over 30 years’ experience. From bespoke features to careful repairs — all finished to a standard I’d be proud to have in my own home.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -60,12 +60,13 @@ const finalDescription = description || defaultDescription;
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            I take pride in providing reliable, high-quality general joinery
-            services{locationInText}. I’m Robert, a fully time-served joiner
-            with a lifelong passion for construction and woodwork. With over 30
-            years of hands-on experience, I personally carry out and oversee
-            every job, working with a small, trusted team to deliver work we're
-            proud of.
+            I provide friendly, high-quality general joinery services{
+              locationInText
+            }, personally delivered with the care and detail you'd expect from
+            someone who genuinely loves the craft. I'm Robert — a fully
+            time-served joiner with over 30 years of hands-on experience in
+            woodwork and building. I personally carry out and oversee every job,
+            working with a small, trusted team to deliver work we're proud of.
           </p>
 
           <p>
@@ -111,31 +112,17 @@ const finalDescription = description || defaultDescription;
             > with decades of practical site experience.
           </p>
 
-          <h3 class="font-semibold text-lg">Reliable Service</h3>
-          <p>
-            I believe in doing what I say, turning up on time, and leaving your
-            home clean and tidy. No corporate nonsense — just honest, reliable
-            joinery work{locationInText}.
-          </p>
-
           <h3 class="font-semibold text-lg">Skilled and Experienced</h3>
           <p>
-            I’m a <a
-              href="/about#qualifications"
-              class="text-blue-700 font-semibold hover:underline"
-              >fully qualified City & Guilds joiner</a
-            > and I’ve built a reputation for honest advice, quality workmanship,
-            and treating every home with care.
+            I’m a fully qualified City & Guilds joiner with decades of
+            experience and a reputation for honest advice, quality work, and
+            treating every home with care.
           </p>
 
           <h3 class="font-semibold text-lg">Get in Touch</h3>
           <p>
-            If you're planning any joinery work{locationInText}, we'd be happy
-            to have a friendly chat, offer advice, and provide a no-pressure
-            quote. Please feel free to <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
-            >
+            Thinking about some joinery work? I’m always happy to have a chat,
+            offer advice, and provide a no-pressure quote.
           </p>
           <ReviewsLinkSection />
         </div>

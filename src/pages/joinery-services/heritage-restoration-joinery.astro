@@ -18,101 +18,102 @@ import galleryImg6 from "../../assets/images/heritage/church-pew-restoration.jpg
 import galleryImg7 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 import galleryImg8 from "../../assets/images/heritage/oak-window-restoration.jpg";
 
-const { location, type } = Astro.params;
+const {
+  formattedServiceName,
+  locationInText,
+  businessSchema,
+  defaultDescription,
+} = getFormattedPageData(Astro);
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let typeFormated = type
-  ? type.split("-").map(capitalizeFirstLetter).join(" ")
-  : "Heritage and Restoration Joinery";
-
-const locationFormated = location ? capitalizeFirstLetter(location) : "";
-
-const locationInText = location ? `in ${locationFormated} ` : "";
-
-const alt = location
-  ? typeFormated +
-    " in " +
-    locationFormated +
-    " by Coulsy Joinery for all your " +
-    locationFormated +
-    " carpentry and joinery services"
-  : typeFormated;
+const description = `Expert heritage joinery and restoration work ${locationInText}, preserving period features with traditional craftsmanship. Over 30 years of experience working on listed buildings, churches, and historic properties with high-quality repairs, replications, and bespoke timber work.`;
+const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={location ? typeFormated + " in " + locationFormated : typeFormated}
+  title={`${formattedServiceName} ${locationInText} | Heritage Joinery & Restoration Specialist for Period Properties`}
+  description={finalDescription}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+  </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
-          { label: typeFormated, current: true },
+          { label: formattedServiceName, current: true },
         ]}
       />
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {typeFormated}
-        {location ? "in " + locationFormated : ""}
+        {formattedServiceName}
+        {
+          locationInText
+            .trim()
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+        }
       </h1>
 
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            With over 30 years of experience in carpentry and joinery, we
-            proudly serve clients across the domestic, commercial, and
-            industrial sectors. Our Heritage and Restoration Joinery service
-            {location ? " in " + locationFormated + ", " : ""}is a cornerstone
-            of our commitment to delivering exceptional craftsmanship.
+            With over 30 years of hands-on experience, I specialise in heritage
+            joinery and restoration work {locationInText}. Whether it’s a listed
+            cottage, period townhouse, or historic church, I treat every job
+            with the respect and detail it deserves.
           </p>
+
           <p>
-            We specialise in Architectural, Period, Heritage and Restoration
-            projects, combining traditional woodworking techniques with modern
-            advancements to produce high-quality, bespoke joinery. Whether
-            restoring period features or replicating intricate details, our
-            expert team ensures every project is completed with precision and
-            care, preserving the character and integrity of historic properties {
-              location ? " in " + locationFormated + "" : ""
+            My approach is always sympathetic to the building’s original
+            features. I use traditional tools and methods wherever possible —
+            from restoring original sash windows and replicating mouldings, to
+            repairing floor joists, oak frames, and decorative joinery.
+          </p>
+
+          <p>
+            I’ve worked on conservation projects throughout the UK, offering
+            tailored solutions for each property. No two heritage buildings are
+            the same — so every job is assessed and planned carefully to deliver
+            a result that’s both functional and true to the building’s character {
+              locationInText
             }.
           </p>
+
           <p>
-            Our expertise in Architectural, Period, Heritage and Restoration
-            joinery guarantees outstanding results, blending time-honored
-            methods with unparalleled workmanship.
+            Whether you’re repairing damage, restoring original features, or
+            replacing timber elements with accurate replicas, I can help with
+            expert heritage joinery {locationInText}.
           </p>
 
-          <h2 class="font-semibold text-lg">Dependable</h2>
+          <h2 class="font-semibold text-lg">Care and Precision</h2>
           <p>
-            If you require a {typeFormated} service {
-              location ? " in " + locationFormated : ""
-            }, Coulsy Joinery is the dependable provider capable of meeting your
-            precise requirements and ensuring your customer satisfaction.
-          </p>
-          <h2 class="font-semibold text-lg">Reliable</h2>
-          <p>
-            We are consistently reliable and adaptable, working precisely
-            according to your {typeFormated} specifications.
-          </p>
-          <h2 class="font-semibold text-lg">Skilled</h2>
-          <p>
-            We are highly skilled and professional, with extensive experience
-            and qualifications in our field.
+            I take pride in careful workmanship — making sure everything fits as
+            it should, uses the right materials, and enhances the value and
+            integrity of your property.
           </p>
 
-          <h2 class="font-semibold text-lg">City &amp; Guilds Certified</h2>
+          <h2 class="font-semibold text-lg">Trusted and Time-Served</h2>
           <p>
-            When you choose us, you're choosing a team that's not only qualified
-            but dedicated to excellence in every aspect of our work.
+            I’m City & Guilds qualified and have decades of joinery experience
+            under my belt. I believe in doing things properly and taking the
+            time to get the details right.
           </p>
+
           <p>
-            We can provide more information and answer any questions you may
-            have. Please feel free to <a
+            If you’d like to chat through a heritage joinery or restoration
+            project {locationInText}, I’d be happy to help.
+            <a
               href="/contact"
-              class="font-semibold text-blue-700 hover:underline">contact us</a
+              class="font-semibold text-blue-700 hover:underline"
+              >Get in touch here</a
             >.
           </p>
+
           <ReviewsLinkSection />
         </div>
         <aside class="w-full flex flex-col items-stretch gap-6">
