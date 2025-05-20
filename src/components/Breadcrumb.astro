@@ -13,8 +13,10 @@ interface Props {
 const { crumbs } = Astro.props;
 ---
 
-<nav class="text-sm sm:text-base pb-6" aria-label="Breadcrumb">
-  <ol class="list-none p-0 inline-flex flex-wrap space-x-2">
+<nav class="text-sm sm:text-base pb-6 min-h-[2.5rem]" aria-label="Breadcrumb">
+  <ol
+    class="list-none p-0 flex flex-wrap items-center space-x-2 min-h-[2.75rem]"
+  >
     <li class="flex items-center">
       <svg
         onclick="window.location.href='/'"

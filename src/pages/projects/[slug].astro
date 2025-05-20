@@ -1,0 +1,84 @@
+---
+import { projects } from "../../data/projects";
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+  }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const project = projects.find((p) => p.slug === slug);
+
+if (!project) throw new Error(`Project not found for slug: ${slug}`);
+---
+
+<Layout title={project.title}>
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+      <Breadcrumb
+        crumbs={[
+          { label: "Projects", href: "/projects" },
+          { label: slug, current: true },
+        ]}
+      />
+      <h1 class="text-3xl font-bold tracking-tight pb-4">{project.title}</h1>
+
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="md:w-2/3">
+          <p class="text-gray-600 mb-6">{project.location} · {project.type}</p>
+          <p class="text-lg text-gray-700">{project.description}</p>
+          <!-- You can add more project details here (gallery, challenges, client quote, etc.) -->
+        </div>
+        <div class="md:w-1/3">
+          <button
+            data-image
+            class="block w-full max-w-3xl mx-auto rounded-lg shadow-md mb-6 cursor-zoom-in"
+          >
+            <Image
+              src={project.images[0]}
+              alt={project.title}
+              class="w-full rounded-lg"
+            />
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div
+    id="lightbox"
+    class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden"
+    onclick="this.classList.add('hidden'); document.body.style.overflow = '';"
+  >
+    <img
+      id="lightbox-img"
+      src=""
+      alt="Expanded Project Image"
+      class="max-w-full max-h-full rounded-lg shadow-lg"
+    />
+  </div>
+
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      const imageTrigger = document.querySelector("[data-image]");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+
+      if (imageTrigger && lightbox && lightboxImg) {
+        imageTrigger.addEventListener("click", function (e) {
+          e.preventDefault();
+          const img = imageTrigger.querySelector("img");
+          if (img && img.src) {
+            lightboxImg.src = img.src;
+            lightbox.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+          }
+        });
+      }
+    });
+  </script>
+</Layout>
