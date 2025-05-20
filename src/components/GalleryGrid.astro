@@ -18,11 +18,11 @@ import Image from "astro/components/Image.astro";
 <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
   {
     items.map((item: GalleryItem, index: number) => (
-      <div class="group p-3 rounded-3xl bg-white border border-gray-100 shadow-2xl shadow-gray-600/10 dark:border-gray-700 dark:bg-gray-800 bg-opacity-50">
+      <div class="group p-3 rounded-3xl bg-white border border-gray-100 shadow-2xl shadow-gray-600/10 bg-opacity-50">
         <div class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-          <div class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+          <div class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100">
             <button
-              onclick={`document.getElementById('lightbox').classList.remove('hidden'); document.getElementById('lightbox-image-${index}').scrollIntoView({ behavior: 'instant', inline: 'center' })`}
+              onclick={`showLightbox(); document.getElementById('lightbox-image-${index}').scrollIntoView({ behavior: 'instant', inline: 'center' })`}
               class="block w-full"
             >
               <Image
@@ -55,11 +55,13 @@ import Image from "astro/components/Image.astro";
 
 <div
   id="lightbox"
-  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 hidden"
+  data-overlay
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 opacity-0 pointer-events-none transition-opacity duration-300"
+  onclick="if (event.target === event.currentTarget) hideLightbox()"
 >
   <button
     class="absolute top-4 right-4 text-white text-3xl z-[60]"
-    onclick="document.getElementById('lightbox').classList.add('hidden')"
+    onclick="hideLightbox()"
   >
     &times;
   </button>
@@ -77,8 +79,9 @@ import Image from "astro/components/Image.astro";
           <Image
             src={item.src}
             alt={item.alt}
-            class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain"
+            class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain opacity-0 scale-95 transition duration-500 ease-out"
             loading="eager"
+            onload="this.classList.remove('opacity-0', 'scale-95')"
           />
           <p class="text-white text-sm mt-2 text-center">{item.label}</p>
         </div>
@@ -86,3 +89,33 @@ import Image from "astro/components/Image.astro";
     }
   </div>
 </div>
+
+<script>
+  // Add type declarations for window.showLightbox and window.hideLightbox
+  declare global {
+    interface Window {
+      showLightbox: () => void;
+      hideLightbox: () => void;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("lightbox");
+
+    window.showLightbox = function () {
+      if (lightbox) {
+        lightbox.classList.remove("opacity-0", "pointer-events-none");
+        lightbox.classList.add("opacity-100", "pointer-events-auto");
+        document.body.style.overflow = "hidden";
+      }
+    };
+
+    window.hideLightbox = function () {
+      if (lightbox) {
+        lightbox.classList.remove("opacity-100", "pointer-events-auto");
+        lightbox.classList.add("opacity-0", "pointer-events-none");
+        document.body.style.overflow = "";
+      }
+    };
+  });
+</script>
