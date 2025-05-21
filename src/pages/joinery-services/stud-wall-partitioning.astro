@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -74,6 +75,16 @@ const finalDescription = description || defaultDescription;
             matters. I can include door openings, reinforcements for shelves or
             TVs, and work around beams and awkward features.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                I’ve installed stud walls across {cleanLocationName}, from loft
+                conversions and home offices to retail fit-outs and commercial
+                units. Whatever the setting, I make sure the structure is sound,
+                straight, and built to suit the space.
+              </p>
+            )
+          }
           <h2 class="font-semibold text-lg">
             Trusted Joinery {locationInText}
           </h2>

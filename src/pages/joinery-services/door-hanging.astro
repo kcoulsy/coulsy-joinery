@@ -20,6 +20,7 @@ import CommonFaults from "../../components/CommonFaults.astro";
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -74,6 +75,17 @@ const finalDescription = description || defaultDescription;
             as part of a refurbishment or fire safety upgrade, I’ll give you
             straightforward advice and a top-notch result.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} includes everything from modern new builds
+                to older character properties. I adapt each install to suit the
+                quirks and materials of the building — whether it's solid timber
+                frames, out-of-square openings, or specialist fire-rated
+                requirements.
+              </p>
+            )
+          }
           <p>
             If you're specifically looking for a steel fire escape door, check
             out our

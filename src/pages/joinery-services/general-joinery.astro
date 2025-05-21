@@ -19,6 +19,7 @@ import galleryImg6 from "../../assets/images/bespoke-joinery/herringbone-floorin
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -124,6 +125,18 @@ const finalDescription = description || defaultDescription;
             Thinking about some joinery work? I’m always happy to have a chat,
             offer advice, and provide a no-pressure quote.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} includes a wide variety of homes and
+                property types — from modern builds to traditional Yorkshire
+                stone houses. I tailor each job to suit the setting, whether
+                it’s matching mouldings, working around older features, or
+                installing fresh timber details that respect the character of
+                the space.
+              </p>
+            )
+          }
           <ReviewsLinkSection />
         </div>
 

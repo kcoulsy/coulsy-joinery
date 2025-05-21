@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/truss-roofs/commercial-trusses.jpg"
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -74,6 +75,17 @@ const finalDescription = description || defaultDescription;
             prefabricated roof system — I make sure everything is properly
             aligned, securely fixed, and completed with care.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                I’ve worked on truss roof installations across{" "}
+                {cleanLocationName}, adapting each job to the site layout, truss
+                design, and build sequence. Whether it’s a residential extension
+                or a large-span commercial unit, I make sure the install is
+                accurate, tidy, and aligned with the build programme.
+              </p>
+            )
+          }
           <p>
             I hold the relevant CSCS card and work alongside trusted colleagues
             to handle both domestic and commercial-scale truss roof projects {

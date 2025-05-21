@@ -8,6 +8,7 @@ export function getFormattedPageData(Astro: any): {
   formattedServiceName: string;
   locationFormated: string;
   locationInText: string;
+  cleanLocationName: string;
   defaultDescription: string;
   businessSchema: any;
   lastmod: string;
@@ -31,6 +32,10 @@ export function getFormattedPageData(Astro: any): {
 
   const locationFormated = location ? capitalizeFirstLetter(location) : "";
   const locationInText = location ? ` in ${locationFormated}` : "";
+
+  const cleanLocationName = location
+  ? locationFormated.trim().replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+  : "";
 
 
   const fallbackGeo = { lat: 53.9655, lng: -1.205 };
@@ -76,12 +81,13 @@ export function getFormattedPageData(Astro: any): {
 
   const lastmod = new Date().toISOString();
 
-  return {
-    formattedServiceName,
-    locationFormated,
-    locationInText,
-    defaultDescription,
-    businessSchema,
-    lastmod,
-  };
+return {
+  formattedServiceName,
+  locationFormated,
+  locationInText,
+  cleanLocationName,
+  defaultDescription,
+  businessSchema,
+  lastmod,
+};
 }

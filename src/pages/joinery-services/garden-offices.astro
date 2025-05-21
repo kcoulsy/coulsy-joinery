@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/garden-offices/garden-office-image4
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -81,11 +82,17 @@ const finalDescription = description || defaultDescription;
             it — from a focused workspace to a creative studio or a relaxing
             retreat.
           </p>
-          <p>
-            As a local joiner working across {locationInText}, I know how to
-            tailor garden rooms to your space, property style, and planning
-            context — making sure they sit naturally and add real value.
-          </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} is full of different property types — from
+                contemporary homes to older period builds — and I always tailor
+                each garden office to complement the setting. From scale and
+                cladding to rooflines and glazing, it all matters in getting a
+                result that feels like it belongs.
+              </p>
+            )
+          }
           <p>
             Your ideal garden office is just a few steps away. Let’s design
             something warm, welcoming, and built to last — whether it's a quiet

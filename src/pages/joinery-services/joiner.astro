@@ -20,16 +20,25 @@ export const lastmod = "2025-05-19";
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Personal, high-quality joinery services ${locationInText} from a time-served joiner with over 30 years of experience. Bespoke woodwork, repairs, and installations done the right way.`;
+const description = `Trusted joinery services in ${locationInText
+  .trim()
+  .replace(/-/g, " ")
+  .replace(/\b\w/g, (c) =>
+    c.toUpperCase()
+  )} — from bespoke staircases to sash windows and doors, all finished to a high standard by a qualified local joiner.`;
 const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Expert Local Joiner for Doors, Windows & Staircases`}
+  title={`Expert Joiner in ${locationInText
+    .trim()
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())} | Bespoke Carpentry & Repairs`}
   description={finalDescription}
 >
   <Fragment slot="head">
@@ -82,6 +91,17 @@ const finalDescription = description || defaultDescription;
             custom staircases, doors, skirtings, architraves, roofs, and
             shopfitting — all delivered with care and attention to detail.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} has a real mix of property types — from
+                traditional stone cottages to newer builds. Whether it’s a sash
+                window repair in the centre or a full staircase fit in a nearby
+                village, I tailor the work to suit the needs of local homes and
+                buildings.
+              </p>
+            )
+          }
           <p>
             I’m proud to be City & Guilds qualified, and I don’t cut corners. I
             use the right materials, prep carefully, and make sure each job is

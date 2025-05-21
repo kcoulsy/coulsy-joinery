@@ -21,6 +21,7 @@ import galleryImg8 from "../../assets/images/heritage/oak-window-restoration.jpg
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -75,6 +76,18 @@ const finalDescription = description || defaultDescription;
             repairing floor joists, oak frames, and decorative joinery.
           </p>
 
+          {
+            cleanLocationName && (
+              <p>
+                In {cleanLocationName}, I often restore and maintain traditional
+                sliding sash windows — repairing frames, replacing cords and
+                beads, and rebalancing the sash weights so the windows operate
+                smoothly and safely. I take care to preserve the original look
+                while improving usability and performance.
+              </p>
+            )
+          }
+
           <p>
             I’ve worked on conservation projects throughout the UK, offering
             tailored solutions for each property. No two heritage buildings are
@@ -83,6 +96,18 @@ const finalDescription = description || defaultDescription;
               locationInText
             }.
           </p>
+
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} is home to many historic and character
+                properties, and I always take care to match the joinery to the
+                age and style of the building. Whether it's a Georgian sash
+                window, Victorian flooring, or a timber frame repair, I tailor
+                the approach to suit each property's history and fabric.
+              </p>
+            )
+          }
 
           <p>
             Whether you’re repairing damage, restoring original features, or

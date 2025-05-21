@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/garden-rooms/garden-rooms-image4.jp
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -140,6 +141,17 @@ const finalDescription = description || defaultDescription;
             dreams to life. Each project showcases our dedication to quality and
             customer satisfaction.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} has a real mix of gardens and property
+                styles, so I tailor every garden room to suit. Whether it’s a
+                compact corner retreat or a larger multi-use space, I’ll work
+                with your layout and surroundings to create something that feels
+                right for your home.
+              </p>
+            )
+          }
 
           <h3 class="font-semibold text-lg">
             Planning & Regulations — What You Should Know

@@ -19,6 +19,7 @@ import galleryImg6 from "../../assets/images/accessible-kitchens/accessible-kitc
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -96,14 +97,19 @@ const finalDescription = description || defaultDescription;
               pull-outs, and from touchless taps to smart adjustments,
               everything is made with comfort, dignity, and daily ease in mind.
             </p>
-            <p class="text-base sm:text-lg text-gray-700">
-              Every accessible kitchen I build {
-                locationInText || "in your local area"
-              } is tailored around your needs — no two homes or challenges are the
-              same. We’ll talk through what you need, what’s getting in your way,
-              and how we can design around that — whether it’s mobility challenges,
-              seated use, or future-proofing your home.
-            </p>
+            {
+              cleanLocationName && (
+                <p>
+                  {cleanLocationName} is home to a variety of property styles
+                  and layouts — from compact modern kitchens to larger family
+                  spaces. Every accessible kitchen I fit is adapted to meet the
+                  unique constraints and opportunities of that home. Whether
+                  it's working around tight spaces, varying floor levels, or
+                  older fittings, I bring experience and problem-solving to help
+                  make everyday tasks easier.
+                </p>
+              )
+            }
             <p class="text-base sm:text-lg text-gray-700">
               I work directly with you — no sales team, no middlemen. Just
               honest advice and skilled joinery, delivered with care.

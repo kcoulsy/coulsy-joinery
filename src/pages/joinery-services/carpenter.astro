@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jp
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -90,6 +91,17 @@ const finalDescription = description || defaultDescription;
             closely with builders and project managers to ensure timber frames
             are correctly aligned and set out from the start.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} features a wide range of property types —
+                from traditional stone cottages to modern developments. Whether
+                it’s structural roof timber, floor carcassing, or wall framing,
+                I tailor each job to suit the character and needs of local
+                buildings.
+              </p>
+            )
+          }
 
           <p>
             You can also <a

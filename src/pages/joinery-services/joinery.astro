@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jp
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -65,6 +66,17 @@ const finalDescription = description || defaultDescription;
             or floor joist installation, I offer practical solutions tailored to
             each build.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} features a wide range of property types —
+                from traditional stone cottages to modern developments. Whether
+                it’s a sash window repair in the centre or a full staircase fit
+                in a nearby village, I tailor each project to suit the character
+                and needs of local homes.
+              </p>
+            )
+          }
           <p>
             I offer tailor-made joinery products{locationInText}, available
             either for supply only or fully installed. Using a mix of

@@ -18,6 +18,7 @@ import galleryImg5 from "../../assets/images/bespoke-joinery/herringbone-floorin
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -77,6 +78,16 @@ const finalDescription = description || defaultDescription;
             installations {locationInText}. Whether it’s a one-off piece or a
             full property refit, you’ll always get quality that lasts.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} includes everything from period homes to
+                newer properties, and I tailor each bespoke joinery job to suit.
+                From traditional styles to more contemporary detailing, the goal
+                is always to make the joinery feel like it belongs in the space.
+              </p>
+            )
+          }
           <p>
             From garage doors and staircases to custom flooring and interior
             fittings — if you’re after something that’s done properly, I can

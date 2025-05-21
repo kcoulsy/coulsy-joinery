@@ -24,6 +24,7 @@ import diyKitchensLogo from "../../assets/images/logos/diy-kitchens-logo.png";
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -99,6 +100,16 @@ const finalDescription = description || defaultDescription;
             everything from one-off domestic kitchens to multi-unit housing
             developments and trade-supplied kitchen installs.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} includes a wide mix of property types, and I
+                tailor kitchen installs to suit. From tight retrofits to
+                open-plan layouts, I always make sure the kitchen is fitted with
+                care, to match the space and how it’s going to be used.
+              </p>
+            )
+          }
 
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-4">
             Fitting Kitchens from All Major Brands

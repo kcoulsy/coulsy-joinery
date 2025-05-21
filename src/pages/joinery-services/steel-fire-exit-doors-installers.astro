@@ -19,6 +19,7 @@ import galleryImg6 from "../../assets/images/steel-exit-doors/Security-Fire-Exit
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -96,6 +97,18 @@ const finalDescription = description || defaultDescription;
             }, I’d be happy to take a look and chat through the best approach
             for your site. No pressure, just honest advice and proper work.
           </p>
+
+          {
+            cleanLocationName && (
+              <p>
+                I’ve installed steel fire exit doors across {cleanLocationName},
+                in everything from small clinics to large commercial units.
+                Every site presents its own challenges — and I take the time to
+                make sure each door is compliant, secure, and suited to the
+                building's use.
+              </p>
+            )
+          }
 
           <p>
             <a

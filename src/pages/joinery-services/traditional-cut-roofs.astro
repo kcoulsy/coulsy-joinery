@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/cut-roofs/cut-roof4.jpg";
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -68,6 +69,17 @@ const finalDescription = description || defaultDescription;
             build them the proper way using strong, well-sourced timber and a
             practical layout that suits your build.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                I’ve built traditional cut roofs across {cleanLocationName},
+                adapting each to suit the specific layout, access, and headroom
+                requirements of the site. Whether it's a tricky extension or a
+                new build with character, everything is set out and cut by hand
+                to match the design.
+              </p>
+            )
+          }
           <p>
             My team and I take care of everything from timber selection and
             design to precise onsite assembly. We don’t rely on mechanical

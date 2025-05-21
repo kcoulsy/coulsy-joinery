@@ -17,6 +17,7 @@ import galleryImg4 from "../../assets/images/joinery-subcontractors/sub-contract
 const {
   formattedServiceName,
   locationInText,
+  cleanLocationName,
   businessSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
@@ -72,6 +73,17 @@ const finalDescription = description || defaultDescription;
             healthcare and more — always with a commitment to high standards and
             site-friendly professionalism.
           </p>
+          {
+            cleanLocationName && (
+              <p>
+                {cleanLocationName} has a constant flow of commercial and
+                residential building work — and I regularly support local
+                contractors with reliable site-based joinery services. Whether
+                it’s internal fit-outs, first fix work or joinery for specialist
+                environments, I bring experience and consistency to the job.
+              </p>
+            )
+          }
           <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
             Straightforward and Dependable
           </h3>
