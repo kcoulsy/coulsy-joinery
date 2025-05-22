@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import studWall from "../assets/images/stud-wall-new-build.jpeg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
-import gardenOffice from "../assets/images/garden-offices/garden-office-image1.jpg";
+import gardenOffice from "../assets/images/garden-offices/garden-office.jpeg";
+import gardenRooms from "../assets/images/garden-rooms/garden-rooms.jpeg";
 import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import SubcontractImg from "../assets/images/sub-contract.jpg";
 import rooftop from "../assets/images/rooftop.jpg";
@@ -11,9 +12,16 @@ import doorHanging from "../assets/images/doors/fire-doors-sign.png";
 import heritage from "../assets/images/heritage/oak-window-restoration.jpg";
 import accessibleKitchen from "../assets/images/accessible-kitchens/accessible-kitchen-main.jpg";
 import steelFireExit from "../assets/images/steel-exit-doors/Security-Fire-Exit-Door-510x510.jpg";
-import herringboneFlooring from "../assets/images/bespoke-joinery/herringbone-flooring.jpg";
+import generalJoinery from "../assets/images/general-joinery/fencing-and-gates.jpg";
 
 const services = [
+  {
+    title: "General Joinery",
+    href: "/joinery-services/general-joinery",
+    image: generalJoinery,
+    alt: "General joinery services in York",
+    description: "From floors and skirtings to shelves and storage.",
+  },
   {
     title: "Bespoke Joinery",
     href: "/joinery-services/bespoke-joinery",
@@ -27,13 +35,6 @@ const services = [
     image: heritage,
     alt: "Heritage Joinery",
     description: "Expert restoration and reproduction of period joinery.",
-  },
-  {
-    title: "Sub Contract Joinery",
-    href: "/joinery-services/joinery-subcontractors",
-    image: SubcontractImg,
-    alt: "Sub contract Joinery",
-    description: "Joinery labour and support services for larger projects.",
   },
   {
     title: "Fitted Kitchens",
@@ -50,18 +51,11 @@ const services = [
     description: "Practical kitchen solutions designed for accessibility.",
   },
   {
-    title: "Doors",
-    href: "/joinery-services/door-hanging",
-    image: doorHanging,
-    alt: "Door Hanging and installers",
-    description: "Internal and external doors fitted with care and precision.",
-  },
-  {
-    title: "Steel Fire Exit Doors",
-    href: "/joinery-services/steel-fire-exit-doors-installers",
-    image: steelFireExit,
-    alt: "Steel fire exit and fire escape doors",
-    description: "Robust, compliant fire exit doors for commercial spaces.",
+    title: "Stud Walls",
+    href: "/joinery-services/stud-wall-partitioning",
+    image: studWall,
+    alt: "stud wall and partitioning installers in York",
+    description: "Room layouts adapted with solid timber studwork.",
   },
   {
     title: "Truss Roofs",
@@ -78,25 +72,41 @@ const services = [
     description: "Hand-cut timber roof structures built to spec.",
   },
   {
-    title: "Stud Walls",
-    href: "/joinery-services/stud-wall-partitioning",
-    image: studWall,
-    alt: "stud wall and partitioning installers in York",
-    description: "Room layouts adapted with solid timber studwork.",
+    title: "Sub Contract Joinery",
+    href: "/joinery-services/joinery-subcontractors",
+    image: SubcontractImg,
+    alt: "Sub contract Joinery",
+    description: "Joinery labour and support services for larger projects.",
   },
   {
-    title: "Garden Offices and Rooms",
+    title: "Doors",
+    href: "/joinery-services/door-hanging",
+    image: doorHanging,
+    alt: "Door Hanging and installers",
+    description: "Internal and external doors fitted with care and precision.",
+  },
+  {
+    title: "Steel Fire Exit Doors",
+    href: "/joinery-services/steel-fire-exit-doors-installers",
+    image: steelFireExit,
+    alt: "Steel fire exit and fire escape doors",
+    description: "Robust, compliant fire exit doors for commercial spaces.",
+  },
+  {
+    title: "Garden Offices",
     href: "/joinery-services/garden-offices",
     image: gardenOffice,
-    alt: "Garden Offices and Rooms York",
-    description: "Insulated timber garden offices built for all seasons.",
+    alt: "Timber-framed garden office installation in York",
+    description:
+      "Custom-built insulated garden offices for home working and productivity, designed for comfort year-round.",
   },
   {
-    title: "General Joinery",
-    href: "/joinery-services/general-joinery",
-    image: herringboneFlooring,
-    alt: "General joinery services in York",
-    description: "From floors and skirtings to shelves and storage.",
+    title: "Garden Rooms",
+    href: "/joinery-services/garden-rooms",
+    image: gardenRooms, // Ideally swap with distinct image if available
+    alt: "Bespoke garden room built with timber cladding in York",
+    description:
+      "Made-to-measure garden rooms designed for leisure, hobbies, or guest space — fully insulated and tailored to your style.",
   },
 ];
 ---
