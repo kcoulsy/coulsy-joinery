@@ -11,7 +11,7 @@ import NearbyAreas from "../../components/NearbyAreasStudWalls.astro"; // this l
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/stud-walls/stud-walls1.jpg";
 import galleryImg2 from "../../assets/images/stud-walls/stud-walls2.jpg";
-import galleryImg3 from "../../assets/images/stud-walls/stud-walls3.jpg";
+import galleryImg3 from "../../assets/images/stud-walls/room-partition.jpeg";
 import galleryImg4 from "../../assets/images/stud-walls/stud-walls4.jpg";
 
 const {
@@ -78,10 +78,10 @@ const finalDescription = description || defaultDescription;
           {
             cleanLocationName && (
               <p>
-                I’ve installed stud walls across {cleanLocationName}, from loft
-                conversions and home offices to retail fit-outs and commercial
-                units. Whatever the setting, I make sure the structure is sound,
-                straight, and built to suit the space.
+                Across {cleanLocationName}, I’ve installed stud walls in
+                everything from loft conversions and home offices to shop
+                fit-outs and commercial units. Each job is tailored to the
+                space, with strong, straight framing you can rely on.
               </p>
             )
           }
@@ -119,22 +119,22 @@ const finalDescription = description || defaultDescription;
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Timber stud wall frame construction in progress showing vertical studs and noggins ${locationInText}`,
+                  alt: `Timber stud wall under construction with vertical studs and noggins in place ${cleanLocationName}`,
                   label: "Timber Stud Wall Framing",
                 },
                 {
                   src: galleryImg2,
-                  alt: `Completed timber partition wall with door opening prepared for plasterboard finish ${locationInText}`,
+                  alt: `Completed timber partition wall with framed door opening, ready for plasterboard ${cleanLocationName}`,
                   label: "Partition Wall with Door Opening",
                 },
                 {
                   src: galleryImg3,
-                  alt: `Internal wooden stud wall installation dividing a large space into rooms ${locationInText}`,
+                  alt: `Timber stud wall used to divide a large internal space into separate rooms ${cleanLocationName}`,
                   label: "Room Division with Stud Wall",
                 },
                 {
                   src: galleryImg4,
-                  alt: `Detailed view of timber stud wall showing accurate spacing and secure fixings ${locationInText}`,
+                  alt: `Close-up of timber stud wall with even spacing and solid fixings ${cleanLocationName}`,
                   label: "Precision Timber Stud Detailing",
                 },
               ]}
