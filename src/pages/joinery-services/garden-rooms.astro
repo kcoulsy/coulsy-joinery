@@ -9,10 +9,12 @@ import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
 import NearbyAreas from "../../components/NearbyAreasGardenRooms.astro"; // this location is unique a specific for the service offered !! CHECK
 
 import GalleryGrid from "../../components/GalleryGrid.astro";
-import galleryImg1 from "../../assets/images/garden-rooms/garden-rooms-image1.jpg";
+import galleryImg1 from "../../assets/images/garden-rooms/garden-rooms.jpeg";
 import galleryImg2 from "../../assets/images/garden-rooms/garden-rooms-image2.jpg";
 import galleryImg3 from "../../assets/images/garden-rooms/garden-rooms-image3.jpg";
 import galleryImg4 from "../../assets/images/garden-rooms/garden-rooms-image4.jpg";
+import galleryImg5 from "../../assets/images/garden-rooms/garden-rooms-image1.jpg";
+import galleryImg6 from "../../assets/images/garden-rooms/garden-office-interior.jpeg";
 
 const {
   formattedServiceName,
@@ -208,23 +210,33 @@ const finalDescription = description || defaultDescription;
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Exterior view of a bespoke garden room ${locationInText}`,
-                  label: "Bespoke Garden Room Exterior",
+                  alt: `Exterior view of a bespoke garden room built by Coulsy Joinery ${cleanLocationName}`,
+                  label: "Exterior View of Bespoke Garden Room",
                 },
                 {
                   src: galleryImg2,
-                  alt: `Relaxing garden room interior space ${locationInText}`,
-                  label: "Relaxing Garden Room Interior",
+                  alt: `Interior of a relaxing garden room with soft lighting and seating ${cleanLocationName}`,
+                  label: "Garden Room Interior with Seating",
                 },
                 {
                   src: galleryImg3,
-                  alt: `Modern insulated garden room build ${locationInText}`,
-                  label: "Modern Insulated Garden Room",
+                  alt: `Modern insulated timber garden room construction ${cleanLocationName}`,
+                  label: "Modern Timber Garden Room",
                 },
                 {
                   src: galleryImg4,
-                  alt: `Compact timber garden room build by Coulsy Joinery ${locationInText}`,
+                  alt: `Compact timber garden room built by Coulsy Joinery ${cleanLocationName}`,
                   label: "Compact Timber Garden Room",
+                },
+                {
+                  src: galleryImg5,
+                  alt: `Timber garden room ideal for garden retreat or home office ${cleanLocationName}`,
+                  label: "Garden Retreat or Office Space",
+                },
+                {
+                  src: galleryImg6,
+                  alt: `Interior view of a bespoke garden office space ${cleanLocationName}`,
+                  label: "Modern Garden Office Interior",
                 },
               ]}
             />

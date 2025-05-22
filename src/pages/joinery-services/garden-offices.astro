@@ -12,7 +12,9 @@ import GalleryGrid from "../../components/GalleryGrid.astro";
 import galleryImg1 from "../../assets/images/garden-offices/garden-office-image1.jpg";
 import galleryImg2 from "../../assets/images/garden-offices/garden-office-image2.jpg";
 import galleryImg3 from "../../assets/images/garden-offices/garden-office-image3.jpg";
-import galleryImg4 from "../../assets/images/garden-offices/garden-office-image4.jpg";
+import galleryImg4 from "../../assets/images/garden-offices/garden-office-timber-clad.jpeg";
+import galleryImg5 from "../../assets/images/garden-offices/annex-under-construction.jpeg";
+import galleryImg6 from "../../assets/images/garden-offices/garden-office-interior.jpeg";
 
 const {
   formattedServiceName,
@@ -59,28 +61,29 @@ const finalDescription = description || defaultDescription;
       <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
         <div class="space-y-4 text-gray-600 prose">
           <p>
-            I'm Robert, a time-served joiner based near York. I design and build
-            bespoke garden offices that balance form and function — crafted with
-            care, precision, and over 30 years of hands-on experience. If you’re
-            looking for a garden office that feels truly part of your home, I’d
-            love to help.
+            I’m Robert, a time-served joiner near York with over 30 years of
+            hands-on experience. I build bespoke garden offices that balance
+            form and function — crafted with care and precision.
+          </p>
+          <p>
+            If you want a garden office that feels like a true extension of your
+            home, I’d love to help.
           </p>
           <p>
             Transform your outdoor space into a peaceful, practical escape —
             ideal for working, creating, or simply unwinding.
           </p>
           <p>
-            Every project starts with a conversation. Whether you have a sketch,
-            a full set of plans, or just a rough idea, I’ll work with you to
-            shape it into a beautiful, durable garden office that suits your
-            needs and your site.
+            Every project starts with a conversation — whether you’ve got a full
+            plan, a quick sketch, or just an idea. I’ll help shape it into a
+            garden office that’s beautiful, durable, and right for your space.
           </p>
           <p>
             I use high-quality, insulated timber frames and premium materials to
             make sure your garden office is warm, efficient, and built to last.
-            Each build is tailored to your style, space, and how you want to use
-            it — from a focused workspace to a creative studio or a relaxing
-            retreat.
+            Every build is tailored to your style, your space, and how you want
+            to use it — whether that’s a focused workspace, creative studio, or
+            quiet retreat.
           </p>
           {
             cleanLocationName && (
@@ -128,23 +131,33 @@ const finalDescription = description || defaultDescription;
               items={[
                 {
                   src: galleryImg1,
-                  alt: `Exterior view of a bespoke garden office ${locationInText}`,
+                  alt: `Exterior view of a bespoke garden office built by Coulsy Joinery ${cleanLocationName}`,
                   label: "Bespoke Garden Office Exterior",
                 },
                 {
                   src: galleryImg2,
-                  alt: `Interior of custom-built garden office workspace ${locationInText}`,
+                  alt: `Interior workspace of a custom garden office ${cleanLocationName}`,
                   label: "Custom Garden Office Interior",
                 },
                 {
                   src: galleryImg3,
-                  alt: `Modern insulated garden office build ${locationInText}`,
-                  label: "Modern Insulated Garden Office",
+                  alt: `Modern insulated timber-framed garden office ${cleanLocationName}`,
+                  label: "Modern Garden Office",
                 },
                 {
                   src: galleryImg4,
-                  alt: `Compact timber garden office build by Coulsy Joinery ${locationInText}`,
+                  alt: `Compact timber garden office built by Coulsy Joinery ${cleanLocationName}`,
                   label: "Compact Timber Garden Office",
+                },
+                {
+                  src: galleryImg5,
+                  alt: `Garden office annex under construction by Coulsy Joinery ${cleanLocationName}`,
+                  label: "Garden Office Annex Under Construction",
+                },
+                {
+                  src: galleryImg6,
+                  alt: `Interior of a completed timber garden office ${cleanLocationName}`,
+                  label: "Finished Garden Office Interior",
                 },
               ]}
             />
