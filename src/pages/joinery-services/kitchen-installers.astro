@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
-import ContactForm from "../../components/ContactForm.astro";
+import ModernContactForm from "../../components/ModernContactForm.astro";
 import { getFormattedPageData } from "../../utils/pageMeta";
 import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
 
@@ -273,7 +273,10 @@ const finalDescription = description || defaultDescription;
                 Planning a new kitchen installation or upgrade? I’d love to help
                 bring your vision to life.
               </p>
-              <ContactForm />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your kitchen installation project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

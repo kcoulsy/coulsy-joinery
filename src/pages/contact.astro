@@ -1,193 +1,219 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-import ContactForm from "../components/ContactForm.astro";
+import ModernContactForm from "../components/ModernContactForm.astro";
 import OfficeIcon from "../icons/OfficeIcon.astro";
 import CardChecklist from "../icons/CardChecklist.astro";
 import EnvelopeIcon from "../icons/EnvelopeIcon.astro";
 import PhoneIcon from "../icons/PhoneIcon.astro";
+import Reviews from "../components/Reviews.astro";
 import { DETAILS } from "../constants/details";
+
+// Modern SEO optimization with personal voice preserved
+const seoData = {
+  title:
+    "Contact Coulsy Joinery - Expert Joinery Services in York | Free Quotes",
+  description:
+    "Contact Robert Coulson for expert joinery services in York. 35+ years experience since 1989. Free consultations and quotes for bespoke joinery, kitchens, and building works.",
+  keywords:
+    "contact joinery York, Robert Coulson joiner, joinery quote York, kitchen installation York, bespoke joinery contact",
+  canonical: "https://coulsyjoinery.co.uk/contact",
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Coulsy Joinery",
+    description:
+      "Contact Robert Coulson for expert joinery services in York with 35+ years experience",
+    url: "https://coulsyjoinery.co.uk/contact",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Coulsy Joinery",
+      telephone: DETAILS.PHONE,
+      email: DETAILS.EMAIL,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: `${DETAILS.ADDRESS.LINE_1}, ${DETAILS.ADDRESS.LINE_2}`,
+        addressLocality: DETAILS.ADDRESS.TOWN,
+        addressRegion: DETAILS.ADDRESS.COUNTY,
+        postalCode: DETAILS.ADDRESS.POSTCODE,
+        addressCountry: "GB",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: DETAILS.PHONE,
+        contactType: "customer service",
+        availableLanguage: "English",
+      },
+    },
+  },
+};
 ---
 
-<Layout title="Contact Us" classes="mt-8 mb-16">
-  <div class="container mx-auto sm:px-4 pb-12">
-    <div class="flex flex-wrap mt-5 mb-4">
-      <div class="relative flex-grow max-w-full flex-1 px-4 pb-12">
-        <h1 class="text-3xl font-bold">
-          Contact a Trusted York-Based Joinery Business
-        </h1>
-        <p class="text-xl font-light mb-4 mt-1">
-          Let’s talk about your project — from small repairs to full
-          renovations, I’d be happy to help.
-        </p>
-        <p>
-          We always look forward to hearing from you and being able to assist
-          where we can.
-        </p>
-      </div>
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  classes="mt-8 mb-16"
+>
+  <div class="container mx-auto px-4 py-16 lg:py-24">
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h1
+        class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+      >
+        Contact a Trusted York-Based Joinery Business
+      </h1>
+      <p class="text-xl text-brand-600 max-w-3xl mx-auto text-balance">
+        Let's talk about your project — from small repairs to full renovations,
+        I'd be happy to help.
+      </p>
+      <p class="text-lg text-brand-600 mt-4">
+        We always look forward to hearing from you and being able to assist
+        where we can.
+      </p>
     </div>
 
-    <div class="flex flex-wrap lg:pb-2">
-      <div class="lg:w-3/5 pr-4 pl-4 md:w-3/5">
-        <!-- <div
-          class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 p-6"
-        >
-          <h4 class="text-color-dark mb-1 pb-3">Instant message</h4> -->
-        <ContactForm />
-        <p class="mt-4 text-sm text-gray-700 text-center">
-          Prefer to chat directly? Give me a ring — I’m happy to talk things
+    <div class="grid lg:grid-cols-3 gap-12">
+      <!-- Contact Form Section -->
+      <div class="lg:col-span-2">
+        <ModernContactForm
+          title="Get in Touch"
+          subtitle="Ready to discuss your project? Get in touch for a free, no-obligation quote."
+        />
+        <p class="mt-6 text-center text-brand-600">
+          Prefer to chat directly? Give me a ring — I'm happy to talk things
           through.
         </p>
-        <!-- <form id="contact-form" method="post" action="submit-form">
-            <div class="mb-4">
-              <label for="form-name">Name</label>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                value=""
-                data-msg-required="Please enter your name."
-                maxlength="30"
-                class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                name="name"
-                id="name"
-                required=""
-              />
-            </div>
-            <div class="mb-4">
-              <label for="form-email">Email</label>
-              <input
-                type="text"
-                name="email"
-                class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                id="form-email"
-                placeholder="Enter your email address"
-                required=""
-              />
-              <small id="emailHelp" class="block mt-1 text-gray-700"
-                >We'll never share your email with anyone else.</small
-              >
-            </div>
-            <div class="mb-4">
-              <label for="form-phone">Phone</label>
-              <input
-                type="text"
-                name="phone"
-                class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                id="form-phone"
-                placeholder="Enter your phone number"
-                required=""
-              />
-            </div>
-            <div class="mb-4">
-              <label for="form-message">Message</label>
-              <textarea
-                class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                name="message"
-                id="form-message"
-                rows="3"
-                placeholder="Enter your message to us - e.g - I would like to discuss some concerns about our fire doors"
-              ></textarea>
-            </div>
-            <input
-              type="text"
-              class="hidden"
-              name="site_location"
-              id="site_location"
-              value=""
-            />
-            <input
-              type="hidden"
-              name="recaptcha_value"
-              id="recaptcha_value"
-              value=""
-            />
-
-            <button
-              type="submit"
-              id="submit-form"
-              class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded no-underline py-1 px-2 leading-tight text-xs bg-blue-600 text-white hover:bg-blue-600 mt-2"
-              >Submit Form</button
-            >
-          </form> -->
-
-        <!-- <div
-            id="contact-error-alert"
-            class="relative px-3 py-3 mb-4 border rounded bg-red-200 border-red-300 text-red-800 mt-2 mb-0"
-            role="alert"
-            style="display: none;"
-          >
-            Something went wrong when submitting the form!
-          </div>
-
-          <div
-            id="contact-success-alert"
-            class="relative px-3 py-3 mb-4 border rounded bg-blue-200 border-blue-300 text-blue-800 mt-2 mb-0"
-            role="alert"
-            style="display: none;"
-          >
-            Form Submitted Successfully!
-          </div>
-        </div> -->
       </div>
 
-      <div class="lg:w-2/5 pr-4 pl-4 md:w-2/5 col-lg-offset-1">
-        <div
-          class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 p-6 shadow-2xl"
-        >
-          <OfficeIcon className="h-4 w-4 inline-block" />
-          <h4 class="text-color-dark mb-1 pb-2">Office</h4>
+      <!-- Contact Information Section -->
+      <div class="space-y-6">
+        <!-- Office Details -->
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-brand-100">
+          <div class="flex items-center mb-4">
+            <OfficeIcon className="h-6 w-6 text-brand-600" />
+            <h3 class="text-xl font-semibold text-brand-900 ml-3">Office</h3>
+          </div>
 
-          <ul class="list list-icons mt-3 mb-3">
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              {DETAILS.ADDRESS.LINE_1}<br />{DETAILS.ADDRESS.LINE_2}<br />{
-                DETAILS.ADDRESS.TOWN
-              }<br />{DETAILS.ADDRESS.COUNTY}<br />{DETAILS.ADDRESS.POSTCODE}
-            </li>
-            <p></p>
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <PhoneIcon className="h-4 w-4 inline-block" />
-              <a href={`tel:${DETAILS.PHONE}`} style="text-decoration: none"
-                >{DETAILS.PHONE}</a
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div
+                class="flex-shrink-0 w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5"
               >
-            </li>
-            <p></p>
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <EnvelopeIcon className="h-4 w-4 inline-block" />
-              <a href={`mailto:${DETAILS.EMAIL}`}>{DETAILS.EMAIL}</a>
-            </li>
-            <p></p>
-          </ul>
-        </div>
-        <div
-          class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 p-6 shadow-2xl mt-4"
-        >
-          <h4 class="text-color-dark mb-1 pb-2">Company details</h4>
-          <p class="text-xs">Rest assured by knowing who we are.</p>
+                <svg
+                  class="w-3 h-3 text-brand-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <address class="text-brand-600 not-italic">
+                {DETAILS.ADDRESS.LINE_1}<br />
+                {DETAILS.ADDRESS.LINE_2}<br />
+                {DETAILS.ADDRESS.TOWN}<br />
+                {DETAILS.ADDRESS.COUNTY}<br />
+                {DETAILS.ADDRESS.POSTCODE}
+              </address>
+            </div>
 
-          <ul class="list list-icons mt-3 mb-3">
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <CardChecklist className="h-4 w-4 inline-block" /> Registered Company
-              : {DETAILS.COMPANY.NAME}
-            </li>
-            <p></p>
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <CardChecklist className="h-4 w-4 inline-block" /> Company number :
-              {DETAILS.COMPANY.REGISTRATION_NUMBER}
-            </li>
-            <p></p>
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <CardChecklist className="h-4 w-4 inline-block" /> Commenced trading
-              : {DETAILS.COMPANY.SINCE}
-            </li>
-            <p></p>
-            <p class="text-4 mb-0"></p><li style="list-style: none;">
-              <CardChecklist className="h-4 w-4 inline-block" /> VAT registered:
-              upon request
-            </li>
-            <p></p>
-          </ul>
+            <div class="flex items-center">
+              <PhoneIcon className="h-5 w-5 text-brand-600 mr-3" />
+              <a
+                href={`tel:${DETAILS.PHONE}`}
+                class="text-brand-600 hover:text-brand-700 transition-colors duration-200"
+              >
+                {DETAILS.PHONE}
+              </a>
+            </div>
+
+            <div class="flex items-center">
+              <EnvelopeIcon className="h-5 w-5 text-brand-600 mr-3" />
+              <a
+                href={`mailto:${DETAILS.EMAIL}`}
+                class="text-brand-600 hover:text-brand-700 transition-colors duration-200"
+              >
+                {DETAILS.EMAIL}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company Details -->
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-brand-100">
+          <h3 class="text-xl font-semibold text-brand-900 mb-4">
+            Company details
+          </h3>
+          <p class="text-sm text-brand-600 mb-6">
+            Rest assured by knowing who we are.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <CardChecklist className="h-5 w-5 text-brand-600 mr-3" />
+              <div>
+                <span class="text-sm font-medium text-brand-900"
+                  >Registered Company:</span
+                >
+                <p class="text-sm text-brand-600">{DETAILS.COMPANY.NAME}</p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <CardChecklist className="h-5 w-5 text-brand-600 mr-3" />
+              <div>
+                <span class="text-sm font-medium text-brand-900"
+                  >Company number:</span
+                >
+                <p class="text-sm text-brand-600">
+                  {DETAILS.COMPANY.REGISTRATION_NUMBER}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <CardChecklist className="h-5 w-5 text-brand-600 mr-3" />
+              <div>
+                <span class="text-sm font-medium text-brand-900"
+                  >Commenced trading:</span
+                >
+                <p class="text-sm text-brand-600">{DETAILS.COMPANY.SINCE}</p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <CardChecklist className="h-5 w-5 text-brand-600 mr-3" />
+              <div>
+                <span class="text-sm font-medium text-brand-900"
+                  >VAT registered:</span
+                >
+                <p class="text-sm text-brand-600">upon request</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Reviews Section -->
+    <section class="mt-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-brand-900 mb-4">
+          What Our Clients Say
+        </h2>
+        <p class="text-lg text-brand-600 max-w-2xl mx-auto">
+          Don't just take our word for it — see what our satisfied clients have
+          to say about our work
+        </p>
+      </div>
+      <Reviews />
+    </section>
   </div>
 </Layout>
+
+<!-- Modern Structured Data -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(seoData.structuredData)}
+/>

@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths, GetStaticPathsResult } from "astro";
 import { LOCATIONS } from "../../constants/locations";
-import Page from "./heritage-restoration-joinery.astro"; // import the Page, The unique path link for specific to the service
+import Page from "./heritage-restoration-joinery.astro";
 
 export const getStaticPaths = (() => {
   const paths: GetStaticPathsResult = [];
@@ -18,8 +18,7 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const { location } = Astro.params;
-
-console.log(Astro.params);
 ---
 
 <Page location={location} />
+

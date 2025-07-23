@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Altofts | Coulsy Joinery",
+  "description": "Professional joinery services in Altofts, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Altofts",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.707,
+    "lng": -1.417
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Altofts Village",
+    "Normanton",
+    "Castleford",
+    "Wakefield",
+    "Featherstone"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Altofts residents."
+} 

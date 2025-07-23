@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Thorp Arch | Coulsy Joinery",
+  "description": "Professional joinery services in Thorp Arch, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Thorp Arch",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.900,
+    "lng": -1.336
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Thorp Arch Village",
+    "Boston Spa",
+    "Bramham",
+    "Clifford",
+    "Wetherby"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Thorp Arch residents."
+} 

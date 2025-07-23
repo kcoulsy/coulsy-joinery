@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Towton | Coulsy Joinery",
+  "description": "Professional joinery services in Towton, North Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Towton",
+  "region": "North Yorkshire",
+  "coordinates": {
+    "lat": 53.847,
+    "lng": -1.277
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Towton Village",
+    "York",
+    "Tadcaster",
+    "Boston Spa",
+    "Wetherby"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Towton residents."
+} 

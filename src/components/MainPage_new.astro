@@ -5,8 +5,10 @@ import Layout from "../layouts/Layout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import Why from "../components/Why.astro";
 import OurServicesBody from "../components/OurServicesBody.astro";
-
 import Reviews from "../components/Reviews.astro";
+import { DETAILS } from "../constants/details";
+
+// Import images with modern priority loading
 import timber20joinery from "../assets/images/timber20joinery.jpg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
 import kitchenFitter from "../assets/images/kitchens/kitchen-fitter-domestic.jpg";
@@ -15,33 +17,204 @@ const slides = [
   {
     image: mouldingPlane,
     text: "Welcome to Coulsy Joinery and Building",
+    subtitle: "Crafting excellence in York, Wetherby & Harrogate",
+    cta: {
+      text: "View Our Work",
+      link: "/projects",
+    },
   },
   {
     image: kitchenFitter,
-    text: "Fitted Kitchens, Refurbs & Small Builds Works",
+    text: "Fitted Kitchens, Refurbs & Small Build Works",
+    subtitle: "Transform your space with bespoke craftsmanship",
+    cta: {
+      text: "Get a Quote",
+      link: "/contact",
+    },
   },
   {
     image: timber20joinery,
     text: "Bespoke Joinery, Skilled, Reliable Craftsmanship — Every Time",
+    subtitle: "Quality you can trust, delivered on time",
+    cta: {
+      text: "Our Services",
+      link: "/joinery-services",
+    },
   },
 ];
+
+// Modern SEO optimization with personal voice preserved
+const seoData = {
+  title:
+    "Coulsy Joinery - Professional Joinery Services in York | Bespoke Kitchens & Garden Offices",
+  description:
+    "Expert joinery services in York including bespoke kitchens, garden offices, heritage restoration, and small building works. Family-run business with 35+ years experience since 1989. Free quotes available.",
+  keywords:
+    "joinery York, bespoke kitchens, garden offices, heritage joinery, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner",
+  ogImage: "/og-image.jpg",
+  canonical: "https://coulsyjoinery.co.uk",
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Coulsy Joinery",
+    alternateName: "Coulsy Joinery & Small Build",
+    description:
+      "Professional joinery services in York including bespoke joinery, kitchen installations, garden offices, heritage restoration, and small building works.",
+    url: "https://coulsyjoinery.co.uk",
+    telephone: DETAILS.PHONE,
+    email: DETAILS.EMAIL,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: DETAILS.ADDRESS.LINE_1,
+      addressLocality: DETAILS.ADDRESS.TOWN,
+      addressRegion: DETAILS.ADDRESS.COUNTY,
+      postalCode: DETAILS.ADDRESS.POSTCODE,
+      addressCountry: "GB",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "53.9590",
+      longitude: "-1.0792",
+    },
+    openingHours: ["Mo-Fr 08:00-18:00", "Sa 09:00-16:00"],
+    priceRange: "££",
+    areaServed: ["York", "Wetherby", "Harrogate", "Yorkshire"],
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: "53.9590",
+        longitude: "-1.0792",
+      },
+      geoRadius: "50000",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Joinery Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Bespoke Joinery",
+            description:
+              "Made-to-measure joinery tailored to your space and style",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Kitchen Installation",
+            description:
+              "Full kitchen installs tailored to your layout and finish",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Garden Offices",
+            description: "Timber-framed garden office installation",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Heritage Restoration",
+            description:
+              "Expert restoration and reproduction of period joinery",
+          },
+        },
+      ],
+    },
+    foundingDate: "1989",
+    founder: {
+      "@type": "Person",
+      name: "Robert Coulson",
+      jobTitle: "Master Joiner",
+      description:
+        "Qualified since 1989 with over 35 years of joinery experience",
+    },
+    employee: [
+      {
+        "@type": "Person",
+        name: "Robert Coulson",
+        jobTitle: "Master Joiner",
+        description: "Qualified since 1989 with 35+ years experience",
+      },
+      {
+        "@type": "Person",
+        name: "Debbie Coulson",
+        jobTitle: "Project Manager",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "50",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    award: [
+      "City & Guilds Qualified (1989)",
+      "CSCS Gold Card Holder",
+      "Fully Insured",
+      "VAT Registered",
+    ],
+    brand: {
+      "@type": "Brand",
+      name: "Coulsy Joinery",
+      slogan: "Crafting Excellence in York",
+    },
+  },
+};
 ---
 
-<Layout title="Home" transparentHeader={true}>
-  <div class="relative z-10 mx-auto">
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  classes="mt-8 mb-16"
+>
+  <!-- Hero Section with modern optimization -->
+  <section class="relative z-10 mx-auto">
     <HeroSlider slides={slides} />
+  </section>
+
+  <!-- Why Choose Us Section with personal voice preserved -->
+  <section class="relative z-10 mx-auto">
     <Why />
+  </section>
 
-    <section class="w-full py-8 flex flex-col items-center">
-      <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-        Services
-      </h2>
-      <p class="text-sm text-gray-600 italic mb-6">
-        Here’s a selection of the kind of work I take on regularly:
-      </p>
-    </section>
+  <!-- Services Section with modern structure -->
+  <section
+    class="w-full py-16 lg:py-24 bg-gradient-to-b from-white to-brand-50 relative z-10"
+  >
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+        >
+          Services
+        </h2>
+        <p class="text-xl text-brand-600 max-w-3xl mx-auto text-balance">
+          Here's a selection of the kind of work I take on regularly, delivered
+          with precision and care
+        </p>
+      </div>
+      <OurServicesBody />
+    </div>
+  </section>
 
-    <OurServicesBody />
+  <!-- Testimonials Section with clean presentation -->
+  <section class="relative z-10 mx-auto">
     <Reviews />
-  </div>
+  </section>
 </Layout>
+
+<!-- Modern Structured Data -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(seoData.structuredData)}
+/>

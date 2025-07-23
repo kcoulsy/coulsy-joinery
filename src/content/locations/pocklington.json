@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Pocklington | Coulsy Joinery",
+  "description": "Professional joinery services in Pocklington, East Riding of Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Pocklington",
+  "region": "East Riding of Yorkshire",
+  "coordinates": {
+    "lat": 53.930,
+    "lng": -0.780
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Pocklington Town Centre",
+    "York",
+    "Malton",
+    "Elvington",
+    "Stamford Bridge"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Pocklington residents."
+} 

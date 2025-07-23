@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Knottingley | Coulsy Joinery",
+  "description": "Professional joinery services in Knottingley, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Knottingley",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.705,
+    "lng": -1.252
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Knottingley Town Centre",
+    "Pontefract",
+    "Castleford",
+    "Normanton",
+    "Selby"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Knottingley residents."
+} 

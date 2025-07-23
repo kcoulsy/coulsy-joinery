@@ -21,6 +21,7 @@ const services = [
     image: generalJoinery,
     alt: "General joinery services in York",
     description: "From floors and skirtings to shelves and storage.",
+    category: "Joinery",
   },
   {
     title: "Bespoke Joinery",
@@ -28,13 +29,15 @@ const services = [
     image: mouldingPlane,
     alt: "Bespoke Joinery",
     description: "Made-to-measure joinery tailored to your space and style.",
+    category: "Bespoke",
   },
   {
     title: "Heritage Joinery",
     href: "/joinery-services/heritage-restoration-joinery",
     image: heritage,
-    alt: "Heritage Joinery",
+    alt: "Heritage Joinery Restoration",
     description: "Expert restoration and reproduction of period joinery.",
+    category: "Heritage",
   },
   {
     title: "Fitted Kitchens",
@@ -42,6 +45,7 @@ const services = [
     image: kitchenInstallers,
     alt: "Fitted Kitchen and Installers York",
     description: "Full kitchen installs tailored to your layout and finish.",
+    category: "Kitchens",
   },
   {
     title: "Accessible Kitchens",
@@ -49,6 +53,7 @@ const services = [
     image: accessibleKitchen,
     alt: "Accessible kitchens York",
     description: "Practical kitchen solutions designed for accessibility.",
+    category: "Specialist",
   },
   {
     title: "Stud Walls",
@@ -56,6 +61,7 @@ const services = [
     image: studWall,
     alt: "stud wall and partitioning installers in York",
     description: "Room layouts adapted with solid timber studwork.",
+    category: "Construction",
   },
   {
     title: "Truss Roofs",
@@ -63,6 +69,7 @@ const services = [
     image: rooftop,
     alt: "Truss and trussed roof installers",
     description: "Pre-engineered truss roof installation and setting out.",
+    category: "Roofing",
   },
   {
     title: "Traditional Cut Roofs",
@@ -70,6 +77,7 @@ const services = [
     image: cutRoofHeader,
     alt: "Traditional Cut Roofs",
     description: "Hand-cut timber roof structures built to spec.",
+    category: "Heritage",
   },
   {
     title: "Sub Contract Joinery",
@@ -77,6 +85,7 @@ const services = [
     image: SubcontractImg,
     alt: "Sub contract Joinery",
     description: "Joinery labour and support services for larger projects.",
+    category: "Commercial",
   },
   {
     title: "Doors",
@@ -84,6 +93,7 @@ const services = [
     image: doorHanging,
     alt: "Door Hanging and installers",
     description: "Internal and external doors fitted with care and precision.",
+    category: "Joinery",
   },
   {
     title: "Steel Fire Exit Doors",
@@ -91,50 +101,81 @@ const services = [
     image: steelFireExit,
     alt: "Steel fire exit and fire escape doors",
     description: "Robust, compliant fire exit doors for commercial spaces.",
+    category: "Commercial",
   },
   {
     title: "Garden Offices",
     href: "/joinery-services/garden-offices",
     image: gardenOffice,
     alt: "Timber-framed garden office installation in York",
-    description:
-      "Custom-built insulated garden offices for home working and productivity, designed for comfort year-round.",
+    description: "Custom-built insulated garden offices for home working and productivity, designed for comfort year-round.",
+    category: "Bespoke",
   },
   {
     title: "Garden Rooms",
     href: "/joinery-services/garden-rooms",
-    image: gardenRooms, // Ideally swap with distinct image if available
+    image: gardenRooms,
     alt: "Bespoke garden room built with timber cladding in York",
-    description:
-      "Made-to-measure garden rooms designed for leisure, hobbies, or guest space — fully insulated and tailored to your style.",
+    description: "Made-to-measure garden rooms designed for leisure, hobbies, or guest space — fully insulated and tailored to your style.",
+    category: "Bespoke",
   },
 ];
 ---
 
-<!-- <section class="w-full py-12 md:py-24 container mx-auto"> -->
-<div
-  class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-6 px-4 max-w-7xl mx-auto"
->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
   {
     services.map((service) => (
       <a
         href={service.href}
-        class="group p-2 rounded-3xl bg-white border-sm border-gray-100 bg-opacity-50 shadow-2xl shadow-gray-600/10 transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1"
+        class="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+        aria-label={`Learn more about ${service.title} services`}
       >
-        <div class="relative overflow-hidden rounded-sm">
+        <!-- Image Container -->
+        <div class="relative overflow-hidden rounded-t-xl">
           <Image
             src={service.image}
             alt={service.alt}
             loading="lazy"
-            width="1000"
-            height="667"
-            class="aspect-square w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            width={400}
+            height={300}
+            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          <!-- Overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <!-- Service badge -->
+          <div class="absolute top-3 left-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800">
+              {service.title}
+            </span>
+          </div>
         </div>
-        <div class="mt-6 relative text-center">
-          <h2 class="text-xl font-semibold text-gray-800">{service.title}</h2>
-          <p class="text-sm text-gray-600 mt-1">{service.description}</p>
+
+        <!-- Content -->
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-brand-900 mb-2 group-hover:text-brand-600 transition-colors duration-200">
+            {service.title}
+          </h3>
+          <p class="text-sm text-brand-600 leading-relaxed">
+            {service.description}
+          </p>
+          
+          <!-- CTA Arrow -->
+          <div class="mt-4 flex items-center text-brand-500 group-hover:text-brand-600 transition-colors duration-200">
+            <span class="text-sm font-medium">Learn more</span>
+            <svg 
+              class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-200" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
         </div>
+
+        <!-- Hover effect border -->
+        <div class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-brand-200 transition-colors duration-300 pointer-events-none"></div>
       </a>
     ))
   }

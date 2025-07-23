@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Boroughbridge | Coulsy Joinery",
+  "description": "Professional joinery services in Boroughbridge, North Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Boroughbridge",
+  "region": "North Yorkshire",
+  "coordinates": {
+    "lat": 54.095,
+    "lng": -1.399
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Boroughbridge Town Centre",
+    "Aldborough",
+    "Minskip",
+    "Roecliffe",
+    "Langthorpe"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Boroughbridge residents."
+} 

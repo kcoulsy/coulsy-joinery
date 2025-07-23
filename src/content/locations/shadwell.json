@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Shadwell | Coulsy Joinery",
+  "description": "Professional joinery services in Shadwell, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Shadwell",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.848,
+    "lng": -1.469
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Shadwell Village",
+    "Alwoodley",
+    "Bardsey",
+    "Moortown",
+    "Leeds"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Shadwell residents."
+} 

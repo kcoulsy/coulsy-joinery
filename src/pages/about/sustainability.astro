@@ -1,13 +1,76 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import sustainabilityLogo from "../../assets/images/sustainability_logo.svg";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+
+// Modern SEO optimization with personal voice preserved
+const seoData = {
+  title:
+    "Sustainability & Environmental Practices - Coulsy Joinery | Eco-Friendly Joinery York",
+  description:
+    "Coulsy Joinery's commitment to sustainable practices, waste reduction, and environmental responsibility. Eco-friendly joinery solutions in York with minimal environmental impact.",
+  keywords:
+    "sustainable joinery York, eco-friendly joinery, environmental joinery practices, green building York, sustainable construction",
+  canonical: "https://coulsyjoinery.co.uk/about/sustainability",
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Sustainability & Environmental Practices",
+    description:
+      "Coulsy Joinery's commitment to sustainable and environmentally responsible practices",
+    url: "https://coulsyjoinery.co.uk/about/sustainability",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Coulsy Joinery",
+      description:
+        "Family-run joinery business committed to sustainable practices",
+      url: "https://coulsyjoinery.co.uk",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "North Yorkshire",
+        addressCountry: "UK",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Sustainable Joinery Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Sustainable Materials",
+              description:
+                "Use of eco-friendly and responsibly sourced materials",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Waste Reduction",
+              description:
+                "Minimizing waste through careful planning and material reuse",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Environmental Compliance",
+              description: "Meeting and exceeding environmental regulations",
+            },
+          },
+        ],
+      },
+    },
+  },
+};
 ---
 
-<Layout title="Sustainability">
-  <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+<Layout title={seoData.title} description={seoData.description}>
+  <main class="mx-auto relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-16 lg:py-24">
       <Breadcrumb
         crumbs={[
           { href: "/about", label: "About" },
@@ -15,62 +78,128 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
         ]}
       />
 
-      <h1 class="text-3xl font-bold tracking-tight pb-4">Sustainability</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <h3 class="font-semibold text-lg">Our Approach to Sustainability</h3>
-          <p>
-            We know construction and joinery work can have an impact on the
-            environment — and we don’t take that lightly. That’s why we aim to
-            reduce waste, reuse materials where possible, and make thoughtful
-            choices every day on site.
-          </p>
+      <!-- Header Section -->
+      <div class="text-center mb-16">
+        <h1
+          class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+        >
+          Sustainability
+        </h1>
+        <p
+          class="text-xl text-brand-600 max-w-4xl mx-auto text-balance leading-relaxed"
+        >
+          We know construction and joinery work can have an impact on the
+          environment — and we don't take that lightly. That's why we aim to
+          reduce waste, reuse materials where possible, and make thoughtful
+          choices every day on site.
+        </p>
+      </div>
 
-          <h3 class="font-semibold text-lg">
-            Staying Within the Rules (and Going Beyond)
-          </h3>
-          <p>
-            We meet all the environmental regulations that apply to our work.
-            But we don’t just stop at the minimum. Where there isn’t a law or
-            guideline in place, we use common sense and experience to do what’s
-            right for the environment — and we keep a record of it.
-          </p>
+      <!-- Main Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-12 lg:gap-16">
+        <!-- Text Content -->
+        <div class="space-y-8">
+          <!-- Approach Section -->
+          <div
+            class="bg-green-50 border border-green-200 rounded-xl p-8 shadow-sm"
+          >
+            <h2 class="text-2xl font-semibold text-green-900 mb-4">
+              Our Approach to Sustainability
+            </h2>
+            <p class="text-green-700 leading-relaxed">
+              We know construction and joinery work can have an impact on the
+              environment — and we don't take that lightly. That's why we aim to
+              reduce waste, reuse materials where possible, and make thoughtful
+              choices every day on site.
+            </p>
+          </div>
 
-          <h3 class="font-semibold text-lg">Getting the Team Involved</h3>
-          <p>
-            Everyone we work with is part of this. We make sure our team
-            understands the importance of working cleanly and efficiently — and
-            we back that up with training, site discussions, and regular reviews
-            of how we work.
-          </p>
+          <!-- Regulations Section -->
+          <div
+            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100"
+          >
+            <h2 class="text-2xl font-semibold text-brand-900 mb-6">
+              Staying Within the Rules (and Going Beyond)
+            </h2>
+            <p class="text-brand-600 leading-relaxed">
+              We meet all the environmental regulations that apply to our work.
+              But we don't just stop at the minimum. Where there isn't a law or
+              guideline in place, we use common sense and experience to do
+              what's right for the environment — and we keep a record of it.
+            </p>
+          </div>
 
-          <h3 class="font-semibold text-lg">Looking After People Too</h3>
-          <p>
-            Sustainability isn't just about the environment — it’s about people
-            too. We actively promote wellbeing, health, and safety for our
-            clients, team, and community through how we work and the choices we
-            make.
-          </p>
+          <!-- Team Involvement Section -->
+          <div
+            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100"
+          >
+            <h2 class="text-2xl font-semibold text-brand-900 mb-6">
+              Getting the Team Involved
+            </h2>
+            <p class="text-brand-600 leading-relaxed">
+              Everyone we work with is part of this. We make sure our team
+              understands the importance of working cleanly and efficiently —
+              and we back that up with training, site discussions, and regular
+              reviews of how we work.
+            </p>
+          </div>
 
-          <p>
-            If you'd like more detail or a written policy, just <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            >.
-          </p>
+          <!-- People Section -->
+          <div
+            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100"
+          >
+            <h2 class="text-2xl font-semibold text-brand-900 mb-6">
+              Looking After People Too
+            </h2>
+            <p class="text-brand-600 leading-relaxed">
+              Sustainability isn't just about the environment — it's about
+              people too. We actively promote wellbeing, health, and safety for
+              our clients, team, and community through how we work and the
+              choices we make.
+            </p>
+          </div>
+
+          <!-- Contact CTA -->
+          <div class="bg-brand-50 rounded-xl p-6 border border-brand-200">
+            <p class="text-brand-700">
+              If you'd like more detail or a written policy, just
+              <a
+                href="/contact"
+                class="font-semibold text-brand-600 hover:text-brand-700 underline"
+              >
+                get in touch
+              </a>. We're always happy to discuss our environmental practices
+              and how we can help with your sustainable building needs.
+            </p>
+          </div>
         </div>
-        <div class="flex items-start">
-          <Image
-            src={sustainabilityLogo}
-            width="526"
-            height="489"
-            class="object-fit max-w-full h-auto mx-auto block mb-4"
-            alt="Eco-friendly sustainable joinery practices by Coulsy Joinery"
-            loading="eager"
-          />
+
+        <!-- Image Section -->
+        <div class="flex items-start justify-center">
+          <div
+            class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+          >
+            <Image
+              src={sustainabilityLogo}
+              width="526"
+              height="489"
+              class="object-contain rounded-lg max-w-full h-auto"
+              alt="Sustainability logo representing Coulsy Joinery's commitment to eco-friendly and environmentally responsible joinery practices"
+              loading="eager"
+            />
+            <p class="text-sm text-brand-600 text-center mt-4">
+              Our commitment to sustainable and environmentally responsible
+              practices
+            </p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 </Layout>
+
+<!-- Modern Structured Data -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(seoData.structuredData)}
+/>

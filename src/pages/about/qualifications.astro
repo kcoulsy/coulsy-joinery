@@ -1,15 +1,64 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import CITBImage from "../../assets/images/citb.png";
 import cscsGoldImage from "../../assets/images/cscs_gold.png";
 import cityAndGuildsImage from "../../assets/images/cityandguilds_logo.png";
+
+// Modern SEO optimization with personal voice preserved
+const seoData = {
+  title:
+    "Qualifications & Certifications - Robert Coulson | 35+ Years Experience Since 1989",
+  description:
+    "Robert Coulson's qualifications include NVQ Level 7, City & Guilds Distinction, CSCS Gold Card. 35+ years experience since 1989. Fully insured and certified for all joinery work in York.",
+  keywords:
+    "Robert Coulson qualifications, joinery qualifications York, CSCS Gold Card, City & Guilds joinery, NVQ Level 7 construction, qualified joiner 1989",
+  canonical: "https://coulsyjoinery.co.uk/about/qualifications",
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Qualifications & Certifications",
+    description:
+      "Robert Coulson's professional qualifications and certifications",
+    url: "https://coulsyjoinery.co.uk/about/qualifications",
+    mainEntity: {
+      "@type": "Person",
+      name: "Robert Coulson",
+      jobTitle: "Master Joiner",
+      description: "Qualified since 1989 with 35+ years of joinery experience",
+      hasCredential: [
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "NVQ Level 7 in Construction Senior Management",
+          recognizedBy: "Construction Industry Training Board",
+          validIn: "United Kingdom",
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "Advanced City & Guilds in Carpentry & Joinery",
+          recognizedBy: "City & Guilds",
+          validIn: "United Kingdom",
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "CSCS Gold Card",
+          recognizedBy: "Construction Skills Certification Scheme",
+          validIn: "United Kingdom",
+        },
+      ],
+    },
+  },
+};
 ---
 
-<Layout title="Our Qualifications">
-  <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  classes="mt-8 mb-16"
+>
+  <main class="mx-auto relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-16 lg:py-24">
       <Breadcrumb
         crumbs={[
           { href: "/about", label: "About" },
@@ -17,128 +66,307 @@ import cityAndGuildsImage from "../../assets/images/cityandguilds_logo.png";
         ]}
       />
 
-      <h1 class="text-3xl font-bold tracking-tight pb-4">Our Qualifications</h1>
-
-      <h2 class="text-2xl font-semibold text-yellow-800 mb-2">
-        Experienced, Qualified, and Trusted
-      </h2>
-
-      <div
-        class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm mb-8"
-      >
-        <p class="text-gray-700">
-          With decades of hands-on experience, my qualifications and
-          certifications ensure each job is done properly, safely, and to the
-          highest standards — every time.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <h3 class="font-semibold text-lg">My Qualifications</h3>
-          <ul class="list-disc list-inside space-y-2">
-            <li>
-              <strong
-                >NVQ Level 7 in Construction Senior Management (2025):</strong
-              >
-              The highest vocational qualification in construction management, demonstrating
-              advanced leadership and project delivery skills.
-            </li>
-            <li>
-              <strong
-                >Advanced City & Guilds in Carpentry & Joinery – Distinction
-                (1990):</strong
-              >
-              Recognises expert craftsmanship and technical knowledge in joinery.
-            </li>
-            <li>
-              <strong
-                >City & Guilds Craft in Carpentry & Joinery – Distinction
-                (1987–1989):</strong
-              >
-              Provides a strong foundation in practical skills and woodworking excellence.
-            </li>
-            <li>
-              <strong>CSCS Gold Card Certified – Health & Safety tested:</strong
-              >
-              Proof of advanced skills and a strong commitment to site safety.
-            </li>
-          </ul>
-
-          <h3 class="font-semibold text-lg">
-            Additional Training & Certifications
-          </h3>
-          <p>
-            Ongoing training ensures we stay up to date with the latest safety
-            standards and best practices:
-          </p>
-          <ul class="list-disc list-inside space-y-2">
-            <li>CITB Director’s Role for Health & Safety</li>
-            <li>CITB Temporary Works & General Awareness</li>
-            <li>CITB Fire Safety in Construction & the Built Environment</li>
-            <li>FireQual Fire Door Inspection, Maintenance and Survey</li>
-            <li>Face Fit Tested</li>
-            <li>Asbestos Awareness (Cat A)</li>
-            <li>COSHH Awareness</li>
-          </ul>
-          <h3 class="font-semibold text-lg">Insurance</h3>
-          <p>
-            Fully insured for all the work we carry out — including public
-            liability and employer’s liability cover. This gives you complete
-            peace of mind, knowing that your property and our team are protected
-            at all times.
-          </p>
-          <h3 class="font-semibold text-lg">
-            Risk Assessments and Method Statements (RAMS)
-          </h3>
-          <p>Prepared and available on request for every project.</p>
-          <p>
-            These are especially relevant for our commercial customers, making
-            sure all work is carried out safely and in line with regulations
-            from start to finish.
-          </p>
-          <h3 class="font-semibold text-lg">Competent</h3>
-          <p>
-            When you work with us, you're not just hiring a contractor — you're
-            getting a team that's fully qualified, personally committed, and
-            chosen because they’re right for the task. Every person on site is
-            competent, experienced, and someone I trust completely.
-          </p>
-
-          <p>
-            If you’d like to know more or see our certificates and documents,
-            just <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            >. We’re always happy to provide proof of qualifications and
-            insurance for your peace of mind.
+      <!-- Header Section -->
+      <div class="text-center mb-16">
+        <h1
+          class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+        >
+          Our Qualifications
+        </h1>
+        <h2 class="text-2xl lg:text-3xl font-semibold text-brand-700 mb-8">
+          Experienced, Qualified, and Trusted
+        </h2>
+        <div
+          class="bg-brand-50 border border-brand-200 rounded-xl p-8 shadow-sm max-w-4xl mx-auto"
+        >
+          <p class="text-brand-700 text-lg leading-relaxed">
+            With decades of hands-on experience, my qualifications and
+            certifications ensure each job is done properly, safely, and to the
+            highest standards — every time.
           </p>
         </div>
-        <div class="flex items-start flex-col space-y-4">
-          <Image
-            src={CITBImage}
-            width="200"
-            class="object-contain max-w-full h-auto mx-auto block opacity-80"
-            alt="CITB – Construction Industry Training Board Logo"
-            loading="eager"
-          />
-          <Image
-            src={cscsGoldImage}
-            width="200"
-            class="object-contain max-w-full h-auto mx-auto block opacity-80"
-            alt="CSCS Gold Card Certification Logo"
-            loading="eager"
-          />
-          <Image
-            src={cityAndGuildsImage}
-            width="200"
-            class="object-contain max-w-full h-auto mx-auto block opacity-80"
-            alt="City & Guilds Accreditation Logo"
-            loading="eager"
-          />
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-12">
+        <!-- Qualifications Content -->
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-900 mb-6">
+              My Qualifications
+            </h3>
+            <div class="space-y-6">
+              <div
+                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              >
+                <h4 class="font-semibold text-brand-900 mb-2">
+                  NVQ Level 7 in Construction Senior Management (2025)
+                </h4>
+                <p class="text-brand-600">
+                  The highest vocational qualification in construction
+                  management, demonstrating advanced leadership and project
+                  delivery skills.
+                </p>
+              </div>
+
+              <div
+                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              >
+                <h4 class="font-semibold text-brand-900 mb-2">
+                  Advanced City & Guilds in Carpentry & Joinery – Distinction
+                  (1990)
+                </h4>
+                <p class="text-brand-600">
+                  Recognises expert craftsmanship and technical knowledge in
+                  joinery.
+                </p>
+              </div>
+
+              <div
+                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              >
+                <h4 class="font-semibold text-brand-900 mb-2">
+                  City & Guilds Craft in Carpentry & Joinery – Distinction
+                  (1987–1989)
+                </h4>
+                <p class="text-brand-600">
+                  Provides a strong foundation in practical skills and
+                  woodworking excellence.
+                </p>
+              </div>
+
+              <div
+                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              >
+                <h4 class="font-semibold text-brand-900 mb-2">
+                  CSCS Gold Card Certified – Health & Safety tested
+                </h4>
+                <p class="text-brand-600">
+                  Proof of advanced skills and a strong commitment to site
+                  safety.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-900 mb-6">
+              Additional Training & Certifications
+            </h3>
+            <p class="text-brand-600 mb-4">
+              Ongoing training ensures we stay up to date with the latest safety
+              standards and best practices:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <ul class="space-y-2 text-brand-600">
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  CITB Director's Role for Health & Safety
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  CITB Temporary Works & General Awareness
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  CITB Fire Safety in Construction
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  FireQual Fire Door Inspection
+                </li>
+              </ul>
+              <ul class="space-y-2 text-brand-600">
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Face Fit Tested
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Asbestos Awareness (Cat A)
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  COSHH Awareness
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div
+              class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+            >
+              <h3 class="text-xl font-semibold text-brand-900 mb-4">
+                Insurance
+              </h3>
+              <p class="text-brand-600">
+                Fully insured for all the work we carry out — including public
+                liability and employer's liability cover. This gives you
+                complete peace of mind, knowing that your property and our team
+                are protected at all times.
+              </p>
+            </div>
+
+            <div
+              class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+            >
+              <h3 class="text-xl font-semibold text-brand-900 mb-4">
+                Risk Assessments and Method Statements (RAMS)
+              </h3>
+              <p class="text-brand-600 mb-4">
+                Prepared and available on request for every project.
+              </p>
+              <p class="text-brand-600">
+                These are especially relevant for our commercial customers,
+                making sure all work is carried out safely and in line with
+                regulations from start to finish.
+              </p>
+            </div>
+
+            <div
+              class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+            >
+              <h3 class="text-xl font-semibold text-brand-900 mb-4">
+                Competent
+              </h3>
+              <p class="text-brand-600">
+                When you work with us, you're not just hiring a contractor —
+                you're getting a team that's fully qualified, personally
+                committed, and chosen because they're right for the task. Every
+                person on site is competent, experienced, and someone I trust
+                completely.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-brand-50 rounded-xl p-6 border border-brand-200">
+            <p class="text-brand-700">
+              If you'd like to know more or see our certificates and documents,
+              just
+              <a
+                href="/contact"
+                class="font-semibold text-brand-600 hover:text-brand-700 underline"
+              >
+                get in touch
+              </a>. We're always happy to provide proof of qualifications and
+              insurance for your peace of mind.
+            </p>
+          </div>
+        </div>
+
+        <!-- Certifications Images -->
+        <div class="flex flex-col items-center space-y-8">
+          <div
+            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center"
+          >
+            <Image
+              src={CITBImage}
+              width={200}
+              class="object-contain max-w-full h-auto mx-auto mb-4"
+              alt="CITB – Construction Industry Training Board Logo"
+              loading="eager"
+            />
+            <p class="text-sm text-brand-600">
+              Construction Industry Training Board
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center"
+          >
+            <Image
+              src={cscsGoldImage}
+              width={200}
+              class="object-contain max-w-full h-auto mx-auto mb-4"
+              alt="CSCS Gold Card Certification Logo"
+              loading="eager"
+            />
+            <p class="text-sm text-brand-600">CSCS Gold Card Certification</p>
+          </div>
+
+          <div
+            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center"
+          >
+            <Image
+              src={cityAndGuildsImage}
+              width={200}
+              class="object-contain max-w-full h-auto mx-auto mb-4"
+              alt="City & Guilds Accreditation Logo"
+              loading="eager"
+            />
+            <p class="text-sm text-brand-600">City & Guilds Accreditation</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 </Layout>
+
+<!-- Modern Structured Data -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(seoData.structuredData)}
+/>

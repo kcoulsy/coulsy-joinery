@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Wakefield | Coulsy Joinery",
+  "description": "Professional joinery services in Wakefield, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Wakefield",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.683,
+    "lng": -1.496
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Wakefield City Centre",
+    "Rothwell",
+    "Castleford",
+    "Pontefract",
+    "Horbury"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Wakefield residents."
+} 

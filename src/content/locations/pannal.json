@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Pannal | Coulsy Joinery",
+  "description": "Professional joinery services in Pannal, North Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Pannal",
+  "region": "North Yorkshire",
+  "coordinates": {
+    "lat": 53.964,
+    "lng": -1.537
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Pannal Village",
+    "Harrogate",
+    "Harewood",
+    "Leeds",
+    "Ripley"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Pannal residents."
+} 

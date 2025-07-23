@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Rothwell | Coulsy Joinery",
+  "description": "Professional joinery services in Rothwell, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Rothwell",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.752,
+    "lng": -1.478
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Rothwell Town Centre",
+    "Leeds",
+    "Wakefield",
+    "Pontefract",
+    "Castleford"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Rothwell residents."
+} 

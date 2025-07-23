@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Spofforth | Coulsy Joinery",
+  "description": "Professional joinery services in Spofforth, North Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Spofforth",
+  "region": "North Yorkshire",
+  "coordinates": {
+    "lat": 53.978,
+    "lng": -1.470
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Spofforth Village",
+    "Harrogate",
+    "Wetherby",
+    "Leeds",
+    "Knaresborough"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Spofforth residents."
+} 

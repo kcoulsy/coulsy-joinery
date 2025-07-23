@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { projects } from "../../data/projects";
 import Layout from "../../layouts/Layout.astro";
-import { Image } from "astro:assets";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import ModernContactForm from "../../components/ModernContactForm.astro";
+import { DETAILS } from "../../constants/details";
 
 export async function getStaticPaths() {
   return projects.map((project) => ({
@@ -14,68 +16,420 @@ const { slug } = Astro.params as { slug: string };
 const project = projects.find((p) => p.slug === slug);
 
 if (!project) throw new Error(`Project not found for slug: ${slug}`);
+
+// SEO and structured data
+const pageTitle = `${project.title} | ${project.location} | Coulsy Joinery Portfolio`;
+const pageDescription = `${project.description} - Professional joinery work in ${project.location}. View this ${project.type.toLowerCase()} project completed by Coulsy Joinery.`;
+const canonicalUrl = `https://coulsyjoinery.co.uk/projects/${slug}`;
+
+// Structured data for project
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: project.title,
+  description: project.description,
+  creator: {
+    "@type": "Organization",
+    name: DETAILS.COMPANY.NAME,
+    url: "https://coulsyjoinery.co.uk",
+  },
+  locationCreated: {
+    "@type": "Place",
+    name: project.location,
+  },
+  genre: project.type,
+  keywords: project.tags.join(", "),
+  image: project.images[0],
+  dateCreated: new Date().toISOString().split("T")[0], // You could add actual project dates to the data
+  provider: {
+    "@type": "LocalBusiness",
+    name: DETAILS.COMPANY.NAME,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "York",
+      addressRegion: "Yorkshire",
+      addressCountry: "GB",
+    },
+    telephone: DETAILS.PHONE,
+    email: DETAILS.EMAIL,
+  },
+};
 ---
 
-<Layout title={project.title}>
-  <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Projects", href: "/projects" },
-          { label: slug, current: true },
-        ]}
-      />
-      <h1 class="text-3xl font-bold tracking-tight pb-4">{project.title}</h1>
+<Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
 
-      <div class="flex flex-col md:flex-row gap-8 items-start">
-        <div class="md:w-2/3">
-          <p class="text-gray-600 mb-6">{project.location} · {project.type}</p>
-          <p class="text-lg text-gray-700">{project.description}</p>
-          <!-- You can add more project details here (gallery, challenges, client quote, etc.) -->
+  <main class="mx-auto md:mt-16 relative z-10">
+    <!-- Hero Section -->
+    <section
+      class="w-full bg-gradient-to-br from-brand-50 to-brand-100 py-12 lg:py-16"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex justify-left mb-6">
+          <Breadcrumb
+            crumbs={[
+              { label: "Projects", href: "/projects" },
+              { label: project.title, current: true },
+            ]}
+          />
         </div>
-        <div class="md:w-1/3">
-          <button
-            data-image
-            class="block w-full max-w-3xl mx-auto rounded-lg shadow-md mb-6 cursor-zoom-in"
-          >
-            <Image
-              src={project.images[0]}
-              alt={project.title}
-              class="w-full rounded-lg"
-            />
-          </button>
+
+        <div class="max-w-4xl">
+          <div class="flex flex-col lg:flex-row gap-8 items-start">
+            <!-- Project Info -->
+            <div class="lg:w-2/3">
+              <h1
+                class="text-4xl lg:text-5xl font-bold text-brand-900 mb-4 leading-tight"
+              >
+                {project.title}
+              </h1>
+
+              <!-- Project Meta -->
+              <div
+                class="flex flex-wrap gap-4 items-center text-sm text-brand-600 mb-6"
+              >
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-brand-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span>{project.location}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-brand-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span>{project.type}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-brand-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span>{project.tags.join(", ")}</span>
+                </div>
+              </div>
+
+              <p class="text-xl text-brand-700 leading-relaxed mb-6">
+                {project.description}
+              </p>
+
+              <!-- Project Tags -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                {
+                  project.tags.map((tag) => (
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-100 text-brand-800">
+                      {tag}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Project Image -->
+            <div class="lg:w-1/3 w-full">
+              <div class="relative group">
+                <button
+                  data-image
+                  class="block w-full rounded-xl shadow-lg overflow-hidden cursor-zoom-in transition-transform duration-300 group-hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                  aria-label="View larger image"
+                >
+                  <Image
+                    src={project.images[0]}
+                    alt={project.title}
+                    class="w-full h-64 lg:h-80 object-cover"
+                    loading="eager"
+                  />
+                  <!-- Overlay -->
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Details Section -->
+    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Main Content -->
+          <div class="lg:col-span-2">
+            <h2 class="text-2xl font-bold text-brand-900 mb-6">
+              Project Overview
+            </h2>
+
+            <!-- Project Details Cards -->
+            <div class="space-y-6">
+              <div
+                class="bg-white rounded-xl shadow-lg p-6 border border-brand-200"
+              >
+                <h3 class="text-lg font-semibold text-brand-900 mb-3">
+                  Project Scope
+                </h3>
+                <p class="text-brand-700 leading-relaxed">
+                  This {project.type.toLowerCase()} project in {
+                    project.location
+                  } involved comprehensive planning and execution. The work was completed
+                  to the highest standards with attention to detail throughout the
+                  process.
+                </p>
+              </div>
+
+              <div
+                class="bg-white rounded-xl shadow-lg p-6 border border-brand-200"
+              >
+                <h3 class="text-lg font-semibold text-brand-900 mb-3">
+                  Key Features
+                </h3>
+                <ul class="space-y-2 text-brand-700">
+                  <li class="flex items-start gap-2">
+                    <svg
+                      class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span
+                      >Professional craftsmanship and attention to detail</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Quality materials and finishes</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Completed on time and within budget</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Client satisfaction and positive feedback</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="lg:col-span-1">
+            <div class="sticky top-8">
+              <!-- Project Stats -->
+              <div
+                class="bg-white rounded-xl shadow-lg p-6 border border-brand-200 mb-6"
+              >
+                <h3 class="text-lg font-semibold text-brand-900 mb-4">
+                  Project Details
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center">
+                    <span class="text-brand-600">Location:</span>
+                    <span class="font-medium text-brand-900"
+                      >{project.location}</span
+                    >
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-brand-600">Type:</span>
+                    <span class="font-medium text-brand-900"
+                      >{project.type}</span
+                    >
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-brand-600">Category:</span>
+                    <span class="font-medium text-brand-900"
+                      >{project.tags[0]}</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA Card -->
+              <div
+                class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-xl p-6 text-white"
+              >
+                <h3 class="text-lg font-semibold mb-3">
+                  Ready for Your Project?
+                </h3>
+                <p class="text-brand-100 mb-4">
+                  Let's discuss how we can bring your vision to life with the
+                  same quality and attention to detail.
+                </p>
+                <a
+                  href="/contact"
+                  class="inline-flex items-center justify-center w-full bg-white text-brand-700 font-semibold py-3 px-4 rounded-lg hover:bg-brand-50 transition-colors duration-200"
+                >
+                  Get Your Free Quote
+                  <svg
+                    class="w-4 h-4 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="w-full bg-brand-50 py-12">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+          <ModernContactForm
+            title="Start Your Similar Project"
+            subtitle={`Ready to create something similar to this ${project.type.toLowerCase()}? Get in touch for a free consultation and quote.`}
+          />
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Enhanced Lightbox -->
   <div
     id="lightbox"
-    class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden"
-    onclick="this.classList.add('hidden'); document.body.style.overflow = '';"
+    class="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+    onclick="closeLightbox()"
   >
-    <img
-      id="lightbox-img"
-      src=""
-      alt="Expanded Project Image"
-      class="max-w-full max-h-full rounded-lg shadow-lg"
-    />
+    <div class="relative max-w-4xl max-h-full p-4">
+      <button
+        onclick="closeLightbox()"
+        class="absolute top-2 right-2 z-10 text-white hover:text-gray-300 transition-colors duration-200"
+        aria-label="Close lightbox"
+      >
+        <svg
+          class="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <img
+        id="lightbox-img"
+        src=""
+        alt="Expanded Project Image"
+        class="max-w-full max-h-full rounded-lg shadow-2xl"
+      />
+    </div>
   </div>
 
-  <script type="text/javascript">
+  <script>
+    function closeLightbox() {
+      const lightbox = document.getElementById("lightbox");
+      if (lightbox) {
+        lightbox.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       const imageTrigger = document.querySelector("[data-image]");
       const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxImg = document.getElementById(
+        "lightbox-img"
+      ) as HTMLImageElement;
 
       if (imageTrigger && lightbox && lightboxImg) {
         imageTrigger.addEventListener("click", function (e) {
           e.preventDefault();
-          const img = imageTrigger.querySelector("img");
+          const img = imageTrigger.querySelector("img") as HTMLImageElement;
           if (img && img.src) {
             lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || "Project image";
             lightbox.classList.remove("hidden");
             document.body.style.overflow = "hidden";
+          }
+        });
+
+        // Close on escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeLightbox();
           }
         });
       }

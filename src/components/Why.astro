@@ -1,6 +1,5 @@
 ---
-import mouldingPlane from "../assets/images/moulding_plane.png";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
 
 const { location } = Astro.params;
@@ -10,93 +9,120 @@ function capitalizeFirstLetter(string: string) {
 }
 ---
 
-<section
-  class="overflow-hidden flex flex-col lg:flex-row py-12 items-center justify-center"
->
-  <div class="p-8 md:p-12 lg:px-16 lg:py-24">
-    <div
-      class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
-    >
-      <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
-        Why Coulsy Joinery?
-      </h2>
+<section class="relative overflow-hidden bg-white py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Content Section -->
+      <div class="order-2 lg:order-1">
+        <div class="max-w-2xl">
+          <h2
+            class="text-3xl lg:text-4xl font-bold text-brand-900 mb-6 text-balance"
+          >
+            Why Coulsy Joinery?
+          </h2>
 
-      <h1 class="text-gray-500 mt-4 md:mt-4 md:block">
-        Expert Joinery and Small Building Services in York
-      </h1>
+          <p class="text-lg font-medium text-brand-700 mb-4">
+            Expert Joinery and Small Building Services in York
+          </p>
 
-      <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Coulsy Joinery & Small Build is your trusted partner for high-quality
-        joinery, carpentry, and small build services, proudly based in York and
-        serving clients across Yorkshire and beyond.
-      </p>
+          <div class="space-y-4 text-brand-600 leading-relaxed">
+            <p>
+              Coulsy Joinery & Small Build is your trusted partner for
+              high-quality joinery, carpentry, and small build services, proudly
+              based in York and serving clients across Yorkshire and beyond.
+            </p>
 
-      <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        We specialise in bespoke joinery, annexes, property refurbishments, and
-        commercial contracting—tailored to suit your vision, space, and budget.
-      </p>
+            <p>
+              We specialise in bespoke joinery, annexes, property
+              refurbishments, and commercial contracting—tailored to suit your
+              vision, space, and budget.
+            </p>
 
-      <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Known for precision, reliability, and exceptional craftsmanship, our
-        skilled team ensures every project is completed on time and to the
-        highest standards.
-      </p>
+            <p>
+              Known for precision, reliability, and exceptional craftsmanship,
+              our skilled team ensures every project is completed on time and to
+              the highest standards.
+            </p>
 
-      <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        We collaborate with trusted trades and source premium materials from
-        local suppliers to deliver lasting quality with minimal environmental
-        impact.
-      </p>
+            <p>
+              We collaborate with trusted trades and source premium materials
+              from local suppliers to deliver lasting quality with minimal
+              environmental impact.
+            </p>
+          </div>
 
-      <p>
-        <span class="text-yellow-600 font-semibold block mt-4 md:mt-4 md:block">
-          At Coulsy Joinery, we're committed to turning your ideas into
-          beautifully finished results—executed with care, clarity, and
-          attention to detail.
-        </span>
-      </p>
+          <div
+            class="bg-brand-50 border-l-4 border-brand-500 p-6 my-8 rounded-r-lg"
+          >
+            <p class="text-brand-800 font-semibold italic">
+              At Coulsy Joinery, we're committed to turning your ideas into
+              beautifully finished results—executed with care, clarity, and
+              attention to detail.
+            </p>
+          </div>
 
-      <p class="text-gray-500 mt-4 md:mt-4 md:block">
-        Contact us today for a free consultation or no-obligation quote{
-          location ? ` in ${capitalizeFirstLetter(location)}` : null
-        }.
-      </p>
+          <p class="text-brand-600 mb-8">
+            Contact us today for a free consultation or no-obligation quote{
+              location ? ` in ${capitalizeFirstLetter(location)}` : null
+            }.
+          </p>
 
-      <div class="mt-8">
-        <a
-          href="/contact"
-          class="mt-4 bg-brand text-white rounded-sm text-lg p-4"
-        >
-          Contact Us
-        </a>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="/contact"
+              class="inline-flex items-center px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+            >
+              Contact Us
+            </a>
+            <a
+              href="/about"
+              class="inline-flex items-center px-8 py-4 bg-white hover:bg-brand-50 text-brand-700 font-semibold border-2 border-brand-200 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+            >
+              Learn more about us...
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="p-4">
-    <div
-      class="group p-3 rounded-sm border border-gray-100 shadow-xl flex-grow-0"
-    >
-      <div class="relative overflow-hidden rounded-sm">
-        <Image
-          src={RobDebTeamImage}
-          width="640"
-          height="553"
-          class="h-56 w-full object-cover sm:h-full transition duration-500 group-hover:scale-105"
-          alt="Team Robert and Debbie"
-          loading="eager"
-        />
-      </div>
-      <div class="mt-6 relative">
-        <h2 class="text-2xl font-semibold text-gray-800 text-center">
-          Team Robert and Debbie
-        </h2>
-        <h2 class="text-1xl font-semibold text-gray-800 text-center mb-2">
-          <a
-            class="inline-block h-auto w-full items-center rounded-sm p-1 transition-colors hover:text-brand"
-            href="/about"
-            >Learn more about us...
-          </a>
-        </h2>
+
+      <!-- Image Section -->
+      <div class="order-1 lg:order-2">
+        <div class="relative">
+          <div class="group relative overflow-hidden rounded-xl shadow-2xl">
+            <Image
+              src={RobDebTeamImage}
+              width={640}
+              height={553}
+              class="w-full h-80 lg:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+              alt="Robert and Debbie Coulson - Coulsy Joinery team working on site"
+              priority
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+            </div>
+          </div>
+
+          <!-- Floating info card -->
+          <div
+            class="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-6 max-w-xs"
+          >
+            <h3 class="text-xl font-bold text-brand-900 mb-2">
+              Team Robert and Debbie
+            </h3>
+            <p class="text-brand-600 text-sm mb-3">
+              Your trusted joinery partners with 35+ years experience since 1989
+            </p>
+            <div class="flex items-center gap-2 text-sm text-brand-500">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span>Based in York</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

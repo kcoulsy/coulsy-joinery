@@ -1,0 +1,29 @@
+{
+  "title": "Joinery Services in Chapel Allerton | Coulsy Joinery",
+  "description": "Professional joinery services in Chapel Allerton, West Yorkshire. Expert carpentry, bespoke furniture, door hanging, and kitchen fitting. Call 07544 030486 for a free quote.",
+  "location": "Chapel Allerton",
+  "region": "West Yorkshire",
+  "coordinates": {
+    "lat": 53.829,
+    "lng": -1.535
+  },
+  "services": [
+    "Bespoke Furniture",
+    "Kitchen Fitting",
+    "Door Hanging",
+    "Window Frames",
+    "Staircases",
+    "Wardrobes",
+    "Shelving",
+    "Garden Structures"
+  ],
+  "areas": [
+    "Chapel Allerton",
+    "Roundhay",
+    "Moortown",
+    "Leeds",
+    "Alwoodley"
+  ],
+  "phone": "07544 030486",
+  "testimonials": "See our real Google reviews for authentic customer feedback from Chapel Allerton residents."
+} 

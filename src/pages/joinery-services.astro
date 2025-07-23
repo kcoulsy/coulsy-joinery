@@ -1,70 +1,301 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
 import OurServicesBody from "../components/OurServicesBody.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
+import ModernContactForm from "../components/ModernContactForm.astro";
+import { DETAILS } from "../constants/details";
+
+// SEO and structured data
+const pageTitle =
+  "Professional Joinery Services York | Bespoke Carpentry & Woodwork";
+const pageDescription =
+  "Expert joinery services in York and Yorkshire. From bespoke kitchens to heritage restoration, stud walls to garden offices. 30+ years experience in quality carpentry and joinery work.";
+const canonicalUrl = "https://coulsyjoinery.co.uk/joinery-services";
+
+// Structured data for services page
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Professional Joinery Services",
+  description: pageDescription,
+  provider: {
+    "@type": "LocalBusiness",
+    name: DETAILS.COMPANY.NAME,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "York",
+      addressRegion: "Yorkshire",
+      addressCountry: "GB",
+    },
+    telephone: DETAILS.PHONE,
+    email: DETAILS.EMAIL,
+    url: "https://coulsyjoinery.co.uk",
+  },
+  areaServed: {
+    "@type": "GeoCircle",
+    geoMidpoint: {
+      "@type": "GeoCoordinates",
+      latitude: 53.96,
+      longitude: -1.0873,
+    },
+    geoRadius: "50000",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Joinery Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Bespoke Joinery",
+          description:
+            "Made-to-measure joinery tailored to your space and style",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Kitchen Installation",
+          description:
+            "Full kitchen installs tailored to your layout and finish",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Heritage Restoration",
+          description: "Expert restoration and reproduction of period joinery",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Garden Offices",
+          description: "Custom-built insulated garden offices for home working",
+        },
+      },
+    ],
+  },
+};
 ---
 
-<Layout title="Our Joinery Services">
+<Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <div class="flex justify-left">
-        <Breadcrumb
-          crumbs={[
-            {
-              href: "/joinery-services",
-              label: "Joinery Services",
-              current: true,
-            },
-          ]}
-        />
+    <!-- Hero Section -->
+    <section
+      class="w-full bg-gradient-to-br from-brand-50 to-brand-100 py-12 lg:py-16"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex justify-left mb-6">
+          <Breadcrumb
+            crumbs={[
+              {
+                href: "/joinery-services",
+                label: "Joinery Services",
+                current: true,
+              },
+            ]}
+          />
+        </div>
+
+        <div class="max-w-4xl">
+          <h1
+            class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 leading-tight"
+          >
+            Professional Joinery Services in York & Yorkshire
+          </h1>
+          <p class="text-xl text-brand-700 mb-6 leading-relaxed">
+            I'm Robert, a time-served joiner with over 30 years of experience
+            offering reliable, high-quality work across York and beyond. From
+            bespoke doors to full project management — this page shows a
+            selection of just some of the joinery services I can help you with.
+          </p>
+
+          <!-- Trust indicators -->
+          <div class="flex flex-wrap gap-4 items-center text-sm text-brand-600">
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-brand-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span>30+ Years Experience</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-brand-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span>Fully Qualified</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-brand-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span>Personal Service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid Section -->
+    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-brand-900 mb-4">
+          A Selection of My Joinery Services
+        </h2>
+        <p class="text-lg text-brand-600 max-w-3xl mx-auto">
+          Here's a selection of the kind of work I take on regularly. Each
+          service is personally managed by me, ensuring quality and attention to
+          detail throughout.
+        </p>
       </div>
 
-      <!-- Removed to declutter the top of the page -->
-
-      <h1 class="text-3xl font-bold">A selection of my Joinery Services</h1>
-      <p class="text-md text-gray-700 mt-2 mb-4">
-        I'm Robert, a time-served joiner offering reliable, high-quality work
-        across York and beyond. From bespoke doors to full project management —
-        this page shows a selection of just some of the joinery services I can
-        help you with.
-      </p>
-
-      <p class="text-sm text-gray-600 italic mb-6">
-        Here’s a selection of the kind of work I take on regularly:
-      </p>
       <OurServicesBody />
-      <p class="text-center mt-10 text-blue-700 font-semibold">
-        Not sure if your job is too small or type of project not shown? <a
-          href="/contact"
-          class="hover:underline">Just ask — I'm happy to help.</a
-        >
-      </p>
 
-      <div class="w-full space-y-6 mt-12">
-        <div
-          class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm"
+      <div class="text-center mt-12">
+        <p class="text-lg text-brand-700 font-semibold mb-4">
+          Not sure if your job is too small or type of project not shown?
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
         >
-          <h2 class="text-2xl font-semibold text-yellow-800 mb-2">
-            Craftsmanship You Can Trust
-          </h2>
-          <p class="text-gray-700">
-            Whatever your project — big or small — I take pride in delivering
-            proper joinery work that lasts. I treat every job with care and a
-            hands-on approach, using the skills I’ve built over decades in the
-            trade.
-          </p>
+          Just ask — I'm happy to help
+          <svg
+            class="w-5 h-5 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Trust & Experience Section -->
+    <section class="w-full bg-brand-50 py-12">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto space-y-8">
+          <!-- Craftsmanship Card -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 border border-brand-200"
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-brand-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h2 class="text-2xl font-semibold text-brand-900 mb-3">
+                  Craftsmanship You Can Trust
+                </h2>
+                <p class="text-brand-700 leading-relaxed">
+                  Whatever your project — big or small — I take pride in
+                  delivering proper joinery work that lasts. I treat every job
+                  with care and a hands-on approach, using the skills I've built
+                  over decades in the trade.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Quote -->
+          <div
+            class="bg-gradient-to-r from-brand-600 to-brand-700 rounded-xl p-8 text-white"
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <blockquote class="text-lg italic leading-relaxed">
+                  "I'm Robert — a time-served joiner with over 30 years of
+                  experience. Every job I take on is personally managed by me,
+                  from the first chat to the final fitting. Whether it's a
+                  custom door, kitchen install, or a full build, I believe in
+                  doing things properly, with no shortcuts. I enjoy working with
+                  homeowners, landlords, and businesses who appreciate honest,
+                  reliable work and clear communication."
+                </blockquote>
+                <div class="mt-4 font-medium">
+                  — Robert Coulson, Master Joiner
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <blockquote
-          class="border-l-4 border-yellow-500 pl-4 italic text-gray-800 mb-6"
-        >
-          I’m Robert — a time-served joiner with over 30 years of experience.
-          Every job I take on is personally managed by me, from the first chat
-          to the final fitting. Whether it’s a custom door, kitchen install, or
-          a full build, I believe in doing things properly, with no shortcuts. I
-          enjoy working with homeowners, landlords, and businesses who
-          appreciate honest, reliable work and clear communication.
-        </blockquote>
+      </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="w-full container mx-auto px-4 sm:px-6 py-12">
+      <div class="max-w-4xl mx-auto">
+        <ModernContactForm
+          title="Ready to Start Your Project?"
+          subtitle="Get in touch for a free, no-obligation quote. I'm happy to discuss any joinery work, big or small."
+        />
       </div>
     </section>
   </main>
