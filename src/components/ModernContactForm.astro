@@ -27,6 +27,7 @@ const {
     method="post"
     data-netlify="true"
     netlify-honeypot="bot-field"
+    data-netlify-recaptcha="true"
     class="space-y-4"
   >
     <!-- Honeypot field -->
@@ -86,8 +87,6 @@ const {
       )
     }
 
-
-
     <!-- Message Field -->
     <div>
       <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
@@ -124,12 +123,9 @@ const {
         Send Message
       </span>
     </button>
-
-    <!-- Status Messages -->
-    <div id="form-status" class="text-sm text-center hidden"></div>
   </form>
 
-  <!-- Success Message -->
+  <!-- Success Message (shown by Netlify after successful submission) -->
   <div
     id="success-message"
     class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
@@ -151,7 +147,7 @@ const {
     </div>
   </div>
 
-  <!-- Error Message -->
+  <!-- Error Message (shown by Netlify if there's an error) -->
   <div
     id="error-message"
     class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
@@ -175,88 +171,26 @@ const {
 </div>
 
 <script>
+  // Simple script to show success/error messages based on URL parameters
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById(
-      "modern-contact-form"
-    ) as HTMLFormElement;
-    const submitButton = form?.querySelector(
-      'button[type="submit"]'
-    ) as HTMLButtonElement;
+    const urlParams = new URLSearchParams(window.location.search);
     const successMessage = document.getElementById("success-message");
     const errorMessage = document.getElementById("error-message");
-    const statusDiv = document.getElementById("form-status");
 
-    if (
-      !form ||
-      !submitButton ||
-      !successMessage ||
-      !errorMessage ||
-      !statusDiv
-    )
-      return;
+    if (urlParams.get("success") === "true" && successMessage) {
+      successMessage.classList.remove("hidden");
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        successMessage.classList.add("hidden");
+      }, 5000);
+    }
 
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      // Hide previous messages
-      successMessage.classList.add("hidden");
-      errorMessage.classList.add("hidden");
-      statusDiv.classList.add("hidden");
-
-      // Disable submit button and show loading state
-      submitButton.disabled = true;
-      submitButton.innerHTML = `
-        <span class="flex items-center justify-center">
-          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          Sending...
-        </span>
-      `;
-
-      try {
-        const formData = new FormData(form);
-        const response = await fetch("/", {
-          method: "POST",
-          body: formData,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        });
-
-        if (response.ok) {
-          // Success
-          form.reset();
-          successMessage.classList.remove("hidden");
-
-          // Auto-hide success message after 5 seconds
-          setTimeout(() => {
-            successMessage.classList.add("hidden");
-          }, 5000);
-        } else {
-          throw new Error("Network response was not ok");
-        }
-      } catch (error) {
-        // Error
-        errorMessage.classList.remove("hidden");
-
-        // Auto-hide error message after 5 seconds
-        setTimeout(() => {
-          errorMessage.classList.add("hidden");
-        }, 5000);
-      } finally {
-        // Re-enable submit button
-        submitButton.disabled = false;
-        submitButton.innerHTML = `
-          <span class="flex items-center justify-center">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-            </svg>
-            Send Message
-          </span>
-        `;
-      }
-    });
+    if (urlParams.get("error") === "true" && errorMessage) {
+      errorMessage.classList.remove("hidden");
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        errorMessage.classList.add("hidden");
+      }, 5000);
+    }
   });
 </script>
