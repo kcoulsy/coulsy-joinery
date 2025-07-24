@@ -4,12 +4,14 @@ description: "<h1>Small Building Works & Alterations</h1><p>I'm Robert, a time-s
 slug: "small-building-works"
 featured: false
 category: "domestic"
-image: "/images/general-joinery/room-partition.jpeg"
+image: "/images/stud-walls/stud-walls-header.jpg"
 gallery:
-  - "/images/general-joinery/room-partition.jpeg"
-  - "/images/general-joinery/handmade-ash-bathroom-vanity-cabinet.jpeg"
+  - "/images/stud-walls/stud-walls-header.jpg"
+  - "/images/stud-walls/stud-walls1.jpg"
+  - "/images/stud-walls/room-partition.jpeg"
+  - "/images/garden-rooms/garden-office-interior.jpeg"
+  - "/images/garden-rooms/Annexe-service-image.jpg"
   - "/images/general-joinery/fencing-and-gates.jpg"
-  - "/images/general-joinery/composite-garden-decking.jpg"
 seoTitle: "Small Building Works & Alterations | Professional Construction Services"
 seoDescription: "Professional small building works and alterations. From extensions to renovations, over 30 years' experience in quality construction work."
 serviceAreas:
