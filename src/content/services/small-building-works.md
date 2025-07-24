@@ -1,6 +1,6 @@
 ---
 title: "Small Building Works"
-description: "Professional small building alterations and construction services"
+description: "<h1>Small Building Works & Alterations</h1><p>I'm Robert, a time-served joiner and experienced builder with over 30 years of experience in small building works and alterations. From home extensions to property renovations, I provide reliable, high-quality construction work that transforms your space.</p><h2>What We Offer</h2><h3>Building Alterations</h3><ul><li>Internal wall removal and construction</li><li>Room extensions and modifications</li><li>Door and window openings</li><li>Structural modifications</li><li>Property layout changes</li><li>Building regulation compliance</li></ul><h3>Home Extensions</h3><ul><li>Single and double story extensions</li><li>Conservatory installations</li><li>Garage conversions</li><li>Loft conversions</li><li>Basement modifications</li><li>Outbuilding construction</li></ul><h3>Renovation Services</h3><ul><li>Property renovations and refurbishments</li><li>Kitchen and bathroom installations</li><li>Flooring and wall treatments</li><li>Ceiling repairs and modifications</li><li>Staircase installations</li><li>Complete room makeovers</li></ul><h3>Construction Work</h3><ul><li>Foundation and groundwork</li><li>Brickwork and blockwork</li><li>Roofing and guttering</li><li>Plumbing and electrical coordination</li><li>Insulation and weatherproofing</li><li>Final finishes and decoration</li></ul><h2>Why Choose Our Small Building Works</h2><h3>Experienced Builder</h3><p>Over 30 years of experience in both joinery and general building work means I can handle complex projects from start to finish.</p><h3>Quality Craftsmanship</h3><p>Every project is completed to the highest standards with attention to detail and quality materials throughout.</p><h3>Project Management</h3><p>I manage the entire project process, coordinating with other trades and ensuring everything runs smoothly and on schedule.</p><h3>Local Knowledge</h3><p>Deep understanding of local building regulations and requirements. I ensure all work meets current standards and gets proper approvals.</p><h2>Our Process</h2><ol><li><strong>Consultation</strong> - Discuss your requirements and assess the project scope</li><li><strong>Planning</strong> - Create detailed plans and obtain necessary permissions</li><li><strong>Quote</strong> - Provide comprehensive quote with clear breakdown of costs</li><li><strong>Execution</strong> - Professional project management and quality workmanship</li><li><strong>Completion</strong> - Final inspection and handover with all documentation</li></ol><h2>Areas We Serve</h2><p>We provide small building works and alterations across Yorkshire including York, Leeds, Harrogate, Wetherby, and surrounding areas. Contact us to discuss your building project and get a free, no-obligation quote.</p>"
 slug: "small-building-works"
 featured: false
 category: "domestic"
@@ -39,68 +39,4 @@ testimonials:
     location: "Harrogate"
     rating: 5
     text: "Reliable and skilled builder. Highly recommend for any building work."
----
-
-# Small Building Works & Alterations
-
-I'm Robert, a time-served joiner and experienced builder with over 30 years of experience in small building works and alterations. From home extensions to property renovations, I provide reliable, high-quality construction work that transforms your space.
-
-## What We Offer
-
-### Building Alterations
-- Internal wall removal and construction
-- Room extensions and modifications
-- Door and window openings
-- Structural modifications
-- Property layout changes
-- Building regulation compliance
-
-### Home Extensions
-- Single and double story extensions
-- Conservatory installations
-- Garage conversions
-- Loft conversions
-- Basement modifications
-- Outbuilding construction
-
-### Renovation Services
-- Property renovations and refurbishments
-- Kitchen and bathroom installations
-- Flooring and wall treatments
-- Ceiling repairs and modifications
-- Staircase installations
-- Complete room makeovers
-
-### Construction Work
-- Foundation and groundwork
-- Brickwork and blockwork
-- Roofing and guttering
-- Plumbing and electrical coordination
-- Insulation and weatherproofing
-- Final finishes and decoration
-
-## Why Choose Our Small Building Works
-
-### Experienced Builder
-Over 30 years of experience in both joinery and general building work means I can handle complex projects from start to finish.
-
-### Quality Craftsmanship
-Every project is completed to the highest standards with attention to detail and quality materials throughout.
-
-### Project Management
-I manage the entire project process, coordinating with other trades and ensuring everything runs smoothly and on schedule.
-
-### Local Knowledge
-Deep understanding of local building regulations and requirements. I ensure all work meets current standards and gets proper approvals.
-
-## Our Process
-
-1. **Consultation** - Discuss your requirements and assess the project scope
-2. **Planning** - Create detailed plans and obtain necessary permissions
-3. **Quote** - Provide comprehensive quote with clear breakdown of costs
-4. **Execution** - Professional project management and quality workmanship
-5. **Completion** - Final inspection and handover with all documentation
-
-## Areas We Serve
-
-We provide small building works and alterations across Yorkshire including York, Leeds, Harrogate, Wetherby, and surrounding areas. Contact us to discuss your building project and get a free, no-obligation quote. 
+--- 
