@@ -37,16 +37,16 @@ const structuredData = {
   telephone: "+44 7544 030486",
   address: {
     "@type": "PostalAddress",
-    addressLocality: location?.name || "York",
-    addressRegion: location?.county || "North Yorkshire",
+    addressLocality: location?.location || "York",
+    addressRegion: location?.region || "North Yorkshire",
     postalCode: "YO26 7NW",
     addressCountry: "GB",
   },
   geo: location
     ? {
         "@type": "GeoCoordinates",
-        latitude: location.lat,
-        longitude: location.lng,
+        latitude: location.coordinates.lat,
+        longitude: location.coordinates.lng,
       }
     : {
         "@type": "GeoCoordinates",
@@ -55,10 +55,10 @@ const structuredData = {
       },
   openingHours: "Mo-Fr 07:00-18:00",
   areaServed: location
-    ? [location.name, location.county, "Yorkshire"]
+    ? [location.location, location.region, "Yorkshire"]
     : ["York", "Leeds", "Wetherby", "Harrogate", "Yorkshire"],
   hasMap: location
-    ? `https://www.google.com/maps?q=${location.lat},${location.lng}`
+    ? `https://www.google.com/maps?q=${location.coordinates.lat},${location.coordinates.lng}`
     : "https://www.google.com/maps?q=53.9655,-1.205",
   sameAs: [
     "https://www.linkedin.com/company/coulsy-limited/?viewAsMember=true",
@@ -126,7 +126,7 @@ if (location) {
   breadcrumbData.itemListElement.push({
     "@type": "ListItem",
     position: breadcrumbData.itemListElement.length + 1,
-    name: location.name,
+    name: location.location,
     item: fullUrl,
   });
 }
@@ -164,18 +164,23 @@ if (location) {
 <meta name="author" content="Coulsy Joinery" />
 <meta
   name="keywords"
-  content={`joinery, ${location?.name || "Yorkshire"}, ${service || "joinery services"}, carpenter, kitchen fitter, bespoke joinery`}
+  content={`joinery, ${location?.location || "Yorkshire"}, ${service || "joinery services"}, carpenter, kitchen fitter, bespoke joinery`}
 />
 <meta name="geo.region" content="GB-NYK" />
-{location && <meta name="geo.placename" content={location.name} />}
+{location && <meta name="geo.placename" content={location.location} />}
 {
   location && (
-    <meta name="geo.position" content={`${location.lat};${location.lng}`} />
+    <meta
+      name="geo.position"
+      content={`${location.coordinates.lat};${location.coordinates.lng}`}
+    />
   )
 }
 <meta
   name="ICBM"
-  content={location ? `${location.lat}, ${location.lng}` : "53.9655, -1.205"}
+  content={location
+    ? `${location.coordinates.lat}, ${location.coordinates.lng}`
+    : "53.9655, -1.205"}
 />
 
 <!-- Performance and Security -->
@@ -183,4 +188,3 @@ if (location) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="theme-color" content="#fbbf24" />
-

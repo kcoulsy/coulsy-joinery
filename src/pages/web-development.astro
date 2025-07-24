@@ -1,0 +1,607 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ModernContactForm from "../components/ModernContactForm.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+
+const title =
+  "Web Development Services Yorkshire | Professional Website Design & Development";
+const description =
+  "Professional web development services in Yorkshire. Custom websites, e-commerce solutions, and digital platforms built by experienced local developers. Get your project started today.";
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto md:mt-16 relative z-10">
+    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
+      <Breadcrumb
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Web Development", current: true },
+        ]}
+      />
+
+      <!-- Personal Hero Section -->
+      <div
+        class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 mb-10 shadow-sm"
+      >
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="text-4xl font-bold tracking-tight pb-4 text-gray-900">
+            Web Development - Another Passion of Mine
+          </h1>
+          <p class="text-xl text-gray-700 mb-6">
+            Hi, I'm Robert. When I'm not crafting bespoke joinery, I'm building
+            websites and digital solutions. Web development and coding have been
+            a passion of mine for years, and I love creating beautiful,
+            functional websites that help businesses grow.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+              <span class="text-sm font-medium text-gray-600"
+                >Custom Websites</span
+              >
+            </div>
+            <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+              <span class="text-sm font-medium text-gray-600">Local SEO</span>
+            </div>
+            <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+              <span class="text-sm font-medium text-gray-600"
+                >Lead Generation</span
+              >
+            </div>
+            <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+              <span class="text-sm font-medium text-gray-600"
+                >Mobile Responsive</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Story Section -->
+      <div
+        class="bg-white rounded-xl shadow-lg border border-gray-200 p-8 mb-12"
+      >
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">
+            My Journey with Web Development
+          </h2>
+          <div class="prose prose-lg mx-auto text-gray-700">
+            <p class="mb-6">
+              I've always been fascinated by how things work and how to make
+              them better. That's what drew me to joinery - the precision, the
+              craftsmanship, the satisfaction of creating something beautiful
+              and functional. Web development is very similar in many ways.
+            </p>
+            <p class="mb-6">
+              I started learning to code years ago, initially just to understand
+              how websites work. But like joinery, once you start creating, you
+              can't stop. There's something incredibly satisfying about writing
+              clean, efficient code and watching it come to life as a website
+              that helps businesses connect with their customers.
+            </p>
+            <p class="mb-6">
+              What I love about web development is the same thing I love about
+              joinery - the attention to detail, the problem-solving, and the
+              ability to create something that's both beautiful and practical.
+              Whether it's a custom kitchen or a custom website, the principles
+              are the same: quality materials, solid construction, and
+              thoughtful design.
+            </p>
+            <p>
+              I've built this website you're looking at right now, along with
+              several others for local businesses. Each project is different,
+              each has its own challenges, and each gives me the same
+              satisfaction as completing a beautiful piece of joinery.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local SEO Specialization -->
+      <div
+        class="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-8 mb-12"
+      >
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            Specializing in Local SEO for Tradespeople & Service Businesses
+          </h2>
+          <p class="text-xl text-gray-700 mb-8">
+            I understand that tradespeople and service businesses need to rank
+            for the specific areas they want to cover. No point ranking in Leeds
+            if you only work in York! I create radius-based SEO strategies that
+            target your exact service area.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto"
+              >
+                <svg
+                  class="w-6 h-6 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Radius-Based Targeting
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Target specific postcodes and areas where you actually want to
+                work, not random locations
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 mx-auto"
+              >
+                <svg
+                  class="w-6 h-6 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Local Service Pages
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Create dedicated pages for each area you serve - like "Plumber
+                in York" or "Kitchen Fitter in Harrogate"
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto"
+              >
+                <svg
+                  class="w-6 h-6 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Traffic Analysis
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Track which areas are bringing you the most enquiries and adjust
+                your strategy accordingly
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">
+              Perfect for:
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Plumbers
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Electricians
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Joiners
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Builders
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Gardeners
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Cleaners
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Decorators
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                & More
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+          <div
+            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-blue-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Custom Website Design
+          </h3>
+          <p class="text-gray-600">
+            Just like my joinery work, I build websites from the ground up,
+            tailored to your specific needs. No templates, no cookie-cutter
+            solutions - just custom code that works perfectly for your business.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+          <div
+            class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Lead Generation Websites
+          </h3>
+          <p class="text-gray-600">
+            Websites designed to capture enquiries and phone calls. I focus on
+            creating pages that convert visitors into customers, with clear
+            contact forms and compelling calls-to-action.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+          <div
+            class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-purple-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Local SEO Specialists
+          </h3>
+          <p class="text-gray-600">
+            I specialize in making websites rank for specific geographic areas.
+            Perfect for tradespeople who need to target exact postcodes and
+            service areas where they actually want to work.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+          <div
+            class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-yellow-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Mobile Responsive
+          </h3>
+          <p class="text-gray-600">
+            Every website I build works perfectly on phones, tablets, and
+            desktops. In today's world, your website needs to look great and
+            function flawlessly on every device.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+          <div
+            class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Secure & Reliable
+          </h3>
+          <p class="text-gray-600">
+            Security isn't an afterthought - it's built into every website from
+            the start. I use the latest security best practices to keep your
+            site and your customers' data safe.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+          <div
+            class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-indigo-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Ongoing Support
+          </h3>
+          <p class="text-gray-600">
+            I don't just build your website and disappear. I provide ongoing
+            support, maintenance, and updates to keep your site running smoothly
+            and up-to-date.
+          </p>
+        </div>
+      </div>
+
+      <!-- Why Choose Me -->
+      <div class="bg-gray-50 rounded-xl p-8 mb-12">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">
+          Why Choose a Local Yorkshire Developer?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">
+              Personal Touch
+            </h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Face-to-face meetings and consultations
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Understanding of local business needs
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Quick response times and local support
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">
+              Technical Excellence
+            </h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Modern development frameworks and tools
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                SEO-optimized code and structure
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Performance-focused development approach
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form Section -->
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Ready to Rank in Your Target Areas?
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Whether you're a plumber in York, an electrician in Harrogate, or
+            any tradesperson who needs to rank for specific areas, I can help.
+            Let's discuss your service area and create a website that brings you
+            local enquiries.
+          </p>
+        </div>
+
+        <ModernContactForm
+          title="Get Your Free Web Development Quote"
+          subtitle="Tell me about your project and I'll get back to you within 24 hours"
+        />
+      </div>
+    </section>
+  </main>
+</Layout>

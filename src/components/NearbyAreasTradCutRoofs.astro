@@ -10,7 +10,7 @@ interface Props {
 const { location } = Astro.props;
 // Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
 const radius = 40;
-const nearbyLocations = getNearbyLocations(location, radius);
+const nearbyLocations = await getNearbyLocations(location, radius);
 ---
 
 <section class="w-full py-12 md:py-24 lg:py-30">

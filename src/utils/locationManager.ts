@@ -1,19 +1,20 @@
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 
-// Enhanced location interface
+// Enhanced location interface matching the JSON structure
 export interface EnhancedLocation {
   slug: string;
-  name: string;
-  lat: number;
-  lng: number;
-  county: string;
+  title: string;
+  description: string;
+  location: string;
   region: string;
-  population?: number;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
   services: string[];
-  nearbyLocations: string[];
-  seoTitle?: string;
-  seoDescription?: string;
+  areas: string[];
+  phone: string;
+  testimonials: string;
   distance?: number;
 }
 
@@ -68,8 +69,8 @@ export async function getNearbyLocations(
   if (typeof centerLocation === 'string') {
     const center = allLocations.find(loc => loc.slug === centerLocation);
     if (!center) return [];
-    centerLat = center.lat;
-    centerLng = center.lng;
+    centerLat = center.coordinates.lat;
+    centerLng = center.coordinates.lng;
   } else {
     centerLat = centerLocation.lat;
     centerLng = centerLocation.lng;
@@ -78,7 +79,7 @@ export async function getNearbyLocations(
   return allLocations
     .map(location => ({
       ...location,
-      distance: haversineDistance(centerLat, centerLng, location.lat, location.lng)
+      distance: haversineDistance(centerLat, centerLng, location.coordinates.lat, location.coordinates.lng)
     }))
     .filter(location => {
       const withinRadius = location.distance! <= radius;
@@ -139,12 +140,12 @@ export async function generateLocationSEO(
   const service = serviceSlug ? services.find(s => s.data.slug === serviceSlug) : null;
 
   const title = service 
-    ? `${service.data.title} in ${location.name}, ${location.county} | Coulsy Joinery`
-    : `Joinery Services in ${location.name}, ${location.county} | Coulsy Joinery`;
+    ? `${service.data.title} in ${location.location}, ${location.region} | Coulsy Joinery`
+    : `Joinery Services in ${location.location}, ${location.region} | Coulsy Joinery`;
 
   const description = service
-    ? `Professional ${service.data.title.toLowerCase()} services in ${location.name}, ${location.county}. Over 30 years' experience. Free quotes and local expertise.`
-    : `Trusted joinery services in ${location.name}, ${location.county}. From kitchens to heritage restoration. Over 30 years' experience. Free quotes.`;
+    ? `Professional ${service.data.title.toLowerCase()} services in ${location.location}, ${location.region}. Over 30 years' experience. Free quotes and local expertise.`
+    : `Trusted joinery services in ${location.location}, ${location.region}. From kitchens to heritage restoration. Over 30 years' experience. Free quotes.`;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -154,25 +155,25 @@ export async function generateLocationSEO(
     "url": `https://coulsyjoinery.co.uk/joinery-services/${locationSlug}${serviceSlug ? `-${serviceSlug}` : ''}`,
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": location.name,
-      "addressRegion": location.county,
+      "addressLocality": location.location,
+      "addressRegion": location.region,
       "addressCountry": "GB"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": location.lat,
-      "longitude": location.lng
+      "latitude": location.coordinates.lat,
+      "longitude": location.coordinates.lng
     },
     "areaServed": {
       "@type": "City",
-      "name": location.name
+      "name": location.location
     },
     "serviceArea": {
       "@type": "GeoCircle",
       "geoMidpoint": {
         "@type": "GeoCoordinates",
-        "latitude": location.lat,
-        "longitude": location.lng
+        "latitude": location.coordinates.lat,
+        "longitude": location.coordinates.lng
       },
       "geoRadius": "50000"
     }

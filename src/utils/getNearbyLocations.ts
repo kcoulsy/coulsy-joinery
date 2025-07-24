@@ -1,5 +1,4 @@
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 
 // Enhanced location interface for better SEO
 export interface EnhancedLocation {

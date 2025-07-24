@@ -3,6 +3,7 @@ import "../styles.scss";
 
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import WebDevFooter from "../components/WebDevFooter.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -12,6 +13,7 @@ interface Props {
   description?: string;
   classes?: string;
   transparentHeader?: boolean;
+  location?: string;
 }
 
 const {
@@ -19,6 +21,7 @@ const {
   classes,
   description = "Bespoke joinery and small building works in York, Wetherby & Harrogate. High-quality kitchens, carpentry, heritage restoration. Trusted local experts.",
   transparentHeader = false,
+  location,
 } = Astro.props;
 ---
 
@@ -46,6 +49,7 @@ const {
       <slot />
     </main>
     <Footer />
+    <WebDevFooter location={location} />
     <CookieBanner />
     <style is:global></style>
     <script

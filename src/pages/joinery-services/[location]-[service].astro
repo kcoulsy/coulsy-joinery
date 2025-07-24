@@ -71,7 +71,7 @@ const { title, description, structuredData } = await generateLocationSEO(
 const serviceImages = service.gallery || [];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} location={location.location}>
   <Fragment slot="head">
     <script
       type="application/ld+json"
@@ -85,7 +85,7 @@ const serviceImages = service.gallery || [];
         crumbs={[
           { label: "Joinery Services", href: "/joinery-services" },
           { label: service.title, href: `/joinery-services/${service.slug}` },
-          { label: location.name, current: true },
+          { label: location.location, current: true },
         ]}
       />
 
@@ -94,11 +94,11 @@ const serviceImages = service.gallery || [];
         class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
       >
         <h1 class="text-3xl font-bold tracking-tight pb-4">
-          {service.title} in {location.name}, {location.county}
+          {service.title} in {location.location}, {location.region}
         </h1>
         <p class="text-gray-700 text-lg mb-4">
           Professional {service.title.toLowerCase()} services delivered by experienced
-          joiners with over 30 years' expertise in {location.name} and surrounding
+          joiners with over 30 years' expertise in {location.location} and surrounding
           areas.
         </p>
         <p class="text-gray-700 text-base mb-6">
@@ -117,7 +117,7 @@ const serviceImages = service.gallery || [];
         <!-- Main Content -->
         <div class="space-y-4 text-gray-600 prose">
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-            {service.title} Services in {location.name}
+            {service.title} Services in {location.location}
           </h2>
 
           <div set:html={service.description} />
@@ -141,13 +141,13 @@ const serviceImages = service.gallery || [];
           <!-- Why Choose Us -->
           <div class="mt-8">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">
-              Why Choose Coulsy Joinery in {location.name}
+              Why Choose Coulsy Joinery in {location.location}
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="bg-white p-4 rounded-lg border">
                 <h4 class="font-semibold text-gray-800">Local Expertise</h4>
                 <p class="text-sm text-gray-600">
-                  Deep knowledge of {location.name} and surrounding areas
+                  Deep knowledge of {location.location} and surrounding areas
                 </p>
               </div>
               <div class="bg-white p-4 rounded-lg border">
@@ -185,7 +185,7 @@ const serviceImages = service.gallery || [];
                 <GalleryGrid
                   items={serviceImages.map((image: string, index: number) => ({
                     src: image,
-                    alt: `${service.title} in ${location.name} - Example ${index + 1}`,
+                    alt: `${service.title} in ${location.location} - Example ${index + 1}`,
                     label: `${service.title} Project`,
                     loading: index > 2 ? "lazy" : "eager",
                   }))}
@@ -204,12 +204,12 @@ const serviceImages = service.gallery || [];
               </h2>
               <p class="text-gray-600 mb-6 text-center">
                 Ready to start your {service.title.toLowerCase()} project in {
-                  location.name
+                  location.location
                 }? Get in touch for a free, no-obligation quote.
               </p>
               <ModernContactForm
                 title="Get Your Free Quote"
-                subtitle={`Ready to start your ${service.title.toLowerCase()} project in ${location.name}?`}
+                subtitle={`Ready to start your ${service.title.toLowerCase()} project in ${location.location}?`}
               />
             </div>
           </div>
@@ -221,11 +221,11 @@ const serviceImages = service.gallery || [];
         nearbyLocations.length > 0 && (
           <div class="mt-12">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-              {service.title} Services Near {location.name}
+              {service.title} Services Near {location.location}
             </h2>
             <p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
               We provide {service.title.toLowerCase()} services across{" "}
-              {location.county} and surrounding areas. Here are some of the
+              {location.region} and surrounding areas. Here are some of the
               locations we serve:
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -235,7 +235,7 @@ const serviceImages = service.gallery || [];
                   class="group rounded-lg bg-white p-3 shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50 text-center"
                 >
                   <div class="text-sm font-medium text-gray-800 group-hover:text-yellow-700">
-                    {nearbyLocation.name}
+                    {nearbyLocation.location}
                   </div>
                   {nearbyLocation.distance && (
                     <div class="text-xs text-gray-500 mt-1">
@@ -251,8 +251,8 @@ const serviceImages = service.gallery || [];
 
       <p class="text-sm text-gray-600 text-center mt-10">
         Looking for reliable {service.title.toLowerCase()} services in {
-          location.name
-        }, {location.county}? Contact Coulsy Joinery for professional
+          location.location
+        }, {location.region}? Contact Coulsy Joinery for professional
         workmanship and personal service.
       </p>
     </section>

@@ -48,7 +48,7 @@ if (
 }
 basePath = "joinery-services";
 
-const nearbyLocations = getNearbyLocations(location, radius);
+const nearbyLocations = await getNearbyLocations(location, radius);
 
 // Helper to format slugs as nice titles
 const formatSlug = (s: string) =>
@@ -66,7 +66,7 @@ const stripSuffix = (slug: string, suffix: string) => {
     <div class="text-center">
       <p class="max-w-[700px] text-gray-500 text-sm md:text-base mx-auto">
         {
-          `${serviceText}${location ? ` around ${formatSlug(location)}` : ""}, whether it’s a village, town or city. Let me know where you are — I’ll always try to help.`
+          `${serviceText}${location ? ` around ${formatSlug(location)}` : ""}, whether it's a village, town or city. Let me know where you are — I'll always try to help.`
         }
       </p>
     </div>
@@ -86,7 +86,7 @@ const stripSuffix = (slug: string, suffix: string) => {
                 {formatSlug(stripSuffix(finalSlug, suffix))}
               </div>
               <div class="text-xs text-gray-500">
-                {distance.toFixed(1)} miles from here
+                {distance?.toFixed(1)} miles from here
               </div>
             </a>
           );
