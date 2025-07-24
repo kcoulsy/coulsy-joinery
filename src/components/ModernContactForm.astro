@@ -4,6 +4,7 @@ interface Props {
   subtitle?: string;
   showPhone?: boolean;
   className?: string;
+  useLocalAPI?: boolean;
 }
 
 const {
@@ -11,6 +12,7 @@ const {
   subtitle = "Ready to start your project? Get in touch for a free, no-obligation quote.",
   showPhone = true,
   className = "",
+  useLocalAPI = false,
 } = Astro.props;
 ---
 
@@ -24,16 +26,23 @@ const {
 
   <form
     id="modern-contact-form"
+    name="contact"
     method="post"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    data-netlify-recaptcha="true"
+    action={useLocalAPI ? "/api/contact" : "/contact?success=true"}
+    data-netlify={!useLocalAPI ? "true" : undefined}
+    netlify-honeypot={!useLocalAPI ? "bot-field" : undefined}
+    data-netlify-recaptcha={!useLocalAPI ? "true" : undefined}
     class="space-y-4"
   >
+    <!-- Hidden form name for Netlify -->
+    {!useLocalAPI && <input type="hidden" name="form-name" value="contact" />}
+    
     <!-- Honeypot field -->
-    <div class="hidden">
-      <input name="bot-field" />
-    </div>
+    {!useLocalAPI && (
+      <div class="hidden">
+        <input name="bot-field" />
+      </div>
+    )}
 
     <!-- Name Field -->
     <div>
@@ -170,27 +179,117 @@ const {
   </div>
 </div>
 
-<script>
-  // Simple script to show success/error messages based on URL parameters
+<script define:vars={{ useLocalAPI }}>
+  // Enhanced script to handle form submission and show messages
   document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
+    const form = document.getElementById("modern-contact-form");
     const successMessage = document.getElementById("success-message");
     const errorMessage = document.getElementById("error-message");
-
+    
+    // Check URL parameters for success/error messages
+    const urlParams = new URLSearchParams(window.location.search);
+    
     if (urlParams.get("success") === "true" && successMessage) {
       successMessage.classList.remove("hidden");
-      // Auto-hide after 5 seconds
+      // Scroll to success message
+      successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Auto-hide after 8 seconds
       setTimeout(() => {
         successMessage.classList.add("hidden");
-      }, 5000);
+      }, 8000);
     }
 
     if (urlParams.get("error") === "true" && errorMessage) {
       errorMessage.classList.remove("hidden");
-      // Auto-hide after 5 seconds
+      // Scroll to error message
+      errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Auto-hide after 8 seconds
       setTimeout(() => {
         errorMessage.classList.add("hidden");
-      }, 5000);
+      }, 8000);
+    }
+
+    // Handle form submission
+    if (form) {
+      form.addEventListener("submit", function(e) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.innerHTML = `
+            <span class="flex items-center justify-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Sending...
+            </span>
+          `;
+        }
+
+        // If using local API, handle the submission manually
+        if (useLocalAPI) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          
+          fetch('/api/contact', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              if (successMessage) {
+                successMessage.classList.remove("hidden");
+                successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+                setTimeout(() => {
+                  successMessage.classList.add("hidden");
+                }, 8000);
+              }
+                             form.reset();
+            } else {
+              if (errorMessage) {
+                errorMessage.classList.remove("hidden");
+                errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+                setTimeout(() => {
+                  errorMessage.classList.add("hidden");
+                }, 8000);
+              }
+            }
+          })
+          .catch(error => {
+            console.error('Form submission error:', error);
+            if (errorMessage) {
+              errorMessage.classList.remove("hidden");
+              errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+              setTimeout(() => {
+                errorMessage.classList.add("hidden");
+              }, 8000);
+            }
+          })
+          .finally(() => {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.innerHTML = `
+                <span class="flex items-center justify-center">
+                  <svg
+                    class="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                  </svg>
+                  Send Message
+                </span>
+              `;
+            }
+          });
+        }
+      });
     }
   });
 </script>
