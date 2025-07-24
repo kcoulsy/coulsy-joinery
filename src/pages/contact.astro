@@ -11,16 +11,16 @@ import { DETAILS } from "../constants/details";
 // Modern SEO optimization with personal voice preserved
 const seoData = {
   title:
-    "Contact Coulsy Joinery - Expert Joinery Services in York | Free Quotes",
+    "Contact Robert Coulson - Let's Talk About Your Joinery Project in York",
   description:
-    "Contact Robert Coulson for expert joinery services in York. 35+ years experience since 1989. Free consultations and quotes for bespoke joinery, kitchens, and building works.",
+    "Ready to start your joinery project? I'm Robert Coulson, and I'd love to hear about what you have in mind. 35+ years of experience, free consultations, and a personal touch that makes the difference.",
   keywords:
-    "contact joinery York, Robert Coulson joiner, joinery quote York, kitchen installation York, bespoke joinery contact",
+    "contact Robert Coulson York, joinery consultation York, kitchen fitting York, bespoke joinery York, personal joinery service",
   canonical: "https://coulsyjoinery.co.uk/contact",
   structuredData: {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: "Contact Coulsy Joinery",
+    name: "Contact Robert Coulson - Coulsy Joinery",
     description:
       "Contact Robert Coulson for expert joinery services in York with 35+ years experience",
     url: "https://coulsyjoinery.co.uk/contact",
@@ -54,20 +54,20 @@ const seoData = {
   classes="mt-8 mb-16"
 >
   <div class="container mx-auto px-4 py-16 lg:py-24">
-    <!-- Header Section -->
+    <!-- Personal Header Section -->
     <div class="text-center mb-16">
       <h1
         class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
       >
-        Contact a Trusted York-Based Joinery Business
+        Let's Talk About Your Project
       </h1>
-      <p class="text-xl text-brand-600 max-w-3xl mx-auto text-balance">
-        Let's talk about your project — from small repairs to full renovations,
-        I'd be happy to help.
+      <p class="text-xl text-brand-600 max-w-3xl mx-auto text-balance mb-4">
+        Hi, I'm Robert. Whether you're planning a kitchen renovation, need some bespoke joinery, 
+        or just want to chat about your ideas, I'm here to help.
       </p>
-      <p class="text-lg text-brand-600 mt-4">
-        We always look forward to hearing from you and being able to assist
-        where we can.
+      <p class="text-lg text-brand-600 max-w-2xl mx-auto">
+        After 35+ years in the trade, I've learned that the best projects start with a good conversation. 
+        No pressure, no obligation — just honest advice from someone who loves what they do.
       </p>
     </div>
 
@@ -75,22 +75,26 @@ const seoData = {
       <!-- Contact Form Section -->
       <div class="lg:col-span-2">
         <ModernContactForm
-          title="Get in Touch"
-          subtitle="Ready to discuss your project? Get in touch for a free, no-obligation quote."
+          title="Tell Me About Your Project"
+          subtitle="What's on your mind? Whether it's a quick question or a full project plan, I'd love to hear from you."
         />
-        <p class="mt-6 text-center text-brand-600">
-          Prefer to chat directly? Give me a ring — I'm happy to talk things
-          through.
-        </p>
+        <div class="mt-6 text-center space-y-3">
+          <p class="text-brand-600">
+            Prefer to chat? I'm always happy to talk things through on the phone.
+          </p>
+          <p class="text-sm text-brand-500">
+            I usually respond within a few hours during business days.
+          </p>
+        </div>
       </div>
 
       <!-- Contact Information Section -->
       <div class="space-y-6">
-        <!-- Office Details -->
+        <!-- Personal Contact Details -->
         <div class="bg-white rounded-xl shadow-lg p-8 border border-brand-100">
           <div class="flex items-center mb-4">
             <OfficeIcon className="h-6 w-6 text-brand-600" />
-            <h3 class="text-xl font-semibold text-brand-900 ml-3">Office</h3>
+            <h3 class="text-xl font-semibold text-brand-900 ml-3">Where to Find Me</h3>
           </div>
 
           <div class="space-y-4">
@@ -122,7 +126,7 @@ const seoData = {
               <PhoneIcon className="h-5 w-5 text-brand-600 mr-3" />
               <a
                 href={`tel:${DETAILS.PHONE}`}
-                class="text-brand-600 hover:text-brand-700 transition-colors duration-200"
+                class="text-brand-600 hover:text-brand-700 transition-colors duration-200 font-medium"
               >
                 {DETAILS.PHONE}
               </a>
@@ -132,7 +136,7 @@ const seoData = {
               <EnvelopeIcon className="h-5 w-5 text-brand-600 mr-3" />
               <a
                 href={`mailto:${DETAILS.EMAIL}`}
-                class="text-brand-600 hover:text-brand-700 transition-colors duration-200"
+                class="text-brand-600 hover:text-brand-700 transition-colors duration-200 font-medium"
               >
                 {DETAILS.EMAIL}
               </a>
@@ -140,13 +144,38 @@ const seoData = {
           </div>
         </div>
 
+        <!-- Personal Touch Section -->
+        <div class="bg-gradient-to-br from-brand-50 to-yellow-50 rounded-xl shadow-lg p-8 border border-brand-100">
+          <h3 class="text-xl font-semibold text-brand-900 mb-4">
+            Why Choose Me?
+          </h3>
+          <div class="space-y-4 text-sm text-brand-700">
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2 mr-3"></div>
+              <p><strong>Personal service:</strong> You'll deal directly with me, not a sales team</p>
+            </div>
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2 mr-3"></div>
+              <p><strong>35+ years experience:</strong> I've seen it all and can guide you through any challenge</p>
+            </div>
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2 mr-3"></div>
+              <p><strong>Local knowledge:</strong> I know York and the surrounding areas inside out</p>
+            </div>
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2 mr-3"></div>
+              <p><strong>No pressure:</strong> Honest advice, whether it's right for you or not</p>
+            </div>
+          </div>
+        </div>
+
         <!-- Company Details -->
         <div class="bg-white rounded-xl shadow-lg p-8 border border-brand-100">
           <h3 class="text-xl font-semibold text-brand-900 mb-4">
-            Company details
+            Business Details
           </h3>
           <p class="text-sm text-brand-600 mb-6">
-            Rest assured by knowing who we are.
+            For your peace of mind — we're fully registered and insured.
           </p>
 
           <div class="space-y-4">
@@ -176,7 +205,7 @@ const seoData = {
               <CardChecklist className="h-5 w-5 text-brand-600 mr-3" />
               <div>
                 <span class="text-sm font-medium text-brand-900"
-                  >Commenced trading:</span
+                  >Trading since:</span
                 >
                 <p class="text-sm text-brand-600">{DETAILS.COMPANY.SINCE}</p>
               </div>
@@ -188,11 +217,38 @@ const seoData = {
                 <span class="text-sm font-medium text-brand-900"
                   >VAT registered:</span
                 >
-                <p class="text-sm text-brand-600">upon request</p>
+                <p class="text-sm text-brand-600">Available on request</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Personal Call to Action -->
+    <div class="mt-16 text-center bg-gradient-to-r from-brand-50 to-yellow-50 rounded-2xl p-8 border border-brand-100">
+      <h2 class="text-2xl font-bold text-brand-900 mb-4">
+        Ready to Get Started?
+      </h2>
+      <p class="text-lg text-brand-600 mb-6 max-w-2xl mx-auto">
+        Whether you have a clear vision or just a rough idea, I'm here to help bring your project to life. 
+        Let's have a chat and see what we can create together.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={`tel:${DETAILS.PHONE}`}
+          class="inline-flex items-center justify-center px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors duration-200"
+        >
+          <PhoneIcon className="h-5 w-5 mr-2" />
+          Call Me Now
+        </a>
+        <a
+          href={`mailto:${DETAILS.EMAIL}`}
+          class="inline-flex items-center justify-center px-6 py-3 border-2 border-brand-600 text-brand-600 font-semibold rounded-lg hover:bg-brand-600 hover:text-white transition-colors duration-200"
+        >
+          <EnvelopeIcon className="h-5 w-5 mr-2" />
+          Send Email
+        </a>
       </div>
     </div>
 
