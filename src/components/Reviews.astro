@@ -62,6 +62,12 @@ interface ReviewsData {
       }
 
       const data = await response.json();
+      
+      // Check if the API returned an error
+      if (data.error) {
+        throw new Error(data.message);
+      }
+      
       const reviews = data.reviews?.slice(0, 7) || [];
 
       if (reviews.length === 0) {
@@ -134,8 +140,20 @@ interface ReviewsData {
     } catch (e) {
       const error = e instanceof Error ? e.message : "Failed to fetch reviews";
       console.error("Error fetching reviews:", error);
-      container.innerHTML =
-        '<div class="text-center text-red-500 p-4 bg-red-50 rounded-lg max-w-2xl mx-auto">Unable to load reviews at this time. Please try again later.</div>';
+
+      // Check if it's an API key issue - be more specific
+      if (error.includes("API key") || error.includes("REQUEST_DENIED") || error.includes("expired")) {
+        container.innerHTML = `
+          <div class="text-center p-4 bg-yellow-50 rounded-lg max-w-2xl mx-auto">
+            <div class="text-yellow-800 font-semibold mb-2">Google Reviews Temporarily Unavailable</div>
+            <div class="text-yellow-700 text-sm mb-4">Our Google Reviews integration is being updated. Please check our <a href="https://www.google.com/search?q=Coulsy+Joinery+reviews" target="_blank" class="underline font-semibold">Google Reviews directly</a> for the latest customer feedback.</div>
+            <div class="text-xs text-yellow-600">We're working to restore this feature as soon as possible.</div>
+          </div>
+        `;
+      } else {
+        container.innerHTML =
+          '<div class="text-center text-red-500 p-4 bg-red-50 rounded-lg max-w-2xl mx-auto">Unable to load reviews at this time. Please try again later.</div>';
+      }
     }
   }
 

@@ -27,8 +27,15 @@ export const GET: APIRoute = async () => {
 
     if (data.status !== "OK") {
       console.error("Google Places API status error:", data.status, data.error_message);
-      return new Response(`Google Places API error: ${data.status} - ${data.error_message || 'Unknown error'}`, {
-        status: 400,
+      return new Response(JSON.stringify({
+        error: true,
+        message: `Google Places API error: ${data.status} - ${data.error_message || 'Unknown error'}`,
+        status: data.status
+      }), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
     }
 
