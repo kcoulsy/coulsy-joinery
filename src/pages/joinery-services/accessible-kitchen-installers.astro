@@ -21,6 +21,8 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
@@ -37,6 +39,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -175,7 +182,10 @@ const finalDescription = description || defaultDescription;
                   Thinking about an accessible kitchen? I’d be happy to walk you
                   through the options and find what works best for you.
                 </p>
-                <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+                <ModernContactForm
+                  title="Get Your Free Quote"
+                  subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+                />
               </div>
             </div>
           </aside>

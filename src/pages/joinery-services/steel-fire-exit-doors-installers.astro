@@ -21,10 +21,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Professional installation of steel fire exit doors ${locationInText}, including high-security doors and emergency exits. Expert service with 30+ years' experience in compliant, secure, and durable steel door fitting.`;
+const description = `Professional steel fire exit door installation ${locationInText} by qualified joiner. High-security doors, emergency exits & compliance fitting. 30+ years experience, CSCS certified. Get your safety doors fitted properly.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -37,6 +39,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -171,7 +178,10 @@ const finalDescription = description || defaultDescription;
                 Need a secure and compliant steel fire exit door installed? I’d
                 be happy to take a look and advise on the best solution.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

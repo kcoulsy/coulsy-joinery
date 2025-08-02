@@ -21,10 +21,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Bespoke joinery services ${locationInText.trim()} — handcrafted woodwork, staircases, doors, windows and more. 30+ years of trusted local expertise for unique commissions and quality installations.`;
+const description = `Expert bespoke joinery services ${locationInText.trim()} by City & Guilds qualified joiner. Custom staircases, doors, windows & handcrafted woodwork. 30+ years experience, made-to-measure solutions. Get your unique joinery crafted with care.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -37,6 +39,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">

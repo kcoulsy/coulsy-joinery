@@ -22,15 +22,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Trusted joinery services in ${locationInText
-  .trim()
-  .replace(/-/g, " ")
-  .replace(/\b\w/g, (c) =>
-    c.toUpperCase()
-  )} — from bespoke staircases to sash windows and doors, all finished to a high standard by a qualified local joiner.`;
+const description = `Expert joiner services ${locationInText.trim()} by City & Guilds qualified craftsman. Bespoke staircases, sash windows, doors & fine joinery. 30+ years experience, traditional craftsmanship. Get your joinery done properly.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -46,6 +43,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -174,7 +176,10 @@ const finalDescription = description || defaultDescription;
               Whether it’s a bespoke staircase, sash window repair, or a full
               joinery refit — I’d be happy to chat and see how I can hel.
             </p>
-            <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+            <ModernContactForm
+              title="Get Your Free Quote"
+              subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+            />
           </div>
         </aside>
       </div>

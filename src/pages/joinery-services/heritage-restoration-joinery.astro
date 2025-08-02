@@ -23,10 +23,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Expert heritage joinery and restoration work ${locationInText}, preserving period features with traditional craftsmanship. Over 30 years of experience working on listed buildings, churches, and historic properties with high-quality repairs, replications, and bespoke timber work.`;
+const description = `Expert heritage joinery & restoration ${locationInText} by qualified joiner. Listed buildings, period properties & traditional craftsmanship. 30+ years experience, conservation compliant. Preserve your property's character.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -39,6 +41,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -203,7 +210,10 @@ const finalDescription = description || defaultDescription;
                 Thinking about a heritage or restoration joinery project? I'd be
                 glad to have a chat and see how I can help.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

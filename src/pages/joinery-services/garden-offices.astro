@@ -21,10 +21,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Beautifully designed, fully insulated garden offices ${locationInText} — built by a time-served joiner with 30+ years of experience. Bespoke, energy-efficient, and built to last.`;
+const description = `Bespoke garden office design & construction ${locationInText} by qualified joiner. Fully insulated, energy-efficient home offices & studios. 30+ years experience, planning compliant. Transform your garden into a perfect workspace.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -37,6 +39,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -174,7 +181,10 @@ const finalDescription = description || defaultDescription;
                 retreat, I’d be happy to help you design and build something
                 that fits perfectly.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

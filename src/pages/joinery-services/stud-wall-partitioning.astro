@@ -19,10 +19,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Expert stud wall partitioning services ${locationInText}, tailored for home improvements, room conversions, and commercial fit-outs. Reliable timber stud framing from a qualified, time-served joiner.`;
+const description = `Expert stud wall partitioning ${locationInText} by City & Guilds qualified joiner. Timber framing for home improvements, room conversions & commercial fit-outs. 30+ years experience, CSCS certified. Get your partitions built properly.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -35,6 +37,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -151,7 +158,10 @@ const finalDescription = description || defaultDescription;
                 Need help with a heritage or restoration joinery project? I’d be
                 happy to discuss how we can help.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

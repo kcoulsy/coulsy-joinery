@@ -26,10 +26,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Professional kitchen fitting and joinery services ${locationInText}, delivered personally by a qualified joiner with 30+ years’ experience. From bespoke domestic kitchens to commercial installations — fitted properly, with care.`;
+const description = `Expert kitchen installation services ${locationInText} by City & Guilds qualified joiner. Full kitchen fitting, Howdens & Magnet installations, bespoke designs & repairs. 30+ years experience, free quotes. Get your kitchen fitted properly with care.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -42,6 +44,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">

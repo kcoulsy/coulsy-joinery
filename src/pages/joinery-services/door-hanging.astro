@@ -22,10 +22,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Professional door hanging services ${locationInText} by a City & Guilds qualified joiner. Internal, external, and fire door installation with precision and care. Over 30 years' experience.`;
+const description = `Expert door hanging services ${locationInText} by City & Guilds qualified joiner. Internal, external & fire door installation. 30+ years experience, precision fitting. Get your doors hung properly.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -38,6 +40,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -201,7 +208,10 @@ const finalDescription = description || defaultDescription;
                 set installations, I’d be happy to discuss how I can help — just
                 drop me a line.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

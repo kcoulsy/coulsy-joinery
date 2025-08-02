@@ -19,10 +19,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Reliable structural carpentry services ${locationInText.trim()}, from roofs and floors to studwork and timber framing. 30+ years' experience with new builds, renovations, and extensions.`;
+const description = `Expert structural carpentry services ${locationInText.trim()} by City & Guilds qualified joiner. Roofs, floors, timber framing & studwork. 30+ years experience, new builds & renovations. Get your structural work done right.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -35,6 +37,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
   <main class="mx-auto md:mt-16 relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
@@ -174,7 +181,10 @@ const finalDescription = description || defaultDescription;
                 roofing to framing and first fix — feel free to reach out. I’d
                 be happy to discuss how I can help.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

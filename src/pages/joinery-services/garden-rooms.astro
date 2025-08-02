@@ -21,10 +21,12 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
+  serviceSchema,
+  faqSchema,
   defaultDescription,
 } = getFormattedPageData(Astro);
 
-const description = `Thoughtfully crafted garden rooms ${locationInText}, built by a local joiner with 30+ years' experience. Warm, insulated spaces — perfect for work, relaxation, or retreat.`;
+const description = `Bespoke garden room design & construction ${locationInText} by qualified joiner. Insulated timber rooms for work, relaxation & retreats. 30+ years experience, year-round comfort. Create your perfect outdoor space.`;
 const finalDescription = description || defaultDescription;
 ---
 
@@ -37,6 +39,11 @@ const finalDescription = description || defaultDescription;
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
@@ -252,7 +259,10 @@ const finalDescription = description || defaultDescription;
                 Thinking about a garden room? I’d be delighted to personally
                 discuss your ideas and help make them a reality.
               </p>
-              <ModernContactForm title="Get Your Free Quote" subtitle="Ready to start your project? Get in touch for a free, no-obligation quote." />
+              <ModernContactForm
+                title="Get Your Free Quote"
+                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
+              />
             </div>
           </div>
         </aside>

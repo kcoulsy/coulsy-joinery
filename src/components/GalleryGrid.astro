@@ -14,11 +14,6 @@ interface Props {
 }
 
 const { items } = Astro.props;
-
-// Helper function to check if src is an imported image object
-function isImportedImage(src: any): boolean {
-  return src && typeof src === "object" && "src" in src;
-}
 ---
 
 <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
@@ -31,21 +26,12 @@ function isImportedImage(src: any): boolean {
               onclick={`showLightbox(); document.getElementById('lightbox-image-${index}').scrollIntoView({ behavior: 'instant', inline: 'center' })`}
               class="block w-full"
             >
-              {isImportedImage(item.src) ? (
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  loading={(item.loading as "eager" | "lazy") || "eager"}
-                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-                />
-              ) : (
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading={(item.loading as "eager" | "lazy") || "eager"}
-                  class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-                />
-              )}
+              <Image
+                src={item.src}
+                alt={item.alt}
+                loading={(item.loading as "eager" | "lazy") || "lazy"}
+                class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+              />
             </button>
           </div>
           <div
@@ -91,23 +77,13 @@ function isImportedImage(src: any): boolean {
           id={`lightbox-image-${index}`}
           class="shrink-0 snap-center flex flex-col items-center w-[90vw] max-w-[600px] px-4"
         >
-          {isImportedImage(item.src) ? (
-            <Image
-              src={item.src}
-              alt={item.alt}
-              class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain opacity-0 scale-95 transition duration-500 ease-out"
-              loading="eager"
-              onload="this.classList.remove('opacity-0', 'scale-95')"
-            />
-          ) : (
-            <img
-              src={item.src}
-              alt={item.alt}
-              class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain opacity-0 scale-95 transition duration-500 ease-out"
-              loading="eager"
-              onload="this.classList.remove('opacity-0', 'scale-95')"
-            />
-          )}
+          <Image
+            src={item.src}
+            alt={item.alt}
+            class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain opacity-0 scale-95 transition duration-500 ease-out"
+            loading="eager"
+            onload="this.classList.remove('opacity-0', 'scale-95')"
+          />
           <p class="text-white text-sm mt-2 text-center">{item.label}</p>
         </div>
       ))

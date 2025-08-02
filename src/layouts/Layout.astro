@@ -38,8 +38,34 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalURL.href} />
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta
+      property="og:image"
+      content="https://coulsyjoinery.co.uk/og-image.jpg"
+    />
+    <meta property="og:site_name" content="Coulsy Joinery" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://coulsyjoinery.co.uk/og-image.jpg"
+    />
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Coulsy Joinery" />
+    <meta name="theme-color" content="#1f2937" />
+
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | {description}</title>
+    <title>{title} | Coulsy Joinery</title>
 
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
