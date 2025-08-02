@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+import { LOCATIONS } from "../../constants/locations";
+import Page from "./kitchen-installers.astro";
+
+export const getStaticPaths = (() => {
+  const paths: GetStaticPathsResult = [];
+
+  LOCATIONS.forEach((location) => {
+    paths.push({
+      params: {
+        location: location.slug,
+      },
+    });
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { location } = Astro.params;
+---
+
+<Page location={location} />
+
