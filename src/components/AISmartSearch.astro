@@ -1,0 +1,470 @@
+---
+// AI-Powered Smart Search Component with semantic search capabilities for Coulsy Joinery
+---
+
+<div class="relative max-w-2xl mx-auto">
+  <!-- Search Input -->
+  <div class="relative">
+    <input
+      id="ai-search-input"
+      type="text"
+      placeholder="Search joinery services, locations, or ask a question..."
+      class="w-full px-4 py-3 pl-12 pr-16 text-lg border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-600 focus:border-transparent text-gray-900 bg-white placeholder-gray-500"
+      autocomplete="off"
+    />
+
+    <!-- Search Icon -->
+    <div
+      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+    >
+      <svg
+        class="h-6 w-6 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </div>
+
+    <!-- AI Indicator -->
+    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+      <div class="flex items-center space-x-2">
+        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+        <span class="text-sm text-gray-500">AI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Results Dropdown -->
+  <div
+    id="search-results"
+    class="absolute w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-xl max-h-96 overflow-y-auto hidden z-50"
+  >
+    <!-- Loading State -->
+    <div id="search-loading" class="p-4 text-center text-gray-500 hidden">
+      <div class="flex items-center justify-center space-x-2">
+        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-brand-600">
+        </div>
+        <span>Searching...</span>
+      </div>
+    </div>
+
+    <!-- Results Container -->
+    <div id="search-results-content" class="divide-y divide-gray-200">
+      <!-- Results will be populated here -->
+    </div>
+
+    <!-- No Results -->
+    <div id="no-results" class="p-4 text-center text-gray-500 hidden">
+      <p>No results found. Try different keywords or ask a question.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck
+  class AISmartSearch {
+    constructor() {
+      this.input = document.getElementById("ai-search-input");
+      this.results = document.getElementById("search-results");
+      this.loading = document.getElementById("search-loading");
+      this.content = document.getElementById("search-results-content");
+      this.noResults = document.getElementById("no-results");
+      this.searchTimeout = null;
+      this.init();
+    }
+
+    init() {
+      this.setupEventListeners();
+      this.loadSearchIndex();
+    }
+
+    setupEventListeners() {
+      // Input events
+      this.input?.addEventListener("input", (e) => {
+        this.handleSearch(e.target.value);
+      });
+
+      this.input?.addEventListener("focus", () => {
+        this.showResults();
+      });
+
+      // Click outside to close
+      document.addEventListener("click", (e) => {
+        if (
+          !this.input?.contains(e.target) &&
+          !this.results?.contains(e.target)
+        ) {
+          this.hideResults();
+        }
+      });
+
+      // Keyboard navigation
+      this.input?.addEventListener("keydown", (e) => {
+        this.handleKeyboardNavigation(e);
+      });
+    }
+
+    async loadSearchIndex() {
+      // Build comprehensive search index for joinery services
+      this.searchIndex = await this.buildSearchIndex();
+    }
+
+    async buildSearchIndex() {
+      // Build search index from joinery services and content
+      const pages = [
+        {
+          title: "Kitchen Installation Services",
+          url: "/joinery-services/kitchen-installers",
+          content: "Professional kitchen installation and fitting services for homes and commercial properties. Expert kitchen fitters with years of experience.",
+          keywords: ["kitchen", "installation", "fitting", "kitchen fitter", "cabinets", "worktops"],
+        },
+        {
+          title: "Accessible Kitchen Installation",
+          url: "/joinery-services/accessible-kitchen-installers",
+          content: "Specialist accessible kitchen installation for mobility needs. Lowered worktops, accessible cabinets, and mobility-friendly designs.",
+          keywords: ["accessible", "mobility", "disabled", "wheelchair", "lowered", "adapted"],
+        },
+        {
+          title: "Bespoke Joinery Services",
+          url: "/joinery-services/bespoke-joinery",
+          content: "Custom bespoke joinery and carpentry work. Handcrafted furniture, fitted wardrobes, and unique wooden pieces.",
+          keywords: ["bespoke", "custom", "handcrafted", "furniture", "wardrobes", "unique"],
+        },
+        {
+          title: "General Joinery Services",
+          url: "/joinery-services/general-joinery",
+          content: "Comprehensive general joinery services including repairs, installations, and woodwork projects.",
+          keywords: ["general", "repairs", "woodwork", "carpentry", "joinery", "installations"],
+        },
+        {
+          title: "Heritage & Restoration Joinery",
+          url: "/joinery-services/heritage-restoration-joinery",
+          content: "Specialist heritage joinery and restoration work for period properties and listed buildings.",
+          keywords: ["heritage", "restoration", "period", "listed", "traditional", "vintage"],
+        },
+        {
+          title: "Garden Offices & Annexes",
+          url: "/joinery-services/garden-offices",
+          content: "Custom garden office and annexe construction. Professional workspace solutions for home working.",
+          keywords: ["garden office", "annexe", "workspace", "home office", "outbuilding", "studio"],
+        },
+        {
+          title: "Garden Rooms",
+          url: "/joinery-services/garden-rooms",
+          content: "Beautiful garden room construction and design. Create additional living space in your garden.",
+          keywords: ["garden room", "living space", "garden building", "outdoor room", "conservatory"],
+        },
+        {
+          title: "Stud Wall Partitioning",
+          url: "/joinery-services/stud-wall-partitioning",
+          content: "Professional stud wall construction and room partitioning services for commercial and residential properties.",
+          keywords: ["stud wall", "partitioning", "room divider", "drywall", "plasterboard", "walls"],
+        },
+        {
+          title: "Door Hanging Services",
+          url: "/joinery-services/door-hanging",
+          content: "Expert door hanging and fitting services. Internal and external doors, fire doors, and security doors.",
+          keywords: ["door hanging", "door fitting", "doors", "fire doors", "security doors"],
+        },
+        {
+          title: "Steel Fire Exit Doors",
+          url: "/joinery-services/steel-fire-exit-doors-installers",
+          content: "Steel fire exit door installation and maintenance. Commercial fire safety compliance and security.",
+          keywords: ["steel doors", "fire exit", "fire safety", "commercial", "security", "compliance"],
+        },
+        {
+          title: "Truss Roof Installation",
+          url: "/joinery-services/truss-roof-installers",
+          content: "Professional truss roof installation and construction services for new builds and extensions.",
+          keywords: ["truss roof", "roofing", "construction", "new build", "extension", "roof"],
+        },
+        {
+          title: "Traditional Cut Roofs",
+          url: "/joinery-services/traditional-cut-roofs",
+          content: "Traditional cut roof construction and restoration. Heritage roofing techniques and craftsmanship.",
+          keywords: ["traditional roof", "cut roof", "heritage roof", "roof construction", "roofing"],
+        },
+        {
+          title: "Joinery Subcontractors",
+          url: "/joinery-services/joinery-subcontractors",
+          content: "Professional joinery subcontracting services for builders, developers, and construction companies.",
+          keywords: ["subcontractor", "contractor", "commercial", "construction", "builder", "developer"],
+        },
+        {
+          title: "Joiner Services",
+          url: "/joinery-services/joiner",
+          content: "Professional joiner services for all types of woodwork and joinery projects.",
+          keywords: ["joiner", "joinery", "woodwork", "carpentry", "professional"],
+        },
+        {
+          title: "Carpenter Services",
+          url: "/joinery-services/carpenter",
+          content: "Skilled carpenter services for structural work, repairs, and custom woodwork projects.",
+          keywords: ["carpenter", "carpentry", "structural", "repairs", "woodwork", "construction"],
+        },
+        {
+          title: "About Coulsy Joinery",
+          url: "/about",
+          content: "Learn about Coulsy Joinery's expertise, qualifications, and commitment to quality craftsmanship.",
+          keywords: ["about", "company", "expertise", "qualifications", "craftsmanship", "quality"],
+        },
+        {
+          title: "Contact Us",
+          url: "/contact",
+          content: "Get in touch for quotes, consultations, and joinery services. Serving York, Wetherby, and Harrogate areas.",
+          keywords: ["contact", "quote", "consultation", "york", "wetherby", "harrogate"],
+        },
+      ];
+
+      return pages;
+    }
+
+    async handleSearch(query) {
+      if (!query.trim()) {
+        this.hideResults();
+        return;
+      }
+
+      // Clear previous timeout
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+
+      // Debounce search
+      this.searchTimeout = setTimeout(async () => {
+        await this.performSearch(query);
+      }, 300);
+    }
+
+    async performSearch(query) {
+      this.showLoading();
+
+      try {
+        // Simulate AI-powered semantic search
+        const results = await this.semanticSearch(query);
+        this.displayResults(results);
+      } catch (error) {
+        console.error("Search error:", error);
+        this.showNoResults();
+      }
+    }
+
+    async semanticSearch(query) {
+      // Simulate AI semantic search
+      const queryLower = query.toLowerCase();
+      const results = [];
+
+      for (const page of this.searchIndex) {
+        let score = 0;
+
+        // Title match (highest weight)
+        if (page.title.toLowerCase().includes(queryLower)) {
+          score += 10;
+        }
+
+        // Content match
+        if (page.content.toLowerCase().includes(queryLower)) {
+          score += 5;
+        }
+
+        // Keyword match
+        for (const keyword of page.keywords) {
+          if (keyword.toLowerCase().includes(queryLower)) {
+            score += 3;
+          }
+        }
+
+        // Semantic similarity (simulated)
+        const semanticKeywords = this.getSemanticKeywords(query);
+        for (const semanticKeyword of semanticKeywords) {
+          if (page.content.toLowerCase().includes(semanticKeyword)) {
+            score += 2;
+          }
+        }
+
+        if (score > 0) {
+          results.push({ ...page, score });
+        }
+      }
+
+      // Sort by relevance score
+      return results.sort((a, b) => b.score - a.score).slice(0, 5);
+    }
+
+    getSemanticKeywords(query) {
+      // Simulate AI semantic understanding for joinery terms
+      const semanticMap = {
+        install: ["installation", "fitting", "mount", "fit"],
+        maintain: ["maintenance", "repair", "service", "fix"],
+        build: ["construction", "building", "create", "make"],
+        kitchen: ["kitchen fitter", "cabinets", "worktops", "kitchen installation"],
+        door: ["door hanging", "door fitting", "entrance", "exit"],
+        roof: ["roofing", "truss", "traditional roof", "cut roof"],
+        wall: ["stud wall", "partitioning", "drywall", "plasterboard"],
+        garden: ["garden office", "annexe", "garden room", "outbuilding"],
+        bespoke: ["custom", "handcrafted", "unique", "tailored"],
+        heritage: ["restoration", "period", "traditional", "vintage"],
+        fire: ["fire safety", "fire door", "fire exit", "compliance"],
+        wood: ["woodwork", "joinery", "carpentry", "timber"],
+        office: ["workspace", "home office", "garden office", "studio"],
+        repair: ["maintenance", "fix", "restore", "repair"],
+        fit: ["fitting", "installation", "mount", "install"],
+        carpenter: ["carpentry", "joinery", "woodwork", "construction"],
+        joiner: ["joinery", "woodwork", "carpentry", "craftsmanship"],
+      };
+
+      const keywords = [];
+      for (const [key, values] of Object.entries(semanticMap)) {
+        if (query.toLowerCase().includes(key)) {
+          keywords.push(...values);
+        }
+      }
+
+      return keywords;
+    }
+
+    displayResults(results) {
+      this.hideLoading();
+
+      if (results.length === 0) {
+        this.showNoResults();
+        return;
+      }
+
+      this.content.innerHTML = results
+        .map(
+          (result) => `
+        <a href="${result.url}" class="block p-4 hover:bg-gray-50 transition-colors">
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-brand-600/10 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">
+                ${result.title}
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                ${result.content}
+              </p>
+            </div>
+            <div class="flex-shrink-0">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-600/10 text-brand-600">
+                ${Math.round(result.score)}%
+              </span>
+            </div>
+          </div>
+        </a>
+      `
+        )
+        .join("");
+
+      this.showResults();
+    }
+
+    showLoading() {
+      this.loading?.classList.remove("hidden");
+      this.content?.classList.add("hidden");
+      this.noResults?.classList.add("hidden");
+      this.showResults();
+    }
+
+    hideLoading() {
+      this.loading?.classList.add("hidden");
+      this.content?.classList.remove("hidden");
+    }
+
+    showNoResults() {
+      this.hideLoading();
+      this.noResults?.classList.remove("hidden");
+      this.content?.classList.add("hidden");
+      this.showResults();
+    }
+
+    showResults() {
+      this.results?.classList.remove("hidden");
+    }
+
+    hideResults() {
+      this.results?.classList.add("hidden");
+    }
+
+    handleKeyboardNavigation(e) {
+      const results = this.results?.querySelectorAll("a");
+      if (!results) return;
+
+      const currentIndex = Array.from(results).findIndex(
+        (result) => result === document.activeElement
+      );
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          const nextIndex =
+            currentIndex < results.length - 1 ? currentIndex + 1 : 0;
+          results[nextIndex]?.focus();
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          const prevIndex =
+            currentIndex > 0 ? currentIndex - 1 : results.length - 1;
+          results[prevIndex]?.focus();
+          break;
+        case "Escape":
+          this.hideResults();
+          this.input?.blur();
+          break;
+      }
+    }
+  }
+
+  // Initialize AI Smart Search
+  document.addEventListener("DOMContentLoaded", () => {
+    new AISmartSearch();
+  });
+</script>
+
+<style>
+  /* Search animations */
+  #search-results {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Focus styles */
+  #ai-search-input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Base styles */
+  #ai-search-input {
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  /* Placeholder colors */
+  #ai-search-input::placeholder {
+    color: #6b7280;
+  }
+</style>

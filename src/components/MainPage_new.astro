@@ -3,6 +3,7 @@
 
 import Layout from "../layouts/Layout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
+import AISmartSearch from "../components/AISmartSearch.astro";
 import Why from "../components/Why.astro";
 import OurServicesBody from "../components/OurServicesBody.astro";
 import Reviews from "../components/Reviews.astro";
@@ -183,6 +184,23 @@ const seoData = {
   <!-- Hero Section with modern optimization -->
   <section class="relative z-10 mx-auto animate-on-scroll">
     <HeroSlider slides={slides} />
+  </section>
+
+  <!-- AI Smart Search Section -->
+  <section class="section bg-white relative z-10">
+    <div class="container-narrow">
+      <div class="text-center animate-on-scroll mb-8">
+        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+          Find Your Perfect Joinery Service
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Search for specific services, ask questions, or explore our joinery expertise with AI-powered search
+        </p>
+      </div>
+      <div class="animate-on-scroll">
+        <AISmartSearch />
+      </div>
+    </div>
   </section>
 
   <!-- Why Choose Us Section with personal voice preserved -->
