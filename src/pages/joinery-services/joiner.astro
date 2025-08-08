@@ -15,7 +15,7 @@ import galleryImg3 from "../../assets/images/bespoke-joinery/handmade-wooden-gar
 import galleryImg4 from "../../assets/images/bespoke-joinery/raised-panelling.jpg";
 
 // Add your lastmod date here:
-export const lastmod = "2025-05-19";
+export const lastmod = "2025-01-27";
 
 const {
   formattedServiceName,
@@ -25,10 +25,12 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
 } = getFormattedPageData(Astro);
 
 const description = `Expert joiner services ${locationInText.trim()} by City & Guilds qualified craftsman. Bespoke staircases, sash windows, doors & fine joinery. 30+ years experience, traditional craftsmanship. Get your joinery done properly.`;
-const finalDescription = description || defaultDescription;
+const finalDescription = enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
@@ -37,6 +39,10 @@ const finalDescription = description || defaultDescription;
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase())} | Bespoke Carpentry & Repairs`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  location={Astro.params.location}
+  structuredData={businessSchema}
+  lastmod={lastmod}
 >
   <Fragment slot="head">
     <script

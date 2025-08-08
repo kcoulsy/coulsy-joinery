@@ -4,6 +4,11 @@ import { Image } from "astro:assets";
 interface Slide {
   image: any; // This will be the imported image
   text: string;
+  subtitle?: string;
+  cta?: {
+    text: string;
+    link: string;
+  };
 }
 
 export interface Props {
@@ -20,13 +25,13 @@ const { slides } = Astro.props;
 >
   <div id="hero-slides" class="relative h-full">
     {
-      slides.map(({ image, text }, index) => (
+      slides.map(({ image, text, subtitle, cta }, index) => (
         <div
           class="absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center"
           style={`z-index: ${index === 0 ? "10" : "0"}; opacity: ${index === 0 ? "1" : "0"};`}
           data-index={index}
           role="group"
-          aria-label={`Slide ${index + 1} of ${slides.length}`}
+          aria-label={`Slide ${index + 1} of ${slides.length}: ${text}`}
           aria-hidden={index !== 0}
         >
           <Image
@@ -37,12 +42,29 @@ const { slides } = Astro.props;
             width={1920}
             height={1080}
             class="w-full h-full object-cover"
+            fetchpriority={index === 0 ? "high" : "auto"}
           />
           <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div class="bg-black/50 backdrop-blur-sm p-6 rounded-xl max-w-4xl mx-4 shadow-2xl border border-white/10">
-              <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-center px-4 text-white leading-tight">
+              <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold text-center px-4 text-white leading-tight">
                 {text}
-              </h2>
+              </h1>
+              {subtitle && (
+                <p class="text-lg md:text-xl text-center px-4 text-white/90 mt-4">
+                  {subtitle}
+                </p>
+              )}
+              {cta && (
+                <div class="text-center mt-6">
+                  <a
+                    href={cta.link}
+                    class="inline-block bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    aria-label={`${cta.text} - ${text}`}
+                  >
+                    {cta.text}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

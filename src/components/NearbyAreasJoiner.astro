@@ -11,6 +11,25 @@ const { location } = Astro.props;
 // Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
 const radius = 20;
 const nearbyLocations = await getNearbyLocations(location, radius);
+
+// Generate structured data for nearby areas
+const nearbyAreasSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": `Joiner Services Near ${location ? capitalizeFirstLetter(location) : 'York'}`,
+  "description": `Professional joiner services available in ${nearbyLocations.length} nearby locations including ${nearbyLocations.slice(0, 5).map(loc => capitalizeFirstLetter(loc.slug)).join(', ')}`,
+  "numberOfItems": nearbyLocations.length,
+  "itemListElement": nearbyLocations.map((loc, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Service",
+      "name": `Joiner Services in ${capitalizeFirstLetter(loc.slug)}`,
+      "url": `https://coulsyjoinery.co.uk/joinery-services/${loc.slug}-joiner`,
+      "description": `Professional joiner services in ${capitalizeFirstLetter(loc.slug)}, Yorkshire. Bespoke joinery, carpentry, and building work.`
+    }
+  }))
+};
 ---
 
 <section class="w-full py-12 md:py-24 lg:py-30">
@@ -19,13 +38,16 @@ const nearbyLocations = await getNearbyLocations(location, radius);
       class="flex flex-col items-center justify-center space-y-4 text-center"
     >
       <div class="space-y-2">
+        <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+          Joiner Services Near {location ? capitalizeFirstLetter(location) : 'York'}
+        </h2>
         <p
           class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
         >
           I take on all sorts of joiner work
           {location ? ` near ${capitalizeFirstLetter(location)}` : ""}, whether
           you're based in a village, town or city nearby. Let me know where
-          you're based — I’ll do my best to help.
+          you're based — I'll do my best to help.
         </p>
       </div>
     </div>
@@ -38,6 +60,8 @@ const nearbyLocations = await getNearbyLocations(location, radius);
           <a
             class="group rounded-lg bg-white p-3 shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
             href={`/joinery-services/${slug}-joiner`}
+            title={`Joiner services in ${capitalizeFirstLetter(slug)}`}
+            aria-label={`View joiner services in ${capitalizeFirstLetter(slug)}`}
           >
             <div class="text-base font-medium text-gray-800 group-hover:text-yellow-700">
               {capitalizeFirstLetter(slug)}
@@ -49,3 +73,5 @@ const nearbyLocations = await getNearbyLocations(location, radius);
     <Footer />
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(nearbyAreasSchema)} />

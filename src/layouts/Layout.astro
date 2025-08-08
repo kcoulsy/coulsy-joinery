@@ -14,6 +14,11 @@ interface Props {
   classes?: string;
   transparentHeader?: boolean;
   location?: string;
+  keywords?: string;
+  ogImage?: string;
+  structuredData?: any;
+  noindex?: boolean;
+  lastmod?: string;
 }
 
 const {
@@ -22,7 +27,22 @@ const {
   description = "Bespoke joinery and small building works in York, Wetherby & Harrogate. High-quality kitchens, carpentry, heritage restoration. Trusted local experts.",
   transparentHeader = false,
   location,
+  keywords,
+  ogImage = "https://coulsyjoinery.co.uk/og-image.jpg",
+  structuredData,
+  noindex = false,
+  lastmod,
 } = Astro.props;
+
+// Enhanced meta description with location context
+const enhancedDescription = location
+  ? `${description} Serving ${location.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())} and surrounding areas.`
+  : description;
+
+// Enhanced keywords with location
+const enhancedKeywords = keywords
+  ? `${keywords}${location ? `, ${location.replace(/-/g, " ")}` : ""}`
+  : `joinery, carpentry, kitchen installation, bespoke joinery, heritage restoration${location ? `, ${location.replace(/-/g, " ")}` : ""}`;
 ---
 
 <!doctype html>
@@ -30,8 +50,20 @@ const {
   <head>
     <slot name="head" />
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={enhancedDescription} />
+    <meta name="keywords" content={enhancedKeywords} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow"}
+    />
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://analytics.coulsy.dev" />
+
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -40,36 +72,59 @@ const {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={enhancedDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
-    <meta
-      property="og:image"
-      content="https://coulsyjoinery.co.uk/og-image.jpg"
-    />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Coulsy Joinery" />
     <meta property="og:locale" content="en_GB" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content="https://coulsyjoinery.co.uk/og-image.jpg"
-    />
+    <meta name="twitter:description" content={enhancedDescription} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Additional SEO -->
-    <meta name="robots" content="index, follow" />
     <meta name="author" content="Coulsy Joinery" />
-    <meta name="theme-color" content="#1f2937" />
-
+    <meta name="theme-color" content="#1e2a38" />
     <meta name="generator" content={Astro.generator} />
+    {lastmod && <meta name="lastmod" content={lastmod} />}
+
     <title>{title} | Coulsy Joinery</title>
 
+    <!-- Sitemap and robots -->
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Structured Data -->
+    {
+      structuredData && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(structuredData)}
+        />
+      )
+    }
+
+    <!-- Critical CSS inline -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      .loading {
+        opacity: 0;
+      }
+      .loaded {
+        opacity: 1;
+        transition: opacity 0.3s ease-in;
+      }
+    </style>
   </head>
-  <body class="flex flex-col min-h-screen overflow-x-hidden">
+  <body class="flex flex-col min-h-screen overflow-x-hidden loading">
     <Navbar transparent={transparentHeader} />
     <main class={`flex-1 ${classes}`}>
       <slot />
@@ -77,7 +132,59 @@ const {
     <Footer />
     <WebDevFooter location={location} />
     <CookieBanner />
-    <style is:global></style>
+
+    <!-- Intersection Observer for animations -->
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animate-on-scroll class
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements =
+          document.querySelectorAll(".animate-on-scroll");
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // Remove loading class
+        document.body.classList.remove("loading");
+        document.body.classList.add("loaded");
+      });
+
+      // Performance monitoring
+      if ("performance" in window) {
+        window.addEventListener("load", () => {
+          setTimeout(() => {
+            const perfEntries = performance.getEntriesByType("navigation");
+            if (perfEntries.length > 0) {
+              const perfData = perfEntries[0] as PerformanceNavigationTiming;
+              if (
+                perfData &&
+                "loadEventStart" in perfData &&
+                "loadEventEnd" in perfData
+              ) {
+                console.log(
+                  "Page load time:",
+                  perfData.loadEventEnd - perfData.loadEventStart,
+                  "ms"
+                );
+              }
+            }
+          }, 0);
+        });
+      }
+    </script>
+
+    <!-- Analytics -->
     <script
       defer
       data-domain="coulsyjoinery.co.uk"

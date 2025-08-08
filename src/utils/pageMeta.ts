@@ -14,6 +14,8 @@ export function getFormattedPageData(Astro: any): {
   serviceSchema: any;
   faqSchema: any;
   lastmod: string;
+  enhancedKeywords: string;
+  enhancedDescription: string;
 } {
   const { location } = Astro.params;
   const pathname = Astro.url.pathname;
@@ -36,21 +38,29 @@ export function getFormattedPageData(Astro: any): {
   const locationInText = location ? ` in ${locationFormated}` : "";
 
   const cleanLocationName = location
-  ? locationFormated.trim().replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-  : "";
-
+    ? location.trim().replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())
+    : "";
 
   const fallbackGeo = { lat: 53.9655, lng: -1.205 };
   const geo = LOCATIONS.find((l) => l.slug === location) ?? fallbackGeo;
 
-  const defaultDescription = `Trusted local joiner offering bespoke joinery services ${locationInText.trim()}, including kitchens, staircases, windows, doors, and heritage woodwork. Over 30 years' experience. Free quotes across Yorkshire.`;
+  const defaultDescription = `Trusted local joiner offering bespoke joinery services ${locationInText.trim()}, including kitchens, staircases, windows, doors, and heritage woodwork. Over 30 years' experience. Professional quotes across Yorkshire.`;
+
+  // Enhanced description with location context
+  const enhancedDescription = location 
+    ? `${defaultDescription} Serving ${cleanLocationName} and surrounding areas. Local expertise, quality craftsmanship, and reliable service.`
+    : defaultDescription;
+
+  // Enhanced keywords with location and service
+  const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, bespoke joinery ${locationInText}, heritage restoration ${locationInText}, ${formattedServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
 
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://coulsyjoinery.co.uk/#business",
+    "@id": `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}#business`,
     name: "Coulsy Joinery",
-    description: defaultDescription,
+    alternateName: "Coulsy Joinery & Small Build",
+    description: enhancedDescription,
     url: `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}`,
     image: "https://coulsyjoinery.co.uk/images/logo.png",
     email: "robert@coulsy.co.uk",
@@ -62,7 +72,7 @@ export function getFormattedPageData(Astro: any): {
     award: ["City & Guilds Qualified", "30+ Years Experience"],
     address: {
       "@type": "PostalAddress",
-      addressLocality: locationFormated || "York",
+      addressLocality: cleanLocationName || "York",
       postalCode: "YO26 7NW",
       addressCountry: "GB",
     },
@@ -73,16 +83,16 @@ export function getFormattedPageData(Astro: any): {
     },
     openingHours: "Mo-Fr 07:00-18:00",
     areaServed: [
-      locationFormated || "York",
+      cleanLocationName || "York",
       "Leeds",
-      "Wetherby",
+      "Wetherby", 
       "Harrogate",
       "Yorkshire"
     ],
     hasMap: `https://www.google.com/maps?q=${geo.lat},${geo.lng}`,
     sameAs: [
       "https://www.linkedin.com/company/coulsy-limited/?viewAsMember=true",
-      "https://www.facebook.com/coulsyjoinery/"
+      "https://www.youtube.com/@coulsyjoinery"
     ],
     aggregateRating: {
       "@type": "AggregateRating",
@@ -98,80 +108,74 @@ export function getFormattedPageData(Astro: any): {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": `${formattedServiceName} ${locationInText}`,
-    "description": defaultDescription,
+    "description": enhancedDescription,
     "provider": {
       "@type": "LocalBusiness",
-      "@id": "https://coulsyjoinery.co.uk/#business",
-      "name": "Coulsy Joinery"
+      "name": "Coulsy Joinery",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": cleanLocationName || "York",
+        "postalCode": "YO26 7NW",
+        "addressCountry": "GB"
+      }
     },
     "areaServed": {
       "@type": "City",
-      "name": locationFormated || "York"
+      "name": cleanLocationName || "York"
     },
-    "serviceType": "Joinery",
+    "serviceType": formattedServiceName,
     "category": "Home Improvement",
-    "url": `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}`
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "GBP",
+      "priceRange": "££",
+      "availability": "https://schema.org/InStock"
+    }
   };
 
-  // FAQ schema for rich snippets in search results
+  // FAQ Schema for better search visibility
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       {
         "@type": "Question",
-        "name": `How much does ${formattedServiceName.toLowerCase()} work cost ${locationInText}?`,
+        "name": `What ${formattedServiceName.toLowerCase()} services do you offer ${locationInText}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Our ${formattedServiceName.toLowerCase()} costs vary depending on the project scope and materials required. I provide detailed quotes for all work ${locationInText} after assessing your specific requirements.`
+          "text": `We offer comprehensive ${formattedServiceName.toLowerCase()} services ${locationInText} including bespoke joinery, kitchen installations, heritage restoration, and general carpentry. All work is carried out by qualified craftsmen with over 30 years' experience.`
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": `Are you qualified and insured ${locationInText}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, I'm City & Guilds qualified since 1989, fully insured, and VAT registered. I hold a CSCS Gold Card and have over 30 years of experience in joinery and carpentry."
         }
       },
       {
         "@type": "Question",
-        "name": `How long does ${formattedServiceName.toLowerCase()} work take?`,
+        "name": `Do you provide free quotes ${locationInText}?`,
         "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Most ${formattedServiceName.toLowerCase()} projects take 1-3 days depending on complexity. I'll provide a detailed timeline during your consultation and keep you updated throughout the project.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What types of ${formattedServiceName.toLowerCase()} work do you do?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `I offer comprehensive ${formattedServiceName.toLowerCase()} services including doors, floors, stairs, windows, and general building work. From small repairs to complete installations, I handle all aspects of joinery and small building projects.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Are you qualified for ${formattedServiceName.toLowerCase()} and building work?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes, I'm a fully qualified City & Guilds joiner with over 30 years' experience in both joinery and small building works. I'm qualified to handle structural work, building maintenance, and all types of joinery projects.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Do you work on both domestic and commercial ${formattedServiceName.toLowerCase()} projects?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes, I work on both domestic and commercial projects. From residential joinery and building work to commercial installations and maintenance, I provide the same high-quality service for all types of properties.`
+          "@type": "Answer", 
+          "text": "I provide professional quotes for all joinery work. Contact me to discuss your project requirements and I'll provide a detailed, competitive quote."
         }
       }
     ]
   };
 
-  const lastmod = new Date().toISOString();
-
-return {
-  formattedServiceName,
-  locationFormated,
-  locationInText,
-  cleanLocationName,
-  defaultDescription,
-  businessSchema,
-  serviceSchema,
-  faqSchema,
-  lastmod,
-};
+  return {
+    formattedServiceName,
+    locationFormated,
+    locationInText,
+    cleanLocationName,
+    defaultDescription,
+    businessSchema,
+    serviceSchema,
+    faqSchema,
+    lastmod: "2025-01-27",
+    enhancedKeywords,
+    enhancedDescription
+  };
 }

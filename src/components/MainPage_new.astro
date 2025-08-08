@@ -43,14 +43,14 @@ const slides = [
   },
 ];
 
-// Modern SEO optimization with personal voice preserved
+// Enhanced SEO optimization with personal voice preserved
 const seoData = {
   title:
     "Coulsy Joinery - Professional Joinery Services in York | Bespoke Kitchens & Garden Offices",
   description:
-    "Expert joinery services in York including bespoke kitchens, garden offices, heritage restoration, and small building works. Family-run business with 35+ years experience since 1989. Free quotes available.",
+    "Expert joinery services in York including bespoke kitchens, garden offices, heritage restoration, and small building works. Family-run business with 35+ years experience since 1989. Professional quotes available.",
   keywords:
-    "joinery York, bespoke kitchens, garden offices, heritage joinery, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner",
+    "joinery York, bespoke kitchens, garden offices, heritage joinery, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner, local joiner York, qualified carpenter Yorkshire",
   ogImage: "/og-image.jpg",
   canonical: "https://coulsyjoinery.co.uk",
   structuredData: {
@@ -175,6 +175,9 @@ const seoData = {
 <Layout
   title={seoData.title}
   description={seoData.description}
+  keywords={seoData.keywords}
+  ogImage={seoData.ogImage}
+  structuredData={seoData.structuredData}
   classes="mt-8 mb-16"
 >
   <!-- Hero Section with modern optimization -->
