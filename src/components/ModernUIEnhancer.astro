@@ -41,13 +41,18 @@
   }
 
   .btn-modern::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left 0.5s;
   }
 
@@ -63,12 +68,15 @@
 
   .card-modern:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   /* Floating animation for elements */
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {
@@ -106,7 +114,9 @@
 
   /* Smooth page transitions */
   .page-transition {
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
   }
 
   .page-transition-enter {
@@ -123,8 +133,9 @@
   .input-modern {
     transition: all 0.3s ease;
     border: 2px solid transparent;
-    background: linear-gradient(white, white) padding-box,
-                linear-gradient(135deg, #667eea 0%, #764ba2 100%) border-box;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(135deg, #667eea 0%, #764ba2 100%) border-box;
   }
 
   .input-modern:focus {
@@ -147,7 +158,7 @@
   }
 
   .nav-link-modern::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 0;
     height: 2px;
@@ -251,19 +262,19 @@
 
 <script>
   // Modern UI interactions
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Add modern button effects
-    const modernButtons = document.querySelectorAll('.btn-modern');
-    modernButtons.forEach(button => {
-      button.addEventListener('mouseenter', (e) => {
+    const modernButtons = document.querySelectorAll(".btn-modern");
+    modernButtons.forEach((button) => {
+      button.addEventListener("mouseenter", (e) => {
         const rect = button.getBoundingClientRect();
         const mouseEvent = e as MouseEvent;
         const x = mouseEvent.clientX - rect.left;
         const y = mouseEvent.clientY - rect.top;
-        
+
         if (button instanceof HTMLElement) {
-          button.style.setProperty('--mouse-x', `${x}px`);
-          button.style.setProperty('--mouse-y', `${y}px`);
+          button.style.setProperty("--mouse-x", `${x}px`);
+          button.style.setProperty("--mouse-y", `${y}px`);
         }
       });
     });
@@ -271,33 +282,33 @@
     // Add intersection observer for animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add("animate-in");
         }
       });
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    animateElements.forEach(el => observer.observe(el));
+    const animateElements = document.querySelectorAll(".animate-on-scroll");
+    animateElements.forEach((el) => observer.observe(el));
 
     // Add smooth scroll for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+    anchorLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
-        const href = link.getAttribute('href');
+        const href = link.getAttribute("href");
         if (href) {
           const target = document.querySelector(href);
           if (target) {
             target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+              behavior: "smooth",
+              block: "start",
             });
           }
         }
@@ -305,22 +316,22 @@
     });
 
     // Add confetti effect for special interactions
-    const confettiTriggers = document.querySelectorAll('[data-confetti]');
-    confettiTriggers.forEach(trigger => {
-      trigger.addEventListener('click', () => {
+    const confettiTriggers = document.querySelectorAll("[data-confetti]");
+    confettiTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
         createConfetti();
       });
     });
 
     function createConfetti() {
       for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.animationDelay = Math.random() * 3 + 's';
-        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDelay = Math.random() * 3 + "s";
+        confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
         document.body.appendChild(confetti);
-        
+
         setTimeout(() => {
           confetti.remove();
         }, 5000);
@@ -328,24 +339,24 @@
     }
 
     // Add modern form interactions
-    const modernInputs = document.querySelectorAll('.input-modern');
-    modernInputs.forEach(input => {
-      input.addEventListener('focus', () => {
-        input.parentElement?.classList.add('focused');
+    const modernInputs = document.querySelectorAll(".input-modern");
+    modernInputs.forEach((input) => {
+      input.addEventListener("focus", () => {
+        input.parentElement?.classList.add("focused");
       });
-      
-      input.addEventListener('blur', () => {
-        input.parentElement?.classList.remove('focused');
+
+      input.addEventListener("blur", () => {
+        input.parentElement?.classList.remove("focused");
       });
     });
 
     // Add parallax effect for backgrounds
-    const parallaxElements = document.querySelectorAll('.parallax-bg');
-    window.addEventListener('scroll', () => {
+    const parallaxElements = document.querySelectorAll(".parallax-bg");
+    window.addEventListener("scroll", () => {
       const scrolled = window.pageYOffset;
-      parallaxElements.forEach(element => {
+      parallaxElements.forEach((element) => {
         if (element instanceof HTMLElement) {
-          const speed = element.dataset.speed || '0.5';
+          const speed = element.dataset.speed || "0.5";
           element.style.transform = `translateY(${scrolled * parseFloat(speed)}px)`;
         }
       });

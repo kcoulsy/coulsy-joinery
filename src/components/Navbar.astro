@@ -100,7 +100,8 @@ const socialLinks = [
 ---
 
 <header
-  class={`${transparent ? "bg-transparent" : "bg-[#1e2a38]"} text-white relative z-50`}
+  class={`${transparent ? "bg-transparent" : "bg-[#1e2a38]"} text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg`}
+  id="navbar"
 >
   <div
     class="container mx-auto flex lg:flex-row items-center justify-between px-4 py-2 lg:py-4 h-[70px] lg:h-[80px]"
@@ -368,12 +369,50 @@ const socialLinks = [
   </nav>
 </header>
 
+<!-- Spacer to prevent content from being hidden behind fixed navbar -->
+<div class="h-[70px] lg:h-[80px]"></div>
+
 <script>
   const toggle = document.getElementById("mobile-nav-toggle");
   const closeButton = document.getElementById("mobile-nav-close");
   const menu = document.getElementById("mobile-nav-menu");
   const overlay = document.getElementById("mobile-nav-overlay");
   const dropdowns = menu?.querySelectorAll("button");
+  const navbar = document.getElementById("navbar");
+
+  // Handle scroll effects for navbar
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  const updateNavbar = () => {
+    const currentScrollY = window.scrollY;
+    
+    if (navbar) {
+      // Add shadow and background when scrolled
+      if (currentScrollY > 10) {
+        navbar.classList.add("shadow-xl", "bg-[#1e2a38]/95", "backdrop-blur-sm");
+        navbar.classList.remove("bg-[#1e2a38]");
+      } else {
+        navbar.classList.remove("shadow-xl", "bg-[#1e2a38]/95", "backdrop-blur-sm");
+        navbar.classList.add("bg-[#1e2a38]");
+      }
+    }
+    
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  const requestTick = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  };
+
+  // Only add scroll listener if navbar exists
+  if (navbar) {
+    window.addEventListener("scroll", requestTick, { passive: true });
+  }
 
   // Handle keyboard navigation for desktop dropdowns
   document
@@ -526,3 +565,33 @@ const socialLinks = [
     });
   });
 </script>
+
+<style>
+  /* Ensure smooth transitions for navbar */
+  #navbar {
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Add backdrop blur effect when scrolled */
+  #navbar.shadow-xl {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Ensure dropdowns appear above other content */
+  nav.lg\\:flex li.group ul {
+    z-index: 60;
+  }
+
+  /* Mobile menu adjustments for fixed navbar */
+  #mobile-nav-menu {
+    top: 0;
+    height: 100vh;
+    padding-top: 0;
+  }
+
+  /* Ensure content doesn't overlap with fixed navbar */
+  body {
+    padding-top: 0;
+  }
+</style>

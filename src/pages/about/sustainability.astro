@@ -69,14 +69,16 @@ const seoData = {
 ---
 
 <Layout title={seoData.title} description={seoData.description}>
-  <main class="mx-auto md:mt-16 relative z-10">
+  <main class="mx-auto relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { href: "/about", label: "About" },
-          { label: "Sustainability", current: true },
-        ]}
-      />
+      <div class="pt-8 pb-6">
+        <Breadcrumb
+          crumbs={[
+            { href: "/about", label: "About" },
+            { label: "Sustainability", current: true },
+          ]}
+        />
+      </div>
 
       <!-- Header Section with Enhanced Animation -->
       <div class="text-center mb-16">

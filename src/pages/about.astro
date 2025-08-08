@@ -60,9 +60,11 @@ const seoData = {
 ---
 
 <Layout title={seoData.title} description={seoData.description}>
-  <main class="mx-auto md:mt-16 relative z-10">
+  <main class="mx-auto relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb crumbs={[{ label: "About", current: true }]} />
+      <div class="pt-8 pb-6">
+        <Breadcrumb crumbs={[{ label: "About", current: true }]} />
+      </div>
 
       <!-- Header Section with Enhanced Animation -->
       <div class="text-center mb-16">
@@ -83,7 +85,9 @@ const seoData = {
       </div>
 
       <!-- Main Content with Staggered Animation -->
-      <div class="max-w-4xl mx-auto space-y-6 text-brand-600 leading-relaxed main-content">
+      <div
+        class="max-w-4xl mx-auto space-y-6 text-brand-600 leading-relaxed main-content"
+      >
         <p class="animate-slide-up" style="animation-delay: 0.2s">
           We handle all kinds of carpentry and joinery, from custom garden
           offices and annexes to small building projects, maintenance work, and
@@ -101,7 +105,12 @@ const seoData = {
           We show up when we say we will, we're easy to talk to, and we take
           real pride in leaving a job well done.
         </p>
-        <p class="text-brand-800 font-semibold italic animate-slide-up" style="animation-delay: 0.8s">– Robert</p>
+        <p
+          class="text-brand-800 font-semibold italic animate-slide-up"
+          style="animation-delay: 0.8s"
+        >
+          – Robert
+        </p>
       </div>
 
       <hr class="h-px my-16 bg-brand-200 border-0" />
@@ -164,7 +173,8 @@ const seoData = {
             </h3>
             <p class="text-brand-600 leading-relaxed">
               Extensions, renovations, and construction projects of all sizes.
-              Quality assurance and ensuring projects meet the highest standards.
+              Quality assurance and ensuring projects meet the highest
+              standards.
             </p>
           </div>
 
@@ -230,9 +240,9 @@ const seoData = {
               </h3>
             </div>
             <p class="text-brand-600 leading-relaxed">
-              Over three decades in joinery and building, with extensive hands-on
-              experience you can trust. Every project benefits from our deep
-              knowledge and expertise.
+              Over three decades in joinery and building, with extensive
+              hands-on experience you can trust. Every project benefits from our
+              deep knowledge and expertise.
             </p>
           </div>
 
@@ -362,9 +372,7 @@ const seoData = {
                 <h3 class="text-2xl font-bold text-brand-900 mb-2">
                   Robert Coulson
                 </h3>
-                <p class="text-brand-600 font-medium">
-                  Master Joiner & Owner
-                </p>
+                <p class="text-brand-600 font-medium">Master Joiner & Owner</p>
                 <p class="text-sm text-brand-500 mt-1">Since 1989</p>
                 <p class="text-xs text-brand-400 mt-1">
                   Fully Qualified & Insured
@@ -411,9 +419,9 @@ const seoData = {
                     2000s - Expanding Services
                   </h3>
                   <p class="text-brand-600 leading-relaxed">
-                    Expanded into garden offices, annexes, and small build works,
-                    while maintaining the same high standards of craftsmanship
-                    and attention to detail.
+                    Expanded into garden offices, annexes, and small build
+                    works, while maintaining the same high standards of
+                    craftsmanship and attention to detail.
                   </p>
                 </div>
               </div>
@@ -475,8 +483,9 @@ const seoData = {
             </div>
             <div class="p-6">
               <p class="text-brand-600 mb-4 leading-relaxed">
-                Robert and Debbie work together as a team, with Debbie playing an
-                active role in keeping everything organised and running smoothly.
+                Robert and Debbie work together as a team, with Debbie playing
+                an active role in keeping everything organised and running
+                smoothly.
               </p>
             </div>
           </div>
@@ -559,7 +568,9 @@ const seoData = {
                 class="absolute bottom-0 left-0 right-0 p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
               >
                 <h3 class="text-xl font-bold text-white mb-1">Debbie</h3>
-                <p class="text-sm text-gray-200 mb-2">Assistant & Project Manager</p>
+                <p class="text-sm text-gray-200 mb-2">
+                  Assistant & Project Manager
+                </p>
                 <p class="text-xs text-gray-300">Organisation Expert</p>
               </div>
             </div>

@@ -90,17 +90,19 @@ const structuredData = {
       set:html={JSON.stringify(structuredData)}
     />
   </Fragment>
-  <main class="mx-auto md:mt-16 relative z-10">
+  <main class="mx-auto relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          {
-            href: "/joinery-services",
-            label: "Joinery Services",
-            current: true,
-          },
-        ]}
-      />
+      <div class="pt-8 pb-6">
+        <Breadcrumb
+          crumbs={[
+            {
+              href: "/joinery-services",
+              label: "Joinery Services",
+              current: true,
+            },
+          ]}
+        />
+      </div>
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
         Professional Joinery Services in York & Yorkshire
