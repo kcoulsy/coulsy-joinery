@@ -24,15 +24,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Accessible kitchens thoughtfully designed and expertly installed ${locationInText} to support independent living. I’m Robert — a time-served joiner with 30+ years of experience, here to help make your kitchen safer, easier to use, and tailored to your needs.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert accessible kitchen installation ${locationInText} by City & Guilds qualified joiner. Mobility-friendly kitchens for independent living. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Accessible Kitchens for Independent Living by a Local Joiner`}
+  title={`${pageTitle} | Accessible Kitchens for Independent Living by a Local Joiner`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -47,166 +53,282 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <div
-        class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
-      >
-        <h1 class="text-3xl font-bold tracking-tight pb-4">
-          {formattedServiceName}
-          {
-            locationInText
-              .trim()
-              .replace(/-/g, " ")
-              .replace(/\b\w/g, (c) => c.toUpperCase())
-          }
-        </h1>
-
-        <p class="text-gray-700 text-lg mb-4">
-          Creating an accessible kitchen isn’t just about compliance — it’s
-          about dignity, ease, and everyday living. I’m Robert, and I specialise
-          in building kitchens that are tailored around your needs and
-          lifestyle. From first ideas to final touches, I handle every part of
-          your project personally.
-        </p>
-        <a
-          href="/contact"
-          class="inline-block bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
         >
-          Request Your Free Consultation
-        </a>
-      </div>
-
-      <div class="mt-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-          <div class="space-y-4 text-gray-600 prose">
-            <h2 class="text-3xl font-bold tracking-tight pb-4">
-              Accessible Kitchens Designed Around You {locationInText}
-            </h2>
-            <p class="text-base sm:text-lg text-gray-700">
-              Hi, I’m Robert — an experienced joiner with over 30 years of
-              hands-on work in homes across {locationInText || "your area"}. I
-              design and install accessible kitchens that prioritise ease of
-              use, comfort, and independent living. Whether you need a kitchen
-              adapted after an injury, or you’re planning ahead to make life
-              easier, I’ll help bring your ideas to life with practical design
-              and trusted craftsmanship.
-            </p>
-            <p class="text-base sm:text-lg text-gray-700">
-              I don’t believe accessible kitchens should feel clinical — they
-              should feel like home. From lowered counters to soft-close
-              pull-outs, and from touchless taps to smart adjustments,
-              everything is made with comfort, dignity, and daily ease in mind.
-            </p>
-            {
-              cleanLocationName && (
-                <p>
-                  {cleanLocationName} is home to a variety of property styles
-                  and layouts — from compact modern kitchens to larger family
-                  spaces. Every accessible kitchen I fit is adapted to meet the
-                  unique constraints and opportunities of that home. Whether
-                  it's working around tight spaces, varying floor levels, or
-                  older fittings, I bring experience and problem-solving to help
-                  make everyday tasks easier.
-                </p>
-              )
-            }
-            <p class="text-base sm:text-lg text-gray-700">
-              I work directly with you — no sales team, no middlemen. Just
-              honest advice and skilled joinery, delivered with care.
-            </p>
-            <p class="text-base sm:text-lg text-gray-700">
-              If you’re thinking about making your kitchen more accessible —
-              whether for now or for the future — let’s chat. I’ll listen to
-              what matters most to you and offer honest, practical advice based
-              on years of joinery experience {locationInText || "locally"}. No
-              pressure, no pushy sales — just support from someone who’s here to
-              help.
-            </p>
-            <ReviewsLinkSection />
-          </div>
-
-          <aside class="w-full flex flex-col items-stretch gap-6 mt-6">
-            <div class="w-full">
-              <GalleryGrid
-                items={[
-                  {
-                    src: galleryImg1,
-                    alt: `Accessible kitchen with wheelchair-friendly layout and lowered counters for independent living ${cleanLocationName}`,
-                    label: "Accessible Kitchen Overview",
-                  },
-                  {
-                    src: galleryImg2,
-                    alt: `Wheelchair-accessible kitchen layout with open space and reachable storage ${cleanLocationName}`,
-                    label: "Wheelchair User Accessibility",
-                  },
-                  {
-                    src: galleryImg3,
-                    alt: `Height-adjustable hob in accessible kitchen for safer cooking access ${cleanLocationName}`,
-                    label: "Lowered Hob Feature",
-                  },
-                  {
-                    src: galleryImg4,
-                    alt: `Accessible sink with under-counter clearance for seated use — ideal for wheelchair access ${cleanLocationName}`,
-                    label: "Accessible Sink Area",
-                  },
-                  {
-                    src: galleryImg5,
-                    alt: `Pull-out kitchen storage unit for easy access and organisation ${cleanLocationName}`,
-                    label: "Pull-Out Storage Unit",
-                    loading: "lazy",
-                  },
-                  {
-                    src: galleryImg6,
-                    alt: `Accessible kitchen with remote-controlled height-adjustable worktop ${cleanLocationName}`,
-                    label: "Remote-Controlled Worktop",
-                    loading: "lazy",
-                  },
-                ]}
-              />
-            </div>
-            <div class="w-full">
-              <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-                <h2
-                  class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-                >
-                  Get in Touch
-                </h2>
-                <p class="text-gray-600 mb-6 text-center">
-                  Thinking about an accessible kitchen? I’d be happy to walk you
-                  through the options and find what works best for you.
-                </p>
-                <ModernContactForm
-                  title="Get Your Free Quote"
-                  subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-                />
-              </div>
-            </div>
-          </aside>
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
         </div>
       </div>
 
-      <section class="mt-12 text-center">
-        <h2
-          class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-blue-800 mb-6 text-center"
-        >
-          Ready to Plan Your Accessible Kitchen?
-        </h2>
-        <a
-          href="/contact"
-          class="inline-block bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-        >
-          Book My Free Consultation
-        </a>
-      </section>
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
 
-      <NearbyAreas />
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">Accessible Kitchens</span>
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Accessible kitchens thoughtfully designed and expertly installed
+              to support independent living. Tailored solutions for safer,
+              easier-to-use kitchens that feel like home.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      Creating an accessible kitchen isn't just about compliance
+                      — it's about dignity, ease, and everyday living. I'm
+                      Robert, and I specialise in building kitchens that are
+                      tailored around your needs and lifestyle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Hi, I'm Robert — an experienced joiner with over 30 years of
+                  hands-on work in homes across {locationInText || "your area"}.
+                  I design and install accessible kitchens that prioritise ease
+                  of use, comfort, and independent living.
+                </p>
+                <p>
+                  I don't believe accessible kitchens should feel clinical —
+                  they should feel like home. From lowered counters to
+                  soft-close pull-outs, and from touchless taps to smart
+                  adjustments, everything is made with comfort, dignity, and
+                  daily ease in mind.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} is home to a variety of property
+                      styles and layouts — from compact modern kitchens to
+                      larger family spaces. Every accessible kitchen I fit is
+                      adapted to meet the unique constraints and opportunities
+                      of that home.
+                    </p>
+                  )
+                }
+                <p>
+                  I work directly with you — no sales team, no middlemen. Just
+                  honest advice and skilled joinery, delivered with care.
+                </p>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      If you're thinking about making your kitchen more
+                      accessible — whether for now or for the future — let's
+                      chat. I'll listen to what matters most to you and offer
+                      honest, practical advice based on years of joinery
+                      experience {locationInText || "locally"}.
+                    </p>
+                    <p class="text-neutral-600">
+                      No pressure, no pushy sales — just support from someone
+                      who's here to help make everyday tasks easier and more
+                      comfortable.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Accessible Kitchen Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our accessible kitchen installations
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Accessible kitchen with wheelchair-friendly layout and lowered counters for independent living ${cleanLocationName}`,
+                        label: "Accessible Kitchen Overview",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Wheelchair-accessible kitchen layout with open space and reachable storage ${cleanLocationName}`,
+                        label: "Wheelchair User Accessibility",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Height-adjustable hob in accessible kitchen for safer cooking access ${cleanLocationName}`,
+                        label: "Lowered Hob Feature",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Accessible sink with under-counter clearance for seated use — ideal for wheelchair access ${cleanLocationName}`,
+                        label: "Accessible Sink Area",
+                      },
+                      {
+                        src: galleryImg5,
+                        alt: `Pull-out kitchen storage unit for easy access and organisation ${cleanLocationName}`,
+                        label: "Pull-Out Storage Unit",
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg6,
+                        alt: `Accessible kitchen with remote-controlled height-adjustable worktop ${cleanLocationName}`,
+                        label: "Remote-Controlled Worktop",
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Get in Touch</h2>
+                    <p class="text-brand-100">
+                      Thinking about an accessible kitchen? I'd be happy to walk
+                      you through the options and find what works best for you.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="section bg-gradient-to-r from-brand-600 to-brand-700 text-white"
+    >
+      <div class="container-wide">
+        <div class="text-center animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Plan Your Accessible Kitchen?
+          </h2>
+          <a
+            href="/contact"
+            class="btn btn-secondary btn-lg hover-lift focus-ring"
+          >
+            Book My Professional Consultation
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

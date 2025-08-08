@@ -24,15 +24,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Professional steel fire exit door installation ${locationInText} by qualified joiner. High-security doors, emergency exits & compliance fitting. 30+ years experience, CSCS certified. Get your safety doors fitted properly.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert steel fire exit door installation ${locationInText} by City & Guilds qualified joiner. Safety & security compliance. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Steel Fire Exit Door Installation for Safety & Security`}
+  title={`${pageTitle} | Steel Fire Exit Door Installation for Safety & Security`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -47,146 +53,334 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}
-        {
-          locationInText
-            .trim()
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())
-        }
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            Hi, I’m Robert — a time-served joiner with over 30 years of hands-on
-            experience fitting secure, compliant fire exit doors. I specialise
-            in installing high-security and emergency steel doors {
-              locationInText
-            }, ensuring every install is safe, professional, and built to last.
-          </p>
-
-          <p>
-            Whether it’s a commercial building, a school, or a healthcare
-            setting, I’ll assess what you need and install the right type of
-            steel door — fully compliant with fire safety regulations. If you're {
-              locationInText
-            }, I can help you get sorted with quality doors that do the job
-            properly.
-          </p>
-
-          <p>Services include:</p>
-          <ul>
-            <li>🔧 Site assessment and door type consultation</li>
-            <li>🚪 Installation of fire exit, security, and emergency doors</li>
-            <li>🔒 Secure frame fixing and compliant fitting</li>
-            <li>🛠️ Maintenance and emergency repairs</li>
-          </ul>
-
-          <p>
-            Every door is fitted with care and accuracy — from prepping the
-            opening to fine-tuning the closing speed. I’m City & Guilds
-            qualified, CSCS certified, and take pride in getting things right.
-          </p>
-
-          <p>
-            If you're looking for a skilled installer for steel exit doors {
-              locationInText
-            }, I’d be happy to take a look and chat through the best approach
-            for your site. No pressure, just honest advice and proper work.
-          </p>
-
-          {
-            cleanLocationName && (
-              <p>
-                I’ve installed steel fire exit doors across {cleanLocationName},
-                in everything from small clinics to large commercial units.
-                Every site presents its own challenges — and I take the time to
-                make sure each door is compliant, secure, and suited to the
-                building's use.
-              </p>
-            )
-          }
-
-          <p>
-            <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >Get in touch</a
-            > today to book a visit or ask any questions.
-          </p>
-
-          <ReviewsLinkSection />
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+        >
         </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
+      </div>
 
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  alt: `Steel fire exit door with emergency bar installed in ${cleanLocationName}`,
-                  label: "Steel Fire Exit with Emergency Push Bar",
-                },
-                {
-                  src: galleryImg2,
-                  alt: `Top shoot bolt locking system on steel fire exit door for added security ${cleanLocationName}`,
-                  label: "Top Bolt Locking on Steel Exit Door",
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Range of fire exit security door variations fitted to commercial specifications ${cleanLocationName}`,
-                  label: "Range of Commercial Fire Exit Door Designs",
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Steel security hinged fire exit door installed for high-traffic areas ${cleanLocationName}`,
-                  label: "Hinged Steel Door for High-Security Areas",
-                },
-                {
-                  src: galleryImg5,
-                  alt: `Anti-drill and panic bar options for emergency fire exit doors ${cleanLocationName}`,
-                  label: "Anti-Drill & Panic Bar Fire Exit Features",
-                  loading: "lazy",
-                },
-                {
-                  src: galleryImg6,
-                  alt: `Exterior steel fire exit door installed for safety compliance ${cleanLocationName}`,
-                  label: "Exterior Steel Fire Exit with Safety Signage",
-                  loading: "lazy",
-                },
-              ]}
-            />
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">Steel Fire Exit Doors</span>
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Professional steel fire exit door installation for safety and
+              security compliance. High-security doors, emergency exits and
+              compliant fitting by qualified joiners.
+            </p>
           </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      Hi, I'm Robert — a time-served joiner with over 30 years
+                      of hands-on experience fitting secure, compliant fire exit
+                      doors. I specialise in installing high-security and
+                      emergency steel doors {locationInText}, ensuring every
+                      install is safe, professional, and built to last.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Whether it's a commercial building, a school, or a healthcare
+                  setting, I'll assess what you need and install the right type
+                  of steel door — fully compliant with fire safety regulations.
+                  If you're {locationInText}, I can help you get sorted with
+                  quality doors that do the job properly.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="card card-hover border-l-4 border-accent-500">
+                <div class="card-body">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Services include:
+                  </h3>
+                  <ul class="space-y-2 text-neutral-600">
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Site assessment and door type consultation
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Installation of fire exit, security, and emergency doors
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Secure frame fixing and compliant fitting
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Maintenance and emergency repairs
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Every door is fitted with care and accuracy — from prepping
+                  the opening to fine-tuning the closing speed. I'm City &
+                  Guilds qualified, CSCS certified, and take pride in getting
+                  things right.
+                </p>
+                <p>
+                  If you're looking for a skilled installer for steel exit doors {
+                    locationInText
+                  }, I'd be happy to take a look and chat through the best
+                  approach for your site. No pressure, just honest advice and
+                  proper work.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      I've installed steel fire exit doors across{" "}
+                      {cleanLocationName}, in everything from small clinics to
+                      large commercial units. Every site presents its own
+                      challenges — and I take the time to make sure each door is
+                      compliant, secure, and suited to the building's use.
+                    </p>
+                  )
+                }
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
               >
-                Get in Touch
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Need a secure and compliant steel fire exit door installed? I’d
-                be happy to take a look and advise on the best solution.
-              </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-              />
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      <a
+                        href="/contact"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >Get in touch</a
+                      > today to book a visit or ask any questions.
+                    </p>
+                    <p class="text-neutral-600">
+                      Every steel fire exit door installation is completed with
+                      precision and attention to safety standards, ensuring your
+                      property meets all necessary regulations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
             </div>
           </div>
-        </aside>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Steel Fire Exit Door Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our professional steel door installations
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Steel fire exit door with emergency bar installed in ${cleanLocationName}`,
+                        label: "Steel Fire Exit with Emergency Push Bar",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Top shoot bolt locking system on steel fire exit door for added security ${cleanLocationName}`,
+                        label: "Top Bolt Locking on Steel Exit Door",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Range of fire exit security door variations fitted to commercial specifications ${cleanLocationName}`,
+                        label: "Range of Commercial Fire Exit Door Designs",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Steel security hinged fire exit door installed for high-traffic areas ${cleanLocationName}`,
+                        label: "Hinged Steel Door for High-Security Areas",
+                      },
+                      {
+                        src: galleryImg5,
+                        alt: `Anti-drill and panic bar options for emergency fire exit doors ${cleanLocationName}`,
+                        label: "Anti-Drill & Panic Bar Fire Exit Features",
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg6,
+                        alt: `Exterior steel fire exit door installed for safety compliance ${cleanLocationName}`,
+                        label: "Exterior Steel Fire Exit with Safety Signage",
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Get in Touch</h2>
+                    <p class="text-brand-100">
+                      Need a secure and compliant steel fire exit door
+                      installed? I'd be happy to take a look and advise on the
+                      best solution.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <NearbyAreas />
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

@@ -25,15 +25,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
 const description = `Expert door hanging services ${locationInText} by City & Guilds qualified joiner. Internal, external & fire door installation. 30+ years experience, precision fitting. Get your doors hung properly.`;
-const finalDescription = description || defaultDescription;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Professional Door Hanging Services by a Qualified Joiner`}
+  title={`${pageTitle} | Professional Door Hanging Services by a Qualified Joiner`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -48,179 +54,346 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}
-        {
-          locationInText
-            .trim()
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())
-        }
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            I’m Robert, a City & Guilds qualified joiner offering professional
-            door hanging and fire door installation services {locationInText}.
-            With over 30 years’ experience, I specialise in fitting internal and
-            external doors to a high standard — including certified fire doors
-            for homes, landlords, and commercial buildings.
-          </p>
-          <p>
-            From timber and composite to heavy-duty metal and steel fire exit
-            doors, I make sure every install is safe, precise, and built to
-            last. Whether you need a single door replacing or a full set fitted
-            as part of a refurbishment or fire safety upgrade, I’ll give you
-            straightforward advice and a top-notch result.
-          </p>
-          {
-            cleanLocationName && (
-              <p>
-                {cleanLocationName} includes everything from modern new builds
-                to older character properties. I adapt each install to suit the
-                quirks and materials of the building — whether it's solid timber
-                frames, out-of-square openings, or specialist fire-rated
-                requirements.
-              </p>
-            )
-          }
-          <p>
-            If you're specifically looking for a steel fire escape door, check
-            out our
-            <a
-              href="/joinery-services/steel-fire-exit-door-installer"
-              class="text-blue-700 font-semibold hover:underline"
-              >Steel Fire Exit Door Installer</a
-            >
-            service.
-          </p>
-          <hr class="my-6 border-gray-200" />
-
-          <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">
-            Why Clients Choose Me
-          </h2>
-          <p>
-            A lot of trades can fit a door — but not everyone does it to a
-            proper standard. I don’t rush, I don’t bodge, and I don’t leave you
-            with gaps, draughts, or sticking doors. Everything gets checked and
-            fitted with care.
-          </p>
-          <p>
-            I treat your home with respect: floors are protected, mess is kept
-            to a minimum, and everything’s left tidy. You’ll always get a full
-            walk-through of the work, and I make sure you’re happy before I
-            leave.
-          </p>
-          <p>
-            I also supply a signed handover form for your records — ideal if
-            it’s a rental property, commercial premises, or part of a larger
-            fire strategy.
-          </p>
-
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Dependable
-          </h3>
-          <p>
-            I show up on time and finish when I say I will. It’s how I’ve built
-            long-term trust with my clients.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Qualified
-          </h3>
-          <p>
-            I hold City & Guilds and CSCS Gold card certification, so you know
-            the job’s done by someone trained and competent.
-          </p>
-          <p>
-            I'm also FireQual registered, giving you extra peace of mind for
-            regulated fire door work. You can <a
-              href="/about#qualifications"
-              class="text-blue-700 hover:underline font-semibold"
-              >view my qualifications here</a
-            >.
-          </p>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-700">
-            Detail-Focused
-          </h3>
-          <p>
-            From frame prep to seal alignment and closing action — I take the
-            time to get it right, because the finish matters.
-          </p>
-          <hr class="my-6 border-gray-200" />
-
-          <p>
-            If you're {locationInText} and need help with door fitting or fire door
-            installation, I’d be happy to have a chat. Just
-            <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            >.
-          </p>
-          <ReviewsLinkSection />
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+        >
         </div>
-
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  alt: `Installed internal fire door with intumescent strip ${locationInText}`,
-                  label: "Internal Fire Door with Intumescent Strip",
-                },
-                {
-                  src: galleryImg2,
-                  alt: `Commercial-grade fire door set with professional fitting ${locationInText}`,
-                  label: "Commercial Fire Door Installation",
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Close-up view of fire seal and smoke protection strip ${locationInText}`,
-                  label: "Fire Door Seal Detail",
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Official fire door signage fixed to timber door ${locationInText}`,
-                  label: "Fire Door Safety Signage",
-                },
-              ]}
-            />
-          </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-              >
-                Get in Touch About Your Door Project
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                If you need help with door fitting, fire doors, or complete door
-                set installations, I’d be happy to discuss how I can help — just
-                drop me a line.
-              </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-              />
-            </div>
-          </div>
-        </aside>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
       </div>
 
-      <FireStats />
-      <CommonFaults />
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
 
-      <NearbyAreas />
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4"
+              >Professional Door Hanging</span
+            >
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Expert door hanging and fire door installation services by a City
+              & Guilds qualified joiner. Precision fitting for internal,
+              external, and fire-rated doors with safety compliance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      I'm Robert, a City & Guilds qualified joiner offering
+                      professional door hanging and fire door installation
+                      services {locationInText}. With over 30 years' experience,
+                      I specialise in fitting internal and external doors to a
+                      high standard — including certified fire doors for homes,
+                      landlords, and commercial buildings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  From timber and composite to heavy-duty metal and steel fire
+                  exit doors, I make sure every install is safe, precise, and
+                  built to last. Whether you need a single door replacing or a
+                  full set fitted as part of a refurbishment or fire safety
+                  upgrade, I'll give you straightforward advice and a top-notch
+                  result.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} includes everything from modern new
+                      builds to older character properties. I adapt each install
+                      to suit the quirks and materials of the building — whether
+                      it's solid timber frames, out-of-square openings, or
+                      specialist fire-rated requirements.
+                    </p>
+                  )
+                }
+                <p>
+                  If you're specifically looking for a steel fire escape door,
+                  check out our
+                  <a
+                    href="/joinery-services/steel-fire-exit-door-installer"
+                    class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                    >Steel Fire Exit Door Installer</a
+                  > service.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Why Clients Choose Me
+                    </h3>
+                    <p class="text-neutral-600">
+                      A lot of trades can fit a door — but not everyone does it
+                      to a proper standard. I don't rush, I don't bodge, and I
+                      don't leave you with gaps, draughts, or sticking doors.
+                      Everything gets checked and fitted with care.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I treat your home with respect: floors are protected, mess
+                      is kept to a minimum, and everything's left tidy. You'll
+                      always get a full walk-through of the work, and I make
+                      sure you're happy before I leave.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I also supply a signed handover form for your records —
+                      ideal if it's a rental property, commercial premises, or
+                      part of a larger fire strategy.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Dependable
+                    </h3>
+                    <p class="text-neutral-600">
+                      I show up on time and finish when I say I will. It's how
+                      I've built long-term trust with my clients.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Qualified
+                    </h3>
+                    <p class="text-neutral-600">
+                      I hold City & Guilds and CSCS Gold card certification, so
+                      you know the job's done by someone trained and competent.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I'm also FireQual registered, giving you extra peace of
+                      mind for regulated fire door work. You can
+                      <a
+                        href="/about#qualifications"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >view my qualifications here</a
+                      >.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Detail-Focused
+                    </h3>
+                    <p class="text-neutral-600">
+                      From frame prep to seal alignment and closing action — I
+                      take the time to get it right, because the finish matters.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      If you're {locationInText} and need help with door fitting
+                      or fire door installation, I'd be happy to have a chat. Just
+                      get in touch.
+                    </p>
+                    <p class="text-neutral-600">
+                      Every door installation is completed with precision and
+                      attention to safety standards, ensuring your property
+                      meets all necessary regulations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Door Installation Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our professional door hanging projects
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Installed internal fire door with intumescent strip ${locationInText}`,
+                        label: "Internal Fire Door with Intumescent Strip",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Commercial-grade fire door set with professional fitting ${locationInText}`,
+                        label: "Commercial Fire Door Installation",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Close-up view of fire seal and smoke protection strip ${locationInText}`,
+                        label: "Fire Door Seal Detail",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Official fire door signage fixed to timber door ${locationInText}`,
+                        label: "Fire Door Safety Signage",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Your Door Project
+                    </h2>
+                    <p class="text-brand-100">
+                      If you need help with door fitting, fire doors, or
+                      complete door set installations, I'd be happy to discuss
+                      how I can help — just drop me a line.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fire Stats Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <FireStats />
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Faults Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <CommonFaults />
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

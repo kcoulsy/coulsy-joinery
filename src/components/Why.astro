@@ -1,12 +1,13 @@
 ---
+import { capitalizeFirstLetter, formatLocationName } from "../utils/capitalizeFirstLetter";
 import { Image } from "astro:assets";
 import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
 
-const { location } = Astro.params;
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+interface Props {
+  location?: string;
 }
+
+const { location } = Astro.props;
 ---
 
 <section class="section bg-gradient-to-br from-white via-brand-50/30 to-white relative overflow-hidden">
@@ -105,7 +106,7 @@ function capitalizeFirstLetter(string: string) {
 
           <p class="text-brand-600 mb-8 text-lg">
             Contact us today for a professional consultation or no-obligation quote{
-              location ? ` in ${capitalizeFirstLetter(location)}` : null
+              location ? ` in ${formatLocationName(location)}` : null
             }.
           </p>
 

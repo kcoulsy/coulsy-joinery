@@ -26,15 +26,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert heritage joinery & restoration ${locationInText} by qualified joiner. Listed buildings, period properties & traditional craftsmanship. 30+ years experience, conservation compliant. Preserve your property's character.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert heritage joinery & restoration ${locationInText} by City & Guilds qualified joiner. Period property specialist. 30+ years experience, traditional craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Heritage Joinery & Restoration Specialist for Period Properties`}
+  title={`${pageTitle} | Heritage Joinery & Restoration Specialist for Period Properties`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -49,176 +55,319 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}
-        {
-          locationInText
-            .trim()
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())
-        }
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            With over 30 years of hands-on experience, I specialise in heritage
-            joinery and restoration work {locationInText}. Whether it’s a listed
-            cottage, period townhouse, or historic church, I treat every job
-            with the respect and detail it deserves.
-          </p>
-
-          <p>
-            My approach is always sympathetic to the building’s original
-            features. I use traditional tools and methods wherever possible —
-            from restoring original sash windows and replicating mouldings, to
-            repairing floor joists, oak frames, and decorative joinery.
-          </p>
-
-          {
-            cleanLocationName && (
-              <p>
-                In {cleanLocationName}, I often restore and maintain traditional
-                sliding sash windows — repairing frames, replacing cords and
-                beads, and rebalancing the sash weights so the windows operate
-                smoothly and safely. I take care to preserve the original look
-                while improving usability and performance.
-              </p>
-            )
-          }
-
-          <p>
-            I’ve worked on conservation projects throughout the UK, offering
-            tailored solutions for each property. No two heritage buildings are
-            the same — so every job is assessed and planned carefully to deliver
-            a result that’s both functional and true to the building’s character {
-              locationInText
-            }.
-          </p>
-
-          {
-            cleanLocationName && (
-              <p>
-                {cleanLocationName} is home to many historic and character
-                properties, and I always take care to match the joinery to the
-                age and style of the building. Whether it's a Georgian sash
-                window, Victorian flooring, or a timber frame repair, I tailor
-                the approach to suit each property's history and fabric.
-              </p>
-            )
-          }
-
-          <p>
-            Whether you’re repairing damage, restoring original features, or
-            replacing timber elements with accurate replicas, I can help with
-            expert heritage joinery {locationInText}.
-          </p>
-
-          <h2 class="font-semibold text-lg">Care and Precision</h2>
-          <p>
-            I take pride in careful workmanship — making sure everything fits as
-            it should, uses the right materials, and enhances the value and
-            integrity of your property.
-          </p>
-
-          <h2 class="font-semibold text-lg">Trusted and Time-Served</h2>
-          <p>
-            I’m City & Guilds qualified and have decades of joinery experience
-            under my belt. I believe in doing things properly and taking the
-            time to get the details right.
-          </p>
-
-          <p>
-            If you’d like to chat through a heritage joinery or restoration
-            project {locationInText}, I’d be happy to help.
-            <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >Get in touch here</a
-            >.
-          </p>
-
-          <ReviewsLinkSection />
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+        >
         </div>
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                // {
-                //   src: galleryImg1,
-                //   alt: `Vintage moulding plane used in traditional joinery ${locationInText}`,
-                //   label: "Antique Moulding Plane Tool",
-                // },
-                {
-                  src: galleryImg2,
-                  alt: `Restoration of Victorian-era timber flooring ${locationInText}`,
-                  label: "Victorian Timber Floor Repair",
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Hand-shaped moulding bead for heritage woodwork ${locationInText}`,
-                  label: "Handcrafted Moulding Bead",
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Repaired joists in a period property floor structure ${locationInText}`,
-                  label: "Historic Floor Joist Repair",
-                },
-                {
-                  src: galleryImg5,
-                  alt: `Oak window repair on heritage building ${locationInText}`,
-                  label: "Oak Frame Window Repair and Maintenance",
-                  loading: "lazy",
-                },
-                {
-                  src: galleryImg6,
-                  alt: `Refinished church pew in restoration project ${locationInText}`,
-                  label: "Restored Church Pew Bench",
-                  loading: "lazy",
-                },
-                {
-                  src: galleryImg7,
-                  alt: `Raised panel wall joinery installation ${locationInText}`,
-                  label: "Raised Timber Panel Wall Restored",
-                  loading: "lazy",
-                },
-                {
-                  src: galleryImg8,
-                  alt: `Heritage oak window restored with original features ${locationInText}`,
-                  label: "Repaired Heritage Oak Windows",
-                  loading: "lazy",
-                },
-              ]}
-            />
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
+      </div>
+
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">Heritage Restoration</span>
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Expert heritage joinery and restoration for listed buildings and
+              period properties. Traditional craftsmanship with modern
+              precision, preserving your property's character and history.
+            </p>
           </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Heritage Specialist
+                    </h2>
+                    <p class="text-neutral-600">
+                      With over 30 years of hands-on experience, I specialise in
+                      heritage joinery and restoration work {locationInText}.
+                      Whether it's a listed cottage, period townhouse, or
+                      historic church, I treat every job with the respect and
+                      detail it deserves.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  My approach is always sympathetic to the building's original
+                  features. I use traditional tools and methods wherever
+                  possible — from restoring original sash windows and
+                  replicating mouldings, to repairing floor joists, oak frames,
+                  and decorative joinery.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      In {cleanLocationName}, I often restore and maintain
+                      traditional sliding sash windows — repairing frames,
+                      replacing cords and beads, and rebalancing the sash
+                      weights so the windows operate smoothly and safely. I take
+                      care to preserve the original look while improving
+                      usability and performance.
+                    </p>
+                  )
+                }
+                <p>
+                  I've worked on conservation projects throughout the UK,
+                  offering tailored solutions for each property. No two heritage
+                  buildings are the same — so every job is assessed and planned
+                  carefully to deliver a result that's both functional and true
+                  to the building's character {locationInText}.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} is home to many historic and character
+                      properties, and I always take care to match the joinery to
+                      the age and style of the building. Whether it's a Georgian
+                      sash window, Victorian flooring, or a timber frame repair,
+                      I tailor the approach to suit each property's history and
+                      fabric.
+                    </p>
+                  )
+                }
+                <p>
+                  Whether you're repairing damage, restoring original features,
+                  or replacing timber elements with accurate replicas, I can
+                  help with expert heritage joinery {locationInText}.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Care and Precision
+                    </h3>
+                    <p class="text-neutral-600">
+                      I take pride in careful workmanship — making sure
+                      everything fits as it should, uses the right materials,
+                      and enhances the value and integrity of your property.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Trusted and Time-Served
+                    </h3>
+                    <p class="text-neutral-600">
+                      I'm City & Guilds qualified and have decades of joinery
+                      experience under my belt. I believe in doing things
+                      properly and taking the time to get the details right.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
               >
-                Get in Touch About Your Heritage Project
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Thinking about a heritage or restoration joinery project? I'd be
-                glad to have a chat and see how I can help.
-              </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-              />
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      If you'd like to chat through a heritage joinery or
+                      restoration project {locationInText}, I'd be happy to
+                      help.
+                    </p>
+                    <p class="text-neutral-600">
+                      I understand the importance of preserving historical
+                      integrity while ensuring modern functionality and safety
+                      standards.
+                    </p>
+                    <p class="text-neutral-600">
+                      Every restoration project is approached with the same
+                      level of care and attention to detail that the original
+                      craftsmen would have applied.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
             </div>
           </div>
-        </aside>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Heritage Restoration Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our traditional craftsmanship and restoration
+                    projects
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg2,
+                        alt: `Restoration of Victorian-era timber flooring ${locationInText}`,
+                        label: "Victorian Timber Floor Repair",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Hand-shaped moulding bead for heritage woodwork ${locationInText}`,
+                        label: "Handcrafted Moulding Bead",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Repaired joists in a period property floor structure ${locationInText}`,
+                        label: "Historic Floor Joist Repair",
+                      },
+                      {
+                        src: galleryImg5,
+                        alt: `Oak window repair on heritage building ${locationInText}`,
+                        label: "Oak Frame Window Repair and Maintenance",
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg6,
+                        alt: `Refinished church pew in restoration project ${locationInText}`,
+                        label: "Restored Church Pew Bench",
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg7,
+                        alt: `Raised panel wall joinery installation ${locationInText}`,
+                        label: "Raised Timber Panel Wall Restored",
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg8,
+                        alt: `Heritage oak window restored with original features ${locationInText}`,
+                        label: "Repaired Heritage Oak Windows",
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Your Heritage Project
+                    </h2>
+                    <p class="text-brand-100">
+                      Thinking about a heritage or restoration joinery project?
+                      I'd be glad to have a chat and see how I can help.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <NearbyAreas />
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

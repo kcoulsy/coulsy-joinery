@@ -62,18 +62,20 @@ const seoData = {
         ]}
       />
 
-      <!-- Header Section -->
+      <!-- Header Section with Enhanced Animation -->
       <div class="text-center mb-16">
         <h1
-          class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+          class="text-4xl lg:text-6xl font-bold text-brand-900 mb-6 text-balance qualifications-title"
         >
-          Our Qualifications
+          Our Qualifications & Certifications
         </h1>
-        <h2 class="text-2xl lg:text-3xl font-semibold text-brand-700 mb-8">
+        <h2
+          class="text-2xl lg:text-3xl font-semibold text-brand-700 mb-8 qualifications-subtitle"
+        >
           Experienced, Qualified, and Trusted
         </h2>
         <div
-          class="bg-brand-50 border border-brand-200 rounded-xl p-8 shadow-sm max-w-4xl mx-auto"
+          class="qualifications-intro bg-brand-50 border border-brand-200 rounded-xl p-8 shadow-sm max-w-4xl mx-auto hover:shadow-lg transition-all duration-500"
         >
           <p class="text-brand-700 text-lg leading-relaxed">
             With decades of hands-on experience, my qualifications and
@@ -87,12 +89,14 @@ const seoData = {
         <!-- Qualifications Content -->
         <div class="space-y-8">
           <div>
-            <h3 class="text-2xl font-semibold text-brand-900 mb-6">
+            <h3
+              class="text-2xl font-semibold text-brand-900 mb-6 qualifications-section-title"
+            >
               My Qualifications
             </h3>
             <div class="space-y-6">
               <div
-                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+                class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
               >
                 <h4 class="font-semibold text-brand-900 mb-2">
                   NVQ Level 7 in Construction Senior Management (2025)
@@ -105,7 +109,7 @@ const seoData = {
               </div>
 
               <div
-                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+                class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
               >
                 <h4 class="font-semibold text-brand-900 mb-2">
                   Advanced City & Guilds in Carpentry & Joinery – Distinction
@@ -118,7 +122,7 @@ const seoData = {
               </div>
 
               <div
-                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+                class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
               >
                 <h4 class="font-semibold text-brand-900 mb-2">
                   City & Guilds Craft in Carpentry & Joinery – Distinction
@@ -131,7 +135,7 @@ const seoData = {
               </div>
 
               <div
-                class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+                class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
               >
                 <h4 class="font-semibold text-brand-900 mb-2">
                   CSCS Gold Card Certified – Health & Safety tested
@@ -145,7 +149,9 @@ const seoData = {
           </div>
 
           <div>
-            <h3 class="text-2xl font-semibold text-brand-900 mb-6">
+            <h3
+              class="text-2xl font-semibold text-brand-900 mb-6 qualifications-section-title"
+            >
               Additional Training & Certifications
             </h3>
             <p class="text-brand-600 mb-4">
@@ -154,98 +160,147 @@ const seoData = {
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ul class="space-y-2 text-brand-600">
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  CITB Director's Role for Health & Safety
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >CITB Director's Role for Health & Safety</span
+                  >
                 </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  CITB Temporary Works & General Awareness
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >CITB Temporary Works & General Awareness</span
+                  >
                 </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  CITB Fire Safety in Construction
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >CITB Fire Safety in Construction</span
+                  >
                 </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  FireQual Fire Door Inspection
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >FireQual Fire Door Inspection</span
+                  >
                 </li>
               </ul>
               <ul class="space-y-2 text-brand-600">
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  Face Fit Tested
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >Face Fit Tested</span
+                  >
                 </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  Asbestos Awareness (Cat A)
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >Asbestos Awareness (Cat A)</span
+                  >
                 </li>
-                <li class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-brand-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-center group">
+                  <div
+                    class="w-4 h-4 bg-brand-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-brand-200 transition-colors duration-300"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  COSHH Awareness
+                    <svg
+                      class="w-2.5 h-2.5 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span
+                    class="group-hover:text-brand-700 transition-colors duration-300"
+                    >COSHH Awareness</span
+                  >
                 </li>
               </ul>
             </div>
@@ -253,7 +308,7 @@ const seoData = {
 
           <div class="space-y-6">
             <div
-              class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
             >
               <h3 class="text-xl font-semibold text-brand-900 mb-4">
                 Insurance
@@ -267,7 +322,7 @@ const seoData = {
             </div>
 
             <div
-              class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
             >
               <h3 class="text-xl font-semibold text-brand-900 mb-4">
                 Risk Assessments and Method Statements (RAMS)
@@ -283,7 +338,7 @@ const seoData = {
             </div>
 
             <div
-              class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+              class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
             >
               <h3 class="text-xl font-semibold text-brand-900 mb-4">
                 Competent
@@ -298,13 +353,15 @@ const seoData = {
             </div>
           </div>
 
-          <div class="bg-brand-50 rounded-xl p-6 border border-brand-200">
+          <div
+            class="qualification-card bg-brand-50 rounded-xl p-6 border border-brand-200 hover:shadow-lg transition-all duration-500"
+          >
             <p class="text-brand-700">
               If you'd like to know more or see our certificates and documents,
               just
               <a
                 href="/contact"
-                class="font-semibold text-brand-600 hover:text-brand-700 underline"
+                class="font-semibold text-brand-600 hover:text-brand-700 underline transition-colors duration-300"
               >
                 get in touch
               </a>. We're always happy to provide proof of qualifications and
@@ -316,43 +373,61 @@ const seoData = {
         <!-- Certifications Images -->
         <div class="flex flex-col items-center space-y-8">
           <div
-            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center"
+            class="certification-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center hover:shadow-xl transition-all duration-500 overflow-hidden"
           >
-            <Image
-              src={CITBImage}
-              width={200}
-              class="object-contain max-w-full h-auto mx-auto mb-4"
-              alt="CITB – Construction Industry Training Board Logo"
-              loading="eager"
-            />
+            <div class="relative overflow-hidden rounded-lg">
+              <Image
+                src={CITBImage}
+                width={200}
+                height={200}
+                class="object-contain max-w-full h-auto mx-auto mb-4 transition-transform duration-700 hover:scale-110"
+                alt="CITB – Construction Industry Training Board Logo"
+                loading="eager"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
             <p class="text-sm text-brand-600">
               Construction Industry Training Board
             </p>
           </div>
 
           <div
-            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center"
+            class="certification-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center hover:shadow-xl transition-all duration-500 overflow-hidden"
           >
-            <Image
-              src={cscsGoldImage}
-              width={200}
-              class="object-contain max-w-full h-auto mx-auto mb-4"
-              alt="CSCS Gold Card Certification Logo"
-              loading="eager"
-            />
+            <div class="relative overflow-hidden rounded-lg">
+              <Image
+                src={cscsGoldImage}
+                width={200}
+                height={200}
+                class="object-contain max-w-full h-auto mx-auto mb-4 transition-transform duration-700 hover:scale-110"
+                alt="CSCS Gold Card Certification Logo"
+                loading="eager"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
             <p class="text-sm text-brand-600">CSCS Gold Card Certification</p>
           </div>
 
           <div
-            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center"
+            class="certification-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center hover:shadow-xl transition-all duration-500 overflow-hidden"
           >
-            <Image
-              src={cityAndGuildsImage}
-              width={200}
-              class="object-contain max-w-full h-auto mx-auto mb-4"
-              alt="City & Guilds Accreditation Logo"
-              loading="eager"
-            />
+            <div class="relative overflow-hidden rounded-lg">
+              <Image
+                src={cityAndGuildsImage}
+                width={200}
+                height={200}
+                class="object-contain max-w-full h-auto mx-auto mb-4 transition-transform duration-700 hover:scale-110"
+                alt="City & Guilds Accreditation Logo"
+                loading="eager"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
             <p class="text-sm text-brand-600">City & Guilds Accreditation</p>
           </div>
         </div>
@@ -360,6 +435,128 @@ const seoData = {
     </section>
   </main>
 </Layout>
+
+<!-- Enhanced Micro-Animations CSS -->
+<style>
+  /* Header Animations */
+  .qualifications-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+  }
+
+  .qualifications-subtitle {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+  }
+
+  .qualifications-intro {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+  }
+
+  /* Section Titles */
+  .qualifications-section-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .qualifications-section-title:nth-of-type(1) {
+    animation-delay: 0.8s;
+  }
+
+  .qualifications-section-title:nth-of-type(2) {
+    animation-delay: 1.6s;
+  }
+
+  /* Qualification Cards */
+  .qualification-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .qualification-card:nth-child(1) {
+    animation-delay: 1s;
+  }
+  .qualification-card:nth-child(2) {
+    animation-delay: 1.2s;
+  }
+  .qualification-card:nth-child(3) {
+    animation-delay: 1.4s;
+  }
+  .qualification-card:nth-child(4) {
+    animation-delay: 1.6s;
+  }
+  .qualification-card:nth-child(5) {
+    animation-delay: 1.8s;
+  }
+  .qualification-card:nth-child(6) {
+    animation-delay: 2s;
+  }
+  .qualification-card:nth-child(7) {
+    animation-delay: 2.2s;
+  }
+  .qualification-card:nth-child(8) {
+    animation-delay: 2.4s;
+  }
+
+  .qualification-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* Certification Cards */
+  .certification-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: fadeInUpScale 1s ease-out forwards;
+  }
+
+  .certification-card:nth-child(1) {
+    animation-delay: 1.2s;
+  }
+  .certification-card:nth-child(2) {
+    animation-delay: 1.4s;
+  }
+  .certification-card:nth-child(3) {
+    animation-delay: 1.6s;
+  }
+
+  .certification-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* Keyframe Animations */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUpScale {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Hover Effects */
+  .qualification-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .certification-card img {
+    transition: transform 0.5s ease;
+  }
+
+  .certification-card:hover img {
+    transform: scale(1.1);
+  }
+</style>
 
 <!-- Modern Structured Data -->
 <script

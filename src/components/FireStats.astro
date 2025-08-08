@@ -1,50 +1,318 @@
-<section class="bg-gray-50">
+---
+// FireStats component with enhanced micro-interactions and scroll-triggered animations
+---
+
+<section class="bg-white">
   <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-    <div class="mx-auto max-w-3xl text-center px-4">
-      <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
-        Fire safety is a very serious concern
+    <div class="mx-auto max-w-3xl text-center">
+      <h2
+        class="text-3xl font-bold text-gray-900 sm:text-4xl fade-in-on-scroll"
+      >
+        Fire Safety Compliance is Critical
       </h2>
 
-      <p class="mt-4 text-gray-500 sm:text-xl">
-        Here are some statistics that show the importance of fire safety in the
-        UK ending September 2023.
+      <p class="mt-4 text-gray-500 sm:text-xl fade-in-on-scroll delay-200">
+        Recent UK fire statistics and regulatory requirements highlight the
+        importance of proper fire door maintenance and compliance with Building
+        Regulations Approved Document B and the Regulatory Reform (Fire Safety)
+        Order 2005.
       </p>
     </div>
 
     <div class="mt-8 sm:mt-12">
-      <dl class="grid gap-6 sm:grid-cols-3">
+      <dl
+        class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:divide-x sm:divide-gray-100"
+      >
         <div
-          class="flex flex-col items-center justify-center rounded-xl bg-white px-6 py-8 shadow-md text-center"
+          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-300 hover:scale-105 transition-transform duration-300"
         >
           <dt class="order-last text-lg font-medium text-gray-500">
-            Workplace fires in the uk
+            Fire door failures found in inspections
           </dt>
 
-          <dd class="text-4xl font-extrabold text-brand md:text-5xl">7,649</dd>
+          <dd
+            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
+            data-target="75"
+          >
+            <span class="counter">0</span>%
+          </dd>
         </div>
 
         <div
-          class="flex flex-col items-center justify-center rounded-xl bg-white px-6 py-8 shadow-md text-center"
+          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-400 hover:scale-105 transition-transform duration-300"
         >
           <dt class="order-last text-lg font-medium text-gray-500">
-            Lives lost (up 1.8%)
+            Workplace fires annually
           </dt>
 
-          <dd class="text-4xl font-extrabold text-brand md:text-5xl">278</dd>
+          <dd
+            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
+            data-target="6500"
+          >
+            <span class="counter">0</span>
+          </dd>
         </div>
 
         <div
-          class="flex flex-col items-center justify-center rounded-xl bg-white px-6 py-8 shadow-md text-center"
+          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-500 hover:scale-105 transition-transform duration-300"
         >
           <dt class="order-last text-lg font-medium text-gray-500">
-            Response time
+            Average fire service response time
           </dt>
 
-          <dd class="text-4xl font-extrabold text-brand md:text-5xl">
-            8 minute
+          <dd
+            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
+            data-target="11"
+          >
+            <span class="counter">0</span> minutes
+          </dd>
+        </div>
+
+        <div
+          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-600 hover:scale-105 transition-transform duration-300"
+        >
+          <dt class="order-last text-lg font-medium text-gray-500">
+            Years of fire safety experience
+          </dt>
+
+          <dd
+            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
+            data-target="35"
+          >
+            <span class="counter">0</span>+
           </dd>
         </div>
       </dl>
     </div>
+
+    <!-- Regulatory Compliance Section -->
+    <div class="mt-12 bg-gray-50 rounded-xl p-8">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+        Key Fire Safety Regulations
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-brand mb-2">Building Regulations</h4>
+          <p class="text-sm text-gray-600">
+            Approved Document B - Fire Safety: Volume 1 (Dwellings) and Volume 2
+            (Buildings other than dwellings)
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-brand mb-2">RRO 2005</h4>
+          <p class="text-sm text-gray-600">
+            Regulatory Reform (Fire Safety) Order 2005 - Requires regular fire
+            risk assessments and maintenance
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-brand mb-2">British Standards</h4>
+          <p class="text-sm text-gray-600">
+            BS 9999:2017 and BS 8214:2016 - Fire safety design and fire door
+            assembly standards
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  /* Scroll-triggered animations */
+  .fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-play-state: paused;
+  }
+
+  .fade-in-on-scroll.in-view {
+    animation-play-state: running;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Counter animations */
+  .counter-animation {
+    position: relative;
+  }
+
+  .counter-animation::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1e2a38, #1e3a8a);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: progressBar 2s ease-out 1s forwards;
+    animation-play-state: paused;
+  }
+
+  .counter-animation.in-view::after {
+    animation-play-state: running;
+  }
+
+  @keyframes progressBar {
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Stat card hover effects */
+  .stat-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Trigger animations when element comes into view */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-on-scroll.in-view,
+    .animate-on-scroll-delay-1.in-view,
+    .animate-on-scroll-delay-2.in-view,
+    .animate-on-scroll-delay-3.in-view,
+    .animate-on-scroll-delay-4.in-view,
+    .animate-on-scroll-delay-5.in-view {
+      animation-play-state: running;
+    }
+
+    .counter-animation.in-view::after {
+      animation-play-state: running;
+    }
+  }
+
+  /* Fallback for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .animate-on-scroll-delay-1,
+    .animate-on-scroll-delay-2,
+    .animate-on-scroll-delay-3,
+    .animate-on-scroll-delay-4,
+    .animate-on-scroll-delay-5 {
+      opacity: 1;
+      transform: translateY(0);
+      animation: none;
+    }
+
+    .counter-animation::after {
+      width: 100%;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced scroll-triggered animations and counter effects
+  document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    // Intersection Observer for scroll-triggered animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+
+          // Trigger counter animation if it's a counter element
+          if (entry.target.classList.contains("counter-animation")) {
+            animateCounter(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll(".fade-in-on-scroll").forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Counter animation function
+    function animateCounter(element) {
+      const counter = element.querySelector(".counter");
+      if (!counter) return;
+
+      // Check if counter has already been animated
+      if (counter.dataset.animated === "true") return;
+
+      const target = parseInt(element.dataset.target || "0");
+      const duration = 2000; // 2 seconds
+      const step = target / (duration / 16); // 60fps
+      let current = 0;
+
+      // Mark as animated to prevent re-animation
+      counter.dataset.animated = "true";
+
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        counter.textContent = Math.floor(current).toString();
+      }, 16);
+    }
+
+    // Trigger counters immediately if they're already visible
+    function triggerVisibleCounters() {
+      document.querySelectorAll(".counter-animation").forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+        if (isVisible) {
+          element.classList.add("in-view");
+          animateCounter(element);
+        }
+      });
+    }
+
+    // Trigger visible counters on page load
+    triggerVisibleCounters();
+
+    // Enhanced hover effects for stat cards
+    document.querySelectorAll(".stat-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        card.style.transform = "scale(1.05) translateY(-5px)";
+        card.style.boxShadow = "0 20px 40px rgba(30, 42, 56, 0.15)";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "scale(1) translateY(0)";
+        card.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+      });
+    });
+  });
+</script>

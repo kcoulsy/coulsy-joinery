@@ -22,15 +22,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Professional truss roof installation services ${locationInText} — from attic conversions to large-scale commercial projects. Over 30 years' experience in bespoke joinery, structural work, and compliant roofing.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert truss roof installation ${locationInText} by City & Guilds qualified joiner. Structural joinery & roof framing. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Truss Roof Installers & Structural Joinery`}
+  title={`${pageTitle} | Truss Roof Installers & Structural Joinery`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -45,120 +51,255 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}
-        {
-          locationInText
-            .trim()
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())
-        }
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            If you're planning a roof structure and need a reliable team to
-            erect your trusses {locationInText}, I’d be happy to help. I’m
-            Robert — a time-served joiner with decades of hands-on experience in
-            structural joinery and truss roof installs.
-          </p>
-          <p>
-            I work closely with builders, developers, and private clients to
-            deliver well-fitted, regulation-compliant truss roofs on everything
-            from home extensions and attic conversions to full new builds and
-            commercial units.
-          </p>
-          <p>
-            Whether you need attic trusses, raised tie trusses, or a full
-            prefabricated roof system — I make sure everything is properly
-            aligned, securely fixed, and completed with care.
-          </p>
-          {
-            cleanLocationName && (
-              <p>
-                I’ve worked on truss roof installations across{" "}
-                {cleanLocationName}, adapting each job to the site layout, truss
-                design, and build sequence. Whether it’s a residential extension
-                or a large-span commercial unit, I make sure the install is
-                accurate, tidy, and aligned with the build programme.
-              </p>
-            )
-          }
-          <p>
-            I hold the relevant CSCS card and work alongside trusted colleagues
-            to handle both domestic and commercial-scale truss roof projects {
-              locationInText
-            }. Safety, tidiness, and clear communication are all part of the
-            service.
-          </p>
-          <p>
-            If you’re looking for a dependable installer to get your trusses up
-            safely and accurately, just <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            > — I’d be happy to discuss the project.
-          </p>
-          <ReviewsLinkSection />
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+        >
         </div>
-
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  alt: `Installation of attic truss roof showing framing and structure ${locationInText}`,
-                  label: "Attic Truss Roof Install",
-                },
-                {
-                  src: galleryImg2,
-                  alt: `Truss roof construction with insulation and support beams visible ${locationInText}`,
-                  label: "Completed Truss Roof",
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Internal view of roof trusses in place on new build ${locationInText}`,
-                  label: "Roof Trusses Installed",
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Commercial roof trusses installed with crane assistance ${locationInText}`,
-                  label: "Commercial Truss Installation",
-                },
-              ]}
-            />
-          </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
-              >
-                Get in Touch
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Need help with a heritage or restoration joinery project? I’d be
-                happy to discuss how we can help.
-              </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-              />
-            </div>
-          </div>
-        </aside>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
       </div>
 
-      <NearbyAreas />
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">Truss Roof Installation</span
+            >
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Professional truss roof installation services from attic
+              conversions to large-scale commercial projects. Structural joinery
+              and compliant roofing with over 30 years' experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      If you're planning a roof structure and need a reliable
+                      team to erect your trusses {locationInText}, I'd be happy
+                      to help. I'm Robert — a time-served joiner with decades of
+                      hands-on experience in structural joinery and truss roof
+                      installs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  I work closely with builders, developers, and private clients
+                  to deliver well-fitted, regulation-compliant truss roofs on
+                  everything from home extensions and attic conversions to full
+                  new builds and commercial units.
+                </p>
+                <p>
+                  Whether you need attic trusses, raised tie trusses, or a full
+                  prefabricated roof system — I make sure everything is properly
+                  aligned, securely fixed, and completed with care.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      I've worked on truss roof installations across{" "}
+                      {cleanLocationName}, adapting each job to the site layout,
+                      truss design, and build sequence. Whether it's a
+                      residential extension or a large-span commercial unit, I
+                      make sure the install is accurate, tidy, and aligned with
+                      the build programme.
+                    </p>
+                  )
+                }
+                <p>
+                  I hold the relevant CSCS card and work alongside trusted
+                  colleagues to handle both domestic and commercial-scale truss
+                  roof projects {locationInText}. Safety, tidiness, and clear
+                  communication are all part of the service.
+                </p>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      If you're looking for a dependable installer to get your
+                      trusses up safely and accurately, just
+                      <a
+                        href="/contact"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >get in touch</a
+                      > — I'd be happy to discuss the project.
+                    </p>
+                    <p class="text-neutral-600">
+                      Every truss roof installation is completed with precision
+                      and attention to structural integrity, ensuring your roof
+                      is built to last.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Truss Roof Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our structural roof installations
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Installation of attic truss roof showing framing and structure ${locationInText}`,
+                        label: "Attic Truss Roof Install",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Truss roof construction with insulation and support beams visible ${locationInText}`,
+                        label: "Completed Truss Roof",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Internal view of roof trusses in place on new build ${locationInText}`,
+                        label: "Roof Trusses Installed",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Commercial roof trusses installed with crane assistance ${locationInText}`,
+                        label: "Commercial Truss Installation",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Get in Touch</h2>
+                    <p class="text-brand-100">
+                      Need help with a truss roof installation project? I'd be
+                      happy to discuss how we can help.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

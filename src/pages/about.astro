@@ -64,15 +64,15 @@ const seoData = {
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <Breadcrumb crumbs={[{ label: "About", current: true }]} />
 
-      <!-- Header Section -->
+      <!-- Header Section with Enhanced Animation -->
       <div class="text-center mb-16">
         <h1
-          class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+          class="text-4xl lg:text-6xl font-bold text-brand-900 mb-6 text-balance about-title"
         >
-          About Us
+          About Coulsy Joinery
         </h1>
         <p
-          class="text-xl text-brand-600 max-w-4xl mx-auto text-balance leading-relaxed"
+          class="text-xl text-brand-600 max-w-4xl mx-auto text-balance leading-relaxed about-subtitle"
         >
           I'm Robert, and along with my wife Debbie, we run Coulsy Joinery and
           Small Build — a small, family-run outfit based in North Yorkshire.
@@ -82,42 +82,372 @@ const seoData = {
         </p>
       </div>
 
-      <!-- Main Content -->
-      <div class="max-w-4xl mx-auto space-y-6 text-brand-600 leading-relaxed">
-        <p>
+      <!-- Main Content with Staggered Animation -->
+      <div class="max-w-4xl mx-auto space-y-6 text-brand-600 leading-relaxed main-content">
+        <p class="animate-slide-up" style="animation-delay: 0.2s">
           We handle all kinds of carpentry and joinery, from custom garden
           offices and annexes to small building projects, maintenance work, and
           thoughtful renovations. Every job is treated with care — no cutting
           corners, no outsourcing to strangers.
         </p>
-        <p>
+        <p class="animate-slide-up" style="animation-delay: 0.4s">
           Debbie is not just behind the scenes — she plays an active role in
           keeping everything organised and running smoothly, and is often on
           site with me. We work with a small, trusted team who we know
           personally and rely on completely.
         </p>
-        <p>
+        <p class="animate-slide-up" style="animation-delay: 0.6s">
           We don't try to be the biggest company around — just a dependable one.
           We show up when we say we will, we're easy to talk to, and we take
           real pride in leaving a job well done.
         </p>
-        <p class="text-brand-800 font-semibold italic">– Robert</p>
+        <p class="text-brand-800 font-semibold italic animate-slide-up" style="animation-delay: 0.8s">– Robert</p>
       </div>
 
       <hr class="h-px my-16 bg-brand-200 border-0" />
 
-      <!-- Lead Team Section -->
-      <div class="mb-16">
+      <!-- What We Do For Clients Section -->
+      <div class="mb-20">
         <h2
-          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center"
+          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center services-title"
         >
-          Lead Team
+          What We Can Do For You
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Traditional Joinery -->
+          <div
+            class="service-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500 overflow-hidden"
+          >
+            <div class="relative overflow-hidden rounded-lg mb-6">
+              <Image
+                src={benchPlaneImage}
+                width={300}
+                height={200}
+                class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+                alt="Traditional joinery work with hand tools"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
+            <h3 class="text-xl font-bold text-brand-900 mb-4">
+              Traditional Joinery
+            </h3>
+            <p class="text-brand-600 leading-relaxed">
+              Hand-cut dovetails, complex architectural joinery, and bespoke
+              woodwork. 35+ years of traditional joinery experience through
+              Coulsy Ltd.
+            </p>
+          </div>
+
+          <!-- Small Build Works -->
+          <div
+            class="service-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500 overflow-hidden"
+          >
+            <div class="relative overflow-hidden rounded-lg mb-6">
+              <Image
+                src={complianceImage}
+                width={300}
+                height={200}
+                class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+                alt="Small build works and construction projects"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
+            <h3 class="text-xl font-bold text-brand-900 mb-4">
+              Small Build Works
+            </h3>
+            <p class="text-brand-600 leading-relaxed">
+              Extensions, renovations, and construction projects of all sizes.
+              Quality assurance and ensuring projects meet the highest standards.
+            </p>
+          </div>
+
+          <!-- Garden Offices & Annexes -->
+          <div
+            class="service-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500 overflow-hidden"
+          >
+            <div class="relative overflow-hidden rounded-lg mb-6">
+              <Image
+                src={sustainabilityImage}
+                width={300}
+                height={200}
+                class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+                alt="Garden offices and annexes"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
+            <h3 class="text-xl font-bold text-brand-900 mb-4">
+              Garden Offices & Annexes
+            </h3>
+            <p class="text-brand-600 leading-relaxed">
+              Custom garden offices, annexes, and outdoor structures. Built to
+              last with quality materials and expert craftsmanship.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <div class="mb-20">
+        <h2
+          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center why-choose-title"
+        >
+          Why Choose Coulsy Joinery
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div
+            class="why-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-brand-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-brand-900">
+                35+ Years Experience
+              </h3>
+            </div>
+            <p class="text-brand-600 leading-relaxed">
+              Over three decades in joinery and building, with extensive hands-on
+              experience you can trust. Every project benefits from our deep
+              knowledge and expertise.
+            </p>
+          </div>
+
+          <div
+            class="why-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-brand-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-brand-900">Family Business</h3>
+            </div>
+            <p class="text-brand-600 leading-relaxed">
+              Direct, personal service from a family-run business. No large
+              company bureaucracy - just quality workmanship and attention to
+              detail from people who care.
+            </p>
+          </div>
+
+          <div
+            class="why-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-brand-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-brand-900">Quality Focus</h3>
+            </div>
+            <p class="text-brand-600 leading-relaxed">
+              We focus on quality, not quantity. Every job is treated with care
+              — no cutting corners, no outsourcing to strangers. We take real
+              pride in leaving a job well done.
+            </p>
+          </div>
+
+          <div
+            class="why-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-brand-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-brand-900">Reliable Service</h3>
+            </div>
+            <p class="text-brand-600 leading-relaxed">
+              We show up when we say we will, we're easy to talk to, and we
+              communicate clearly throughout every project. Dependable service
+              you can count on.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Robert Section -->
+      <div class="mb-20">
+        <h2
+          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center about-robert-title"
+        >
+          About Robert Coulson
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          <!-- Profile Image -->
+          <div class="lg:col-span-1">
+            <div
+              class="profile-card bg-white rounded-2xl p-6 shadow-xl border border-brand-100 overflow-hidden"
+            >
+              <div class="relative overflow-hidden rounded-xl">
+                <Image
+                  src={RobertProfileImage}
+                  width={400}
+                  height={500}
+                  class="w-full h-auto object-cover transition-transform duration-700 hover:scale-110"
+                  alt="Robert Coulson - Master joiner since 1989"
+                  loading="eager"
+                  decoding="async"
+                  format="webp"
+                  quality={90}
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"
+                >
+                </div>
+              </div>
+              <div class="mt-6 text-center">
+                <h3 class="text-2xl font-bold text-brand-900 mb-2">
+                  Robert Coulson
+                </h3>
+                <p class="text-brand-600 font-medium">
+                  Master Joiner & Owner
+                </p>
+                <p class="text-sm text-brand-500 mt-1">Since 1989</p>
+                <p class="text-xs text-brand-400 mt-1">
+                  Fully Qualified & Insured
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="lg:col-span-2">
+            <div class="timeline-container space-y-8">
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <h3 class="text-2xl font-bold text-brand-900 mb-2">
+                    1989 - The Beginning
+                  </h3>
+                  <p class="text-brand-600 leading-relaxed">
+                    Started my journey in joinery and building, developing
+                    exceptional craftsmanship skills and attention to detail
+                    that would become the foundation of everything I do.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <h3 class="text-2xl font-bold text-brand-900 mb-2">
+                    1990s - Building Excellence
+                  </h3>
+                  <p class="text-brand-600 leading-relaxed">
+                    Established Coulsy Ltd, working on high-end residential and
+                    commercial projects, perfecting traditional joinery
+                    techniques and modern construction methods.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <h3 class="text-2xl font-bold text-brand-900 mb-2">
+                    2000s - Expanding Services
+                  </h3>
+                  <p class="text-brand-600 leading-relaxed">
+                    Expanded into garden offices, annexes, and small build works,
+                    while maintaining the same high standards of craftsmanship
+                    and attention to detail.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <h3 class="text-2xl font-bold text-brand-900 mb-2">
+                    2020s - Family Business
+                  </h3>
+                  <p class="text-brand-600 leading-relaxed">
+                    Working alongside Debbie, we've built a reputation for
+                    quality, reliability, and personal service. Still getting
+                    stuck in on the tools every day, because that's what I love.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lead Team Section Enhanced -->
+      <div class="mb-20">
+        <h2
+          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center team-title"
+        >
+          Our Team
         </h2>
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Team Card -->
+          <!-- Team Card Enhanced -->
           <div
-            class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            class="team-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
           >
             <div class="relative overflow-hidden">
               <Image
@@ -126,20 +456,34 @@ const seoData = {
                 loading="eager"
                 width={400}
                 height={300}
-                class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                decoding="async"
+                format="webp"
+                quality={90}
               />
               <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4"
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               >
-                <h3 class="text-xl font-bold text-white">Team</h3>
-                <p class="text-sm text-gray-200">Husband and Wife</p>
               </div>
+              <div
+                class="absolute bottom-0 left-0 right-0 p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+              >
+                <h3 class="text-xl font-bold text-white mb-1">Our Team</h3>
+                <p class="text-sm text-gray-200 mb-2">Husband and Wife</p>
+                <p class="text-xs text-gray-300">Working Together</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-brand-600 mb-4 leading-relaxed">
+                Robert and Debbie work together as a team, with Debbie playing an
+                active role in keeping everything organised and running smoothly.
+              </p>
             </div>
           </div>
 
-          <!-- Robert Card -->
+          <!-- Robert Card Enhanced -->
           <div
-            class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            class="team-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
           >
             <div class="relative overflow-hidden">
               <Image
@@ -148,23 +492,35 @@ const seoData = {
                 loading="eager"
                 width={400}
                 height={300}
-                class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                decoding="async"
+                format="webp"
+                quality={90}
               />
               <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4"
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               >
-                <h3 class="text-xl font-bold text-white">Robert</h3>
-                <p class="text-sm text-gray-200">Joiner and Owner</p>
+              </div>
+              <div
+                class="absolute bottom-0 left-0 right-0 p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+              >
+                <h3 class="text-xl font-bold text-white mb-1">Robert</h3>
+                <p class="text-sm text-gray-200 mb-2">Master Joiner & Owner</p>
+                <p class="text-xs text-gray-300">Since 1989</p>
               </div>
             </div>
-            <div class="p-4">
+            <div class="p-6">
+              <p class="text-brand-600 mb-4 leading-relaxed">
+                Qualified since 1989 with 35+ years of joinery experience. Still
+                gets stuck in on the tools every day because that's what I love.
+              </p>
               <a
                 target="_blank"
                 href="https://www.linkedin.com/in/robert-coulson-20a60915/"
-                class="inline-flex items-center text-brand-600 hover:text-brand-700 transition-colors duration-200"
+                class="inline-flex items-center text-brand-600 hover:text-brand-700 transition-all duration-300 hover:scale-105"
               >
                 <svg
-                  class="h-5 w-5 mr-2"
+                  class="h-5 w-5 mr-2 transition-transform duration-300 group-hover:translate-x-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -179,39 +535,39 @@ const seoData = {
             </div>
           </div>
 
-          <!-- Debbie Card -->
+          <!-- Debbie Card Enhanced -->
           <div
-            class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            class="team-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
           >
             <div class="relative overflow-hidden">
               <Image
                 src={DebbieProfileImage}
-                alt="Debbie Coulson - Assistant"
+                alt="Debbie Coulson - Assistant & Project Manager"
                 loading="eager"
                 width={400}
                 height={300}
-                class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                decoding="async"
+                format="webp"
+                quality={90}
               />
               <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4"
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               >
-                <h3 class="text-xl font-bold text-white">Debbie</h3>
-                <p class="text-sm text-gray-200">Assistant</p>
+              </div>
+              <div
+                class="absolute bottom-0 left-0 right-0 p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+              >
+                <h3 class="text-xl font-bold text-white mb-1">Debbie</h3>
+                <p class="text-sm text-gray-200 mb-2">Assistant & Project Manager</p>
+                <p class="text-xs text-gray-300">Organisation Expert</p>
               </div>
             </div>
-            <div class="p-4">
-              <div class="inline-flex items-center text-brand-600">
-                <svg
-                  class="h-5 w-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 320 512"
-                >
-                  <path
-                    d="M80 299.3V512h396V299.3h86.5l18-97.8h396V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1h34v97.8H80z"
-                  ></path>
-                </svg>
-                <span class="text-sm font-medium">Connect with Debbie</span>
-              </div>
+            <div class="p-6">
+              <p class="text-brand-600 mb-4 leading-relaxed">
+                Debbie plays an active role in keeping everything organised and
+                running smoothly, and is often on site with Robert.
+              </p>
             </div>
           </div>
         </div>
@@ -219,26 +575,21 @@ const seoData = {
 
       <hr class="h-px my-16 bg-brand-200 border-0" />
 
-      <!-- Trust Section -->
-      <div class="mb-16">
+      <!-- Trust Section Enhanced -->
+      <div class="mb-20">
         <h2
-          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center"
+          class="text-3xl lg:text-4xl font-bold text-brand-900 mb-12 text-center trust-title"
         >
-          Trust
+          Trust & Excellence
         </h2>
 
         <div
-          class="max-w-4xl mx-auto space-y-6 text-brand-600 leading-relaxed mb-12"
+          class="max-w-4xl mx-auto space-y-6 text-brand-600 leading-relaxed mb-12 trust-content"
         >
           <p>
             At Coulsy Joinery, we recognise the importance of adhering to rules
-            and regulations.
-          </p>
-          <p>
-            These guidelines exist to protect you, us, and the wider community,
-            ensuring high standards are upheld. We are committed to going the
-            extra mile, not only in delivering quality craftsmanship but also in
-            building a sustainable future.
+            and regulations. These guidelines exist to protect you, us, and the
+            wider community, ensuring high standards are upheld.
           </p>
           <p>
             Our team is fully qualified, insured, and compliant with all
@@ -248,130 +599,89 @@ const seoData = {
           </p>
         </div>
 
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Fully Qualified Card -->
+        <div class="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
           <div
-            class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            class="trust-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center hover:shadow-xl transition-all duration-500"
           >
-            <div class="relative overflow-hidden">
-              <Image
-                src={benchPlaneImage}
-                alt="Woodworking bench plane - symbol of craftsmanship"
-                loading="lazy"
-                width={400}
-                height={300}
-                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-brand-900 mb-4">
-                Fully Qualified
-              </h3>
-              <p class="text-brand-600 mb-6">
-                Our team are highly qualified to meet the demands of your
-                project...
-              </p>
-              <a
-                href="/about/qualifications"
-                class="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold transition-colors duration-200"
+            <div
+              class="trust-icon w-20 h-20 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-10 h-10 text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                View our Qualifications and Insurances
-                <svg
-                  class="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
             </div>
+            <h3 class="text-xl font-semibold text-brand-900 mb-3">
+              Fully Qualified
+            </h3>
+            <p class="text-brand-600">
+              35+ years of joinery experience, fully qualified and insured for
+              your peace of mind
+            </p>
           </div>
 
-          <!-- Highly Compliant Card -->
           <div
-            class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            class="trust-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center hover:shadow-xl transition-all duration-500"
           >
-            <div class="relative overflow-hidden">
-              <Image
-                src={complianceImage}
-                alt="Compliance and safety standards"
-                loading="lazy"
-                width={400}
-                height={300}
-                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-brand-900 mb-4">
-                Highly Compliant
-              </h3>
-              <p class="text-brand-600 mb-6">
-                We adhere to the highest standards of compliance and ethics...
-              </p>
-              <a
-                href="/about/compliance"
-                class="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold transition-colors duration-200"
+            <div
+              class="trust-icon w-20 h-20 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-10 h-10 text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                View our Compliance and Safety
-                <svg
-                  class="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                ></path>
+              </svg>
             </div>
+            <h3 class="text-xl font-semibold text-brand-900 mb-3">Insured</h3>
+            <p class="text-brand-600">
+              Fully insured with comprehensive coverage for peace of mind on
+              every project
+            </p>
           </div>
 
-          <!-- Sustainability Card -->
           <div
-            class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            class="trust-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 text-center hover:shadow-xl transition-all duration-500"
           >
-            <div class="relative overflow-hidden">
-              <Image
-                src={sustainabilityImage}
-                alt="Sustainability and environmental responsibility"
-                loading="lazy"
-                width={400}
-                height={300}
-                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-brand-900 mb-4">
-                Sustainability
-              </h3>
-              <p class="text-brand-600 mb-6">Making a difference...</p>
-              <a
-                href="/about/sustainability"
-                class="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold transition-colors duration-200"
+            <div
+              class="trust-icon w-20 h-20 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-10 h-10 text-brand-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                View our Sustainability Efforts
-                <svg
-                  class="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
             </div>
+            <h3 class="text-xl font-semibold text-brand-900 mb-3">
+              Quality Assured
+            </h3>
+            <p class="text-brand-600">
+              Every project meets the highest standards of craftsmanship and
+              attention to detail
+            </p>
           </div>
         </div>
       </div>
@@ -392,6 +702,291 @@ const seoData = {
     </section>
   </main>
 </Layout>
+
+<!-- Enhanced Micro-Animations CSS -->
+<style>
+  /* Header Animations */
+  .about-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+  }
+
+  .about-subtitle {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+  }
+
+  /* Main Content Animations */
+  .main-content p {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Profile Card Animations */
+  .profile-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: fadeInUpScale 1s ease-out 0.6s forwards;
+  }
+
+  /* Timeline Animations */
+  .timeline-container {
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.8s forwards;
+  }
+
+  .timeline-item {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .timeline-item:nth-child(1) {
+    animation-delay: 1s;
+  }
+  .timeline-item:nth-child(2) {
+    animation-delay: 1.2s;
+  }
+  .timeline-item:nth-child(3) {
+    animation-delay: 1.4s;
+  }
+  .timeline-item:nth-child(4) {
+    animation-delay: 1.6s;
+  }
+
+  .timeline-marker {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #1e2a38, #1e3a8a);
+    border-radius: 50%;
+    position: relative;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+
+  .timeline-marker::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, #1e2a38, transparent);
+  }
+
+  .timeline-item:last-child .timeline-marker::before {
+    display: none;
+  }
+
+  .timeline-content {
+    flex: 1;
+    padding-left: 20px;
+  }
+
+  /* Services Section */
+  .services-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+  }
+
+  .service-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .service-card:nth-child(1) {
+    animation-delay: 1s;
+  }
+  .service-card:nth-child(2) {
+    animation-delay: 1.2s;
+  }
+  .service-card:nth-child(3) {
+    animation-delay: 1.4s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  /* Why Choose Us Section */
+  .why-choose-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 1.6s forwards;
+  }
+
+  .why-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .why-card:nth-child(1) {
+    animation-delay: 1.8s;
+  }
+  .why-card:nth-child(2) {
+    animation-delay: 2s;
+  }
+  .why-card:nth-child(3) {
+    animation-delay: 2.2s;
+  }
+  .why-card:nth-child(4) {
+    animation-delay: 2.4s;
+  }
+
+  .why-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  /* About Robert Section */
+  .about-robert-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 2.6s forwards;
+  }
+
+  /* Team Cards */
+  .team-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 2.6s forwards;
+  }
+
+  .team-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .team-card:nth-child(1) {
+    animation-delay: 2.8s;
+  }
+  .team-card:nth-child(2) {
+    animation-delay: 3s;
+  }
+  .team-card:nth-child(3) {
+    animation-delay: 3.2s;
+  }
+
+  .team-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  /* Trust Section */
+  .trust-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 3.2s forwards;
+  }
+
+  .trust-content {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 3.4s forwards;
+  }
+
+  .trust-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .trust-card:nth-child(1) {
+    animation-delay: 3.6s;
+  }
+  .trust-card:nth-child(2) {
+    animation-delay: 3.8s;
+  }
+  .trust-card:nth-child(3) {
+    animation-delay: 4s;
+  }
+
+  .trust-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  .trust-card:hover .trust-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .trust-icon {
+    transition: all 0.3s ease;
+  }
+
+  /* Keyframe Animations */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUpScale {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Timeline Layout */
+  .timeline-container {
+    position: relative;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .timeline-item {
+      flex-direction: column;
+    }
+
+    .timeline-marker {
+      margin-bottom: 1rem;
+    }
+
+    .timeline-content {
+      padding-left: 0;
+    }
+  }
+
+  /* Hover Effects */
+  .profile-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .service-card img,
+  .team-card img {
+    transition: transform 0.5s ease;
+  }
+
+  .service-card:hover img,
+  .team-card:hover img {
+    transform: scale(1.1);
+  }
+</style>
 
 <!-- Modern Structured Data -->
 <script

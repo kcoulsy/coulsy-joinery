@@ -1,0 +1,291 @@
+---
+// View Transitions API component for smooth page transitions - Adapted for Coulsy Joinery
+---
+
+<script>
+  class ViewTransitions {
+    private isTransitioning: boolean;
+
+    constructor() {
+      this.isTransitioning = false;
+      this.init();
+    }
+
+    init() {
+      // Check if View Transitions API is supported
+      if (!document.startViewTransition) {
+        console.log(
+          "View Transitions API not supported - using fallback navigation"
+        );
+        return;
+      }
+
+      this.setupNavigationTransitions();
+      this.setupImageTransitions();
+      this.setupFormTransitions();
+      this.setupScrollPosition();
+    }
+
+    setupNavigationTransitions() {
+      // Intercept all internal navigation
+      document.addEventListener("click", (e) => {
+        const target = e.target;
+        if (!target || !(target instanceof Element)) return;
+
+        const link = target.closest("a") as HTMLAnchorElement | null;
+        if (!link || !this.isInternalLink(link.href) || this.isTransitioning)
+          return;
+
+        // Skip if it's a download link or external link
+        if (
+          link.target === "_blank" ||
+          link.download ||
+          link.href.includes("mailto:") ||
+          link.href.includes("tel:")
+        ) {
+          return;
+        }
+
+        e.preventDefault();
+        this.navigateWithTransition(link.href);
+      });
+    }
+
+    setupImageTransitions() {
+      // Add view transition names to images with data-transition attribute
+      const images = document.querySelectorAll("img[data-transition]");
+      images.forEach((img) => {
+        const transitionName = img.getAttribute("data-transition");
+        if (transitionName) {
+          (img as HTMLElement).style.viewTransitionName = transitionName;
+        }
+      });
+    }
+
+    setupFormTransitions() {
+      // Smooth form transitions for contact forms and search
+      const forms = document.querySelectorAll("form[data-transition]");
+      forms.forEach((form) => {
+        form.addEventListener("submit", (e) => {
+          if (!document.startViewTransition || this.isTransitioning) return;
+
+          e.preventDefault();
+          this.submitWithTransition(form as HTMLFormElement);
+        });
+      });
+    }
+
+    setupScrollPosition() {
+      // Store scroll position before navigation
+      window.addEventListener("beforeunload", () => {
+        sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+      });
+
+      // Restore scroll position after navigation
+      if (sessionStorage.getItem("scrollPosition")) {
+        const scrollPosition = parseInt(
+          sessionStorage.getItem("scrollPosition") || "0"
+        );
+        if (scrollPosition > 0) {
+          setTimeout(() => {
+            window.scrollTo(0, scrollPosition);
+            sessionStorage.removeItem("scrollPosition");
+          }, 100);
+        }
+      }
+    }
+
+    isInternalLink(href: string): boolean {
+      try {
+        const url = new URL(href, window.location.origin);
+        return url.origin === window.location.origin;
+      } catch {
+        return false;
+      }
+    }
+
+    async navigateWithTransition(url: string) {
+      if (this.isTransitioning) return;
+
+      try {
+        this.isTransitioning = true;
+
+        const transition = document.startViewTransition(() => {
+          return new Promise((resolve) => {
+            // Add loading state
+            document.body.classList.add("transitioning");
+
+            // Store current scroll position
+            sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+
+            // Navigate to new page
+            window.location.href = url;
+
+            // Resolve after a short delay to allow transition to start
+            setTimeout(resolve, 150);
+          });
+        });
+
+        // Wait for transition to complete
+        await transition.finished;
+      } catch (error) {
+        console.error("View transition failed:", error);
+        // Fallback to normal navigation
+        window.location.href = url;
+      } finally {
+        this.isTransitioning = false;
+      }
+    }
+
+    async submitWithTransition(form: HTMLFormElement) {
+      if (this.isTransitioning) return;
+
+      try {
+        this.isTransitioning = true;
+
+        const transition = document.startViewTransition(() => {
+          return new Promise((resolve) => {
+            // Add loading state
+            form.classList.add("submitting");
+
+            // Submit form
+            form.submit();
+
+            setTimeout(resolve, 150);
+          });
+        });
+
+        await transition.finished;
+      } catch (error) {
+        console.error("Form transition failed:", error);
+        // Fallback to normal submission
+        form.submit();
+      } finally {
+        this.isTransitioning = false;
+      }
+    }
+  }
+
+  // Initialize View Transitions when DOM is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    new ViewTransitions();
+  });
+</script>
+
+<style>
+  /* View Transition Styles */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation: fade-out-scale 0.6s ease-in-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: fade-in-scale 0.6s ease-in-out;
+  }
+
+  /* Enhanced fade animations with scale */
+  @keyframes fade-out-scale {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.98) translateY(-10px);
+    }
+  }
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(1.02) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Transition states */
+  .transitioning {
+    pointer-events: none;
+    cursor: wait;
+  }
+
+  .transitioning * {
+    pointer-events: none;
+  }
+
+  .submitting {
+    opacity: 0.7;
+    pointer-events: none;
+    transform: scale(0.98);
+    transition: all 0.3s ease;
+  }
+
+  /* Image transitions */
+  img[data-transition] {
+    contain: paint;
+    will-change: transform;
+  }
+
+  /* Loading indicator for transitions */
+  .transitioning::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #1e2a38, #1e3a8a);
+    z-index: 9999;
+    animation: loading-bar 0.6s ease-in-out;
+  }
+
+  @keyframes loading-bar {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  /* Smooth transitions for interactive elements */
+  a,
+  button,
+  input,
+  textarea {
+    transition: all 0.2s ease;
+  }
+
+  /* Enhanced focus states during transitions */
+  .transitioning *:focus {
+    outline: none;
+  }
+
+  /* Prevent text selection during transitions */
+  .transitioning {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  /* Optimize performance for transitions */
+  .transitioning * {
+    will-change: transform, opacity;
+  }
+
+  /* Fallback for browsers without View Transitions API */
+  @supports not (view-transition-name: none) {
+    .transitioning::before {
+      display: none;
+    }
+  }
+</style>

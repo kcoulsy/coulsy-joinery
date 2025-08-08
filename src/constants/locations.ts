@@ -67,7 +67,6 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "boston-spa",
     "collingham",
     "spofforth",
-    "bramham",
   ],
   aberford: [
     "boston-spa",
@@ -104,10 +103,10 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "altofts",
     "featherstone",
   ],
-  clifford: ["boston-spa", "bramham", "thorp-arch"],
-  "east-keswick": ["bardsey", "collingham", "scarcroft"],
-  scarcroft: ["alwoodley", "bardsey", "east-keswick"],
-  pontefract: ["castleford", "rothwell", "wakefield"],
+  clifford: ["boston-spa", "bramham", "thorp-arch", "tadcaster"],
+  "east-keswick": ["bardsey", "collingham", "scarcroft", "wetherby"],
+  scarcroft: ["alwoodley", "bardsey", "east-keswick", "leeds"],
+  pontefract: ["castleford", "rothwell", "wakefield", "normanton"],
   wakefield: [
     "rothwell",
     "castleford",
@@ -117,7 +116,7 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "normanton",
     "knottingley",
   ],
-  walton: ["thorp-arch", "wetherby", "tadcaster"],
+  walton: ["thorp-arch", "wetherby", "tadcaster", "boston-spa"],
   leeds: [
     "york",
     "harrogate",
@@ -127,7 +126,6 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "horsforth",
     "ilkley",
     "otley",
-    "wetherby",
   ],
   york: [
     "selby",
@@ -138,16 +136,14 @@ export const NEARBY_LOCATIONS: Record<string, string[]> = {
     "welburn",
     "stamford-bridge",
     "towton",
-    "wetherby",
-    "leeds",
   ],
-  ripon: ["thirsk", "masham", "boroughbridge", "leeds", "york"],
-  harrogate: ["knaresborough", "spofforth", "pannal", "ripley", "follifoot"],
-  knaresborough: ["harrogate", "ripley", "follifoot", "york"],
-  wetherby: ["leeds", "boston-spa", "tadcaster", "bramham", "collingham"],
-  selby: ["york", "tadcaster", "goole", "howden"],
-  malton: ["york", "pocklington", "norton", "pickering"],
-  ilkley: ["otley", "keighley", "skipton", "menston"],
+  ripon: ["thirsk", "masham", "boroughbridge", "knaresborough", "harrogate"],
+  harrogate: ["knaresborough", "spofforth", "pannal", "ripley", "follifoot", "otley"],
+  knaresborough: ["harrogate", "ripley", "follifoot", "pannal", "spofforth", "boroughbridge"],
+  wetherby: ["leeds", "boston-spa", "tadcaster", "bramham", "collingham", "scarcroft"],
+  selby: ["york", "tadcaster", "pocklington", "elvington"],
+  malton: ["york", "pocklington", "elvington", "welburn", "stamford-bridge"],
+  ilkley: ["otley", "harrogate", "horsforth", "leeds"],
 };
 
 const EARTH_RADIUS_MILES = 3958.8;

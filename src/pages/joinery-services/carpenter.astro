@@ -22,15 +22,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert structural carpentry services ${locationInText.trim()} by City & Guilds qualified joiner. Roofs, floors, timber framing & studwork. 30+ years experience, new builds & renovations. Get your structural work done right.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert carpentry services ${locationInText} by City & Guilds qualified joiner. Structural carpentry for roofs, floors & timber frames. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText.trim()} | Structural Carpentry for Roofs, Floors & Timber Frames`}
+  title={`${pageTitle} | Structural Carpentry for Roofs, Floors & Timber Frames`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -43,153 +49,283 @@ const finalDescription = description || defaultDescription;
     />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
+
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}
-        {
-          locationInText
-            .trim()
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())
-        }
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            Hi, I’m Robert — a time-served carpenter and joiner with over 30
-            years of experience working on everything from new builds and
-            extensions to restorations and roofing. I take pride in doing things
-            properly — no shortcuts, no guesswork — just solid, reliable work.
-            Whether you're after site carpentry, roof carcassing, or floor joist
-            installation, I offer practical solutions tailored to each build.
-          </p>
-
-          <p>
-            I'm a <a
-              href="/qualifications"
-              class="text-blue-700 font-semibold hover:underline"
-            >
-              fully qualified City & Guilds joiner</a
-            > with decades of practical site experience.
-          </p>
-
-          <p>
-            Carpentry is the backbone of any build. Whether it’s first fix stud
-            walls, joists, roof structures, or floor systems, I make sure
-            everything is measured, marked, and fixed with care. My work sets
-            the standard for whatever follows — and I treat that responsibility
-            seriously.
-          </p>
-
-          <p>
-            I bring a mix of traditional skill and modern tools to every job.
-            From cutting in rafters and installing trusses to prepping timber
-            frames for cladding, it’s all about getting the structure right and
-            leaving it neat, plumb, and ready for the next trade. I also work
-            closely with builders and project managers to ensure timber frames
-            are correctly aligned and set out from the start.
-          </p>
-          {
-            cleanLocationName && (
-              <p>
-                {cleanLocationName} features a wide range of property types —
-                from traditional stone cottages to modern developments. Whether
-                it’s structural roof timber, floor carcassing, or wall framing,
-                I tailor each job to suit the character and needs of local
-                buildings.
-              </p>
-            )
-          }
-
-          <p>
-            You can also <a
-              href="/about"
-              class="font-semibold text-blue-700 hover:underline"
-              >learn more about me here</a
-            > or see <a
-              href="/qualifications"
-              class="font-semibold text-blue-700 hover:underline"
-              >what qualifications and experience I bring to the job</a
-            >.
-          </p>
-
-          <p>
-            I’m based in North Yorkshire and work in and around {
-              locationInText.trim()
-                ? locationInText.trim().replace(/^in\s*/, "")
-                : "the surrounding area"
-            }. If you’re looking for a dependable carpenter who turns up, gets
-            stuck in, and delivers work that lasts — I’d be glad to help.
-          </p>
-
-          <p>
-            Feel free to <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >get in touch</a
-            > for a chat about your project. Whether it’s domestic or commercial,
-            I’m happy to offer advice and a no-obligation quote.
-          </p>
-          <ReviewsLinkSection />
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+        >
         </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
+      </div>
 
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  alt: `Traditional moulding plane used in fine carpentry work${locationInText}`,
-                  label: "Traditional Moulding Plane Joinery Tool",
-                },
-                {
-                  src: galleryImg2,
-                  alt: `Bench plane used in structural woodworking and carpentry${locationInText}`,
-                  label: "Precision Bench Plane Joinery",
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Custom wooden garage door built by structural carpenter${locationInText}`,
-                  label: "Custom Wooden Garage Door",
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Raised wood panel feature from heritage carpentry project${locationInText}`,
-                  label: "Heritage Raised Panel Joinery",
-                },
-              ]}
-            />
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">Structural Carpentry</span>
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Expert structural carpentry for roofs, floors, and timber framing.
+              City & Guilds qualified with 30+ years experience in new builds
+              and renovations.
+            </p>
           </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      Hi, I'm Robert — a time-served carpenter and joiner with
+                      over 30 years of experience working on everything from new
+                      builds and extensions to restorations and roofing. I take
+                      pride in doing things properly — no shortcuts, no
+                      guesswork — just solid, reliable work.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  I'm a <a
+                    href="/qualifications"
+                    class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                    >fully qualified City & Guilds joiner</a
+                  > with decades of practical site experience.
+                </p>
+                <p>
+                  Carpentry is the backbone of any build. Whether it's first fix
+                  stud walls, joists, roof structures, or floor systems, I make
+                  sure everything is measured, marked, and fixed with care. My
+                  work sets the standard for whatever follows — and I treat that
+                  responsibility seriously.
+                </p>
+                <p>
+                  I bring a mix of traditional skill and modern tools to every
+                  job. From cutting in rafters and installing trusses to
+                  prepping timber frames for cladding, it's all about getting
+                  the structure right and leaving it neat, plumb, and ready for
+                  the next trade.
+                </p>
+                <p>
+                  I also work closely with builders and project managers to
+                  ensure timber frames are correctly aligned and set out from
+                  the start.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} features a wide range of property
+                      types — from traditional stone cottages to modern
+                      developments. Whether it's structural roof timber, floor
+                      carcassing, or wall framing, I tailor each job to suit the
+                      character and needs of local buildings.
+                    </p>
+                  )
+                }
+              </div>
+
+              <!-- Why Work With Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
               >
-                Get in Touch About Your Carpentry Project
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                If you're planning structural carpentry work — from floors and
-                roofing to framing and first fix — feel free to reach out. I’d
-                be happy to discuss how I can help.
-              </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-              />
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Work With Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p>
+                      I'm based in North Yorkshire and work in and around {
+                        locationInText.trim()
+                          ? locationInText.trim().replace(/^in\s*/, "")
+                          : "the surrounding area"
+                      }. If you're looking for a dependable carpenter who turns
+                      up, gets stuck in, and delivers work that lasts — I'd be
+                      glad to help.
+                    </p>
+                    <p>
+                      You can also <a
+                        href="/about"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >learn more about me here</a
+                      >
+                      or see <a
+                        href="/qualifications"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >what qualifications and experience I bring to the job</a
+                      >.
+                    </p>
+                    <p>
+                      Feel free to <a
+                        href="/contact"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >get in touch</a
+                      >
+                      for a chat about your project. Whether it's domestic or commercial,
+                      I'm happy to offer advice and a professional quote.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
             </div>
           </div>
-        </aside>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Carpentry Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our structural carpentry projects
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Traditional moulding plane used in fine carpentry work${locationInText}`,
+                        label: "Traditional Moulding Plane Joinery Tool",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Bench plane used in structural woodworking and carpentry${locationInText}`,
+                        label: "Precision Bench Plane Joinery",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Custom wooden garage door built by structural carpenter${locationInText}`,
+                        label: "Custom Wooden Garage Door",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Raised wood panel feature from heritage carpentry project${locationInText}`,
+                        label: "Heritage Raised Panel Joinery",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Your Carpentry Project
+                    </h2>
+                    <p class="text-brand-100">
+                      If you're planning structural carpentry work — from floors
+                      and roofing to framing and first fix — feel free to reach
+                      out. I'd be happy to discuss how I can help.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <NearbyAreas />
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

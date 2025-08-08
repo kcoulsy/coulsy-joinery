@@ -24,15 +24,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert general joinery services ${locationInText} by City & Guilds qualified joiner. Doors, floors, stairs, repairs & finishing work. 30+ years experience, personal service. Get your joinery done properly.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert general joinery ${locationInText} by City & Guilds qualified joiner. Doors, floors, stairs & repairs. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Trusted Local Joiner for Doors, Floors, Stairs & Repairs`}
+  title={`${pageTitle} | Trusted Local Joiner for Doors, Floors, Stairs & Repairs`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -47,166 +53,406 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-
-      <h1 class="text-3xl font-bold tracking-tight pb-4">
-        {formattedServiceName}
-        {
-          locationInText
-            .trim()
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())
-        }
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <p>
-            I provide friendly, high-quality general joinery services{
-              locationInText
-            }, personally delivered with the care and detail you'd expect from
-            someone who genuinely loves the craft. I'm Robert — a fully
-            time-served joiner with over 30 years of hands-on experience in
-            woodwork and building. I personally carry out and oversee every job,
-            working with a small, trusted team to deliver work we're proud of.
-          </p>
-
-          <p>
-            Whether you need a door hung, new skirting boards, or a complete
-            internal refurbishment, you’ll always deal directly with experienced
-            craftsmen. We bring traditional skills and modern techniques
-            together, ensuring your project is completed properly, first time.
-          </p>
-
-          <p>
-            From small repairs to larger improvements, we offer a personal,
-            straightforward service for homeowners, landlords, and businesses{
-              locationInText
-            }.
-          </p>
-
-          <h3 class="font-semibold text-lg">
-            General Joinery Services{locationInText}
-          </h3>
-          <ul>
-            <li>Door hanging and adjustments</li>
-            <li>Skirting and architrave fitting</li>
-            <li>Stud wall and partition wall construction</li>
-            <li>Flooring installation (engineered wood, laminate, hardwood)</li>
-            <li>Pipe and radiator boxing</li>
-            <li>Staircase repairs and refurbishments</li>
-            <li>Window seats and made-to-measure shelving</li>
-            <li>General internal joinery and finishing work</li>
-          </ul>
-
-          <h3 class="font-semibold text-lg">Dependable Craftsmanship</h3>
-          <p>
-            When you work with me, you’re getting real craftsmanship — I care
-            about the finish and the finer details. We take the same care on a
-            simple door hanging as we do on a full renovation.
-          </p>
-          <p>
-            I'm a <a
-              href="/qualifications"
-              class="text-blue-700 font-semibold hover:underline"
-            >
-              fully qualified City & Guilds joiner</a
-            > with decades of practical site experience.
-          </p>
-
-          <h3 class="font-semibold text-lg">Skilled and Experienced</h3>
-          <p>
-            I’m a fully qualified City & Guilds joiner with decades of
-            experience and a reputation for honest advice, quality work, and
-            treating every home with care.
-          </p>
-
-          <h3 class="font-semibold text-lg">Get in Touch</h3>
-          <p>
-            Thinking about some joinery work? I’m always happy to have a chat,
-            offer advice, and provide a no-pressure quote.
-          </p>
-          {
-            cleanLocationName && (
-              <p>
-                {cleanLocationName} includes a wide variety of homes and
-                property types — from modern builds to traditional Yorkshire
-                stone houses. I tailor each job to suit the setting, whether
-                it’s matching mouldings, working around older features, or
-                installing fresh timber details that respect the character of
-                the space.
-              </p>
-            )
-          }
-          <ReviewsLinkSection />
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+        >
         </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
+      </div>
 
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  label: "English Oak Picture Frame Joinery",
-                  alt: `Handcrafted English oak picture frame and internal door trim, finished to a high joinery standard${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                },
-                {
-                  src: galleryImg2,
-                  label: "Handmade Solid Ash Vanity Cabinet",
-                  alt: `Bespoke ash bathroom vanity cabinet with traditional joinery detailing${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                },
-                {
-                  src: galleryImg3,
-                  label: "Composite Decking Installation with Framed Base",
-                  alt: `Composite garden decking installation with framed support and timber finish${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                },
-                {
-                  src: galleryImg4,
-                  label: "Stud Wall Room Partition",
-                  alt: `Stud wall room partition with plasterboard and finished internal joinery${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                },
-                {
-                  src: galleryImg5,
-                  label: "Treated fencing and gates for bin store",
-                  alt: `Treated timber fencing and gates installed for a bin store enclosure${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                  loading: "lazy",
-                },
-                {
-                  src: galleryImg6,
-                  label: "Handmade Oak Mirror Frame",
-                  alt: `Handmade oak mirror frame crafted with traditional joinery techniques${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                  loading: "lazy",
-                },
-              ]}
-            />
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">General Joinery</span>
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Expert general joinery services with personal attention to detail.
+              Doors, floors, stairs, repairs and finishing work by a City &
+              Guilds qualified joiner.
+            </p>
           </div>
-          <div class="w-full order-last md:order-none">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      I provide friendly, high-quality general joinery services{
+                        locationInText
+                      }, personally delivered with the care and detail you'd
+                      expect from someone who genuinely loves the craft. I'm
+                      Robert — a fully time-served joiner with over 30 years of
+                      hands-on experience in woodwork and building.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Whether you need a door hung, new skirting boards, or a
+                  complete internal refurbishment, you'll always deal directly
+                  with experienced craftsmen. We bring traditional skills and
+                  modern techniques together, ensuring your project is completed
+                  properly, first time.
+                </p>
+                <p>
+                  From small repairs to larger improvements, we offer a
+                  personal, straightforward service for homeowners, landlords,
+                  and businesses{locationInText}.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="card card-hover border-l-4 border-accent-500">
+                <div class="card-body">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    General Joinery Services{locationInText}
+                  </h3>
+                  <ul class="space-y-2 text-neutral-600">
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Door hanging and adjustments
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Skirting and architrave fitting
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Stud wall and partition wall construction
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Flooring installation (engineered wood, laminate, hardwood)
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Pipe and radiator boxing
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Staircase repairs and refurbishments
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Window seats and made-to-measure shelving
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      General internal joinery and finishing work
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Dependable Craftsmanship
+                    </h3>
+                    <p class="text-neutral-600">
+                      When you work with me, you're getting real craftsmanship —
+                      I care about the finish and the finer details. We take the
+                      same care on a simple door hanging as we do on a full
+                      renovation.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I'm a <a
+                        href="/qualifications"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >fully qualified City & Guilds joiner</a
+                      > with decades of practical site experience.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Skilled and Experienced
+                    </h3>
+                    <p class="text-neutral-600">
+                      I'm a fully qualified City & Guilds joiner with decades of
+                      experience and a reputation for honest advice, quality
+                      work, and treating every home with care.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
               >
-                Get in Touch About Joinery Work
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Considering general joinery work? Whether it’s repairs,
-                upgrades, or a complete interior refit — I’d be happy to chat
-                and see how I can help.
-              </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your project? Get in touch for a free, no-obligation quote."
-              />
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      Thinking about some joinery work? I'm always happy to have
+                      a chat, offer advice, and provide a no-pressure quote.
+                    </p>
+                    {
+                      cleanLocationName && (
+                        <p class="text-neutral-600">
+                          {cleanLocationName} includes a wide variety of homes
+                          and property types — from modern builds to traditional
+                          Yorkshire stone houses. I tailor each job to suit the
+                          setting, whether it's matching mouldings, working
+                          around older features, or installing fresh timber
+                          details that respect the character of the space.
+                        </p>
+                      )
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
             </div>
           </div>
-        </aside>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our General Joinery Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our craftsmanship and attention to detail
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        label: "English Oak Picture Frame Joinery",
+                        alt: `Handcrafted English oak picture frame and internal door trim, finished to a high joinery standard${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg2,
+                        label: "Handmade Solid Ash Vanity Cabinet",
+                        alt: `Bespoke ash bathroom vanity cabinet with traditional joinery detailing${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg3,
+                        label:
+                          "Composite Decking Installation with Framed Base",
+                        alt: `Composite garden decking installation with framed support and timber finish${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg4,
+                        label: "Stud Wall Room Partition",
+                        alt: `Stud wall room partition with plasterboard and finished internal joinery${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg5,
+                        label: "Treated fencing and gates for bin store",
+                        alt: `Treated timber fencing and gates installed for a bin store enclosure${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg6,
+                        label: "Handmade Oak Mirror Frame",
+                        alt: `Handmade oak mirror frame crafted with traditional joinery techniques${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Joinery Work
+                    </h2>
+                    <p class="text-brand-100">
+                      Considering general joinery work? Whether it's repairs,
+                      upgrades, or a complete interior refit — I'd be happy to
+                      chat and see how I can help.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <NearbyAreas />
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

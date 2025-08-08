@@ -29,15 +29,21 @@ const {
   serviceSchema,
   faqSchema,
   defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert kitchen installation services ${locationInText} by City & Guilds qualified joiner. Full kitchen fitting, Howdens & Magnet installations, bespoke designs & repairs. 30+ years experience, free quotes. Get your kitchen fitted properly with care.`;
-const finalDescription = description || defaultDescription;
+const description = `Expert kitchen installation ${locationInText} by City & Guilds qualified joiner. Domestic & trade kitchen fitting. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
 ---
 
 <Layout
-  title={`${formattedServiceName} ${locationInText} | Experienced Kitchen Installer & Fitter for Domestic & Trade Projects`}
+  title={`${pageTitle} | Experienced Kitchen Installer & Fitter for Domestic & Trade Projects`}
   description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
 >
   <Fragment slot="head">
     <script
@@ -52,249 +58,391 @@ const finalDescription = description || defaultDescription;
   </Fragment>
 
   <main class="mx-auto md:mt-16 relative z-10">
-    <section class="w-full container mx-auto px-4 sm:px-6 py-8">
-      <Breadcrumb
-        crumbs={[
-          { label: "Joinery Services", href: "/joinery-services" },
-          { label: formattedServiceName, current: true },
-        ]}
-      />
-      <div
-        class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-10 shadow-sm text-center"
-      >
-        <h1 class="text-3xl font-bold tracking-tight pb-4">
-          {formattedServiceName}
-          {
-            locationInText
-              .trim()
-              .replace(/-/g, " ")
-              .replace(/\b\w/g, (c) => c.toUpperCase())
-          }
-        </h1>
-        <p class="text-gray-700 text-lg mb-4">
-          I’m Robert, the owner and joiner behind Coulsy Joinery. When you work
-          with me, you’re getting more than a kitchen fitter — you’re getting
-          personal, expert service from the first conversation to the final
-          handover.
-        </p>
-        <p class="text-gray-700 text-base">
-          Whether you're in need of a local kitchen fitter, a full kitchen
-          renovation, or a professional joiner to install trade-supplied
-          kitchens from Howdens or Magnet – I'm here to deliver high quality,
-          efficient, and reliable service every time.
-        </p>
-        <a
-          href="/contact"
-          class="inline-block bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+    <!-- Hero Section with modern styling -->
+    <section
+      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
+    >
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
         >
-          Get in Touch About Your Kitchen
-        </a>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-8">
-        <div class="space-y-4 text-gray-600 prose">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-            Local Kitchen Fitting {locationInText} with a Joiner You Can Trust
-          </h2>
-          <p>
-            I’m Robert — a qualified joiner with over 30 years of experience
-            fitting kitchens {locationInText}. I personally handle everything
-            from the first measurement to the final handover. No middlemen, no
-            fuss — just a reliable job done right.
-          </p>
-          <p>
-            Whether it’s your home, a rental property, or a commercial kitchen,
-            I bring the same care and precision to every fit. I’ve worked on
-            everything from one-off domestic kitchens to multi-unit housing
-            developments and trade-supplied kitchen installs.
-          </p>
-          {
-            cleanLocationName && (
-              <p>
-                {cleanLocationName} includes a wide mix of property types, and I
-                tailor kitchen installs to suit. From tight retrofits to
-                open-plan layouts, I always make sure the kitchen is fitted with
-                care, to match the space and how it’s going to be used.
-              </p>
-            )
-          }
-
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-4">
-            Fitting Kitchens from All Major Brands
-          </h2>
-          <p>
-            I fit kitchens from Howdens, Magnet, DIY Kitchens, and others —
-            always to a high standard. Whether you’ve already got your kitchen
-            ready or need help choosing the right setup, I’ll make sure it’s
-            measured, installed, and finished properly.
-          </p>
-          <div class="flex items-center gap-4 mt-2">
-            <Image
-              src={howdensLogo}
-              alt="Howdens Joinery Logo"
-              width={100}
-              height={40}
-              class="h-8 w-auto"
-              loading="lazy"
-            />
-            <Image
-              src={magnetLogo}
-              alt="Magnet Kitchens Logo"
-              width={100}
-              height={40}
-              class="h-8 w-auto"
-              loading="lazy"
-            />
-            <Image
-              src={diyKitchensLogo}
-              alt="DIY Kitchens Logo"
-              width={100}
-              height={40}
-              class="h-8 w-auto"
-              loading="lazy"
-            />
-          </div>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Domestic Kitchen Fitting
-          </h3>
-          <p>
-            I fit kitchens in homes {locationInText} — whether it’s a fresh renovation
-            or part of a new build. You get a clean, precise finish every time.
-          </p>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Commercial Installations
-          </h3>
-          <p>
-            I also fit kitchens for offices, retail units, and hospitality
-            spaces {locationInText}. Always on time and built to last.
-          </p>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Accessible Kitchens
-          </h3>
-          <p>
-            I can adapt kitchens for wheelchair users or reduced mobility — with
-            safety, comfort, and independence in mind.
-          </p>
-          <p>
-            <a
-              href="/joinery-services/accessible-kitchen-installers"
-              class="font-semibold text-blue-700 hover:underline"
-            >
-              Explore Accessible Options
-            </a>
-          </p>
-
-          <h2 class="text-2xl sm:text-3xl font-bold text-blue-800 mt-10 mb-4">
-            Why Choose Me for Your Kitchen Installation {locationInText}?
-          </h2>
-          <p>
-            As the person who will actually be carrying out the work, you get
-            direct communication and consistent quality. I don’t cut corners,
-            and I treat your space with respect — everything covered and cleaned
-            before I leave.
-          </p>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">Dependable</h3>
-          <p>
-            From start to finish, I’ll keep things running smoothly — turning up
-            when I say and getting it done to a high standard.
-          </p>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">Experienced</h3>
-          <p>
-            With three decades of hands-on experience, I bring joinery skill and
-            kitchen-fitting know-how that makes a difference.
-          </p>
-
-          <h3 class="text-lg font-semibold text-gray-700 mt-4">
-            Trusted Locally
-          </h3>
-          <p>
-            Many of my kitchen projects {locationInText} come from word of mouth.
-            I take pride in that, and I work hard to keep it that way.
-          </p>
-
-          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mt-10 mb-4">
-            Let’s Chat About Your Kitchen
-          </h2>
-          <p>
-            <a
-              href="/contact"
-              class="font-semibold text-blue-700 hover:underline"
-              >Get in touch</a
-            > to arrange a no-pressure quote. I’ll help make your dream kitchen a
-            reality — fitted properly and built to last.
-          </p>
-          <ReviewsLinkSection />
         </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+        >
+        </div>
+      </div>
 
-        <aside class="w-full flex flex-col items-stretch gap-6">
-          <div class="w-full order-last md:order-none">
-            <GalleryGrid
-              items={[
-                {
-                  src: galleryImg1,
-                  alt: `Domestic kitchen installation in ${cleanLocationName}`,
-                  label: "Domestic Kitchen Installation",
-                },
-                {
-                  src: galleryImg2,
-                  alt: `Commercial kitchen fitted for hospitality use in ${cleanLocationName}`,
-                  label: "Large Commercial Kitchen Fit-Out",
-                },
-                {
-                  src: galleryImg3,
-                  alt: `Modern kitchen design and installation in ${cleanLocationName}`,
-                  label: "Contemporary Kitchen Setup",
-                },
-                {
-                  src: galleryImg4,
-                  alt: `Accessible kitchen installation designed for reduced mobility in ${cleanLocationName}`,
-                  label: "Accessible Kitchen Design",
-                },
-                {
-                  src: galleryImg5,
-                  alt: `Modern kitchen installation by experienced joiners in ${cleanLocationName}`,
-                  label: "Modern Kitchen Installed",
-                  loading: "lazy",
-                },
-                {
-                  src: galleryImg6,
-                  alt: `Precision joinery on kitchen project in ${cleanLocationName}, fitted kitchens from Howdens and Magnet`,
-                  label: "Precision Kitchen Fitting",
-                  loading: "lazy",
-                },
-              ]}
-            />
+      <div class="container-wide relative">
+        <div class="animate-on-scroll">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+
+          <div class="text-center mb-8">
+            <span class="badge badge-primary mb-4">Kitchen Installation</span>
+            <h1 class="section-title text-gradient mb-6">
+              {pageTitle}
+            </h1>
+            <p class="section-subtitle text-balance max-w-4xl mx-auto">
+              Expert kitchen installation services by City & Guilds qualified
+              joiner. Full kitchen fitting, Howdens & Magnet installations,
+              bespoke designs & repairs.
+            </p>
           </div>
-          <div class="w-full">
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-              <h2
-                class="text-xl sm:text-2xl font-bold mb-4 text-gray-800 text-center"
+
+          <!-- Hero CTA Card -->
+          <div
+            class="card card-hover gradient-brand text-white max-w-4xl mx-auto"
+          >
+            <div class="card-body text-center">
+              <div
+                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
               >
-                Get in Touch
-              </h2>
-              <p class="text-gray-600 mb-6 text-center">
-                Planning a new kitchen installation or upgrade? I’d love to help
-                bring your vision to life.
+                <svg
+                  class="w-8 h-8 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h2 class="text-2xl font-bold mb-4">Personal, Expert Service</h2>
+              <p class="text-brand-100 mb-6">
+                I'm Robert, the owner and joiner behind Coulsy Joinery. When you
+                work with me, you're getting more than a kitchen fitter — you're
+                getting personal, expert service from the first conversation to
+                the final handover.
               </p>
-              <ModernContactForm
-                title="Get Your Free Quote"
-                subtitle="Ready to start your kitchen installation project? Get in touch for a free, no-obligation quote."
-              />
+              <a
+                href="/contact"
+                class="btn btn-secondary btn-lg hover-lift focus-ring"
+              >
+                Get in Touch About Your Kitchen
+              </a>
             </div>
           </div>
-        </aside>
+        </div>
       </div>
+    </section>
 
-      <p class="text-sm text-gray-600 text-center mt-10">
-        Looking for a trusted kitchen installer or joiner {locationInText}? I
-        fit kitchens across the region with care, precision, and over 30 years
-        of hands-on experience.
-      </p>
-      <NearbyAreas />
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      I'm Robert — a qualified joiner with over 30 years of
+                      experience fitting kitchens {locationInText}. I personally
+                      handle everything from the first measurement to the final
+                      handover. No middlemen, no fuss — just a reliable job done
+                      right.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Whether it's your home, a rental property, or a commercial
+                  kitchen, I bring the same care and precision to every fit.
+                  I've worked on everything from one-off domestic kitchens to
+                  multi-unit housing developments and trade-supplied kitchen
+                  installs.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} includes a wide mix of property types,
+                      and I tailor kitchen installs to suit. From tight
+                      retrofits to open-plan layouts, I always make sure the
+                      kitchen is fitted with care, to match the space and how
+                      it's going to be used.
+                    </p>
+                  )
+                }
+              </div>
+
+              <!-- Brand Logos Section -->
+              <div class="card card-hover p-6">
+                <h2 class="text-2xl font-bold text-neutral-900 mb-4">
+                  Fitting Kitchens from All Major Brands
+                </h2>
+                <p class="mb-4">
+                  I fit kitchens from Howdens, Magnet, DIY Kitchens, and others
+                  — always to a high standard. Whether you've already got your
+                  kitchen ready or need help choosing the right setup, I'll make
+                  sure it's measured, installed, and finished properly.
+                </p>
+                <div class="flex items-center gap-4 mt-4">
+                  <Image
+                    src={howdensLogo}
+                    alt="Howdens Joinery Logo"
+                    width={100}
+                    height={40}
+                    class="h-8 w-auto"
+                    loading="lazy"
+                  />
+                  <Image
+                    src={magnetLogo}
+                    alt="Magnet Kitchens Logo"
+                    width={100}
+                    height={40}
+                    class="h-8 w-auto"
+                    loading="lazy"
+                  />
+                  <Image
+                    src={diyKitchensLogo}
+                    alt="DIY Kitchens Logo"
+                    width={100}
+                    height={40}
+                    class="h-8 w-auto"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <!-- Services Section -->
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Domestic Kitchen Fitting
+                    </h3>
+                    <p class="text-neutral-600">
+                      I fit kitchens in homes {locationInText} — whether it's a fresh
+                      renovation or part of a new build. You get a clean, precise
+                      finish every time.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Commercial Installations
+                    </h3>
+                    <p class="text-neutral-600">
+                      I also fit kitchens for offices, retail units, and
+                      hospitality spaces {locationInText}. Always on time and
+                      built to last.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Accessible Kitchens
+                    </h3>
+                    <p class="text-neutral-600">
+                      I can adapt kitchens for wheelchair users or reduced
+                      mobility — with safety, comfort, and independence in mind.
+                    </p>
+                    <a
+                      href="/joinery-services/accessible-kitchen-installers"
+                      class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                    >
+                      Explore Accessible Options
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <div>
+                      <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                        Dependable
+                      </h3>
+                      <p class="text-neutral-600">
+                        From start to finish, I'll keep things running smoothly
+                        — turning up when I say and getting it done to a high
+                        standard.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                        Experienced
+                      </h3>
+                      <p class="text-neutral-600">
+                        With three decades of hands-on experience, I bring
+                        joinery skill and kitchen-fitting know-how that makes a
+                        difference.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                        Trusted Locally
+                      </h3>
+                      <p class="text-neutral-600">
+                        Many of my kitchen projects {locationInText} come from word
+                        of mouth. I take pride in that, and I work hard to keep it
+                        that way.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Kitchen Installations
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our kitchen fitting projects
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Domestic kitchen installation in ${cleanLocationName}`,
+                        label: "Domestic Kitchen Installation",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Commercial kitchen fitted for hospitality use in ${cleanLocationName}`,
+                        label: "Large Commercial Kitchen Fit-Out",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Modern kitchen design and installation in ${cleanLocationName}`,
+                        label: "Contemporary Kitchen Setup",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Accessible kitchen installation designed for reduced mobility in ${cleanLocationName}`,
+                        label: "Accessible Kitchen Design",
+                      },
+                      {
+                        src: galleryImg5,
+                        alt: `Modern kitchen installation by experienced joiners in ${cleanLocationName}`,
+                        label: "Modern Kitchen Installed",
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg6,
+                        alt: `Precision joinery on kitchen project in ${cleanLocationName}, fitted kitchens from Howdens and Magnet`,
+                        label: "Precision Kitchen Fitting",
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Get in Touch</h2>
+                    <p class="text-brand-100">
+                      Planning a new kitchen installation or upgrade? I'd love
+                      to help bring your vision to life.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your kitchen installation project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

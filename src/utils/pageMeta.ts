@@ -1,8 +1,5 @@
+import { capitalizeFirstLetter, formatLocationName } from "./capitalizeFirstLetter";
 import { LOCATIONS } from "../constants/locations";
-
-export function capitalizeFirstLetter(str: string) {
-  return str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
-}
 
 export function getFormattedPageData(Astro: any): {
   formattedServiceName: string;
@@ -16,30 +13,74 @@ export function getFormattedPageData(Astro: any): {
   lastmod: string;
   enhancedKeywords: string;
   enhancedDescription: string;
+  pageTitle: string;
 } {
-  const { location } = Astro.params;
-  const pathname = Astro.url.pathname;
-  const rawType = pathname.replace(/\/$/, "").split("/").pop() ?? "";
+  const { location, service } = Astro.params;
+  
+  // Determine service name from the current page path
+  let serviceName = "joinery"; // default fallback
+  
+  if (service) {
+    // If service parameter exists, use it
+    serviceName = service;
+  } else {
+    // Extract service name from the current page path
+    const pathname = Astro.url.pathname;
+    const pathSegments = pathname.split('/');
+    
+    // Look for service name in the path
+    for (let i = 0; i < pathSegments.length; i++) {
+      const segment = pathSegments[i];
+      if (segment === 'joinery-services' && pathSegments[i + 1]) {
+        const nextSegment = pathSegments[i + 1];
+        
+        // Check if this is a location-service format by looking for known location slugs
+        const knownLocations = LOCATIONS.map(l => l.slug);
+        
+        // Check if the segment starts with a known location
+        let foundLocation = null;
+        for (const loc of knownLocations) {
+          if (nextSegment.startsWith(loc + '-')) {
+            foundLocation = loc;
+            break;
+          }
+        }
+        
+        if (foundLocation) {
+          // Remove the location part and join the rest as service name
+          serviceName = nextSegment.substring(foundLocation.length + 1); // +1 for the hyphen
+        } else {
+          // It's just a service name (no location)
+          serviceName = nextSegment;
+        }
+        break;
+      }
+    }
+  }
+  
+  // Clean and format the service name - preserve hyphens for multi-word services
+  const cleanRawType = serviceName.replace(/[^a-zA-Z-]/g, "");
+  const baseType = cleanRawType;
 
-  const cleanRawType = rawType.replace(/\.html$/i, "");
-
-  const baseType = location
-    ? cleanRawType
-        .replace(new RegExp(`^${location}-`, "i"), "")
-        .replace(new RegExp(`-${location}$`, "i"), "")
-    : cleanRawType;
-
+  // Split by hyphens and capitalize each part, then join with spaces
   const formattedServiceName = baseType
     .split("-")
-    .map(capitalizeFirstLetter)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
     .join(" ");
 
-  const locationFormated = location ? capitalizeFirstLetter(location) : "";
+  const locationFormated = location ? formatLocationName(location) : "";
   const locationInText = location ? ` in ${locationFormated}` : "";
 
   const cleanLocationName = location
-    ? location.trim().replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())
+    ? formatLocationName(location)
     : "";
+
+  // Create SEO-friendly page title
+  let pageTitle = formattedServiceName;
+  if (location) {
+    // For location-specific pages, use format: "Door Hanging in Boston Spa" or "Boston Spa Door Hanging Services"
+    pageTitle = `${formattedServiceName} in ${cleanLocationName}`;
+  }
 
   const fallbackGeo = { lat: 53.9655, lng: -1.205 };
   const geo = LOCATIONS.find((l) => l.slug === location) ?? fallbackGeo;
@@ -176,6 +217,7 @@ export function getFormattedPageData(Astro: any): {
     faqSchema,
     lastmod: "2025-01-27",
     enhancedKeywords,
-    enhancedDescription
+    enhancedDescription,
+    pageTitle
   };
 }

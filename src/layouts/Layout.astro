@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import WebDevFooter from "../components/WebDevFooter.astro";
 import CookieBanner from "../components/CookieBanner.astro";
+import SmoothScroll from "../components/SmoothScroll.astro";
+import ViewTransitions from "../components/ViewTransitions.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -58,15 +60,18 @@ const enhancedKeywords = keywords
       content={noindex ? "noindex, nofollow" : "index, follow"}
     />
 
-                    <!-- Performance optimizations -->
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-                <link rel="dns-prefetch" href="https://analytics.coulsy.dev" />
-                
-                <!-- Google Fonts -->
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://analytics.coulsy.dev" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -118,21 +123,26 @@ const enhancedKeywords = keywords
       /* Critical CSS for above-the-fold content */
       body {
         margin: 0;
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: "Inter", system-ui, sans-serif;
         line-height: 1.6;
         color: #171717;
         background-color: #ffffff;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Poppins', system-ui, sans-serif;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", system-ui, sans-serif;
         font-weight: 600;
         line-height: 1.2;
         color: #171717;
       }
-      
+
       .loading {
         opacity: 0;
       }
@@ -140,22 +150,24 @@ const enhancedKeywords = keywords
         opacity: 1;
         transition: opacity 0.3s ease-in;
       }
-      
+
       /* Smooth scrolling */
-      html { scroll-behavior: smooth; }
-      
+      html {
+        scroll-behavior: smooth;
+      }
+
       /* Animation utilities */
       .animate-on-scroll {
         opacity: 0;
         transform: translateY(30px);
         transition: all 0.6s ease-out;
       }
-      
+
       .animate-on-scroll.animate-in {
         opacity: 1;
         transform: translateY(0);
       }
-      
+
       /* Glass morphism */
       .glass {
         background: rgba(255, 255, 255, 0.1);
@@ -163,16 +175,64 @@ const enhancedKeywords = keywords
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
+
+      /* Enhanced focus styles for accessibility */
+      *:focus {
+        outline: 2px solid #1e3a8a;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      /* Skip link for accessibility */
+      .skip-link {
+        position: absolute !important;
+        top: -40px !important;
+        left: 6px !important;
+        background: linear-gradient(135deg, #1e2a38, #1e3a8a) !important;
+        color: white !important;
+        padding: 12px 16px !important;
+        text-decoration: none !important;
+        border-radius: 8px !important;
+        z-index: 1000 !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        transition: all 0.3s ease !important;
+      }
+
+      .skip-link:focus {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        top: 6px !important;
+      }
+
+      .skip-link:hover {
+        background: linear-gradient(135deg, #1e3a8a, #1e40af) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15) !important;
+      }
     </style>
   </head>
   <body class="flex flex-col min-h-screen overflow-x-hidden loading">
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link"> Skip to main content </a>
+
     <Navbar transparent={transparentHeader} />
-    <main class={`flex-1 ${classes}`}>
+    <main id="main-content" class={`flex-1 ${classes}`}>
       <slot />
     </main>
     <Footer />
     <WebDevFooter location={location} />
     <CookieBanner />
+
+    <!-- Enhanced Components -->
+    <SmoothScroll />
+    <ViewTransitions />
 
     <!-- Intersection Observer for animations -->
     <script>
@@ -190,6 +250,35 @@ const enhancedKeywords = keywords
         });
       }, observerOptions);
 
+      // Enhanced animations initialization
+      function initializeEnhancedAnimations() {
+        // Add stagger animations to cards and sections
+        const cards = document.querySelectorAll(
+          ".card, .service-card, .team-card, .qualification-card, .compliance-card, .sustainability-card"
+        );
+        cards.forEach((card, index) => {
+          if (card instanceof HTMLElement) {
+            card.style.animationDelay = `${index * 0.1}s`;
+          }
+        });
+
+        // Add parallax effect to hero sections
+        const heroSections = document.querySelectorAll(
+          ".hero-section, .hero-slider"
+        );
+        if (heroSections.length > 0) {
+          window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset;
+            heroSections.forEach((section) => {
+              if (section instanceof HTMLElement) {
+                const rate = scrolled * -0.5;
+                section.style.transform = `translateY(${rate}px)`;
+              }
+            });
+          });
+        }
+      }
+
       // Observe all elements with animate-on-scroll class
       document.addEventListener("DOMContentLoaded", () => {
         const animatedElements =
@@ -199,6 +288,9 @@ const enhancedKeywords = keywords
         // Remove loading class
         document.body.classList.remove("loading");
         document.body.classList.add("loaded");
+
+        // Initialize enhanced scroll animations
+        initializeEnhancedAnimations();
       });
 
       // Performance monitoring

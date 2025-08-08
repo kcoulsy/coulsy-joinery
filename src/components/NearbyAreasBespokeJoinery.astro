@@ -1,5 +1,8 @@
 ---
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+import {
+  capitalizeFirstLetter,
+  formatLocationName,
+} from "../utils/capitalizeFirstLetter";
 import { getNearbyLocations } from "../utils/getNearbyLocations";
 import Footer from "./NearbyAreasFooter.astro";
 
@@ -13,39 +16,46 @@ const radius = 30;
 const nearbyLocations = await getNearbyLocations(location, radius);
 ---
 
-<section class="w-full py-12 md:py-24 lg:py-30">
-  <div class="px-4 md:px-6">
-    <div
-      class="flex flex-col items-center justify-center space-y-4 text-center"
-    >
-      <div class="space-y-2">
-        <p
-          class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
-        >
+<section class="section bg-neutral-50">
+  <div class="container-wide">
+    <div class="animate-on-scroll">
+      <div class="text-center mb-12">
+        <h2 class="section-title text-gradient mb-4">
+          Bespoke Joinery Services Near {formatLocationName(location)}
+        </h2>
+        <p class="section-subtitle text-balance max-w-2xl mx-auto">
           I offer bespoke joinery services for homes and projects
-          {location ? ` near ${capitalizeFirstLetter(location)}` : ""}, whether
+          {location ? ` near ${formatLocationName(location)}` : ""}, whether
           you're in a village, town or city nearby. Let me know where you're
-          based — I’ll do my best to help.
+          based — I'll do my best to help.
         </p>
       </div>
-    </div>
 
-    <div
-      class="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 text-center"
-    >
-      {
-        nearbyLocations.map(({ slug }) => (
-          <a
-            class="group rounded-lg bg-white p-3 shadow-sm border border-gray-200 transition hover:shadow-md hover:bg-yellow-50"
-            href={`/joinery-services/${slug}-bespoke-joinery`}
-          >
-            <div class="text-base font-medium text-gray-800 group-hover:text-yellow-700">
-              {capitalizeFirstLetter(slug)}
-            </div>
-          </a>
-        ))
-      }
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+      >
+        {
+          nearbyLocations.map(({ slug }, index) => (
+            <a
+              class="card card-hover group animate-on-scroll"
+              style={`animation-delay: ${index * 0.1}s`}
+              href={`/joinery-services/${slug}-bespoke-joinery`}
+              title={`Bespoke joinery services in ${formatLocationName(slug)}`}
+              aria-label={`View bespoke joinery services in ${formatLocationName(slug)}`}
+            >
+              <div class="card-body text-center p-4">
+                <div class="text-base font-semibold text-neutral-900 group-hover:text-brand-600 transition-colors duration-300">
+                  {formatLocationName(slug)}
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-12">
+        <Footer />
+      </div>
     </div>
-    <Footer />
   </div>
 </section>

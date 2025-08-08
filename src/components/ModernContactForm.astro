@@ -15,11 +15,13 @@ const {
 ---
 
 <div
-  class={`bg-white rounded-xl shadow-lg border border-gray-200 p-6 ${className}`}
+  class={`bg-white rounded-xl shadow-lg border border-gray-200 p-6 transform transition-all duration-500 hover:shadow-xl ${className}`}
 >
-  <div class="text-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
-    <p class="text-gray-600">{subtitle}</p>
+  <div class="text-center mb-8 animate-fade-in">
+    <h2 class="text-2xl font-bold text-gray-900 mb-3 animate-slide-up">
+      {title}
+    </h2>
+    <p class="text-gray-600 animate-slide-up-delay">{subtitle}</p>
   </div>
 
   <form
@@ -28,7 +30,7 @@ const {
     method="post"
     data-netlify="true"
     netlify-honeypot="bot-field"
-    class="space-y-4"
+    class="space-y-6"
   >
     <!-- Hidden form name for Netlify -->
     <input type="hidden" name="form-name" value="contact" />
@@ -39,80 +41,100 @@ const {
     </div>
 
     <!-- Name Field -->
-    <div>
-      <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-        Full Name <span class="text-red-500">*</span>
-      </label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        placeholder="Enter your full name"
-        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors"
-      />
+    <div class="form-group animate-slide-up" style="animation-delay: 0.1s">
+      <div class="relative">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder=" "
+          class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
+        />
+        <label
+          for="name"
+          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+        >
+          Full Name <span class="text-red-500">*</span>
+        </label>
+      </div>
     </div>
 
     <!-- Email Field -->
-    <div>
-      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-        Email Address <span class="text-red-500">*</span>
-      </label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        placeholder="Enter your email address"
-        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors"
-      />
+    <div class="form-group animate-slide-up" style="animation-delay: 0.2s">
+      <div class="relative">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder=" "
+          class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
+        />
+        <label
+          for="email"
+          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+        >
+          Email Address <span class="text-red-500">*</span>
+        </label>
+      </div>
     </div>
 
     <!-- Phone Field -->
     {
       showPhone && (
-        <div>
-          <label
-            for="phone"
-            class="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Phone Number <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            required
-            placeholder="Enter your phone number"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors"
-          />
+        <div class="form-group animate-slide-up" style="animation-delay: 0.3s">
+          <div class="relative">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder=" "
+              class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
+            />
+            <label
+              for="phone"
+              class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+            >
+              Phone Number <span class="text-red-500">*</span>
+            </label>
+          </div>
         </div>
       )
     }
 
     <!-- Message Field -->
-    <div>
-      <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
-        Project Details <span class="text-red-500">*</span>
-      </label>
-      <textarea
-        id="message"
-        name="message"
-        rows="4"
-        required
-        placeholder="Tell us about your project, timeline, and any specific requirements..."
-        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors resize-vertical"
-      ></textarea>
+    <div class="form-group animate-slide-up" style="animation-delay: 0.4s">
+      <div class="relative">
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+          placeholder=" "
+          class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer resize-vertical"
+        ></textarea>
+        <label
+          for="message"
+          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+        >
+          Project Details <span class="text-red-500">*</span>
+        </label>
+      </div>
     </div>
 
     <!-- Submit Button -->
     <button
       type="submit"
-      class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+      id="submit-btn"
+      class="w-full bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 animate-slide-up"
+      style="animation-delay: 0.5s"
     >
       <span class="flex items-center justify-center">
         <svg
-          class="w-5 h-5 mr-2"
+          id="send-icon"
+          class="w-5 h-5 mr-2 transition-transform duration-300"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -123,19 +145,25 @@ const {
             stroke-width="2"
             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
         </svg>
-        Send Message
+        <span id="btn-text">Send Message</span>
+        <div id="loading-spinner" class="hidden ml-2">
+          <div
+            class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"
+          >
+          </div>
+        </div>
       </span>
     </button>
   </form>
 
-  <!-- Success Message (shown by Netlify after successful submission) -->
+  <!-- Success Message -->
   <div
     id="success-message"
-    class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
+    class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg transform transition-all duration-500"
   >
     <div class="flex items-center">
       <svg
-        class="w-5 h-5 text-green-500 mr-2"
+        class="w-5 h-5 text-green-500 mr-3 animate-bounce"
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -150,14 +178,14 @@ const {
     </div>
   </div>
 
-  <!-- Error Message (shown by Netlify if there's an error) -->
+  <!-- Error Message -->
   <div
     id="error-message"
-    class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
+    class="hidden mt-6 p-4 bg-red-50 border border-red-200 rounded-lg transform transition-all duration-500"
   >
     <div class="flex items-center">
       <svg
-        class="w-5 h-5 text-red-500 mr-2"
+        class="w-5 h-5 text-red-500 mr-3 animate-pulse"
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -173,27 +201,214 @@ const {
   </div>
 </div>
 
+<style>
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up-delay {
+    animation: slideUp 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  /* Form field focus effects */
+  .form-group input:focus,
+  .form-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  }
+
+  /* Floating label adjustments */
+  .peer:focus ~ label,
+  .peer:not(:placeholder-shown) ~ label {
+    transform: translateY(-1.5rem) scale(0.75);
+    color: #d97706;
+  }
+
+  /* Button hover effects */
+  #submit-btn:hover #send-icon {
+    transform: translateX(2px);
+  }
+
+  /* Loading state */
+  .loading #btn-text {
+    opacity: 0;
+  }
+
+  .loading #send-icon {
+    opacity: 0;
+  }
+
+  .loading #loading-spinner {
+    display: block !important;
+  }
+
+  /* Success/Error message animations */
+  #success-message.show,
+  #error-message.show {
+    animation: slideInFromTop 0.5s ease-out;
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
 <script>
-  // Simple script to show success/error messages based on URL parameters
   document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
+    const form = document.getElementById("modern-contact-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const btnText = document.getElementById("btn-text");
+    const sendIcon = document.getElementById("send-icon");
+    const loadingSpinner = document.getElementById("loading-spinner");
     const successMessage = document.getElementById("success-message");
     const errorMessage = document.getElementById("error-message");
 
+    // Check URL parameters for success/error messages
+    const urlParams = new URLSearchParams(window.location.search);
+
     if (urlParams.get("success") === "true" && successMessage) {
-      successMessage.classList.remove("hidden");
+      setTimeout(() => {
+        successMessage.classList.remove("hidden");
+        successMessage.classList.add("show");
+      }, 500);
+
       // Auto-hide after 8 seconds
       setTimeout(() => {
-        successMessage.classList.add("hidden");
+        successMessage.classList.remove("show");
+        setTimeout(() => {
+          successMessage.classList.add("hidden");
+        }, 500);
       }, 8000);
     }
 
     if (urlParams.get("error") === "true" && errorMessage) {
-      errorMessage.classList.remove("hidden");
+      setTimeout(() => {
+        errorMessage.classList.remove("hidden");
+        errorMessage.classList.add("show");
+      }, 500);
+
       // Auto-hide after 8 seconds
       setTimeout(() => {
-        errorMessage.classList.add("hidden");
+        errorMessage.classList.remove("show");
+        setTimeout(() => {
+          errorMessage.classList.add("hidden");
+        }, 500);
       }, 8000);
+    }
+
+    // Form submission handling
+    if (form && submitBtn) {
+      form.addEventListener("submit", function (e) {
+        // Show loading state
+        submitBtn!.classList.add("loading");
+        (submitBtn as HTMLButtonElement).disabled = true;
+
+        // Add a small delay to show the loading animation
+        setTimeout(() => {
+          // Form will submit normally to Netlify
+        }, 100);
+      });
+    }
+
+    // Add ripple effect to button
+    if (submitBtn) {
+      submitBtn.addEventListener("click", (e) => {
+        const button = submitBtn as HTMLButtonElement;
+        const ripple = document.createElement("span");
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+        ripple.classList.add("ripple");
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    }
+
+    // Add focus animations to form fields
+    if (form) {
+      const inputs = form.querySelectorAll("input, textarea");
+      inputs.forEach((input) => {
+        input.addEventListener("focus", () => {
+          const inputElement = input as HTMLInputElement | HTMLTextAreaElement;
+          if (inputElement.parentElement) {
+            inputElement.parentElement.classList.add("focused");
+          }
+        });
+
+        input.addEventListener("blur", () => {
+          const inputElement = input as HTMLInputElement | HTMLTextAreaElement;
+          if (!inputElement.value && inputElement.parentElement) {
+            inputElement.parentElement.classList.remove("focused");
+          }
+        });
+      });
     }
   });
 </script>
+
+<style>
+  /* Ripple effect */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+  }
+
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* Focused state for form groups */
+  .form-group.focused {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+  }
+</style>

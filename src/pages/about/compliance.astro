@@ -79,15 +79,15 @@ const seoData = {
         ]}
       />
 
-      <!-- Header Section -->
+      <!-- Header Section with Enhanced Animation -->
       <div class="text-center mb-16">
         <h1
-          class="text-4xl lg:text-5xl font-bold text-brand-900 mb-6 text-balance"
+          class="text-4xl lg:text-6xl font-bold text-brand-900 mb-6 text-balance compliance-title"
         >
-          Compliance & Safety
+          Compliance & Safety Standards
         </h1>
         <p
-          class="text-xl text-brand-600 max-w-4xl mx-auto text-balance leading-relaxed"
+          class="text-xl text-brand-600 max-w-4xl mx-auto text-balance leading-relaxed compliance-subtitle"
         >
           We take safety seriously — for you and for us. It's not a tick-box
           exercise — it's about doing the job properly and protecting everyone
@@ -95,13 +95,13 @@ const seoData = {
         </p>
       </div>
 
-      <!-- Main Content -->
+      <!-- Main Content with Staggered Animation -->
       <div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-12 lg:gap-16">
         <!-- Text Content -->
         <div class="space-y-8">
           <!-- Introduction -->
           <div
-            class="bg-brand-50 border border-brand-200 rounded-xl p-8 shadow-sm"
+            class="compliance-card bg-brand-50 border border-brand-200 rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-500"
           >
             <h2 class="text-2xl font-semibold text-brand-900 mb-4">
               Our Approach to Safety
@@ -116,39 +116,43 @@ const seoData = {
 
           <!-- Insurance Section -->
           <div
-            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100"
+            class="compliance-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
           >
             <h2 class="text-2xl font-semibold text-brand-900 mb-6">
               We're Fully Insured
             </h2>
             <div class="space-y-4">
-              <div class="flex items-center">
-                <svg
-                  class="w-6 h-6 text-brand-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-brand-700 font-medium"
+              <div class="flex items-center group">
+                <div class="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-brand-200 transition-colors duration-300">
+                  <svg
+                    class="w-4 h-4 text-brand-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span class="text-brand-700 font-medium group-hover:text-brand-800 transition-colors duration-300"
                   >£10 million Public Liability Insurance</span
                 >
               </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-6 h-6 text-brand-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-brand-700 font-medium"
+              <div class="flex items-center group">
+                <div class="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-brand-200 transition-colors duration-300">
+                  <svg
+                    class="w-4 h-4 text-brand-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span class="text-brand-700 font-medium group-hover:text-brand-800 transition-colors duration-300"
                   >£10 million Employers Liability Insurance</span
                 >
               </div>
@@ -157,87 +161,97 @@ const seoData = {
 
           <!-- Regulations Section -->
           <div
-            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100"
+            class="compliance-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
           >
             <h2 class="text-2xl font-semibold text-brand-900 mb-6">
               Key Regulations We Comply With
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <svg
-                    class="w-5 h-5 text-brand-500 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-brand-600"
+                <li class="flex items-start group">
+                  <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300">
+                    <svg
+                      class="w-3 h-3 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300"
                     >Fire Safety Regulations (England) 2022</span
                   >
                 </li>
-                <li class="flex items-start">
-                  <svg
-                    class="w-5 h-5 text-brand-500 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-brand-600"
+                <li class="flex items-start group">
+                  <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300">
+                    <svg
+                      class="w-3 h-3 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300"
                     >Construction (Design and Management) Regulations 2015</span
                   >
                 </li>
-                <li class="flex items-start">
-                  <svg
-                    class="w-5 h-5 text-brand-500 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-brand-600"
+                <li class="flex items-start group">
+                  <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300">
+                    <svg
+                      class="w-3 h-3 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300"
                     >Health & Safety at Work Act 1974</span
                   >
                 </li>
               </ul>
               <ul class="space-y-3">
-                <li class="flex items-start">
-                  <svg
-                    class="w-5 h-5 text-brand-500 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-brand-600"
+                <li class="flex items-start group">
+                  <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300">
+                    <svg
+                      class="w-3 h-3 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300"
                     >Management of Health & Safety at Work Regulations 1999</span
                   >
                 </li>
-                <li class="flex items-start">
-                  <svg
-                    class="w-5 h-5 text-brand-500 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-brand-600"
+                <li class="flex items-start group">
+                  <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300">
+                    <svg
+                      class="w-3 h-3 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300"
                     >COSHH – Control of Substances Hazardous to Health (2002)</span
                   >
                 </li>
@@ -247,50 +261,56 @@ const seoData = {
 
           <!-- Policies Section -->
           <div
-            class="bg-white rounded-xl p-8 shadow-lg border border-brand-100"
+            class="compliance-card bg-white rounded-xl p-8 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
           >
             <h2 class="text-2xl font-semibold text-brand-900 mb-6">
               Policies and Procedures
             </h2>
             <div class="space-y-4">
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-brand-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-brand-600">Risk Assessments</span>
+              <div class="flex items-center group">
+                <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-brand-200 transition-colors duration-300">
+                  <svg
+                    class="w-3 h-3 text-brand-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300">Risk Assessments</span>
               </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-brand-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-brand-600">Method Statements</span>
+              <div class="flex items-center group">
+                <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-brand-200 transition-colors duration-300">
+                  <svg
+                    class="w-3 h-3 text-brand-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300">Method Statements</span>
               </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-brand-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-brand-600">Equality Policy</span>
+              <div class="flex items-center group">
+                <div class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-brand-200 transition-colors duration-300">
+                  <svg
+                    class="w-3 h-3 text-brand-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300">Equality Policy</span>
               </div>
             </div>
             <p class="text-brand-600 mt-6 leading-relaxed">
@@ -301,7 +321,7 @@ const seoData = {
           </div>
 
           <!-- Government Information -->
-          <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+          <div class="compliance-card bg-blue-50 border border-blue-200 rounded-xl p-6 hover:shadow-lg transition-all duration-500">
             <h3 class="text-lg font-semibold text-blue-900 mb-3">
               Important Information for Building Owners
             </h3>
@@ -313,11 +333,11 @@ const seoData = {
               href="https://www.gov.uk/workplace-fire-safety-your-responsibilities"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+              class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-all duration-300 hover:scale-105"
             >
               <span>Learn more at gov.uk</span>
               <svg
-                class="w-4 h-4 ml-2"
+                class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -333,12 +353,12 @@ const seoData = {
           </div>
 
           <!-- Contact CTA -->
-          <div class="bg-brand-50 rounded-xl p-6 border border-brand-200">
+          <div class="compliance-card bg-brand-50 rounded-xl p-6 border border-brand-200 hover:shadow-lg transition-all duration-500">
             <p class="text-brand-700">
               If you'd like to know more or need something in writing, just
               <a
                 href="/contact"
-                class="font-semibold text-brand-600 hover:text-brand-700 underline"
+                class="font-semibold text-brand-600 hover:text-brand-700 underline transition-colors duration-300"
               >
                 get in touch
               </a>. We're always happy to provide proof of qualifications and
@@ -350,16 +370,21 @@ const seoData = {
         <!-- Image Section -->
         <div class="flex items-start justify-center">
           <div
-            class="bg-white rounded-xl p-6 shadow-lg border border-brand-100"
+            class="compliance-image-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500 overflow-hidden"
           >
-            <Image
-              src={complianceImage}
-              width="526"
-              height="405"
-              class="object-cover rounded-lg max-w-full h-auto"
-              alt="Compliance and safety standards followed by Coulsy Joinery - showing our commitment to proper safety procedures and regulations"
-              loading="eager"
-            />
+            <div class="relative overflow-hidden rounded-lg">
+              <Image
+                src={complianceImage}
+                width={526}
+                height={405}
+                class="object-cover rounded-lg max-w-full h-auto transition-transform duration-700 hover:scale-110"
+                alt="Compliance and safety standards followed by Coulsy Joinery - showing our commitment to proper safety procedures and regulations"
+                loading="eager"
+                decoding="async"
+                format="webp"
+                quality={80}
+              />
+            </div>
             <p class="text-sm text-brand-600 text-center mt-4">
               Our commitment to safety and compliance standards
             </p>
@@ -369,6 +394,91 @@ const seoData = {
     </section>
   </main>
 </Layout>
+
+<!-- Enhanced Micro-Animations CSS -->
+<style>
+  /* Header Animations */
+  .compliance-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+  }
+
+  .compliance-subtitle {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+  }
+
+  /* Compliance Cards */
+  .compliance-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .compliance-card:nth-child(1) {
+    animation-delay: 0.6s;
+  }
+  .compliance-card:nth-child(2) {
+    animation-delay: 0.8s;
+  }
+  .compliance-card:nth-child(3) {
+    animation-delay: 1s;
+  }
+  .compliance-card:nth-child(4) {
+    animation-delay: 1.2s;
+  }
+  .compliance-card:nth-child(5) {
+    animation-delay: 1.4s;
+  }
+  .compliance-card:nth-child(6) {
+    animation-delay: 1.6s;
+  }
+
+  .compliance-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* Image Card */
+  .compliance-image-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: fadeInUpScale 1s ease-out 1.8s forwards;
+  }
+
+  .compliance-image-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* Keyframe Animations */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUpScale {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Hover Effects */
+  .compliance-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .compliance-image-card img {
+    transition: transform 0.5s ease;
+  }
+
+  .compliance-image-card:hover img {
+    transform: scale(1.1);
+  }
+</style>
 
 <!-- Modern Structured Data -->
 <script
