@@ -465,19 +465,23 @@
     // Enhanced hover effects for fault cards
     document.querySelectorAll(".fault-card").forEach((card) => {
       card.addEventListener("mouseenter", () => {
-        card.style.transform = "scale(1.02) translateY(-8px)";
-        card.style.boxShadow = "0 20px 40px rgba(30, 42, 56, 0.15)";
+        if (card instanceof HTMLElement) {
+          card.style.transform = "scale(1.02) translateY(-8px)";
+          card.style.boxShadow = "0 20px 40px rgba(30, 42, 56, 0.15)";
+        }
       });
 
       card.addEventListener("mouseleave", () => {
-        card.style.transform = "scale(1) translateY(0)";
-        card.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+        if (card instanceof HTMLElement) {
+          card.style.transform = "scale(1) translateY(0)";
+          card.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+        }
       });
     });
 
     // Enhanced CTA button hover effect
     const ctaButton = document.querySelector('a[href="/contact"]');
-    if (ctaButton) {
+    if (ctaButton && ctaButton instanceof HTMLElement) {
       ctaButton.addEventListener("mouseenter", () => {
         ctaButton.style.transform = "scale(1.05)";
         ctaButton.style.boxShadow = "0 10px 25px rgba(30, 42, 56, 0.3)";

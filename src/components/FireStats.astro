@@ -261,20 +261,22 @@
     });
 
     // Counter animation function
-    function animateCounter(element) {
+    function animateCounter(element: Element) {
       const counter = element.querySelector(".counter");
       if (!counter) return;
 
       // Check if counter has already been animated
-      if (counter.dataset.animated === "true") return;
+      if (counter instanceof HTMLElement && counter.dataset.animated === "true") return;
 
-      const target = parseInt(element.dataset.target || "0");
+      const target = parseInt((element instanceof HTMLElement ? element.dataset.target : null) || "0");
       const duration = 2000; // 2 seconds
       const step = target / (duration / 16); // 60fps
       let current = 0;
 
       // Mark as animated to prevent re-animation
-      counter.dataset.animated = "true";
+      if (counter instanceof HTMLElement) {
+        counter.dataset.animated = "true";
+      }
 
       const timer = setInterval(() => {
         current += step;
@@ -282,7 +284,9 @@
           current = target;
           clearInterval(timer);
         }
-        counter.textContent = Math.floor(current).toString();
+        if (counter instanceof HTMLElement) {
+          counter.textContent = Math.floor(current).toString();
+        }
       }, 16);
     }
 
@@ -305,13 +309,17 @@
     // Enhanced hover effects for stat cards
     document.querySelectorAll(".stat-card").forEach((card) => {
       card.addEventListener("mouseenter", () => {
-        card.style.transform = "scale(1.05) translateY(-5px)";
-        card.style.boxShadow = "0 20px 40px rgba(30, 42, 56, 0.15)";
+        if (card instanceof HTMLElement) {
+          card.style.transform = "scale(1.05) translateY(-5px)";
+          card.style.boxShadow = "0 20px 40px rgba(30, 42, 56, 0.15)";
+        }
       });
 
       card.addEventListener("mouseleave", () => {
-        card.style.transform = "scale(1) translateY(0)";
-        card.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+        if (card instanceof HTMLElement) {
+          card.style.transform = "scale(1) translateY(0)";
+          card.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+        }
       });
     });
   });
