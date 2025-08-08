@@ -9,6 +9,7 @@ import SmoothScroll from "../components/SmoothScroll.astro";
 import ViewTransitions from "../components/ViewTransitions.astro";
 import PerformanceOptimiser from "../components/PerformanceOptimiser.astro";
 import PerformanceMonitor from "../components/PerformanceMonitor.astro";
+import ModernUIEnhancer from "../components/ModernUIEnhancer.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -22,308 +23,83 @@ interface Props {
   ogImage?: string;
   structuredData?: any;
   noindex?: boolean;
-  lastmod?: string;
 }
 
 const {
   title,
-  classes,
-  description = "Bespoke joinery and small building works in York, Wetherby & Harrogate. High-quality kitchens, carpentry, heritage restoration. Trusted local experts.",
+  description = "Coulsy Joinery & Small Build - Professional joinery, carpentry, and small build services in York and across Yorkshire. Quality craftsmanship since 1989.",
+  classes = "",
   transparentHeader = false,
   location,
-  keywords,
-  ogImage = "https://coulsyjoinery.co.uk/og-image.jpg",
+  keywords = "joinery, carpentry, small build, York, Yorkshire, kitchen installation, bespoke joinery, garden offices, heritage restoration",
+  ogImage = "/coulsy-logo-sm.jpg",
   structuredData,
   noindex = false,
-  lastmod,
 } = Astro.props;
-
-// Enhanced meta description with location context
-const enhancedDescription = location
-  ? `${description} Serving ${location.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())} and surrounding areas.`
-  : description;
-
-// Enhanced keywords with location
-const enhancedKeywords = keywords
-  ? `${keywords}${location ? `, ${location.replace(/-/g, " ")}` : ""}`
-  : `joinery, carpentry, kitchen installation, bespoke joinery, heritage restoration${location ? `, ${location.replace(/-/g, " ")}` : ""}`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class={classes}>
   <head>
-    <slot name="head" />
     <meta charset="UTF-8" />
-    <meta name="description" content={enhancedDescription} />
-    <meta name="keywords" content={enhancedKeywords} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="robots"
-      content={noindex ? "noindex, nofollow" : "index, follow"}
-    />
-
-    <!-- Performance optimizations -->
-    <PerformanceOptimiser />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="canonical" href={canonicalURL.href} />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={enhancedDescription} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL.href} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="Coulsy Joinery" />
-    <meta property="og:locale" content="en_GB" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={enhancedDescription} />
-    <meta name="twitter:image" content={ogImage} />
-
-    <!-- Additional SEO -->
-    <meta name="author" content="Coulsy Joinery" />
-    <meta name="theme-color" content="#1e2a38" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    {lastmod && <meta name="lastmod" content={lastmod} />}
-
-    <title>{title} | Coulsy Joinery</title>
-
-    <!-- Sitemap and robots -->
-    <link rel="sitemap" href="/sitemap-index.xml" />
-
+    <meta name="keywords" content={keywords} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Robots -->
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow" />
+    )}
+    
+    <!-- Performance Optimisations -->
+    <PerformanceOptimiser />
+    
     <!-- Structured Data -->
-    {
-      structuredData && (
-        <script
-          type="application/ld+json"
-          set:html={JSON.stringify(structuredData)}
-        />
-      )
-    }
-
-    <!-- Performance monitoring -->
-    <PerformanceMonitor />
-
-    <!-- Critical CSS inline -->
-    <style>
-      /* Critical CSS for above-the-fold content */
-      body {
-        margin: 0;
-        font-family: "Inter", system-ui, sans-serif;
-        line-height: 1.6;
-        color: #171717;
-        background-color: #ffffff;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Poppins", system-ui, sans-serif;
-        font-weight: 600;
-        line-height: 1.2;
-        color: #171717;
-      }
-
-      .loading {
-        opacity: 0;
-      }
-      .loaded {
-        opacity: 1;
-        transition: opacity 0.3s ease-in;
-      }
-
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Animation utilities */
-      .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease-out;
-      }
-
-      .animate-on-scroll.animate-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Glass morphism */
-      .glass {
-        background: rgba(255, 255, 255, 0.1);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      /* Enhanced focus styles for accessibility */
-      *:focus {
-        outline: 2px solid #1e3a8a;
-        outline-offset: 2px;
-        border-radius: 4px;
-      }
-
-      /* Skip link for accessibility */
-      .skip-link {
-        position: absolute !important;
-        top: -40px !important;
-        left: 6px !important;
-        background: linear-gradient(135deg, #1e2a38, #1e3a8a) !important;
-        color: white !important;
-        padding: 12px 16px !important;
-        text-decoration: none !important;
-        border-radius: 8px !important;
-        z-index: 1000 !important;
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        font-weight: 600 !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-        transition: all 0.3s ease !important;
-      }
-
-      .skip-link:focus {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        top: 6px !important;
-      }
-
-      .skip-link:hover {
-        background: linear-gradient(135deg, #1e3a8a, #1e40af) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15) !important;
-      }
-    </style>
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+    
+    <!-- Modern UI Enhancements -->
+    <ModernUIEnhancer />
   </head>
-  <body class="flex flex-col min-h-screen overflow-x-hidden loading">
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link"> Skip to main content </a>
-
-    <Navbar transparent={transparentHeader} />
-    <main id="main-content" class={`flex-1 ${classes}`}>
+  <body class="antialiased">
+    <Navbar transparent={transparentHeader} location={location} />
+    
+    <main class={classes}>
       <slot />
     </main>
-    <Footer />
-    <WebDevFooter location={location} />
+    
+    <Footer location={location} />
+    <WebDevFooter />
     <CookieBanner />
-
-    <!-- Enhanced Components -->
     <SmoothScroll />
     <ViewTransitions />
-
-    <!-- Intersection Observer for animations -->
-    <script>
-      // Intersection Observer for scroll animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
-          }
-        });
-      }, observerOptions);
-
-      // Enhanced animations initialization
-      function initializeEnhancedAnimations() {
-        // Add stagger animations to cards and sections
-        const cards = document.querySelectorAll(
-          ".card, .service-card, .team-card, .qualification-card, .compliance-card, .sustainability-card"
-        );
-        cards.forEach((card, index) => {
-          if (card instanceof HTMLElement) {
-            card.style.animationDelay = `${index * 0.1}s`;
-          }
-        });
-
-        // Add parallax effect to hero sections
-        const heroSections = document.querySelectorAll(
-          ".hero-section, .hero-slider"
-        );
-        if (heroSections.length > 0) {
-          window.addEventListener("scroll", () => {
-            const scrolled = window.pageYOffset;
-            heroSections.forEach((section) => {
-              if (section instanceof HTMLElement) {
-                const rate = scrolled * -0.5;
-                section.style.transform = `translateY(${rate}px)`;
-              }
-            });
-          });
-        }
-      }
-
-      // Observe all elements with animate-on-scroll class
-      document.addEventListener("DOMContentLoaded", () => {
-        const animatedElements =
-          document.querySelectorAll(".animate-on-scroll");
-        animatedElements.forEach((el) => observer.observe(el));
-
-        // Remove loading class
-        document.body.classList.remove("loading");
-        document.body.classList.add("loaded");
-
-        // Initialize enhanced scroll animations
-        initializeEnhancedAnimations();
-      });
-
-      // Performance monitoring
-      if ("performance" in window) {
-        window.addEventListener("load", () => {
-          setTimeout(() => {
-            const perfEntries = performance.getEntriesByType("navigation");
-            if (perfEntries.length > 0) {
-              const perfData = perfEntries[0] as PerformanceNavigationTiming;
-              if (
-                perfData &&
-                "loadEventStart" in perfData &&
-                "loadEventEnd" in perfData
-              ) {
-                console.log(
-                  "Page load time:",
-                  perfData.loadEventEnd - perfData.loadEventStart,
-                  "ms"
-                );
-              }
-            }
-          }, 0);
-        });
-      }
-    </script>
-
-    <!-- Analytics -->
-    <script
-      defer
-      data-domain="coulsyjoinery.co.uk"
-      src="https://analytics.coulsy.dev/js/script.js"></script>
+    <PerformanceMonitor />
   </body>
 </html>
