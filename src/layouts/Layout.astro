@@ -89,13 +89,13 @@ const {
     <ModernUIEnhancer />
   </head>
   <body class="antialiased">
-    <Navbar transparent={transparentHeader} location={location} />
+    <Navbar transparent={transparentHeader} />
     
     <main class={classes}>
       <slot />
     </main>
     
-    <Footer location={location} />
+    <Footer />
     <WebDevFooter />
     <CookieBanner />
     <SmoothScroll />
