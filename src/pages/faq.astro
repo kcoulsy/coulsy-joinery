@@ -1,0 +1,473 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ModernContactForm from "../components/ModernContactForm.astro";
+import FAQSchema from "../components/FAQSchema.astro";
+
+const faqData = [
+  {
+    category: "General Joinery & Small Build Services",
+    questions: [
+      {
+        question: "What joinery and small build services do you provide?",
+        answer:
+          "We provide comprehensive joinery and small build services including kitchen installation, bespoke joinery, general joinery, heritage restoration, garden offices, stud wall partitioning, door hanging, roof construction, and more. Our services cover both domestic and commercial properties across Yorkshire.",
+      },
+      {
+        question: "How long have you been providing joinery and small build services?",
+        answer:
+          "We have been providing professional joinery and small build services since 1989, with over 35 years of experience in craftsmanship and construction.",
+      },
+      {
+        question: "Do you work on both domestic and commercial properties?",
+        answer:
+          "Yes, we work on both domestic and commercial properties. From residential joinery projects to commercial construction work, we provide the same high-quality service for all types of properties.",
+      },
+      {
+        question: "What areas do you cover?",
+        answer:
+          "We cover Yorkshire and surrounding areas including York, Leeds, Harrogate, Ripon, Wetherby, Selby, and many more locations within approximately 20 miles of York.",
+      },
+    ],
+  },
+  {
+    category: "Kitchen Installation",
+    questions: [
+      {
+        question: "How much does kitchen installation cost?",
+        answer:
+          "Kitchen installation costs vary depending on the size, complexity, materials chosen, and specific requirements. We provide detailed quotes after assessing your specific needs. Contact us for a consultation and quote.",
+      },
+      {
+        question: "How long does kitchen installation take?",
+        answer:
+          "Installation time depends on the kitchen size and complexity. A typical kitchen installation takes 1-2 weeks, while larger or more complex projects may take 2-3 weeks. We'll provide a detailed timeline during the quote process.",
+      },
+      {
+        question: "Do you provide kitchen design services?",
+        answer:
+          "Yes, we provide complete kitchen solutions including design, planning, installation, and finishing. We work with you to create the perfect kitchen for your space and requirements.",
+      },
+      {
+        question: "Can you install kitchens in existing buildings?",
+        answer:
+          "Yes, we specialize in kitchen installations in existing buildings. We assess the current structure and recommend the best approach for your new kitchen.",
+      },
+    ],
+  },
+  {
+    category: "Bespoke Joinery",
+    questions: [
+      {
+        question: "What bespoke joinery services do you offer?",
+        answer:
+          "We offer a wide range of bespoke joinery services including custom furniture, fitted wardrobes, handcrafted pieces, unique wooden items, and tailored joinery solutions to meet your specific requirements.",
+      },
+      {
+        question: "How long does bespoke joinery take?",
+        answer:
+          "Bespoke joinery timelines vary depending on the complexity and size of the project. Simple pieces may take 1-2 weeks, while complex custom furniture can take 4-8 weeks. We'll provide a detailed timeline during the consultation.",
+      },
+      {
+        question: "Do you work with different types of wood?",
+        answer:
+          "Yes, we work with a variety of wood types including oak, pine, mahogany, walnut, and more. We can recommend the best wood for your project based on your requirements and budget.",
+      },
+      {
+        question: "Can you create custom designs?",
+        answer:
+          "Absolutely! We specialize in creating custom designs based on your ideas, requirements, and space. We work closely with you to bring your vision to life.",
+      },
+    ],
+  },
+  {
+    category: "Garden Offices & Buildings",
+    questions: [
+      {
+        question: "How much do garden offices cost?",
+        answer:
+          "Garden office costs vary depending on size, specifications, materials, and complexity. We provide detailed quotes after assessing your requirements and site conditions. Contact us for a consultation.",
+      },
+      {
+        question: "How long does garden office construction take?",
+        answer:
+          "Construction time depends on the size and complexity. A typical garden office takes 2-4 weeks to complete, while larger or more complex buildings may take 4-6 weeks. We'll provide a detailed timeline during the quote process.",
+      },
+      {
+        question: "Do you handle planning permission?",
+        answer:
+          "We can advise on planning permission requirements and help with the application process. Many garden offices fall under permitted development, but we'll assess your specific situation.",
+      },
+      {
+        question: "What types of garden buildings do you construct?",
+        answer:
+          "We construct various garden buildings including offices, studios, workshops, garden rooms, annexes, and custom structures. We can design and build to your specific requirements.",
+      },
+    ],
+  },
+  {
+    category: "General Joinery & Repairs",
+    questions: [
+      {
+        question: "What general joinery services do you provide?",
+        answer:
+          "Our general joinery services include repairs, installations, woodwork projects, door hanging, window repairs, shelving, and general carpentry work for both residential and commercial properties.",
+      },
+      {
+        question: "How quickly can you respond to repair requests?",
+        answer:
+          "We aim to respond to repair requests within 24-48 hours, and often much sooner depending on the nature of the repair and your location. Emergency repairs are prioritized.",
+      },
+      {
+        question: "Do you provide emergency repair services?",
+        answer:
+          "Yes, we provide emergency callout services for urgent joinery repairs. Contact us immediately if you have a joinery issue that needs immediate attention.",
+      },
+      {
+        question: "How much do general joinery repairs cost?",
+        answer:
+          "Repair costs depend on the nature and extent of the work required. We provide competitive rates and can give you a quote after assessing the specific issue.",
+      },
+    ],
+  },
+  {
+    category: "Heritage & Restoration",
+    questions: [
+      {
+        question: "What heritage joinery services do you offer?",
+        answer:
+          "We offer specialist heritage joinery and restoration work for period properties and listed buildings, including traditional joinery techniques, restoration of original features, and sympathetic repairs.",
+      },
+      {
+        question: "Do you work on listed buildings?",
+        answer:
+          "Yes, we have extensive experience working on listed buildings and period properties. We understand the requirements and regulations for heritage work and can liaise with conservation officers.",
+      },
+      {
+        question: "What qualifications do you have for heritage work?",
+        answer:
+          "Our team has over 35 years of experience in heritage joinery and restoration. We're fully qualified to handle all aspects of heritage joinery work and compliance.",
+      },
+      {
+        question: "How do you approach heritage restoration?",
+        answer:
+          "We approach heritage restoration with respect for the original craftsmanship and materials. We use traditional techniques where appropriate and ensure all work meets conservation standards.",
+      },
+    ],
+  },
+  {
+    category: "Pricing and Quotes",
+    questions: [
+      {
+        question: "Do you provide quotes?",
+        answer:
+          "Yes, we provide detailed quotes for all our services. We'll assess your requirements and provide a comprehensive quote including all necessary work, materials, and any required certifications.",
+      },
+      {
+        question: "Are your quotes free?",
+        answer:
+          "We provide competitive quotes for all joinery and small build services. Contact us to discuss your requirements and we'll provide a detailed quote tailored to your specific needs.",
+      },
+      {
+        question: "Do you offer maintenance contracts?",
+        answer:
+          "Yes, we offer maintenance contracts for regular joinery and building maintenance. This ensures your joinery and buildings remain in optimal condition throughout the year.",
+      },
+      {
+        question: "What payment methods do you accept?",
+        answer:
+          "We accept cash and bank transfers. Payment terms are discussed during the quote process and are typically due upon completion of work.",
+      },
+    ],
+  },
+  {
+    category: "Emergency Services",
+    questions: [
+      {
+        question: "Do you provide emergency callout services?",
+        answer:
+          "Yes, we provide emergency callout services for urgent joinery repairs and building issues. Contact us immediately if you have a joinery or building problem that needs immediate attention.",
+      },
+      {
+        question: "How quickly can you respond to emergencies?",
+        answer:
+          "We aim to respond to emergency callouts within 24 hours, and often much sooner depending on the nature of the emergency and your location.",
+      },
+      {
+        question: "What constitutes a joinery emergency?",
+        answer:
+          "Joinery emergencies include structural issues, security problems, water damage, broken doors or windows, or any issue that compromises safety or security.",
+      },
+    ],
+  },
+];
+
+// Flatten all questions for schema
+const allFaqs = faqData.flatMap((category) => category.questions);
+
+// SEO data
+const seoData = {
+  title:
+    "Joinery & Small Build FAQ - Common Questions About Joinery Services | Coulsy Joinery",
+  description:
+    "Get answers to common questions about joinery services, kitchen installation, bespoke joinery, garden offices, and small build work. Expert joinery services in Yorkshire since 1989.",
+  keywords:
+    "joinery FAQ, joinery questions, kitchen installation, bespoke joinery, garden offices, small build, Yorkshire joinery",
+};
+---
+
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  classes="mt-8 mb-16"
+>
+  <!-- FAQ Schema -->
+  <FAQSchema
+    faqs={allFaqs}
+    pageTitle="Joinery & Small Build FAQ"
+    pageDescription="Common questions about joinery services, kitchen installation, bespoke joinery, and small build work"
+  />
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand to-brand-dark text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto">
+        Get answers to common questions about joinery services, kitchen installation,
+        bespoke joinery, and small build work. Can't find what you're looking for? Contact
+        us directly.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Categories -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <!-- Category Navigation -->
+        <div class="mb-12">
+          <h2 class="text-3xl font-bold text-center text-brand-900 mb-8">
+            Browse by Category
+          </h2>
+          <div class="flex flex-wrap justify-center gap-4">
+            {
+              faqData.map((category, index) => (
+                <button
+                  class="category-btn px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-brand hover:text-white transition-colors duration-200 font-medium"
+                  data-category={index}
+                >
+                  {category.category}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="space-y-8">
+          {
+            faqData.map((category, categoryIndex) => (
+              <div class="faq-category" data-category={categoryIndex}>
+                <h3 class="text-2xl font-bold text-brand-900 mb-6 border-b border-gray-200 pb-4">
+                  {category.category}
+                </h3>
+                <div class="space-y-4">
+                  {category.questions.map((item, questionIndex) => (
+                    <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                      <button
+                        class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center"
+                        data-category={categoryIndex}
+                        data-question={questionIndex}
+                      >
+                        <span class="font-medium text-gray-800">
+                          {item.question}
+                        </span>
+                        <svg
+                          class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      <div class="faq-answer hidden px-6 py-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600 leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Contact Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-brand-900 mb-4">
+          Still Have Questions?
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Can't find the answer you're looking for? Contact us directly and
+          we'll be happy to help.
+        </p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-brand-900 mb-4">
+              Get in Touch
+            </h3>
+            <div class="space-y-3 text-left">
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-brand mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
+                </svg>
+                <span class="text-gray-600">07544 030486</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-brand mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="text-gray-600">robert@coulsy.co.uk</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-brand mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span class="text-gray-600">Yorkshire & Surrounding Areas</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-brand-900 mb-4">
+              Quick Response
+            </h3>
+            <ul class="text-left space-y-2 text-gray-600">
+              <li>• Professional consultations and quotes</li>
+              <li>• Emergency callout service</li>
+              <li>• Flexible appointment times</li>
+              <li>• 35+ years experience</li>
+              <li>• Qualified joinery specialists</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-brand-900 mb-12">
+          Get Your Quote
+        </h2>
+        <ModernContactForm />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // @ts-nocheck
+  // FAQ functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const categoryBtns = document.querySelectorAll(".category-btn");
+    const faqCategories = document.querySelectorAll(".faq-category");
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    // Category filtering
+    categoryBtns.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const categoryIndex = this.getAttribute("data-category");
+
+        // Update active button
+        categoryBtns.forEach((b) =>
+          b.classList.remove("bg-brand", "text-white")
+        );
+        categoryBtns.forEach((b) =>
+          b.classList.add("bg-gray-100", "text-gray-700")
+        );
+        this.classList.remove("bg-gray-100", "text-gray-700");
+        this.classList.add("bg-brand", "text-white");
+
+        // Show/hide categories
+        faqCategories.forEach((category, index) => {
+          if (categoryIndex === "all" || index === parseInt(categoryIndex)) {
+            category.style.display = "block";
+          } else {
+            category.style.display = "none";
+          }
+        });
+      });
+    });
+
+    // FAQ accordion
+    faqQuestions.forEach((question) => {
+      question.addEventListener("click", function () {
+        const answer = this.nextElementSibling;
+        const icon = this.querySelector(".faq-icon");
+
+        // Toggle answer visibility
+        answer.classList.toggle("hidden");
+
+        // Rotate icon
+        if (answer.classList.contains("hidden")) {
+          icon.style.transform = "rotate(0deg)";
+        } else {
+          icon.style.transform = "rotate(180deg)";
+        }
+      });
+    });
+
+    // Show all categories by default
+    categoryBtns[0].click();
+  });
+</script>
