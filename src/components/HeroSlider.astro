@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import OptimizedImage from "./OptimizedImage.astro";
 
 interface Slide {
   image: any; // This will be the imported image
@@ -34,15 +34,18 @@ const { slides } = Astro.props;
           aria-label={`Slide ${index + 1} of ${slides.length}: ${text}`}
           aria-hidden={index !== 0}
         >
-          <Image
+          <OptimizedImage
             src={image}
             alt={text}
-            loading={index === 0 ? "eager" : "lazy"}
-            decoding="async"
             width={1920}
             height={1080}
             class="w-full h-full object-cover"
-            fetchpriority={index === 0 ? "high" : "auto"}
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            format="webp"
+            quality={85}
+            sizes="100vw"
           />
           
           <!-- Enhanced overlay with gradient -->

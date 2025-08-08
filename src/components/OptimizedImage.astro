@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  src: any;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  priority?: boolean;
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+  format?: "webp" | "avif" | "jpeg" | "png";
+  quality?: number;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width = 800,
+  height = 600,
+  class: className = "",
+  priority = false,
+  loading = priority ? "eager" : "lazy",
+  decoding = "async",
+  format = "webp",
+  quality = 80,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+} = Astro.props;
+---
+
+<div class={`image-container ${className}`}>
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={`w-full h-auto object-cover transition-opacity duration-300 ${loading === "lazy" ? "opacity-0" : "opacity-100"}`}
+    loading={loading}
+    decoding={decoding}
+    format={format}
+    quality={quality}
+    sizes={sizes}
+  />
+</div>
+
+<style>
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .image-container img[loading="lazy"] {
+    opacity: 0;
+  }
+
+  .image-container img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Lazy loading enhancement
+  document.addEventListener("DOMContentLoaded", () => {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            img.classList.add("loaded");
+            observer.unobserve(img);
+          }
+        });
+      },
+      {
+        rootMargin: "50px 0px",
+        threshold: 0.1,
+      }
+    );
+
+    lazyImages.forEach((img) => {
+      imageObserver.observe(img);
+    });
+  });
+</script>

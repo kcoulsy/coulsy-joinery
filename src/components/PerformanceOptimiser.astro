@@ -1,0 +1,80 @@
+---
+// Performance optimization component for Coulsy Joinery
+---
+
+<!-- Resource Hints for Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+<link rel="preconnect" href="https://plausible.io" />
+
+<!-- DNS Prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.googletagmanager.com" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//plausible.io" />
+
+<!-- Preload critical resources -->
+<link rel="preload" href="/coulsy-logo-sm.jpg" as="image" />
+
+<!-- Performance monitoring script -->
+<script>
+  // Performance monitoring for Coulsy Joinery
+  if ("performance" in window) {
+    // Track Core Web Vitals
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.entryType === "largest-contentful-paint") {
+          // Send LCP to analytics
+          if ((window as any).gtag) {
+            (window as any).gtag("event", "LCP", {
+              value: Math.round(entry.startTime),
+              event_category: "Performance",
+            });
+          }
+        }
+      }
+    });
+
+    try {
+      observer.observe({ entryTypes: ["largest-contentful-paint"] });
+    } catch (e) {
+      // Fallback for older browsers
+    }
+  }
+
+  // Preload images when they're about to be visible
+  if ("IntersectionObserver" in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute("data-src");
+            imageObserver.unobserve(img);
+          }
+        }
+      });
+    });
+
+    // Observe all lazy images
+    document.querySelectorAll("img[data-src]").forEach((img) => {
+      imageObserver.observe(img);
+    });
+  }
+
+  // Service Worker registration for caching
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          console.log("SW registered: ", registration);
+        })
+        .catch((registrationError) => {
+          console.log("SW registration failed: ", registrationError);
+        });
+    });
+  }
+</script>

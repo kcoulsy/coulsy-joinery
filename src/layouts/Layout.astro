@@ -7,6 +7,8 @@ import WebDevFooter from "../components/WebDevFooter.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
 import ViewTransitions from "../components/ViewTransitions.astro";
+import PerformanceOptimiser from "../components/PerformanceOptimiser.astro";
+import PerformanceMonitor from "../components/PerformanceMonitor.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -61,9 +63,7 @@ const enhancedKeywords = keywords
     />
 
     <!-- Performance optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://analytics.coulsy.dev" />
+    <PerformanceOptimiser />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -117,6 +117,9 @@ const enhancedKeywords = keywords
         />
       )
     }
+
+    <!-- Performance monitoring -->
+    <PerformanceMonitor />
 
     <!-- Critical CSS inline -->
     <style>

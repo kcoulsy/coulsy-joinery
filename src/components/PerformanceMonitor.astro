@@ -1,0 +1,212 @@
+---
+// Performance monitoring component for Core Web Vitals and UX metrics
+---
+
+<script>
+  // @ts-nocheck
+  class PerformanceMonitor {
+    constructor() {
+      this.metrics = {};
+      this.init();
+    }
+
+    init() {
+      this.setupCoreWebVitals();
+      this.setupUserExperienceMetrics();
+      this.setupErrorTracking();
+    }
+
+    setupCoreWebVitals() {
+      // Import web-vitals library dynamically
+      import("https://unpkg.com/web-vitals@3/dist/web-vitals.js")
+        .then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+          getCLS(this.sendMetric.bind(this, "CLS"));
+          getFID(this.sendMetric.bind(this, "FID"));
+          getFCP(this.sendMetric.bind(this, "FCP"));
+          getLCP(this.sendMetric.bind(this, "LCP"));
+          getTTFB(this.sendMetric.bind(this, "TTFB"));
+        })
+        .catch(() => {
+          // Fallback if web-vitals fails to load
+          console.warn("Web Vitals library failed to load");
+        });
+    }
+
+    setupUserExperienceMetrics() {
+      // Track page load time
+      window.addEventListener("load", () => {
+        const loadTime = performance.now();
+        this.sendMetric("PageLoadTime", { value: loadTime });
+      });
+
+      // Track first contentful paint
+      if ("PerformanceObserver" in window) {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.name === "first-contentful-paint") {
+              this.sendMetric("FCP", { value: entry.startTime });
+              break;
+            }
+          }
+        });
+        observer.observe({ entryTypes: ["paint"] });
+      }
+
+      // Track user interactions
+      this.trackUserInteractions();
+
+      // Track scroll depth
+      this.trackScrollDepth();
+
+      // Track time on page
+      this.trackTimeOnPage();
+    }
+
+    trackUserInteractions() {
+      let interactionCount = 0;
+      const interactionTypes = ["click", "scroll", "input", "focus"];
+
+      interactionTypes.forEach((type) => {
+        document.addEventListener(
+          type,
+          () => {
+            interactionCount++;
+            if (interactionCount === 1) {
+              // First interaction
+              this.sendMetric("FirstInteraction", {
+                value: performance.now(),
+                type: type,
+              });
+            }
+          },
+          { passive: true }
+        );
+      });
+    }
+
+    trackScrollDepth() {
+      let maxScrollDepth = 0;
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const scrollTop = window.scrollY;
+          const docHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+          if (scrollPercent > maxScrollDepth) {
+            maxScrollDepth = scrollPercent;
+
+            // Send scroll depth at key milestones
+            if ([25, 50, 75, 100].includes(maxScrollDepth)) {
+              this.sendMetric("ScrollDepth", { value: maxScrollDepth });
+            }
+          }
+        },
+        { passive: true }
+      );
+    }
+
+    trackTimeOnPage() {
+      const startTime = Date.now();
+
+      // Send time on page every 30 seconds
+      const interval = setInterval(() => {
+        const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+        this.sendMetric("TimeOnPage", { value: timeOnPage });
+      }, 30000);
+
+      // Send final time when user leaves
+      window.addEventListener("beforeunload", () => {
+        const finalTime = Math.round((Date.now() - startTime) / 1000);
+        this.sendMetric("TotalTimeOnPage", { value: finalTime });
+        clearInterval(interval);
+      });
+    }
+
+    setupErrorTracking() {
+      // Track JavaScript errors
+      window.addEventListener("error", (event) => {
+        this.sendMetric("JavaScriptError", {
+          message: event.message,
+          filename: event.filename,
+          lineno: event.lineno,
+          colno: event.colno,
+        });
+      });
+
+      // Track unhandled promise rejections
+      window.addEventListener("unhandledrejection", (event) => {
+        this.sendMetric("UnhandledRejection", {
+          reason: event.reason,
+        });
+      });
+    }
+
+    sendMetric(name, data) {
+      // Store metric locally
+      this.metrics[name] = data;
+
+      // Send to analytics if available
+      if ((window as any).gtag) {
+        (window as any).gtag("event", name, {
+          event_category: "Performance",
+          value: data.value,
+          custom_parameters: data,
+        });
+      }
+
+      // Send to PostHog if available
+      if ((window as any).posthog) {
+        (window as any).posthog.capture(name, {
+          ...data,
+          category: "Performance",
+        });
+      }
+
+      // Log to console in development
+      if (import.meta.env.DEV) {
+        console.log(`Performance Metric - ${name}:`, data);
+      }
+
+      // Send to custom endpoint if configured
+      this.sendToCustomEndpoint(name, data);
+    }
+
+    sendToCustomEndpoint(name, data) {
+      // You can configure this to send to your own analytics endpoint
+      const endpoint = "/api/analytics";
+
+      fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          metric: name,
+          data: data,
+          timestamp: Date.now(),
+          url: window.location.href,
+          userAgent: navigator.userAgent,
+        }),
+      }).catch(() => {
+        // Silently fail if endpoint doesn't exist
+      });
+    }
+
+    getMetrics() {
+      return this.metrics;
+    }
+  }
+
+  // Initialize performance monitoring
+  document.addEventListener("DOMContentLoaded", () => {
+    (window as any).performanceMonitor = new PerformanceMonitor();
+  });
+
+  // Expose metrics for debugging
+  (window as any).getPerformanceMetrics = () => {
+    return (window as any).performanceMonitor?.getMetrics() || {};
+  };
+</script>

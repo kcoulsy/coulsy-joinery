@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import OptimizedImage from "./OptimizedImage.astro";
 import coulsyLogo from "../assets/images/coulsy-logo-sm.jpg";
 import { DETAILS } from "../constants/details";
 ---
@@ -15,13 +15,16 @@ import { DETAILS } from "../constants/details";
         class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start"
         aria-label="Coulsy joinery Logo"
       >
-        <Image
+        <OptimizedImage
           src={coulsyLogo}
-          width="100"
-          height="100"
+          width={100}
+          height={100}
           class="object-fit"
           alt="Coulsy Carpentry and joinery"
           loading="lazy"
+          format="webp"
+          quality={80}
+          sizes="100px"
         />
       </a>
       <div class="mt-4">

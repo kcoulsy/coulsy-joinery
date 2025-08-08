@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import OptimizedImage from "./OptimizedImage.astro";
 
 interface GalleryItem {
   src: any;
@@ -26,11 +26,16 @@ const { items } = Astro.props;
               onclick={`showLightbox(); document.getElementById('lightbox-image-${index}').scrollIntoView({ behavior: 'instant', inline: 'center' })`}
               class="block w-full"
             >
-              <Image
+              <OptimizedImage
                 src={item.src}
                 alt={item.alt}
-                loading={(item.loading as "eager" | "lazy") || "lazy"}
+                width={800}
+                height={600}
                 class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                loading={(item.loading as "eager" | "lazy") || "lazy"}
+                format="webp"
+                quality={80}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </button>
           </div>
@@ -77,12 +82,17 @@ const { items } = Astro.props;
           id={`lightbox-image-${index}`}
           class="shrink-0 snap-center flex flex-col items-center w-[90vw] max-w-[600px] px-4"
         >
-          <Image
+          <OptimizedImage
             src={item.src}
             alt={item.alt}
+            width={1200}
+            height={800}
             class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain opacity-0 scale-95 transition duration-500 ease-out"
+            priority={true}
             loading="eager"
-            onload="this.classList.remove('opacity-0', 'scale-95')"
+            format="webp"
+            quality={90}
+            sizes="90vw"
           />
           <p class="text-white text-sm mt-2 text-center">{item.label}</p>
         </div>

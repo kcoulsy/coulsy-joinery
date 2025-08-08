@@ -1,6 +1,9 @@
 ---
-import { capitalizeFirstLetter, formatLocationName } from "../utils/capitalizeFirstLetter";
-import { Image } from "astro:assets";
+import {
+  capitalizeFirstLetter,
+  formatLocationName,
+} from "../utils/capitalizeFirstLetter";
+import OptimizedImage from "./OptimizedImage.astro";
 import RobDebTeamImage from "../assets/images/team/Rob-and-Debbie-on-site.jpg";
 
 interface Props {
@@ -10,13 +13,21 @@ interface Props {
 const { location } = Astro.props;
 ---
 
-<section class="section bg-gradient-to-br from-white via-brand-50/30 to-white relative overflow-hidden">
+<section
+  class="section bg-gradient-to-br from-white via-brand-50/30 to-white relative overflow-hidden"
+>
   <!-- Background decoration -->
   <div class="absolute inset-0 opacity-5">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"></div>
+    <div
+      class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
+    >
+    </div>
   </div>
-  
+
   <div class="container-wide relative">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       <!-- Content Section -->
@@ -34,68 +45,95 @@ const { location } = Astro.props;
 
           <div class="space-y-6 text-brand-600 leading-relaxed text-balance">
             <div class="flex gap-4 items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1"
+              >
+                <svg
+                  class="w-4 h-4 text-brand-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
               <p>
                 Coulsy Joinery & Small Build is your trusted partner for
-                high-quality joinery, carpentry, and small build services, proudly
-                based in York and serving clients across Yorkshire and beyond.
+                high-quality joinery, carpentry, and small build services,
+                proudly based in York and serving clients across Yorkshire and
+                beyond.
               </p>
             </div>
 
             <div class="flex gap-4 items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1"
+              >
+                <svg
+                  class="w-4 h-4 text-brand-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
               <p>
-                We specialise in bespoke joinery, annexes, property
-                refurbishments, and commercial contracting—tailored to suit your
-                vision, space, and budget.
+                With over 35 years of experience since 1989, we've built a
+                reputation for quality craftsmanship, reliability, and attention
+                to detail that sets us apart from the competition.
               </p>
             </div>
 
             <div class="flex gap-4 items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1"
+              >
+                <svg
+                  class="w-4 h-4 text-brand-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
               <p>
-                Known for precision, reliability, and exceptional craftsmanship,
-                our skilled team ensures every project is completed on time and to
-                the highest standards.
-              </p>
-            </div>
-
-            <div class="flex gap-4 items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <p>
-                We collaborate with trusted trades and source premium materials
-                from local suppliers to deliver lasting quality with minimal
-                environmental impact.
+                Our team combines traditional joinery skills with modern
+                techniques, ensuring every project meets the highest standards
+                of quality and finish.
               </p>
             </div>
           </div>
 
           <!-- Enhanced quote card -->
-          <div class="card card-hover my-8 border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white">
+          <div
+            class="card card-hover my-8 border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+          >
             <div class="card-body">
               <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center">
-                  <svg class="w-6 h-6 text-accent-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                <div
+                  class="flex-shrink-0 w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-accent-600"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+                    ></path>
                   </svg>
                 </div>
-                <p class="text-brand-800 font-semibold italic text-lg leading-relaxed">
+                <p
+                  class="text-brand-800 font-semibold italic text-lg leading-relaxed"
+                >
                   At Coulsy Joinery, we're committed to turning your ideas into
                   beautifully finished results—executed with care, clarity, and
                   attention to detail.
@@ -105,9 +143,8 @@ const { location } = Astro.props;
           </div>
 
           <p class="text-brand-600 mb-8 text-lg">
-            Contact us today for a professional consultation or no-obligation quote{
-              location ? ` in ${formatLocationName(location)}` : null
-            }.
+            Contact us today for a professional consultation or no-obligation
+            quote{location ? ` in ${formatLocationName(location)}` : null}.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4">
@@ -116,8 +153,18 @@ const { location } = Astro.props;
               class="btn btn-primary btn-lg hover-lift focus-ring"
               aria-label="Contact Coulsy Joinery for a professional quote"
             >
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
               </svg>
               Contact Us
             </a>
@@ -126,8 +173,18 @@ const { location } = Astro.props;
               class="btn btn-outline btn-lg hover-lift focus-ring"
               aria-label="Learn more about Coulsy Joinery"
             >
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
               Learn More About Us
             </a>
@@ -138,33 +195,55 @@ const { location } = Astro.props;
       <!-- Image Section -->
       <div class="order-1 lg:order-2 animate-on-scroll">
         <div class="relative">
-          <div class="group relative overflow-hidden rounded-2xl shadow-large hover:shadow-xl transition-all duration-500">
-            <Image
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-large hover:shadow-xl transition-all duration-500"
+          >
+            <OptimizedImage
               src={RobDebTeamImage}
               width={640}
               height={553}
               class="w-full h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-110"
               alt="Robert and Debbie Coulson - Coulsy Joinery team working on site"
-              priority
+              priority={true}
+              format="webp"
+              quality={85}
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
+
             <!-- Overlay content on hover -->
-            <div class="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div
+              class="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
               <div class="p-6 text-white">
                 <h3 class="text-xl font-bold mb-2">Robert & Debbie Coulson</h3>
-                <p class="text-white/90">Your trusted joinery partners since 1989</p>
+                <p class="text-white/90">
+                  Your trusted joinery partners since 1989
+                </p>
               </div>
             </div>
           </div>
 
           <!-- Enhanced floating info card -->
-          <div class="absolute -bottom-8 -left-8 card card-hover max-w-sm animate-float">
+          <div
+            class="absolute -bottom-8 -left-8 card card-hover max-w-sm animate-float"
+          >
             <div class="card-body p-6">
               <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center">
-                  <svg class="w-6 h-6 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                <div
+                  class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-brand-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
+                    ></path>
                   </svg>
                 </div>
                 <div>
@@ -176,23 +255,32 @@ const { location } = Astro.props;
                   </p>
                 </div>
               </div>
-              
+
               <div class="space-y-2">
                 <div class="flex items-center gap-2 text-sm text-brand-500">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd"></path>
                   </svg>
                   <span>Based in York, Yorkshire</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-brand-500">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"></path>
                   </svg>
                   <span>City & Guilds Qualified</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-brand-500">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"></path>
                   </svg>
                   <span>Fully Insured & VAT Registered</span>
                 </div>
