@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GalleryGrid from "../components/GalleryGrid.astro";
+
+// Simple test images
+const testItems = [
+  {
+    src: "https://picsum.photos/400/300?random=1",
+    alt: "Test image 1",
+    label: "Test Image 1",
+  },
+  {
+    src: "https://picsum.photos/400/300?random=2",
+    alt: "Test image 2",
+    label: "Test Image 2",
+  },
+  {
+    src: "https://picsum.photos/400/300?random=3",
+    alt: "Test image 3",
+    label: "Test Image 3",
+  },
+];
+---
+
+<Layout title="Simple Lightbox Test">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Simple Lightbox Test</h1>
+
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">Test Gallery</h2>
+      <p class="text-gray-600 mb-4">
+        Click on any image below to test the lightbox:
+      </p>
+
+      <GalleryGrid items={testItems} />
+    </div>
+
+    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+      <h3 class="font-semibold text-blue-900 mb-2">Instructions</h3>
+      <p class="text-blue-800 text-sm">
+        1. Click any image in the gallery above<br />
+        2. The lightbox should open covering the full screen<br />
+        3. Click the × button or click outside to close<br />
+        4. Check browser console for debug logs
+      </p>
+    </div>
+
+    <div class="mt-8">
+      <h3 class="font-semibold mb-2">Manual Test</h3>
+      <button
+        onclick="showLightbox()"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Manually Open Lightbox
+      </button>
+    </div>
+  </main>
+</Layout>

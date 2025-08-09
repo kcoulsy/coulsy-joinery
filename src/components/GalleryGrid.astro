@@ -57,14 +57,17 @@ const { items } = Astro.props;
   }
 </div>
 
+<!-- Lightbox container - will be moved to document body by JavaScript -->
 <div
   id="lightbox"
   data-overlay
-  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-90 opacity-0 pointer-events-none transition-all duration-300"
+  style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100vw !important; height: 100vh !important;"
 >
   <button
-    class="absolute top-4 right-4 text-white text-3xl z-[60]"
+    class="absolute top-4 right-4 text-white text-3xl z-[10000] hover:text-gray-300 transition-colors duration-200"
     onclick="hideLightbox()"
+    style="position: absolute !important; top: 1rem !important; right: 1rem !important; z-index: 10000 !important;"
   >
     &times;
   </button>
@@ -84,7 +87,7 @@ const { items } = Astro.props;
             alt={item.alt}
             width={1200}
             height={800}
-            class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain opacity-0 scale-95 transition duration-500 ease-out"
+            class="max-h-[90vh] max-w-full rounded-xl shadow-lg object-contain transition duration-500 ease-out"
             priority={true}
             loading="eager"
             format="webp"
@@ -109,6 +112,7 @@ const { items } = Astro.props;
 
   document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById("lightbox");
+    let originalContainer: HTMLElement | null = null; // Track where lightbox originally was
 
     // Add click event listener to close lightbox when clicking overlay
     if (lightbox) {
@@ -121,17 +125,54 @@ const { items } = Astro.props;
 
     window.showLightbox = function () {
       if (lightbox) {
+        console.log("Opening lightbox...");
+
+        // Move lightbox to document body to escape parent positioning context
+        if (lightbox.parentElement !== document.body) {
+          originalContainer = lightbox.parentElement;
+          document.body.appendChild(lightbox);
+          console.log(
+            "Moved lightbox to document body from:",
+            originalContainer
+          );
+        }
+
+        // Force positioning
+        lightbox.style.position = "fixed";
+        lightbox.style.top = "0";
+        lightbox.style.left = "0";
+        lightbox.style.right = "0";
+        lightbox.style.bottom = "0";
+        lightbox.style.width = "100vw";
+        lightbox.style.height = "100vh";
+        lightbox.style.zIndex = "9999";
+
         lightbox.classList.remove("opacity-0", "pointer-events-none");
         lightbox.classList.add("opacity-100", "pointer-events-auto");
         document.body.style.overflow = "hidden";
+
+        console.log(
+          "Lightbox opened, position:",
+          lightbox.getBoundingClientRect()
+        );
       }
     };
 
     window.hideLightbox = function () {
       if (lightbox) {
+        console.log("Closing lightbox...");
+
         lightbox.classList.remove("opacity-100", "pointer-events-auto");
         lightbox.classList.add("opacity-0", "pointer-events-none");
         document.body.style.overflow = "";
+
+        // Restore lightbox to original container if it was moved to body
+        if (lightbox.parentElement === document.body && originalContainer) {
+          originalContainer.appendChild(lightbox);
+          console.log("Restored lightbox to original container");
+        }
+
+        console.log("Lightbox closed");
       }
     };
   });
