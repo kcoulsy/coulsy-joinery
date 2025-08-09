@@ -8,12 +8,14 @@ interface Props {
 }
 
 const { items, label } = Astro.props;
+// Sanitize label for use in ID by replacing spaces with hyphens
+const sanitizedLabel = label.replace(/\s+/g, "-");
 ---
 
 <div class="group relative inline-block">
   <button
     class="flex items-center gap-1 w-full lg:w-auto lg:px-3 py-2 text-[#c0c0c0] hover:text-white transition-colors duration-200"
-    id={`${label}-dropdown-button`}
+    id={`${sanitizedLabel}-dropdown-button`}
     aria-haspopup="true"
     aria-expanded="false"
     tabindex="0"

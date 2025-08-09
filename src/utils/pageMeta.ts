@@ -15,7 +15,51 @@ export function getFormattedPageData(Astro: any): {
   enhancedDescription: string;
   pageTitle: string;
 } {
-  const { location, service } = Astro.params;
+  // CRITICAL: Clean the entire URL pathname first to remove any .html extensions
+  // This is the root cause of the "html" issue on the live site
+  const cleanPathname = Astro.url.pathname.replace(/\.html$/i, '').replace(/\.htm$/i, '');
+  
+  // Override the pathname for all subsequent processing
+  const originalPathname = Astro.url.pathname;
+  Astro.url.pathname = cleanPathname;
+  
+  // CRITICAL: Extract location and service from the CLEANED pathname, not from Astro.params
+  // This ensures we don't get .html extensions in the parameters
+  let location: string | undefined;
+  let service: string | undefined;
+  
+  // Parse the cleaned pathname to extract location and service
+  const pathSegments = cleanPathname.split('/');
+  for (let i = 0; i < pathSegments.length; i++) {
+    const segment = pathSegments[i];
+    if (segment === 'joinery-services' && pathSegments[i + 1]) {
+      const nextSegment = pathSegments[i + 1];
+      
+      // Check if this is a location-service format by looking for known location slugs
+      const knownLocations = LOCATIONS.map(l => l.slug);
+      
+      // Check if the segment starts with a known location
+      let foundLocation = null;
+      for (const loc of knownLocations) {
+        if (nextSegment.startsWith(loc + '-')) {
+          foundLocation = loc;
+          break;
+        }
+      }
+      
+      if (foundLocation) {
+        // This is a location-service page
+        location = foundLocation;
+        service = nextSegment.substring(foundLocation.length + 1); // +1 for the hyphen
+      } else {
+        // This is just a service page (no location)
+        service = nextSegment;
+      }
+      break;
+    }
+  }
+  
+
   
   // Determine service name from the current page path
   let serviceName = "joinery"; // default fallback
@@ -24,7 +68,7 @@ export function getFormattedPageData(Astro: any): {
     // If service parameter exists, use it
     serviceName = service;
   } else {
-    // Extract service name from the current page path
+    // Extract service name from the current page path for dynamic routes
     const pathname = Astro.url.pathname;
     const pathSegments = pathname.split('/');
     
@@ -48,25 +92,106 @@ export function getFormattedPageData(Astro: any): {
         
         if (foundLocation) {
           // Remove the location part and join the rest as service name
-          serviceName = nextSegment.substring(foundLocation.length + 1); // +1 for the hyphen
+          // Also remove any .html extension that might be present
+          const rawServiceName = nextSegment.substring(foundLocation.length + 1); // +1 for the hyphen
+          
+          // Comprehensive cleaning of the raw service name
+          serviceName = rawServiceName
+            .replace(/\.html$/i, '')           // Remove .html extension
+            .replace(/\.htm$/i, '')            // Remove .htm extension
+            .replace(/html/gi, '')             // Remove any "html" text
+            .replace(/htm/gi, '')              // Remove any "htm" text
+            .trim();
+            
+          // Additional safety check for edge cases where "html" might be appended without a dot
+          if (serviceName.toLowerCase().includes('html')) {
+            serviceName = serviceName.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
+          }
         } else {
           // It's just a service name (no location)
-          serviceName = nextSegment;
+          // Remove any .html extension that might be present
+          
+          // Comprehensive cleaning of the service name
+          serviceName = nextSegment
+            .replace(/\.html$/i, '')           // Remove .html extension
+            .replace(/\.htm$/i, '')            // Remove .htm extension
+            .replace(/html/gi, '')             // Remove any "html" text
+            .replace(/htm/gi, '')              // Remove any "htm" text
+            .trim();
+            
+          // Additional safety check for edge cases where "html" might be appended without a dot
+          if (serviceName.toLowerCase().includes('html')) {
+            serviceName = serviceName.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
+          }
         }
         break;
+      }
+    }
+    
+    // If we still don't have a service name, try to extract it from the filename
+    if (serviceName === "joinery") {
+      // This might be a static page, try to get the service from the current file path
+      const currentFile = Astro.url.pathname.split('/').pop();
+      if (currentFile && currentFile !== 'joinery-services') {
+        // Remove any file extensions and clean the service name
+        serviceName = currentFile
+          .replace(/\.html$/i, '')           // Remove .html extension
+          .replace(/\.htm$/i, '')            // Remove .htm extension
+          .replace(/html/gi, '')             // Remove any "html" text
+          .replace(/htm/gi, '')              // Remove any "htm" text
+          .trim();
+          
+        // Additional safety check for static pages
+        if (serviceName.toLowerCase().includes('html')) {
+          serviceName = serviceName.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
+        }
+      }
+    }
+    
+    // Additional check: if this is a static service page (no location), ensure service name is clean
+    if (!location && serviceName && serviceName !== "joinery") {
+      // Clean the service name thoroughly
+      const cleanedServiceName = serviceName
+        .replace(/\.html$/i, '')           // Remove .html extension
+        .replace(/\.htm$/i, '')            // Remove .htm extension
+        .replace(/html/gi, '')             // Remove any "html" text
+        .replace(/htm/gi, '')              // Remove any "htm" text
+        .trim();
+        
+      if (cleanedServiceName !== serviceName) {
+        serviceName = cleanedServiceName;
       }
     }
   }
   
   // Clean and format the service name - preserve hyphens for multi-word services
-  const cleanRawType = serviceName.replace(/[^a-zA-Z-]/g, "");
+  // Remove any remaining .html or other file extensions and ensure no HTML artifacts
+  let cleanRawType = serviceName
+    .replace(/\.html$/i, '')           // Remove .html extension
+    .replace(/\.htm$/i, '')            // Remove .htm extension
+    .replace(/html/gi, '')             // Remove any "html" text
+    .replace(/htm/gi, '')              // Remove any "htm" text
+    .replace(/[^a-zA-Z-]/g, "")        // Keep only letters and hyphens
+    .trim();
+    
+  // Additional safety check - if cleanRawType still contains "html" anywhere, remove it completely
+  if (cleanRawType.toLowerCase().includes('html')) {
+    cleanRawType = cleanRawType.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
+  }
+  
   const baseType = cleanRawType;
 
   // Split by hyphens and capitalize each part, then join with spaces
-  const formattedServiceName = baseType
+  let formattedServiceName = baseType
     .split("-")
     .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
     .join(" ");
+    
+  // CRITICAL SAFETY CHECK: Ensure formattedServiceName is completely clean
+  // This is where the "html" issue is likely happening on the live site
+  if (formattedServiceName.toLowerCase().includes('html')) {
+    formattedServiceName = formattedServiceName.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
+  }
 
   const locationFormated = location ? formatLocationName(location) : "";
   const locationInText = location ? ` in ${locationFormated}` : "";
@@ -80,6 +205,29 @@ export function getFormattedPageData(Astro: any): {
   if (location) {
     // For location-specific pages, use format: "Door Hanging in Boston Spa" or "Boston Spa Door Hanging Services"
     pageTitle = `${formattedServiceName} in ${cleanLocationName}`;
+  }
+  
+  // FINAL SAFETY CHECK: Ensure the page title is completely clean before any processing
+  // This catches any edge cases that might have slipped through
+  if (pageTitle.toLowerCase().includes('html')) {
+    pageTitle = pageTitle.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
+  }
+
+  // Ensure pageTitle doesn't contain any HTML or file extensions
+  // This is the critical fix - remove ALL possible HTML artifacts
+  // We need to be extremely thorough to catch any edge cases on the live site
+  pageTitle = pageTitle
+    .replace(/\.html$/i, '')           // Remove .html extension
+    .replace(/\.htm$/i, '')            // Remove .htm extension
+    .replace(/<[^>]*>/g, '')          // Remove any HTML tags
+    .replace(/html/gi, '')             // Remove any remaining "html" text
+    .replace(/htm/gi, '')              // Remove any remaining "htm" text
+    .replace(/\s+/g, ' ')              // Normalize whitespace
+    .trim();
+    
+  // Additional safety check - if pageTitle still contains "html" anywhere, remove it completely
+  if (pageTitle.toLowerCase().includes('html')) {
+    pageTitle = pageTitle.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
   }
 
   const fallbackGeo = { lat: 53.9655, lng: -1.205 };
@@ -206,6 +354,9 @@ export function getFormattedPageData(Astro: any): {
     ]
   };
 
+  // Restore the original pathname to avoid side effects
+  Astro.url.pathname = originalPathname;
+  
   return {
     formattedServiceName,
     locationFormated,
