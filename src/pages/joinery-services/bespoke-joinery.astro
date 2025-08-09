@@ -25,7 +25,7 @@ const {
   faqSchema,
   defaultDescription,
   enhancedKeywords,
-  enhancedDescription,
+  // enhancedDescription, // Not used
   pageTitle,
 } = getFormattedPageData(Astro);
 
@@ -41,14 +41,20 @@ const finalDescription = description || defaultDescription;
 >
   <Fragment slot="head">
     <script
+      is:inline
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
     <script
+      is:inline
       type="application/ld+json"
       set:html={JSON.stringify(serviceSchema)}
     />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(faqSchema)}
+    />
   </Fragment>
 
   <main class="mx-auto relative z-10">

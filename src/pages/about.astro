@@ -9,7 +9,7 @@ import DebbieProfileImage from "../assets/images/team/debbie-profile-image.jpg";
 import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
 import Reviews from "../components/Reviews.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
-import { DETAILS } from "../constants/details";
+// import { DETAILS } from "../constants/details"; // Not used
 
 // Modern SEO optimization with personal voice preserved
 const seoData = {
@@ -1000,7 +1000,8 @@ const seoData = {
 </style>
 
 <!-- Modern Structured Data -->
-<script
+<script is:inline
+  is:inline
   type="application/ld+json"
   set:html={JSON.stringify(seoData.structuredData)}
 />

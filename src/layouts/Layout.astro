@@ -30,7 +30,7 @@ const {
   description = "Coulsy Joinery & Small Build - Professional joinery, carpentry, and small build services in York and across Yorkshire. Quality craftsmanship since 1989.",
   classes = "",
   transparentHeader = false,
-  location,
+  // location, // Not used in current implementation
   keywords = "joinery, carpentry, small build, York, Yorkshire, kitchen installation, bespoke joinery, garden offices, heritage restoration",
   ogImage = "/coulsy-logo-sm.jpg",
   structuredData,
@@ -82,7 +82,7 @@ const {
     
     <!-- Structured Data -->
     {structuredData && (
-      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
     
     <!-- Modern UI Enhancements -->

@@ -13,7 +13,7 @@ interface Props {
 const { location } = Astro.props;
 // Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
 const radius = 20;
-const nearbyLocations = await getNearbyLocations(location, radius);
+const nearbyLocations = getNearbyLocations(location, radius);
 
 // Generate structured data for nearby areas
 const nearbyAreasSchema = {
@@ -83,6 +83,7 @@ const nearbyAreasSchema = {
 </section>
 
 <script
+  is:inline
   type="application/ld+json"
   set:html={JSON.stringify(nearbyAreasSchema)}
 />

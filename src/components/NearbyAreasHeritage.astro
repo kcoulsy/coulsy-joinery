@@ -1,6 +1,5 @@
 ---
 import {
-  capitalizeFirstLetter,
   formatLocationName,
 } from "../utils/capitalizeFirstLetter";
 import { getNearbyLocations } from "../utils/getNearbyLocations";
@@ -13,7 +12,7 @@ interface Props {
 const { location } = Astro.props;
 // Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
 const radius = 30;
-const nearbyLocations = await getNearbyLocations(location, radius);
+const nearbyLocations = getNearbyLocations(location, radius);
 ---
 
 <section class="section bg-neutral-50">

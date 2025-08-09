@@ -39,15 +39,15 @@ const finalDescription =
   structuredData={businessSchema}
 >
   <Fragment slot="head">
-    <script
+    <script is:inline
       type="application/ld+json"
       set:html={JSON.stringify(businessSchema)}
     />
-    <script
+    <script is:inline
       type="application/ld+json"
       set:html={JSON.stringify(serviceSchema)}
     />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main class="mx-auto relative z-10">

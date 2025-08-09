@@ -381,7 +381,6 @@ const socialLinks = [
   const navbar = document.getElementById("navbar");
 
   // Handle scroll effects for navbar
-  let lastScrollY = window.scrollY;
   let ticking = false;
 
   const updateNavbar = () => {
@@ -398,7 +397,6 @@ const socialLinks = [
       }
     }
     
-    lastScrollY = currentScrollY;
     ticking = false;
   };
 

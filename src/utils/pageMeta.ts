@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter, formatLocationName } from "./capitalizeFirstLetter";
+import { formatLocationName } from "./capitalizeFirstLetter";
 import { LOCATIONS } from "../constants/locations";
 
 export function getFormattedPageData(Astro: any): {

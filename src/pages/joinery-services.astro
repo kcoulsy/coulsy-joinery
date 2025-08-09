@@ -10,7 +10,7 @@ const pageTitle =
   "Professional Joinery Services York | Bespoke Carpentry & Woodwork";
 const pageDescription =
   "Expert joinery services in York and Yorkshire. From bespoke kitchens to heritage restoration, stud walls to garden offices. 30+ years experience in quality carpentry and joinery work.";
-const canonicalUrl = "https://coulsyjoinery.co.uk/joinery-services";
+// const canonicalUrl = "https://coulsyjoinery.co.uk/joinery-services"; // Not used
 
 // Structured data for services page
 const structuredData = {
@@ -86,6 +86,8 @@ const structuredData = {
 <Layout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
     <script
+      is:inline
+      is:inline
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />

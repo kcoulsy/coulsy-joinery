@@ -1,21 +1,9 @@
 ---
-import { DETAILS } from "../constants/details";
+// DETAILS import removed as it's not used
 
-interface Review {
-  author: string;
-  authorPhoto: string;
-  rating: number;
-  text: string;
-  relativeTime: string;
-  publishTime: string;
-}
+// Review interface moved to script section where it's used
 
-interface ReviewsData {
-  placeName: string;
-  rating: number;
-  totalReviews: number;
-  reviews: Review[];
-}
+// ReviewsData interface removed as it's not used
 ---
 
 <section class="py-12">
@@ -161,25 +149,7 @@ interface ReviewsData {
     }
   }
 
-  function toggleReview(
-    reviewId: string,
-    fullText: string,
-    shortText: string,
-    button: HTMLButtonElement
-  ) {
-    const el = document.getElementById(reviewId);
-    if (!el) return;
-
-    if (el.dataset.expanded === "true") {
-      el.textContent = shortText;
-      el.dataset.expanded = "false";
-      button.textContent = "Read more";
-    } else {
-      el.textContent = fullText;
-      el.dataset.expanded = "true";
-      button.textContent = "Show less";
-    }
-  }
+  // toggleReview function removed as it's not used
 
   // Load reviews when the page loads
   document.addEventListener("DOMContentLoaded", loadReviews);

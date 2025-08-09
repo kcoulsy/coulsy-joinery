@@ -12,9 +12,10 @@ const url = Astro.url.pathname;
 const segments = url.split("/").filter(Boolean);
 const currentSlug = segments[1] || segments[0] || "";
 
-const isJoiner = currentSlug.endsWith("-joiner") || url === "/joiner";
-const isJoinery = currentSlug.endsWith("-joinery") || url === "/joinery";
-const isCarpenter = currentSlug.endsWith("-carpenter") || url === "/carpenter";
+// These variables were calculated but not used in the current logic
+// const isJoiner = currentSlug.endsWith("-joiner") || url === "/joiner";
+// const isJoinery = currentSlug.endsWith("-joinery") || url === "/joinery";
+// const isCarpenter = currentSlug.endsWith("-carpenter") || url === "/carpenter";
 
 let serviceText = "I provide my services in nearby areas";
 let suffix = "";
@@ -48,7 +49,7 @@ if (
 }
 basePath = "joinery-services";
 
-const nearbyLocations = await getNearbyLocations(location, radius);
+const nearbyLocations = getNearbyLocations(location, radius);
 
 // Helper to format slugs as nice titles
 const formatSlug = (s: string) =>

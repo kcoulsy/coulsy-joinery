@@ -290,9 +290,10 @@ const {
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("modern-contact-form");
     const submitBtn = document.getElementById("submit-btn");
-    const btnText = document.getElementById("btn-text");
-    const sendIcon = document.getElementById("send-icon");
-    const loadingSpinner = document.getElementById("loading-spinner");
+    // These elements are used in CSS for styling states
+    // const btnText = document.getElementById("btn-text");
+    // const sendIcon = document.getElementById("send-icon");
+    // const loadingSpinner = document.getElementById("loading-spinner");
     const successMessage = document.getElementById("success-message");
     const errorMessage = document.getElementById("error-message");
 
@@ -331,7 +332,7 @@ const {
 
     // Form submission handling
     if (form && submitBtn) {
-      form.addEventListener("submit", function (e) {
+      form.addEventListener("submit", function () {
         // Show loading state
         submitBtn!.classList.add("loading");
         (submitBtn as HTMLButtonElement).disabled = true;

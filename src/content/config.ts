@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+// import { defineCollection, z } from 'astro:content';
 
 // Since we're using static pages and the simple location system,
 // we don't need any content collections for now.

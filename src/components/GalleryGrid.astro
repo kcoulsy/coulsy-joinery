@@ -9,9 +9,7 @@ interface GalleryItem {
   loading?: "eager" | "lazy"; // <-- allow custom loading
 }
 
-interface Props {
-  items: GalleryItem[];
-}
+// Props interface removed as it's not used
 
 const { items } = Astro.props;
 ---
@@ -63,7 +61,6 @@ const { items } = Astro.props;
   id="lightbox"
   data-overlay
   class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 opacity-0 pointer-events-none transition-opacity duration-300"
-  onclick="if (event.target === event.currentTarget) hideLightbox()"
 >
   <button
     class="absolute top-4 right-4 text-white text-3xl z-[60]"
@@ -112,6 +109,15 @@ const { items } = Astro.props;
 
   document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById("lightbox");
+
+    // Add click event listener to close lightbox when clicking overlay
+    if (lightbox) {
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          window.hideLightbox();
+        }
+      });
+    }
 
     window.showLightbox = function () {
       if (lightbox) {
