@@ -108,7 +108,7 @@ const socialLinks = [
   >
     <!-- Logo -->
     <div class="relative z-10">
-      <a href="/">
+      <a href="/" data-no-transition="true" class="logo-link">
         <Image
           src={coulsyLogo}
           width="100"
@@ -385,18 +385,26 @@ const socialLinks = [
 
   const updateNavbar = () => {
     const currentScrollY = window.scrollY;
-    
+
     if (navbar) {
       // Add shadow and background when scrolled
       if (currentScrollY > 10) {
-        navbar.classList.add("shadow-xl", "bg-[#1e2a38]/95", "backdrop-blur-sm");
+        navbar.classList.add(
+          "shadow-xl",
+          "bg-[#1e2a38]/95",
+          "backdrop-blur-sm"
+        );
         navbar.classList.remove("bg-[#1e2a38]");
       } else {
-        navbar.classList.remove("shadow-xl", "bg-[#1e2a38]/95", "backdrop-blur-sm");
+        navbar.classList.remove(
+          "shadow-xl",
+          "bg-[#1e2a38]/95",
+          "backdrop-blur-sm"
+        );
         navbar.classList.add("bg-[#1e2a38]");
       }
     }
-    
+
     ticking = false;
   };
 

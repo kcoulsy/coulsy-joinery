@@ -46,6 +46,17 @@
           return;
         }
 
+        // CRITICAL FIX: Skip logo and home navigation to prevent CSS breaking
+        if (
+          link.href === "/" || // Home page navigation
+          link.closest(".logo") || // Logo container
+          link.querySelector("img") || // Any link with an image (like logo)
+          link.classList.contains("logo-link") || // Logo-specific class
+          link.getAttribute("data-no-transition") === "true" // Explicit opt-out
+        ) {
+          return; // Use normal navigation for these critical elements
+        }
+
         e.preventDefault();
         this.navigateWithTransition(link.href);
       });
