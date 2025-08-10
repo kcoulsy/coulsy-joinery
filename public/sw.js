@@ -5,8 +5,6 @@ const urlsToCache = [
   '/about',
   '/contact',
   '/joinery-services',
-  '/styles.css',
-  '/coulsy-logo-sm.jpg',
   '/favicon.ico',
   '/apple-touch-icon.png'
 ];
