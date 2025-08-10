@@ -14,18 +14,12 @@
     "@astrojs/sitemap": "^3.4.0",
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.7.13",
-    "astro-carousel": "^3.0.2",
     "astro-robots-txt": "^1.0.0",
-    "flowbite": "^2.5.1",
-    "posthog-js": "^1.115.0",
     "purgecss": "^5.0.0",
     "sass": "^1.71.1",
-    "swiper": "^11.2.6",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.10",
-    "@types/glider-js": "^1.7.11"
   }
 }

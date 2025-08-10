@@ -120,77 +120,125 @@
     }
 
     async loadSearchData() {
-      this.searchData = {
-        services: [
-          {
-            title: "Traditional Joinery",
-            url: "/joinery-services/traditional-joinery",
-            type: "service",
-          },
-          {
-            title: "Garden Offices & Annexes",
-            url: "/joinery-services/garden-offices",
-            type: "service",
-          },
-          {
-            title: "Small Build Works",
-            url: "/joinery-services/small-build-works",
-            type: "service",
-          },
-          {
-            title: "Kitchen Installation",
-            url: "/joinery-services/kitchen-installers",
-            type: "service",
-          },
-          {
-            title: "Door Hanging",
-            url: "/joinery-services/door-hanging",
-            type: "service",
-          },
-          {
-            title: "Stud Walls & Partitioning",
-            url: "/joinery-services/stud-wall-partitioning",
-            type: "service",
-          },
-          {
-            title: "Heritage Restoration",
-            url: "/joinery-services/heritage-restoration-joinery",
-            type: "service",
-          },
-          {
-            title: "Bespoke Joinery",
-            url: "/joinery-services/bespoke-joinery",
-            type: "service",
-          },
-        ],
-        locations: [
-          "York",
-          "Leeds",
-          "Harrogate",
-          "Wetherby",
-          "Selby",
-          "Tadcaster",
-          "Pocklington",
-          "Ripon",
-          "Thirsk",
-          "Masham",
-          "Boroughbridge",
-          "Easingwold",
-          "Helmsley",
-          "Pickering",
-          "Sherburn-in-Elmet",
-          "Knaresborough",
-          "Otley",
-          "Horsforth",
-          "Boston Spa",
-          "Linton",
-          "Collingham",
-          "Scarcroft",
-          "Thorner",
-          "Shadwell",
-          "Moortown",
-        ],
-      };
+      try {
+        // Load services data
+        const servicesResponse = await fetch("/api/services");
+        if (servicesResponse.ok) {
+          this.searchData.services = await servicesResponse.json();
+        } else {
+          // Fallback data if API fails
+          this.searchData.services = [
+            {
+              title: "Kitchen Installation",
+              url: "/joinery-services/kitchen-installers",
+              type: "service",
+            },
+            {
+              title: "Bespoke Joinery",
+              url: "/joinery-services/bespoke-joinery",
+              type: "service",
+            },
+            {
+              title: "Garden Offices",
+              url: "/joinery-services/garden-offices",
+              type: "service",
+            },
+            {
+              title: "Heritage Restoration",
+              url: "/joinery-services/heritage-restoration-joinery",
+              type: "service",
+            },
+            {
+              title: "General Joinery",
+              url: "/joinery-services/general-joinery",
+              type: "service",
+            },
+            {
+              title: "Door Hanging",
+              url: "/joinery-services/door-hanging",
+              type: "service",
+            },
+            {
+              title: "Stud Walls",
+              url: "/joinery-services/stud-wall-partitioning",
+              type: "service",
+            },
+            {
+              title: "Cut Roofs",
+              url: "/joinery-services/traditional-cut-roofs",
+              type: "service",
+            },
+            {
+              title: "Truss Roofs",
+              url: "/joinery-services/truss-roof-installers",
+              type: "service",
+            },
+            {
+              title: "Steel Fire Exit Doors",
+              url: "/joinery-services/steel-fire-exit-doors-installers",
+              type: "service",
+            },
+            {
+              title: "Accessible Kitchens",
+              url: "/joinery-services/accessible-kitchen-installers",
+              type: "service",
+            },
+            {
+              title: "Joinery Subcontractors",
+              url: "/joinery-services/joinery-subcontractors",
+              type: "service",
+            },
+          ];
+        }
+
+        // Load locations data
+        const locationsResponse = await fetch("/api/locations");
+        if (locationsResponse.ok) {
+          this.searchData.locations = await locationsResponse.json();
+        } else {
+          // Fallback locations if API fails
+          this.searchData.locations = [
+            "York",
+            "Harrogate",
+            "Leeds",
+            "Wetherby",
+            "Knaresborough",
+            "Otley",
+            "Ilkley",
+            "Pontefract",
+            "Wakefield",
+            "Selby",
+            "Malton",
+            "Thirsk",
+            "Ripon",
+            "Boroughbridge",
+            "Tadcaster",
+            "Garforth",
+            "Horsforth",
+            "Castleford",
+            "Rothwell",
+            "Normanton",
+          ];
+        }
+      } catch (error) {
+        console.error("Error loading search data:", error);
+        // Use fallback data
+        this.searchData = {
+          services: [
+            {
+              title: "Kitchen Installation",
+              url: "/joinery-services/kitchen-installers",
+              type: "service",
+            },
+            {
+              title: "Bespoke Joinery",
+              url: "/joinery-services/bespoke-joinery",
+              type: "service",
+            },
+          ],
+          locations: ["York", "Harrogate", "Leeds"],
+        };
+      }
     }
 
     handleSearchInput(query: string) {
@@ -256,21 +304,29 @@
       const lowerText = text.toLowerCase();
       const lowerQuery = query.toLowerCase();
 
+      // Exact match gets highest relevance
       if (lowerText === lowerQuery) return 100;
+
+      // Starts with query gets high relevance
       if (lowerText.startsWith(lowerQuery)) return 90;
+
+      // Contains query gets medium relevance
       if (lowerText.includes(lowerQuery)) return 70;
 
-      const words = lowerQuery.split(" ");
-      const textWords = lowerText.split(" ");
-      let wordMatches = 0;
+      // Partial word match gets lower relevance
+      const words = lowerText.split(/\s+/);
+      const queryWords = lowerQuery.split(/\s+/);
+      let partialMatches = 0;
 
-      words.forEach((word) => {
-        if (textWords.some((textWord) => textWord.includes(word))) {
-          wordMatches++;
+      for (const word of words) {
+        for (const queryWord of queryWords) {
+          if (word.includes(queryWord) || queryWord.includes(word)) {
+            partialMatches++;
+          }
         }
-      });
+      }
 
-      return (wordMatches / words.length) * 50;
+      return partialMatches * 20;
     }
 
     displayResults(results: any[], query: string) {
@@ -278,10 +334,9 @@
 
       if (results.length === 0) {
         this.resultsContent.innerHTML = `
-          <div class="text-center py-8">
-            <div class="text-gray-400 text-4xl mb-4">🔨</div>
-            <p class="text-gray-600 dark:text-gray-300">No results found for "${query}"</p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Try searching for "joinery" or a location like "York"</p>
+          <div class="p-4 text-center text-gray-500">
+            <p>No results found for "${query}"</p>
+            <p class="text-sm mt-1">Try different keywords or browse our services</p>
           </div>
         `;
       } else {
