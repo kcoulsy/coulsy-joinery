@@ -100,20 +100,20 @@ const socialLinks = [
 ---
 
 <header
-  class={`${transparent ? "bg-transparent" : "bg-[#1e2a38]"} text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg`}
+  class={`${transparent ? "bg-transparent" : "bg-[#1e2a38]"} text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg body-font`}
   id="navbar"
 >
   <div
-    class="container mx-auto flex lg:flex-row items-center justify-between px-4 py-2 lg:py-4 h-[70px] lg:h-[80px]"
+    class="container mx-auto flex items-center justify-between px-4 py-2 lg:py-3 h-[70px] lg:h-[80px]"
   >
     <!-- Logo -->
-    <div class="relative z-10">
-      <a href="/" data-no-transition="true" class="logo-link">
+    <div class="relative z-10 flex-shrink-0">
+      <a href="/" class="block">
         <Image
           src={coulsyLogo}
           width="100"
           height="100"
-          class="h-[80px] lg:h-[100px] w-auto object-contain block -mb-2 lg:-mb-6"
+          class="h-[60px] sm:h-[70px] lg:h-[80px] w-auto object-contain block"
           alt="Coulsy Carpentry and Joinery"
           loading="eager"
         />
@@ -122,7 +122,7 @@ const socialLinks = [
 
     <!-- Desktop Navigation -->
     <nav
-      class="hidden lg:flex items-center space-x-6 ml-4"
+      class="hidden lg:flex items-center space-x-6 ml-4 flex-1 justify-center"
       aria-label="Main navigation"
     >
       <ul class="flex items-center gap-4">
@@ -147,17 +147,61 @@ const socialLinks = [
           )
         }
       </ul>
+    </nav>
 
+    <!-- Desktop Right Section -->
+    <div class="hidden lg:flex items-center gap-4 flex-shrink-0">
       <!-- AI Smart Search -->
-      <div class="ml-6 w-64">
+      <div class="w-64">
         <AISmartSearch />
       </div>
-    </nav>
+
+      <!-- Contact Info - Phone Only (Email removed for space) -->
+      <div class="flex items-center gap-2 ml-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-5 h-5 text-white"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <a
+          href={`tel:${DETAILS.PHONE}`}
+          class="text-[#c0c0c0] hover:text-white transition-colors duration-200 whitespace-nowrap"
+        >
+          {DETAILS.PHONE}
+        </a>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="flex items-center gap-3 ml-4">
+        {
+          socialLinks.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              class="group text-[#c0c0c0] hover:text-white transition-colors duration-200"
+            >
+              <social.icon
+                className="h-7 w-7 transition-colors duration-200 group-hover:fill-white fill-[#c0c0c0]"
+                aria-hidden="true"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
 
     <!-- Mobile Nav Toggle -->
     <button
       id="mobile-nav-toggle"
-      class="block lg:hidden ml-auto p-2"
+      class="block lg:hidden ml-auto p-2 touch-manipulation"
       aria-label="Open menu"
       aria-expanded="false"
       aria-controls="mobile-nav-menu"
@@ -173,69 +217,6 @@ const socialLinks = [
         ></path>
       </svg>
     </button>
-
-    <!-- Social Icons -->
-    <div
-      class="hidden lg:flex items-center gap-4 ml-auto"
-      aria-label="Social media links"
-    >
-      <div class="flex items-center gap-2 mr-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="w-5 h-5 text-white"
-        >
-          <path
-            d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
-          ></path>
-          <path
-            d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
-          ></path>
-        </svg>
-        <a
-          href={`mailto:${DETAILS.EMAIL}`}
-          class="text-[#c0c0c0] hover:text-white transition-colors duration-200"
-        >
-          {DETAILS.EMAIL}
-        </a>
-      </div>
-      <div class="flex items-center gap-2 mr-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="w-5 h-5 text-white"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <a
-          href={`tel:${DETAILS.PHONE}`}
-          class="text-[#c0c0c0] hover:text-white transition-colors duration-200"
-        >
-          {DETAILS.PHONE}
-        </a>
-      </div>
-      {
-        socialLinks.map((social) => (
-          <a
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={social.label}
-            class="group text-[#c0c0c0] hover:text-white transition-colors duration-200"
-          >
-            <social.icon
-              className="h-8 w-8 transition-colors duration-200 group-hover:fill-white fill-[#c0c0c0]"
-              aria-hidden="true"
-            />
-          </a>
-        ))
-      }
-    </div>
   </div>
 
   <!-- Mobile Menu Overlay -->
@@ -249,7 +230,7 @@ const socialLinks = [
   <!-- Mobile Menu -->
   <nav
     id="mobile-nav-menu"
-    class="fixed top-0 left-0 w-full max-h-screen bg-[#1e2a38] transform -translate-y-full transition-transform duration-300 ease-in-out z-[60] overflow-y-auto"
+    class="fixed top-0 left-0 w-full max-h-screen bg-[#1e2a38] transform -translate-y-full transition-transform duration-300 ease-in-out z-[60] overflow-y-auto body-font"
     aria-label="Mobile navigation"
     aria-hidden="true"
   >
@@ -267,7 +248,11 @@ const socialLinks = [
           loading="eager"
         />
       </a>
-      <button id="mobile-nav-close" class="p-2" aria-label="Close menu">
+      <button
+        id="mobile-nav-close"
+        class="p-2 touch-manipulation"
+        aria-label="Close menu"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -285,6 +270,52 @@ const socialLinks = [
       </button>
     </div>
 
+    <!-- Mobile Contact Info -->
+    <div class="px-6 py-4 border-b border-[#1e3a8a] bg-[#1e3a8a]/20">
+      <div class="flex flex-col gap-3">
+        <!-- Phone -->
+        <a
+          href={`tel:${DETAILS.PHONE}`}
+          class="flex items-center gap-3 text-white hover:text-[#e0e0e0] transition-colors duration-200 touch-manipulation"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-lg">{DETAILS.PHONE}</span>
+        </a>
+
+        <!-- Email -->
+        <a
+          href={`mailto:${DETAILS.EMAIL}`}
+          class="flex items-center gap-3 text-white hover:text-[#e0e0e0] transition-colors duration-200 touch-manipulation"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
+            ></path>
+            <path
+              d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
+            ></path>
+          </svg>
+          <span class="text-lg break-all">{DETAILS.EMAIL}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
     <ul class="flex flex-col w-full">
       {
         menuitems.map((item) => (
@@ -292,7 +323,7 @@ const socialLinks = [
             {item.items ? (
               <>
                 <button
-                  class="flex w-full px-6 py-5 text-white hover:text-[#e0e0e0] text-xl justify-between items-center border-b border-[#1e3a8a]"
+                  class="flex w-full px-6 py-5 text-white hover:text-[#e0e0e0] text-xl justify-between items-center border-b border-[#1e3a8a] touch-manipulation"
                   aria-expanded="false"
                   aria-controls={`mobile-dropdown-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
@@ -303,7 +334,7 @@ const socialLinks = [
                     viewBox="0 0 24 24"
                     stroke-width="3"
                     stroke="currentColor"
-                    class="w-3 h-3 transition-transform duration-200 group-[.is-open]:rotate-180"
+                    class="w-4 h-4 transition-transform duration-200 group-[.is-open]:rotate-180"
                     aria-hidden="true"
                   >
                     <path
@@ -323,7 +354,7 @@ const socialLinks = [
                     <li role="none">
                       <a
                         href={subitem.link}
-                        class="block px-6 py-4 text-white hover:text-[#e0e0e0] text-lg border-b border-[#1e2a38] transition-colors duration-200"
+                        class="block px-6 py-4 text-white hover:text-[#e0e0e0] text-lg border-b border-[#1e2a38] transition-colors duration-200 touch-manipulation"
                         role="menuitem"
                       >
                         {subitem.label}
@@ -335,7 +366,7 @@ const socialLinks = [
             ) : (
               <a
                 href={item.link}
-                class="block w-full px-6 py-5 text-white text-left hover:text-[#e0e0e0] text-xl border-b border-[#1e3a8a] transition-colors duration-200"
+                class="block w-full px-6 py-5 text-white text-left hover:text-[#e0e0e0] text-xl border-b border-[#1e3a8a] transition-colors duration-200 touch-manipulation"
               >
                 {item.label}
               </a>
@@ -343,6 +374,7 @@ const socialLinks = [
           </li>
         ))
       }
+
       <!-- Social Icons in Mobile Menu -->
       <li
         class="flex items-center justify-center gap-6 px-6 py-6 border-b border-[#1e3a8a]"
@@ -355,7 +387,7 @@ const socialLinks = [
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              class="text-white hover:text-[#e0e0e0] transition-colors duration-200"
+              class="text-white hover:text-[#e0e0e0] transition-colors duration-200 touch-manipulation"
             >
               <social.icon
                 className="h-8 w-8 fill-[#c0c0c0]"
@@ -599,5 +631,23 @@ const socialLinks = [
   /* Ensure content doesn't overlap with fixed navbar */
   body {
     padding-top: 0;
+  }
+
+  /* Touch-friendly mobile interactions */
+  @media (max-width: 1023px) {
+    button,
+    a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Tablet-specific optimizations */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    #mobile-nav-menu {
+      max-width: 400px;
+      right: 0;
+      left: auto;
+    }
   }
 </style>

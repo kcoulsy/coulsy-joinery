@@ -27,34 +27,33 @@
     }
 
     setupNavigationTransitions() {
-      // Intercept all internal navigation
+      // Only intercept navigation for links that explicitly opt-in to transitions
       document.addEventListener("click", (e) => {
         const target = e.target;
         if (!target || !(target instanceof Element)) return;
 
-        const link = target.closest("a") as HTMLAnchorElement | null;
-        if (!link || !this.isInternalLink(link.href) || this.isTransitioning)
-          return;
+        const link = target.closest("a");
+        if (!link || !this.isInternalLink(link.href)) return;
 
-        // Skip if it's a download link or external link
+        // ONLY apply transitions to links that explicitly opt-in
+        // This prevents interference with normal navigation
         if (
-          link.target === "_blank" ||
-          link.download ||
-          link.href.includes("mailto:") ||
-          link.href.includes("tel:")
+          !link.hasAttribute("data-transition") &&
+          !link.classList.contains("transition-link")
         ) {
-          return;
+          return; // Use normal navigation for all other links
         }
 
         // CRITICAL FIX: Skip logo and home navigation to prevent CSS breaking
         if (
-          link.href === "/" || // Home page navigation
-          link.closest(".logo") || // Logo container
-          link.querySelector("img") || // Any link with an image (like logo)
-          link.classList.contains("logo-link") || // Logo-specific class
-          link.getAttribute("data-no-transition") === "true" // Explicit opt-out
+          link.classList.contains("logo-link") ||
+          link.getAttribute("data-no-transition") === "true" ||
+          (link.href === "/" && link.closest(".logo")) ||
+          (link.href.endsWith("/") &&
+            link.href.length <= window.location.origin.length + 1) ||
+          link.querySelector("img") // Skip any link with an image (like logo)
         ) {
-          return; // Use normal navigation for these critical elements
+          return; // Use normal navigation for these critical links
         }
 
         e.preventDefault();
