@@ -21,8 +21,8 @@ const { items } = Astro.props;
         <div class="group relative m-0 flex rounded-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
           <div class="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 group-hover:opacity-100">
             <button
-              onclick={`showLightbox(); document.getElementById('lightbox-image-${index}').scrollIntoView({ behavior: 'instant', inline: 'center' })`}
-              class="block w-full"
+              data-image-index={index}
+              class="block w-full gallery-image-btn"
             >
               <OptimizedImage
                 src={item.src}
@@ -65,8 +65,8 @@ const { items } = Astro.props;
   style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100vw !important; height: 100vh !important;"
 >
   <button
+    id="close-lightbox-btn"
     class="absolute top-4 right-4 text-white text-3xl z-[10000] hover:text-gray-300 transition-colors duration-200"
-    onclick="hideLightbox()"
     style="position: absolute !important; top: 1rem !important; right: 1rem !important; z-index: 10000 !important;"
   >
     &times;
@@ -120,6 +120,31 @@ const { items } = Astro.props;
         if (e.target === lightbox) {
           window.hideLightbox();
         }
+      });
+    }
+
+    // Add event listeners for gallery image buttons
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      const button = target.closest(".gallery-image-btn");
+      
+      if (button) {
+        const imageIndex = button.getAttribute("data-image-index");
+        if (imageIndex !== null) {
+          window.showLightbox();
+          const targetImage = document.getElementById(`lightbox-image-${imageIndex}`);
+          if (targetImage) {
+            targetImage.scrollIntoView({ behavior: "instant", inline: "center" });
+          }
+        }
+      }
+    });
+
+    // Add event listener for close button
+    const closeBtn = document.getElementById("close-lightbox-btn");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        window.hideLightbox();
       });
     }
 

@@ -23,12 +23,14 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
       <p>
         <svg
-          onclick="window.location.href='/';"
+          id="404-home-icon"
           xmlns="http://www.w3.org/2000/svg"
           height="2em"
           viewBox="0 0 576 512"
           class="cursor-pointer hover:fill-blue-500 transition-colors duration-300 mr-2"
           fill="#4b5563"
+          role="button"
+          tabindex="0"
         >
           <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
           <path
@@ -39,3 +41,25 @@ import Breadcrumb from "../components/Breadcrumb.astro";
     </div>
   </div>
 </Layout>
+
+<script>
+  // Proper event handling for 404 home icon navigation
+  document.addEventListener('DOMContentLoaded', function() {
+    const homeIcon = document.getElementById('404-home-icon');
+    
+    if (homeIcon) {
+      // Handle click
+      homeIcon.addEventListener('click', function() {
+        window.location.href = '/';
+      });
+      
+      // Handle keyboard navigation (Enter key)
+      homeIcon.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          window.location.href = '/';
+        }
+      });
+    }
+  });
+</script>
