@@ -1,19 +1,90 @@
 {
   "name": "Coulsy Joinery & Small Build",
   "short_name": "Coulsy Joinery",
+  "description": "Professional joinery, carpentry, and small build services in York and across Yorkshire. Quality craftsmanship since 1989 with expertise in kitchens, bespoke joinery, garden offices, and heritage restoration.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1e2a38",
+  "background_color": "#ffffff",
+  "categories": ["business", "construction", "home-improvement", "carpentry"],
+  "lang": "en-GB",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Joinery Services",
+      "short_name": "Services",
+      "description": "View all joinery services",
+      "url": "/joinery-services",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kitchen Installation",
+      "short_name": "Kitchens",
+      "description": "Professional kitchen fitting services",
+      "url": "/joinery-services/kitchen-installers",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch for a quote",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Bespoke Joinery",
+      "short_name": "Bespoke",
+      "description": "Custom joinery and carpentry work",
+      "url": "/joinery-services/bespoke-joinery",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "750x1334",
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "prefer_related_applications": false
 }

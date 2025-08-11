@@ -13,7 +13,7 @@ interface Props {
 const { crumbs } = Astro.props;
 ---
 
-<nav class="text-sm sm:text-base min-h-[2.5rem]" aria-label="Breadcrumb">
+<nav class="text-sm sm:text-base pb-6 min-h-[2.5rem]" aria-label="Breadcrumb">
   <ol
     class="list-none p-0 flex flex-wrap items-center space-x-2 min-h-[2.75rem]"
   >
@@ -22,6 +22,7 @@ const { crumbs } = Astro.props;
         id="home-icon"
         xmlns="http://www.w3.org/2000/svg"
         height="16"
+        width="16"
         viewBox="0 0 576 512"
         class="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:fill-black rounded transition-colors duration-300 mr-1"
         fill="#47525d"
@@ -56,23 +57,14 @@ const { crumbs } = Astro.props;
 </nav>
 
 <script>
-  // Proper event handling for home icon navigation
-  document.addEventListener('DOMContentLoaded', function() {
-    const homeIcon = document.getElementById('home-icon');
-    
-    if (homeIcon) {
-      // Handle click
-      homeIcon.addEventListener('click', function() {
-        window.location.href = '/';
-      });
-      
-      // Handle keyboard navigation (Enter key)
-      homeIcon.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          window.location.href = '/';
-        }
-      });
+  document.getElementById("home-icon")?.addEventListener("click", () => {
+    window.location.href = "/";
+  });
+
+  document.getElementById("home-icon")?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      window.location.href = "/";
     }
   });
 </script>
