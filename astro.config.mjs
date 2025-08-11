@@ -42,9 +42,9 @@ export default defineConfig({
       minify: false,
     },
   },
-  // Try to disable Astro's built-in HTML compression
+  // CSS handling - allow auto-inlining for better consistency
   build: {
-    inlineStylesheets: "never",
+    inlineStylesheets: "auto",
   },
 });
 
