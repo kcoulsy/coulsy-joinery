@@ -1,9 +1,76 @@
 ---
-// DETAILS import removed as it's not used
+// Reviews component with hardcoded Google reviews fallback
+// Uses hardcoded reviews when API is unavailable
 
-// Review interface moved to script section where it's used
+interface Props {
+  useHardcoded?: boolean;
+}
 
-// ReviewsData interface removed as it's not used
+const { useHardcoded = true } = Astro.props;
+
+// Real Google reviews from Coulsy Joinery Google Business Profile
+const hardcodedReviews = [
+  {
+    author: "Sally Gerrand-Jones",
+    rating: 5,
+    text: "I contacted Robert to survey the fire door of my York apartment. As a result of the survey, a new fire door was fitted. Both the survey and the subsequent door fitting were carried out to the highest standard and attention to detail.",
+    relativeTime: "a month ago",
+  },
+  {
+    author: "Sales UK",
+    rating: 5,
+    text: "You read so many bad reviews about builders but I am delighted to say Cousy Joinery is not one of them. From the outset Robert was open, explained everything in detail, polite, extremely tidy, punctual - in fact everything you want a builder to be.",
+    relativeTime: "a month ago",
+  },
+  {
+    author: "Kim hosking",
+    rating: 5,
+    text: "Had a fire survey done on my apartment door by a previous company and no one could make head nor tail of it. I hired in Rob and he was friendly, knowledgeable and gave a full, clear breakdown of everything and the changes that needed to be made.",
+    relativeTime: "3 months ago",
+  },
+  {
+    author: "MartinS",
+    rating: 5,
+    text: "Mr Coulson gave careful and precise work professionally and was personally very easy to deal with. I would certainly employ him again for any future joinery needs.",
+    relativeTime: "2 months ago",
+  },
+  {
+    author: "Luisa D",
+    rating: 5,
+    text: "We would strongly recommend Coulsy Ltd for anyone looking for good-quality joinery work. We used Robert and Debbie for the installation of an external fire door. Their pre-installation advice was excellent. We are delighted with the result.",
+    relativeTime: "8 months ago",
+  },
+  {
+    author: "Donna Cresdee",
+    rating: 5,
+    text: "We have been extremely pleased with the professionalism shown by Robert, and the quality of our new fire door. A very quick response and delivery, would highly recommend.",
+    relativeTime: "7 months ago",
+  },
+  {
+    author: "Sophie Vohra",
+    rating: 5,
+    text: "I contracted Debbie and Robert to carry out fire safety repairs on my apartment door, following a request by the management company/freeholders. From start to finish they were a dream. Thorough, professional, and kept us informed every step of the way.",
+    relativeTime: "9 months ago",
+  },
+  {
+    author: "Jean Putwain",
+    rating: 5,
+    text: "Dementia Care Home - replacement of Joists and Floor. Highly recommend Coulsy Joinery, excellent workmanship and professional company, cleaned up all debris. Would definitely use again.",
+    relativeTime: "a year ago",
+  },
+  {
+    author: "Graeme Kynman",
+    rating: 5,
+    text: "I can testify that the joinery work rob produced for me was of an extremely high quality and would highly recommend him. If you have the chance to use him for a project you have do not hesitate because his quality work does not come along very often.",
+    relativeTime: "a year ago",
+  },
+  {
+    author: "Edris Mahmud",
+    rating: 5,
+    text: "Carried out a fire door installation for us. Very fast and great installation done. Strongly recommend.",
+    relativeTime: "a year ago",
+  },
+];
 ---
 
 <section class="py-12">
@@ -12,7 +79,6 @@
       <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
         What Our Customers Say
       </h2>
-
       <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
         We're proud to have earned the trust of our clients across Yorkshire.
         Here's what they have to say about working with Coulsy Joinery & Small
@@ -20,115 +86,326 @@
       </p>
     </div>
 
-    <div
-      id="reviews-container"
-      class="text-center text-gray-500 p-4 bg-gray-50 rounded-lg max-w-2xl mx-auto"
-    >
-      Loading reviews...
-    </div>
+    {useHardcoded ? (
+      <!-- Hardcoded Reviews Display -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-6">
+        {hardcodedReviews.map((review, index) => {
+          const isLongReview = review.text.length > 150;
+          const truncatedText = isLongReview ? review.text.slice(0, 150) + "..." : review.text;
+          const reviewId = `review-${index}-${review.author.replace(/\s+/g, "-").toLowerCase()}`;
+          
+          return (
+            <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow h-full flex flex-col">
+              <div class="flex items-center gap-4 mb-4">
+                <div>
+                  <div class="font-semibold text-lg">{review.author}</div>
+                  <div class="text-yellow-500 flex gap-1 items-center">
+                    {"★".repeat(review.rating)}
+                    <span class="text-gray-500 text-sm ml-2">{review.relativeTime}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-grow flex flex-col">
+                <p id={reviewId} data-expanded="false" class="text-gray-700">
+                  {truncatedText}
+                </p>
+                <div class="flex-grow"></div>
+                {isLongReview && (
+                  <button
+                    class="mt-2 px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition read-more-btn"
+                    data-review-id={reviewId}
+                    data-full-text={review.text}
+                    data-truncated-text={truncatedText}
+                  >
+                    Read more
+                  </button>
+                )}
+                <a
+                  href="https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs text-gray-400 hover:text-gray-600 block mt-3 text-right self-end flex items-center justify-end gap-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M21.35 11.1h-9.18v2.96h5.48c-.24 1.48-1.55 4.34-5.48 4.34-3.29 0-6-2.7-6-6s2.71-6 6-6c1.87 0 3.12.8 3.84 1.5l2.63-2.54C17.73 3.51 15.09 2 12 2 6.48 2 2 6.48 2 12s4.48 10 10 10c5.33 0 9.75-3.89 9.75-9.7 0-.65-.07-1.14-.16-1.6z" />
+                  </svg>
+                  Google
+                </a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    ) : (
+      <!-- API Reviews Container -->
+      <div
+        id="reviews-container"
+        class="text-center text-gray-500 p-4 bg-gray-50 rounded-lg max-w-2xl mx-auto"
+      >
+        Loading reviews...
+      </div>
+    )}
   </div>
 </section>
 
-<script>
-  interface Review {
-    author: string;
-    authorPhoto: string;
-    rating: number;
-    text: string;
-    relativeTime: string;
-    publishTime: string;
-  }
+{useHardcoded && (
+  <script>
+    function setupReadMoreButtons() {
+      document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        if (target.classList.contains("read-more-btn")) {
+          const reviewId = target.getAttribute("data-review-id");
+          const fullText = target.getAttribute("data-full-text");
+          const truncatedText = target.getAttribute("data-truncated-text");
+          
+          if (reviewId && fullText && truncatedText) {
+            const reviewElement = document.getElementById(reviewId);
+            if (reviewElement) {
+              const isExpanded = reviewElement.getAttribute("data-expanded") === "true";
+              
+              if (isExpanded) {
+                reviewElement.textContent = truncatedText;
+                reviewElement.setAttribute("data-expanded", "false");
+                target.textContent = "Read more";
+              } else {
+                reviewElement.textContent = fullText;
+                reviewElement.setAttribute("data-expanded", "true");
+                target.textContent = "Read less";
+              }
+            }
+          }
+        }
+      });
+    }
 
-  async function loadReviews() {
-    const container = document.getElementById("reviews-container");
-    if (!container) return;
+    document.addEventListener("DOMContentLoaded", setupReadMoreButtons);
+  </script>
+)}
 
-    try {
-      const response = await fetch("/api/reviews");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+{!useHardcoded && (
+  <script>
+    interface Review {
+      author: string;
+      authorPhoto: string;
+      rating: number;
+      text: string;
+      relativeTime: string;
+      publishTime: string;
+    }
 
-      const data = await response.json();
+    // Hardcoded reviews fallback - Real Google reviews
+    const hardcodedReviews = [
+      {
+        author: "Sally Gerrand-Jones",
+        rating: 5,
+        text: "I contacted Robert to survey the fire door of my York apartment. As a result of the survey, a new fire door was fitted. Both the survey and the subsequent door fitting were carried out to the highest standard and attention to detail.",
+        relativeTime: "a month ago",
+      },
+      {
+        author: "Sales UK",
+        rating: 5,
+        text: "You read so many bad reviews about builders but I am delighted to say Cousy Joinery is not one of them. From the outset Robert was open, explained everything in detail, polite, extremely tidy, punctual - in fact everything you want a builder to be.",
+        relativeTime: "a month ago",
+      },
+      {
+        author: "Kim hosking",
+        rating: 5,
+        text: "Had a fire survey done on my apartment door by a previous company and no one could make head nor tail of it. I hired in Rob and he was friendly, knowledgeable and gave a full, clear breakdown of everything and the changes that needed to be made.",
+        relativeTime: "3 months ago",
+      },
+      {
+        author: "MartinS",
+        rating: 5,
+        text: "Mr Coulson gave careful and precise work professionally and was personally very easy to deal with. I would certainly employ him again for any future joinery needs.",
+        relativeTime: "2 months ago",
+      },
+      {
+        author: "Luisa D",
+        rating: 5,
+        text: "We would strongly recommend Coulsy Ltd for anyone looking for good-quality joinery work. We used Robert and Debbie for the installation of an external fire door. Their pre-installation advice was excellent. We are delighted with the result.",
+        relativeTime: "8 months ago",
+      },
+      {
+        author: "Donna Cresdee",
+        rating: 5,
+        text: "We have been extremely pleased with the professionalism shown by Robert, and the quality of our new fire door. A very quick response and delivery, would highly recommend.",
+        relativeTime: "7 months ago",
+      },
+      {
+        author: "Sophie Vohra",
+        rating: 5,
+        text: "I contracted Debbie and Robert to carry out fire safety repairs on my apartment door, following a request by the management company/freeholders. From start to finish they were a dream. Thorough, professional, and kept us informed every step of the way.",
+        relativeTime: "9 months ago",
+      },
+      {
+        author: "Jean Putwain",
+        rating: 5,
+        text: "Dementia Care Home - replacement of Joists and Floor. Highly recommend Coulsy Joinery, excellent workmanship and professional company, cleaned up all debris. Would definitely use again.",
+        relativeTime: "a year ago",
+      },
+      {
+        author: "Graeme Kynman",
+        rating: 5,
+        text: "I can testify that the joinery work rob produced for me was of an extremely high quality and would highly recommend him. If you have the chance to use him for a project you have do not hesitate because his quality work does not come along very often.",
+        relativeTime: "a year ago",
+      },
+      {
+        author: "Edris Mahmud",
+        rating: 5,
+        text: "Carried out a fire door installation for us. Very fast and great installation done. Strongly recommend.",
+        relativeTime: "a year ago",
+      },
+    ];
 
-      // Check if the API returned an error
-      if (data.error) {
-        throw new Error(data.message);
-      }
-
-      const reviews = data.reviews?.slice(0, 7) || [];
-
-      if (reviews.length === 0) {
-        container.innerHTML =
-          '<div class="text-center text-gray-500 p-4 bg-gray-50 rounded-lg max-w-2xl mx-auto">No reviews available at this time.</div>';
-        return;
-      }
-
-      const reviewsHTML = reviews
-        .map((review: Review) => {
-          const isLongReview = review.text.length > 150;
-          const truncatedText = isLongReview
-            ? review.text.slice(0, 150) + "..."
-            : review.text;
-          const reviewId = `review-${review.author.replace(/\s+/g, "-").toLowerCase()}`;
-
-          return `
-          <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow h-full flex flex-col">
-            <div class="flex items-center gap-4 mb-4">
-              <div>
-                <div class="font-semibold text-lg">${review.author}</div>
-                <div class="text-yellow-500 flex gap-1 items-center">
-                  ${"★".repeat(review.rating)}
-                  <span class="text-gray-500 text-sm ml-2">
-                    ${review.relativeTime}
-                  </span>
-                </div>
+    function renderReviewCard(review: typeof hardcodedReviews[0], index: number) {
+      const isLongReview = review.text.length > 150;
+      const truncatedText = isLongReview ? review.text.slice(0, 150) + "..." : review.text;
+      const reviewId = `review-${index}-${review.author.replace(/\s+/g, "-").toLowerCase()}`;
+      
+      return `
+        <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow h-full flex flex-col">
+          <div class="flex items-center gap-4 mb-4">
+            <div>
+              <div class="font-semibold text-lg">${review.author}</div>
+              <div class="text-yellow-500 flex gap-1 items-center">
+                ${"★".repeat(review.rating)}
+                <span class="text-gray-500 text-sm ml-2">${review.relativeTime}</span>
               </div>
             </div>
-            <div class="flex-grow flex flex-col">
-              <p id="${reviewId}" data-expanded="false" class="text-gray-700">
-                ${truncatedText}
-              </p>
-              <div class="flex-grow"></div>
-              ${
-                isLongReview
-                  ? `
-                <button
-                  class="mt-2 px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition read-more-btn"
-                  data-review-id="${reviewId}"
-                  data-full-text="${review.text.replace(/"/g, '&quot;')}"
-                  data-truncated-text="${truncatedText.replace(/"/g, '&quot;')}"
-                >
-                  Read more
-                </button>
-              `
-                  : ""
-              }
-              <a
-                href="https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs text-gray-400 hover:text-gray-600 block mt-3 text-right self-end flex items-center justify-end gap-1"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M21.35 11.1h-9.18v2.96h5.48c-.24 1.48-1.55 4.34-5.48 4.34-3.29 0-6-2.7-6-6s2.71-6 6-6c1.87 0 3.12.8 3.84 1.5l2.63-2.54C17.73 3.51 15.09 2 12 2 6.48 2 2 6.48 2 12s4.48 10 10 10c5.33 0 9.75-3.89 9.75-9.7 0-.65-.07-1.14-.16-1.6z" />
-                </svg>
-                Google
-              </a>
-            </div>
           </div>
-        `;
-        })
-        .join("");
+          <div class="flex-grow flex flex-col">
+            <p id="${reviewId}" data-expanded="false" class="text-gray-700">
+              ${truncatedText}
+            </p>
+            <div class="flex-grow"></div>
+            ${
+              isLongReview
+                ? `
+              <button
+                class="mt-2 px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition read-more-btn"
+                data-review-id="${reviewId}"
+                data-full-text="${review.text.replace(/"/g, '&quot;')}"
+                data-truncated-text="${truncatedText.replace(/"/g, '&quot;')}"
+              >
+                Read more
+              </button>
+            `
+                : ""
+            }
+            <a
+              href="https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs text-gray-400 hover:text-gray-600 block mt-3 text-right self-end flex items-center justify-end gap-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M21.35 11.1h-9.18v2.96h5.48c-.24 1.48-1.55 4.34-5.48 4.34-3.29 0-6-2.7-6-6s2.71-6 6-6c1.87 0 3.12.8 3.84 1.5l2.63-2.54C17.73 3.51 15.09 2 12 2 6.48 2 2 6.48 2 12s4.48 10 10 10c5.33 0 9.75-3.89 9.75-9.7 0-.65-.07-1.14-.16-1.6z" />
+              </svg>
+              Google
+            </a>
+          </div>
+        </div>
+      `;
+    }
 
-      container.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-6">${reviewsHTML}</div>`;
-      
-      // Add event delegation for read more buttons
+    async function loadReviews() {
+      const container = document.getElementById("reviews-container");
+      if (!container) return;
+
+      try {
+        const response = await fetch("/api/reviews");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+          throw new Error(data.message);
+        }
+
+        const reviews = data.reviews?.slice(0, 7) || [];
+
+        if (reviews.length === 0) {
+          // Fallback to hardcoded reviews
+          const reviewsHTML = hardcodedReviews.map((review, index) => renderReviewCard(review, index)).join("");
+          container.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-6">${reviewsHTML}</div>`;
+          setupReadMoreButtons(container);
+          return;
+        }
+
+        const reviewsHTML = reviews
+          .map((review: Review, index: number) => {
+            const isLongReview = review.text.length > 150;
+            const truncatedText = isLongReview ? review.text.slice(0, 150) + "..." : review.text;
+            const reviewId = `review-${index}-${review.author.replace(/\s+/g, "-").toLowerCase()}`;
+
+            return `
+            <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow h-full flex flex-col">
+              <div class="flex items-center gap-4 mb-4">
+                <div>
+                  <div class="font-semibold text-lg">${review.author}</div>
+                  <div class="text-yellow-500 flex gap-1 items-center">
+                    ${"★".repeat(review.rating)}
+                    <span class="text-gray-500 text-sm ml-2">${review.relativeTime}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-grow flex flex-col">
+                <p id="${reviewId}" data-expanded="false" class="text-gray-700">${truncatedText}</p>
+                <div class="flex-grow"></div>
+                ${
+                  isLongReview
+                    ? `
+                  <button
+                    class="mt-2 px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition read-more-btn"
+                    data-review-id="${reviewId}"
+                    data-full-text="${review.text.replace(/"/g, '&quot;')}"
+                    data-truncated-text="${truncatedText.replace(/"/g, '&quot;')}"
+                  >
+                    Read more
+                  </button>
+                `
+                    : ""
+                }
+                <a
+                  href="https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs text-gray-400 hover:text-gray-600 block mt-3 text-right self-end flex items-center justify-end gap-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.35 11.1h-9.18v2.96h5.48c-.24 1.48-1.55 4.34-5.48 4.34-3.29 0-6-2.7-6-6s2.71-6 6-6c1.87 0 3.12.8 3.84 1.5l2.63-2.54C17.73 3.51 15.09 2 12 2 6.48 2 2 6.48 2 12s4.48 10 10 10c5.33 0 9.75-3.89 9.75-9.7 0-.65-.07-1.14-.16-1.6z" />
+                  </svg>
+                  Google
+                </a>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+
+        container.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-6">${reviewsHTML}</div>`;
+        setupReadMoreButtons(container);
+      } catch (e) {
+        // Fallback to hardcoded reviews on any error
+        const reviewsHTML = hardcodedReviews.map((review, index) => renderReviewCard(review, index)).join("");
+        container.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-6">${reviewsHTML}</div>`;
+        setupReadMoreButtons(container);
+      }
+    }
+
+    function setupReadMoreButtons(container: HTMLElement) {
       container.addEventListener("click", (e) => {
         const target = e.target as HTMLElement;
         if (target.classList.contains("read-more-btn")) {
@@ -137,52 +414,25 @@
           const truncatedText = target.getAttribute("data-truncated-text");
           
           if (reviewId && fullText && truncatedText) {
-            toggleReview(reviewId, fullText, truncatedText, target);
+            const reviewElement = document.getElementById(reviewId);
+            if (reviewElement) {
+              const isExpanded = reviewElement.getAttribute("data-expanded") === "true";
+              
+              if (isExpanded) {
+                reviewElement.textContent = truncatedText;
+                reviewElement.setAttribute("data-expanded", "false");
+                target.textContent = "Read more";
+              } else {
+                reviewElement.textContent = fullText;
+                reviewElement.setAttribute("data-expanded", "true");
+                target.textContent = "Read less";
+              }
+            }
           }
         }
       });
-    } catch (e) {
-      const error = e instanceof Error ? e.message : "Failed to fetch reviews";
-      console.error("Error fetching reviews:", error);
-
-      // Check if it's an API key issue - be more specific
-      if (
-        error.includes("API key") ||
-        error.includes("REQUEST_DENIED") ||
-        error.includes("expired")
-      ) {
-        container.innerHTML = `
-          <div class="text-center p-4 bg-yellow-50 rounded-lg max-w-2xl mx-auto">
-            <div class="text-yellow-800 font-semibold mb-2">Google Reviews Temporarily Unavailable</div>
-            <div class="text-yellow-700 text-sm mb-4">Our Google Reviews integration is being updated. Please check our <a href="https://www.google.com/search?q=Coulsy+Joinery+reviews" target="_blank" class="underline font-semibold">Google Reviews directly</a> for the latest customer feedback.</div>
-            <div class="text-xs text-yellow-600">We're working to restore this feature as soon as possible.</div>
-          </div>
-        `;
-      } else {
-        container.innerHTML =
-          '<div class="text-center text-red-500 p-4 bg-red-50 rounded-lg max-w-2xl mx-auto">Unable to load reviews at this time. Please try again later.</div>';
-      }
     }
-  }
 
-  // Add toggleReview function back with proper event handling
-  function toggleReview(reviewId: string, fullText: string, truncatedText: string, button: HTMLElement) {
-    const reviewElement = document.getElementById(reviewId);
-    if (reviewElement) {
-      const isExpanded = reviewElement.getAttribute("data-expanded") === "true";
-      
-      if (isExpanded) {
-        reviewElement.textContent = truncatedText;
-        reviewElement.setAttribute("data-expanded", "false");
-        button.textContent = "Read more";
-      } else {
-        reviewElement.textContent = fullText;
-        reviewElement.setAttribute("data-expanded", "true");
-        button.textContent = "Read less";
-      }
-    }
-  }
-
-  // Load reviews when the page loads
-  document.addEventListener("DOMContentLoaded", loadReviews);
-</script>
+    document.addEventListener("DOMContentLoaded", loadReviews);
+  </script>
+)}

@@ -23,6 +23,8 @@ const { items } = Astro.props;
             <button
               data-image-index={index}
               class="block w-full gallery-image-btn"
+              aria-label={`View larger image: ${item.label}`}
+              type="button"
             >
               <OptimizedImage
                 src={item.src}
@@ -68,6 +70,8 @@ const { items } = Astro.props;
     id="close-lightbox-btn"
     class="absolute top-4 right-4 text-white text-3xl z-[10000] hover:text-gray-300 transition-colors duration-200"
     style="position: absolute !important; top: 1rem !important; right: 1rem !important; z-index: 10000 !important;"
+    aria-label="Close lightbox"
+    type="button"
   >
     &times;
   </button>
@@ -127,14 +131,19 @@ const { items } = Astro.props;
     document.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
       const button = target.closest(".gallery-image-btn");
-      
+
       if (button) {
         const imageIndex = button.getAttribute("data-image-index");
         if (imageIndex !== null) {
           window.showLightbox();
-          const targetImage = document.getElementById(`lightbox-image-${imageIndex}`);
+          const targetImage = document.getElementById(
+            `lightbox-image-${imageIndex}`
+          );
           if (targetImage) {
-            targetImage.scrollIntoView({ behavior: "instant", inline: "center" });
+            targetImage.scrollIntoView({
+              behavior: "instant",
+              inline: "center",
+            });
           }
         }
       }

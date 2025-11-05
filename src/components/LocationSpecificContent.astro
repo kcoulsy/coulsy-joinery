@@ -1,0 +1,99 @@
+---
+// Location-specific content section component for geo-targeting SEO
+// This component adds unique, location-specific content to help avoid duplicate content issues
+
+interface Props {
+  locationName: string;
+  serviceName: string;
+}
+
+const { locationName, serviceName } = Astro.props;
+---
+
+{
+  locationName && (
+    <div class="card card-hover border-l-4 border-brand-500 bg-gradient-to-r from-brand-50 to-white mt-6">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-brand-600"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          Why Choose Me for {serviceName} in {locationName}?
+        </h2>
+        <div class="space-y-4 text-neutral-700">
+          <p>
+            My experience working in {locationName} means I understand the
+            unique architectural character of the area. Whether you're in the
+            heart of {locationName} or in the surrounding villages, I bring
+            local knowledge that ensures your {serviceName.toLowerCase()} work
+            complements the area's heritage and building styles.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-neutral-900 mb-1">
+                  Local Building Knowledge
+                </p>
+                <p class="text-sm text-neutral-600">
+                  I understand the planning requirements and building
+                  regulations specific to {locationName} and North Yorkshire,
+                  ensuring your project complies with local standards.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-neutral-900 mb-1">
+                  Heritage & Modern Styles
+                </p>
+                <p class="text-sm text-neutral-600">
+                  Whether your {locationName} property is a period home
+                  requiring traditional {serviceName.toLowerCase()} or a modern
+                  development needing contemporary solutions, I have the
+                  expertise to match the right style.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-neutral-900 mb-1">
+                  Proven Track Record
+                </p>
+                <p class="text-sm text-neutral-600">
+                  I've completed numerous {serviceName.toLowerCase()} projects in
+                  {locationName} and surrounding areas, building a reputation
+                  for quality craftsmanship and reliable service.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-2 h-2 bg-brand-600 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-neutral-900 mb-1">
+                  Responsive Service
+                </p>
+                <p class="text-sm text-neutral-600">
+                  Being familiar with {locationName} means I can respond quickly
+                  to site visits, quotes, and any follow-up work needed
+                  throughout your project.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+

@@ -152,8 +152,8 @@ const seoData = {
     ],
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "50",
+      ratingValue: "5.0",
+      reviewCount: "10",
       bestRating: "5",
       worstRating: "1",
     },
@@ -275,9 +275,4 @@ const seoData = {
   </section>
 </Layout>
 
-<!-- Modern Structured Data -->
-<script
-  is:inline
-  type="application/ld+json"
-  set:html={JSON.stringify(seoData.structuredData)}
-/>
+<!-- Note: Structured data is already included in Layout component, no need to duplicate -->

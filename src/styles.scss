@@ -302,9 +302,28 @@
   }
   
   // Focus utilities
-  .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
-  }
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
+}
+
+// Remove ugly blue focus rings globally
+*:focus {
+  outline: none !important;
+}
+
+// Add custom focus styles for interactive elements
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+  outline: 2px solid #1e2a38 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+
+
   
   // Scrollbar styling
   .scrollbar-thin {

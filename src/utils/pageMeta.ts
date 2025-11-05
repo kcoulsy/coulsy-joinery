@@ -1,5 +1,6 @@
 import { formatLocationName } from "./capitalizeFirstLetter";
 import { LOCATIONS } from "../constants/locations";
+import { getNearbyLocations } from "./getNearbyLocations";
 
 export function getFormattedPageData(Astro: any): {
   formattedServiceName: string;
@@ -243,6 +244,24 @@ export function getFormattedPageData(Astro: any): {
   // Enhanced keywords with location and service
   const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, bespoke joinery ${locationInText}, heritage restoration ${locationInText}, ${formattedServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
 
+  // Get nearby locations for enhanced areaServed
+  const nearbyLocations = location 
+    ? getNearbyLocations(location, 30).slice(0, 10).map(loc => {
+        const locData = LOCATIONS.find(l => l.slug === loc.slug);
+        return locData ? formatLocationName(locData.slug) : null;
+      }).filter(Boolean)
+    : [];
+
+  // Enhanced areaServed with nearby locations
+  const enhancedAreaServed = [
+    cleanLocationName || "York",
+    "Leeds",
+    "Wetherby", 
+    "Harrogate",
+    "Yorkshire",
+    ...(nearbyLocations as string[])
+  ].filter((value, index, self) => self.indexOf(value) === index); // Remove duplicates
+
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -271,13 +290,28 @@ export function getFormattedPageData(Astro: any): {
       longitude: geo.lng,
     },
     openingHours: "Mo-Fr 07:00-18:00",
-    areaServed: [
-      cleanLocationName || "York",
-      "Leeds",
-      "Wetherby", 
-      "Harrogate",
-      "Yorkshire"
-    ],
+    // Enhanced areaServed with structured data
+    areaServed: enhancedAreaServed.map((city) => ({
+      "@type": "City",
+      name: city,
+      containedIn: {
+        "@type": "State",
+        name: "North Yorkshire"
+      }
+    })),
+    // ServiceArea schema for geo-targeting SEO
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: String(geo.lat),
+        longitude: String(geo.lng),
+      },
+      geoRadius: {
+        "@type": "Distance",
+        name: "30 miles"
+      }
+    },
     hasMap: `https://www.google.com/maps?q=${geo.lat},${geo.lng}`,
     sameAs: [
       "https://www.linkedin.com/company/coulsy-limited/?viewAsMember=true",
@@ -285,8 +319,8 @@ export function getFormattedPageData(Astro: any): {
     ],
     aggregateRating: {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "127",
+      "ratingValue": "5.0",
+      "reviewCount": "10",
       "bestRating": "5",
       "worstRating": "1"
     }
@@ -308,9 +342,37 @@ export function getFormattedPageData(Astro: any): {
         "addressCountry": "GB"
       }
     },
-    "areaServed": {
-      "@type": "City",
-      "name": cleanLocationName || "York"
+    // Enhanced areaServed with multiple locations
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": cleanLocationName || "York",
+        "containedIn": {
+          "@type": "State",
+          "name": "North Yorkshire"
+        }
+      },
+      ...enhancedAreaServed.slice(0, 5).map((city) => ({
+        "@type": "City",
+        "name": city,
+        "containedIn": {
+          "@type": "State",
+          "name": "North Yorkshire"
+        }
+      }))
+    ],
+    // ServiceArea for geo-targeting
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": String(geo.lat),
+        "longitude": String(geo.lng),
+      },
+      "geoRadius": {
+        "@type": "Distance",
+        "name": "30 miles"
+      }
     },
     "serviceType": formattedServiceName,
     "category": "Home Improvement",
@@ -322,22 +384,26 @@ export function getFormattedPageData(Astro: any): {
     }
   };
 
-  // FAQ Schema for better search visibility
+  // FAQ Schema for better search visibility with enhanced location-specific questions
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       {
         "@type": "Question",
-        "name": `What ${formattedServiceName.toLowerCase()} services do you offer ${locationInText}?`,
+        "name": location 
+          ? `Do you provide ${formattedServiceName.toLowerCase()} services in ${cleanLocationName}?`
+          : `What ${formattedServiceName.toLowerCase()} services do you offer?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `We offer comprehensive ${formattedServiceName.toLowerCase()} services ${locationInText} including bespoke joinery, kitchen installations, heritage restoration, and general carpentry. All work is carried out by qualified craftsmen with over 30 years' experience.`
+          "text": location
+            ? `Yes, I regularly work in ${cleanLocationName} and surrounding areas. I offer comprehensive ${formattedServiceName.toLowerCase()} services ${locationInText} including bespoke joinery, kitchen installations, heritage restoration, and general carpentry. My local knowledge of ${cleanLocationName}'s building styles and planning requirements ensures quality work that complements the area's character.`
+            : `We offer comprehensive ${formattedServiceName.toLowerCase()} services including bespoke joinery, kitchen installations, heritage restoration, and general carpentry. All work is carried out by qualified craftsmen with over 30 years' experience.`
         }
       },
       {
         "@type": "Question", 
-        "name": `Are you qualified and insured ${locationInText}?`,
+        "name": `Are you qualified and insured${locationInText}?`,
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yes, I'm City & Guilds qualified since 1989, fully insured, and VAT registered. I hold a CSCS Gold Card and have over 30 years of experience in joinery and carpentry."
@@ -345,12 +411,22 @@ export function getFormattedPageData(Astro: any): {
       },
       {
         "@type": "Question",
-        "name": `Do you provide free quotes ${locationInText}?`,
+        "name": `Do you provide free quotes${locationInText}?`,
         "acceptedAnswer": {
           "@type": "Answer", 
-          "text": "I provide professional quotes for all joinery work. Contact me to discuss your project requirements and I'll provide a detailed, competitive quote."
+          "text": location
+            ? `Yes, I provide professional, no-obligation quotes for all joinery work in ${cleanLocationName} and surrounding areas. Contact me to discuss your project requirements and I'll provide a detailed, competitive quote tailored to your needs.`
+            : "I provide professional quotes for all joinery work. Contact me to discuss your project requirements and I'll provide a detailed, competitive quote."
         }
-      }
+      },
+      ...(location ? [{
+        "@type": "Question",
+        "name": `What areas near ${cleanLocationName} do you serve?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `I serve ${cleanLocationName} and surrounding areas within approximately 30 miles. This includes ${nearbyLocations.slice(0, 5).join(", ")}${nearbyLocations.length > 5 ? ", and more" : ""}. If you're unsure whether you're within my service area, feel free to contact me and I'll be happy to confirm.`
+        }
+      }] : [])
     ]
   };
 
