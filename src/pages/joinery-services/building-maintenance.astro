@@ -1,0 +1,534 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import ModernContactForm from "../../components/ModernContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import NearbyAreas from "../../components/NearbyAreasBuildingMaintenance.astro";
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import { Image } from "astro:assets";
+import complianceImage from "../../assets/images/compliance.jpeg";
+import galleryImg1 from "../../assets/images/building-maintenance/building-maintenance-before-after-800x600.jpg";
+import galleryImg2 from "../../assets/images/building-maintenance/building-maintenance-floor-before-after-800x600.jpg";
+import galleryImg3 from "../../assets/images/heritage/oak-window-restoration.jpg";
+import galleryImg4 from "../../assets/images/placeholder-coming-soon-800x600.jpg";
+import galleryImg5 from "../../assets/images/placeholder-coming-soon-800x600.jpg";
+import galleryImg6 from "../../assets/images/placeholder-coming-soon-800x600.jpg";
+
+interface Props {
+  location?: string;
+}
+
+const { location: locationProp } = Astro.props;
+const location = locationProp || Astro.params.location;
+
+const {
+  formattedServiceName,
+  locationInText,
+  cleanLocationName,
+  businessSchema,
+  serviceSchema,
+  faqSchema,
+  defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
+} = getFormattedPageData(Astro);
+
+const description = `Commercial building maintenance & facilities management ${locationInText}. Planned maintenance programs, emergency repairs & property upkeep for commercial properties. City & Guilds qualified with 30+ years experience.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
+---
+
+<Layout
+  title={`${pageTitle} | Commercial Building Maintenance & Facilities Management`}
+  description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
+>
+  <Fragment slot="head">
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="mx-auto relative z-10">
+    <!-- Clean Hero Section -->
+    <section class="bg-white py-8 lg:py-12">
+      <div class="container-wide">
+        <div class="mb-6">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+        </div>
+
+        <div>
+          <span class="badge badge-primary mb-3 inline-block">Building Maintenance</span>
+          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+            {pageTitle}
+          </h1>
+          <p class="text-lg text-neutral-600 max-w-3xl">
+            Commercial building maintenance and facilities management services. Planned maintenance programs, emergency response, and ongoing property upkeep for commercial and industrial properties by a City & Guilds qualified builder.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      I provide comprehensive commercial building maintenance and facilities management services{locationInText}, delivered with the professionalism and attention to detail required for commercial properties. I'm Robert — a fully time-served joiner and builder with over 30 years of hands-on experience in commercial building maintenance, renovations, and facilities management.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Whether you need planned maintenance programs, emergency response services, or ongoing facilities management, you'll deal directly with an experienced professional. I bring traditional skills and modern techniques together, ensuring your commercial property is well-maintained and any issues are resolved efficiently and to the highest standards.
+                </p>
+                <p>
+                  From routine maintenance schedules to emergency repairs and complete facilities management, I offer professional services for commercial properties, industrial facilities, and large-scale developments{locationInText}. I also partner with trusted professionals across various trades to provide complete solutions when needed.
+                </p>
+                <p>
+                  I work with landlords, estate agents, and property management companies{locationInText}, providing reliable maintenance services for rental properties, HMOs, and managed portfolios. Whether it's routine maintenance between tenancies, emergency repairs for tenants, or planned maintenance programs, I understand the importance of quick response times and quality workmanship for property portfolios.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="card card-hover border-l-4 border-accent-500">
+                <div class="card-body">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Commercial Building Maintenance & Facilities Management{locationInText}
+                  </h3>
+                  <ul class="space-y-2 text-neutral-600">
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Planned maintenance programs and schedules
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Emergency response and urgent repairs
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Commercial door and window maintenance
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Structural repairs and building fabric maintenance
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Roof and gutter maintenance programs
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Commercial fit-out maintenance and repairs
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Industrial building maintenance
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Facilities management and ongoing property upkeep
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Multi-trade coordination and project management
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Landlord & Estate Agent Services Section -->
+              <div class="card card-hover border-l-4 border-brand-500 bg-gradient-to-r from-brand-50 to-white">
+                <div class="card-body">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Landlord & Estate Agent Maintenance Services{locationInText}
+                  </h3>
+                  <p class="text-neutral-600 mb-4">
+                    I provide reliable building maintenance services for landlords, estate agents, and property management companies{locationInText}. Whether you manage a single rental property or a large portfolio, I understand the importance of quick response times, quality workmanship, and keeping properties in excellent condition.
+                  </p>
+                  <ul class="space-y-2 text-neutral-600">
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-brand-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Emergency repairs and urgent maintenance for tenants
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-brand-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Pre-tenancy maintenance and property preparation
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-brand-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Routine maintenance programs for rental properties
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-brand-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      HMO maintenance and compliance work
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-brand-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Property portfolio maintenance management
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-brand-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Estate agent preferred contractor services
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Complete Service Solutions
+                    </h3>
+                    <p class="text-neutral-600">
+                      I provide a complete service by partnering with trusted professionals across various trades, including builders, roofers, plasterers, tilers, electricians, and plumbers. This ensures smooth project delivery and comprehensive maintenance solutions, no matter the size or complexity.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I'm a <a
+                        href="/qualifications"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >City & Guilds Advanced Craft Carpenter & Joiner</a
+                      > since 1988, bringing over three decades of commercial experience to every maintenance project.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Quality-Driven Facilities Management
+                    </h3>
+                    <p class="text-neutral-600">
+                      At Coulsy Ltd, we prioritise quality, attention to detail, and solutions built to last. Our advanced City & Guilds qualifications showcase our commitment to excellence in every commercial maintenance project. Whether it's planned maintenance, emergency response, or ongoing facilities management, I ensure all work meets the highest standards.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      Need commercial building maintenance or facilities management? I'm always happy to discuss your requirements, assess your property, and provide a clear, professional quote. I understand that commercial maintenance issues can impact business operations, so I aim to respond quickly and get the work done efficiently.
+                    </p>
+                    {
+                      cleanLocationName && (
+                        <p class="text-neutral-600">
+                          {cleanLocationName} includes a wide variety of commercial properties — from modern office buildings to industrial facilities and heritage commercial buildings. I have experience maintaining all types of commercial properties and understand the specific maintenance needs and compliance requirements of different building types.
+                        </p>
+                      )
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Commercial Maintenance Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of commercial building maintenance and facilities management
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        label: "Building Maintenance Before & After",
+                        alt: `Commercial building maintenance repair work showing before and after transformation${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg2,
+                        label: "Commercial Floor Repair Before & After",
+                        alt: `Commercial floor repair and restoration work for building maintenance${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg3,
+                        label: "Heritage Window Maintenance",
+                        alt: `Heritage window restoration and commercial building maintenance work${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg4,
+                        label: "Commercial Door Maintenance",
+                        alt: `Commercial door repair and maintenance services${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg5,
+                        label: "Roof & Gutter Maintenance",
+                        alt: `Commercial roof and gutter maintenance programs${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        loading: "lazy",
+                      },
+                      {
+                        src: galleryImg6,
+                        label: "Facilities Management Services",
+                        alt: `Commercial facilities management and building maintenance services${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Commercial Maintenance
+                    </h2>
+                    <p class="text-brand-100">
+                      Need commercial building maintenance or facilities management? Whether it's planned maintenance programs, emergency response, or ongoing facilities management — I'd be happy to discuss your requirements and see how I can help.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to get your property maintained? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={location} />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+

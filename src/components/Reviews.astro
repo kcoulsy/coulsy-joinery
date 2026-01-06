@@ -112,6 +112,7 @@ const hardcodedReviews = [
                 <div class="flex-grow"></div>
                 {isLongReview && (
                   <button
+                    type="button"
                     class="mt-2 px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition read-more-btn"
                     data-review-id={reviewId}
                     data-full-text={review.text}
@@ -154,14 +155,20 @@ const hardcodedReviews = [
 </section>
 
 {useHardcoded && (
-  <script>
-    function setupReadMoreButtons() {
-      document.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement;
-        if (target.classList.contains("read-more-btn")) {
-          const reviewId = target.getAttribute("data-review-id");
-          const fullText = target.getAttribute("data-full-text");
-          const truncatedText = target.getAttribute("data-truncated-text");
+  <script is:inline>
+    (function() {
+      function setupReadMoreButtons() {
+        document.addEventListener("click", (e) => {
+          const target = e.target;
+          if (!target || !(target instanceof HTMLElement)) return;
+          
+          // Check if clicked element or its parent is the read-more button
+          const button = target.closest(".read-more-btn");
+          if (!button) return;
+          
+          const reviewId = button.getAttribute("data-review-id");
+          const fullText = button.getAttribute("data-full-text");
+          const truncatedText = button.getAttribute("data-truncated-text");
           
           if (reviewId && fullText && truncatedText) {
             const reviewElement = document.getElementById(reviewId);
@@ -171,19 +178,24 @@ const hardcodedReviews = [
               if (isExpanded) {
                 reviewElement.textContent = truncatedText;
                 reviewElement.setAttribute("data-expanded", "false");
-                target.textContent = "Read more";
+                button.textContent = "Read more";
               } else {
                 reviewElement.textContent = fullText;
                 reviewElement.setAttribute("data-expanded", "true");
-                target.textContent = "Read less";
+                button.textContent = "Read less";
               }
             }
           }
-        }
-      });
-    }
+        });
+      }
 
-    document.addEventListener("DOMContentLoaded", setupReadMoreButtons);
+      // Run immediately if DOM is ready, otherwise wait
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setupReadMoreButtons);
+      } else {
+        setupReadMoreButtons();
+      }
+    })();
   </script>
 )}
 

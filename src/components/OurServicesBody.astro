@@ -8,13 +8,25 @@ import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import SubcontractImg from "../assets/images/sub-contract.jpg";
 import rooftop from "../assets/images/rooftop.jpg";
 import cutRoofHeader from "../assets/images/cut-roofs/cut-roof-header.jpg";
+import trussRoofImage from "../assets/images/truss-roofs/attic-trusses.jpg";
 import heritage from "../assets/images/heritage/oak-window-restoration.jpg";
+import complianceImage from "../assets/images/compliance.jpeg";
 import accessibleKitchen from "../assets/images/accessible-kitchens/accessible-kitchen-main.jpg";
 import steelFireExit from "../assets/images/steel-exit-doors/Security-Fire-Exit-Door-510x510.jpg";
 import generalJoinery from "../assets/images/general-joinery/fencing-and-gates.jpg";
+import smallBuildImage from "../assets/images/small-build-services/small-building-works-glazed-office-800x600.jpg";
+import buildingMaintenanceImage from "../assets/images/building-maintenance/building-maintenance-before-after-800x600.jpg";
 
 // Services ordered by SEO priority: high-value/high-volume services first, roofing services last
 const services = [
+  {
+    title: "General Joinery",
+    href: "/joinery-services/general-joinery",
+    image: generalJoinery,
+    alt: "General joinery services in York",
+    description: "Doors, floors, stairs, shelves, storage and all general joinery work.",
+    category: "Joinery",
+  },
   {
     title: "Fitted Kitchens",
     href: "/joinery-services/kitchen-installers",
@@ -24,20 +36,36 @@ const services = [
     category: "Kitchens",
   },
   {
+    title: "Small Build Services",
+    href: "/joinery-services/small-build-services",
+    image: smallBuildImage,
+    alt: "Small build services including extensions and renovations in York",
+    description: "Extensions, renovations, and small construction projects of all sizes.",
+    category: "Building",
+  },
+  {
+    title: "Building Maintenance",
+    href: "/joinery-services/building-maintenance",
+    image: buildingMaintenanceImage,
+    alt: "Building maintenance and property upkeep services in York",
+    description: "Reliable building maintenance, repairs, and property upkeep services.",
+    category: "Building",
+  },
+  {
+    title: "Accessible Kitchens",
+    href: "/joinery-services/accessible-kitchen-installers",
+    image: accessibleKitchen,
+    alt: "Accessible kitchens York",
+    description: "Practical kitchen solutions designed for accessibility.",
+    category: "Specialist",
+  },
+  {
     title: "Bespoke Joinery",
     href: "/joinery-services/bespoke-joinery",
     image: mouldingPlane,
     alt: "Bespoke Joinery",
     description: "Made-to-measure joinery tailored to your space and style.",
     category: "Bespoke",
-  },
-  {
-    title: "General Joinery",
-    href: "/joinery-services/general-joinery",
-    image: generalJoinery,
-    alt: "General joinery services in York",
-    description: "Doors, floors, stairs, shelves, storage and all general joinery work.",
-    category: "Joinery",
   },
   {
     title: "Garden Offices",
@@ -56,20 +84,20 @@ const services = [
     category: "Bespoke",
   },
   {
+    title: "Steel Fire Exit Doors",
+    href: "/joinery-services/steel-fire-exit-doors-installers",
+    image: steelFireExit,
+    alt: "Steel fire exit and fire escape doors",
+    description: "Robust, compliant fire exit doors for commercial spaces.",
+    category: "Commercial",
+  },
+  {
     title: "Heritage Joinery",
     href: "/joinery-services/heritage-restoration-joinery",
     image: heritage,
     alt: "Heritage Joinery Restoration",
     description: "Expert restoration and reproduction of period joinery.",
     category: "Heritage",
-  },
-  {
-    title: "Accessible Kitchens",
-    href: "/joinery-services/accessible-kitchen-installers",
-    image: accessibleKitchen,
-    alt: "Accessible kitchens York",
-    description: "Practical kitchen solutions designed for accessibility.",
-    category: "Specialist",
   },
   {
     title: "Stud Walls",
@@ -80,14 +108,6 @@ const services = [
     category: "Construction",
   },
   {
-    title: "Steel Fire Exit Doors",
-    href: "/joinery-services/steel-fire-exit-doors-installers",
-    image: steelFireExit,
-    alt: "Steel fire exit and fire escape doors",
-    description: "Robust, compliant fire exit doors for commercial spaces.",
-    category: "Commercial",
-  },
-  {
     title: "Subcontract Joinery",
     href: "/joinery-services/joinery-subcontractors",
     image: SubcontractImg,
@@ -96,11 +116,19 @@ const services = [
     category: "Commercial",
   },
   {
-    title: "Roofing Services",
+    title: "Traditional Cut Roofs",
     href: "/joinery-services/traditional-cut-roofs",
     image: cutRoofHeader,
-    alt: "Roofing services - Traditional cut roofs and truss roofs",
-    description: "Traditional hand-cut and pre-engineered truss roof installation and setting out.",
+    alt: "Traditional cut roofs and timber roof framing in York",
+    description: "Traditional hand-cut roof construction designed and built to suit any shape or layout.",
+    category: "Roofing",
+  },
+  {
+    title: "Truss Roof Installers",
+    href: "/joinery-services/truss-roof-installers",
+    image: trussRoofImage,
+    alt: "Truss roof installation and structural joinery in York",
+    description: "Professional truss roof installation from attic conversions to large-scale commercial projects.",
     category: "Roofing",
   },
 ];
@@ -108,7 +136,7 @@ const services = [
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
   {
-    services.map((service) => (
+    services.map((service, index) => (
       <a
         href={service.href}
         class="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
@@ -119,9 +147,13 @@ const services = [
           <Image
             src={service.image}
             alt={service.alt}
-            loading="lazy"
+            loading={index < 4 ? "eager" : "lazy"}
+            priority={index < 4}
             width={400}
             height={300}
+            decoding="async"
+            format="webp"
+            quality={80}
             class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <!-- Overlay on hover -->

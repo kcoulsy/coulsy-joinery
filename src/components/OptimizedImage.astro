@@ -22,12 +22,15 @@ const {
   height = 600,
   class: className = "",
   priority = false,
-  loading = priority ? "eager" : "lazy",
+  loading: loadingProp,
   decoding = "async",
   format = "webp",
   quality = 80,
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 } = Astro.props;
+
+// Ensure loading is always explicitly set
+const loading = loadingProp || (priority ? "eager" : "lazy");
 ---
 
 <div class={`image-container ${className}`}>

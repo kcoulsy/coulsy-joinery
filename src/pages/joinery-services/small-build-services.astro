@@ -1,0 +1,424 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import ModernContactForm from "../../components/ModernContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import NearbyAreas from "../../components/NearbyAreasSmallBuild.astro";
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import { Image } from "astro:assets";
+import complianceImage from "../../assets/images/compliance.jpeg";
+import galleryImg1 from "../../assets/images/small-build-services/small-building-works-stone-post-800x600.jpg";
+import galleryImg2 from "../../assets/images/small-build-services/small-building-works-structural-steel-800x600.jpg";
+import galleryImg3 from "../../assets/images/small-build-services/small-building-works-bricked-up-opening-800x600.jpg";
+import galleryImg4 from "../../assets/images/small-build-services/small-building-works-partition-wall-800x600.jpg";
+import galleryImg5 from "../../assets/images/small-build-services/small-building-works-structural-floor-800x600.jpg";
+import galleryImg6 from "../../assets/images/small-build-services/small-building-works-glazed-office-800x600.jpg";
+
+interface Props {
+  location?: string;
+}
+
+const { location: locationProp } = Astro.props;
+const location = locationProp || Astro.params.location;
+
+const {
+  formattedServiceName,
+  locationInText,
+  cleanLocationName,
+  businessSchema,
+  serviceSchema,
+  faqSchema,
+  defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
+} = getFormattedPageData(Astro);
+
+const description = `Expert small build services ${locationInText} including loft conversions, room alterations, internal renovations & small structural work. City & Guilds qualified builder with 30+ years experience.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
+---
+
+<Layout
+  title={`${pageTitle} | Loft Conversions, Alterations & Small Build Projects`}
+  description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
+>
+  <Fragment slot="head">
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="mx-auto relative z-10">
+    <!-- Clean Hero Section -->
+    <section class="bg-white py-8 lg:py-12">
+      <div class="container-wide">
+        <div class="mb-6">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
+        </div>
+
+        <div>
+          <span class="badge badge-primary mb-3 inline-block">Small Build Services</span>
+          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+            {pageTitle}
+          </h1>
+          <p class="text-lg text-neutral-600 max-w-3xl">
+            Expert small build services including loft conversions, room alterations, and internal renovations. Quality craftsmanship with personal attention to detail by a City & Guilds qualified builder.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      I provide expert small build services{locationInText}, personally delivered with the care and attention to detail you'd expect from someone who genuinely loves the craft. I'm Robert — a fully time-served joiner and builder with over 30 years of hands-on experience in conversions, alterations, and small-scale building work.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Whether you're planning a loft conversion, room alteration, or internal renovation, you'll always deal directly with an experienced craftsman. I bring traditional skills and modern techniques together, ensuring your project is completed properly, first time.
+                </p>
+                <p>
+                  From loft conversions and attic work to room alterations and small structural changes, I offer a personal, straightforward service for homeowners, landlords, and businesses{locationInText}.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="card card-hover border-l-4 border-accent-500">
+                <div class="card-body">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Small Build Services{locationInText}
+                  </h3>
+                  <ul class="space-y-2 text-neutral-600">
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Room alterations and layout changes
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Internal renovations and refurbishments
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Small structural alterations
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Partition wall construction and removal
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Ceiling alterations and repairs
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Internal fit-out work
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Loft conversions and attic conversions
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-accent-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      Building regulations compliance
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Quality Craftsmanship
+                    </h3>
+                    <p class="text-neutral-600">
+                      When you work with me, you're getting real craftsmanship — I care about the finish and the finer details. I take the same care on a loft conversion or room alteration as I do on larger projects.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I'm a <a
+                        href="/qualifications"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >fully qualified City & Guilds joiner</a
+                      > with decades of practical site experience and a thorough understanding of building regulations and planning requirements for conversions and alterations.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Experienced in Conversions & Alterations
+                    </h3>
+                    <p class="text-neutral-600">
+                      I'm a fully qualified builder with decades of experience in loft conversions, room alterations, and small structural work. I have a reputation for honest advice, quality work, and treating every project with care. I ensure all work meets the highest standards and complies with building regulations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      Thinking about a loft conversion or room alteration? I'm always happy to have a chat, offer advice, and provide a no-pressure quote. I can help with planning applications where needed and ensure your project meets building regulations.
+                    </p>
+                    {
+                      cleanLocationName && (
+                        <p class="text-neutral-600">
+                          {cleanLocationName} includes a wide variety of properties — from modern builds to traditional Yorkshire stone houses. I tailor each conversion or alteration to suit the setting, whether it's matching existing features, working around older structures, or creating new spaces that respect the character of the property.
+                        </p>
+                      )
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Small Build Projects
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of conversions, alterations, and small build work
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        label: "Drystone Wall & Gate Post Construction",
+                        alt: `Drystone wall and gate post construction work${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg2,
+                        label: "Wall Removal & Structural Steel",
+                        alt: `Wall removal and structural steel installation work${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg3,
+                        label: "Bricked Up Opening Work",
+                        alt: `Bricking up openings and structural alterations${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg4,
+                        label: "Partition Wall Installation",
+                        alt: `Internal partition wall construction and installation${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg5,
+                        label: "New Office Construction",
+                        alt: `New office construction and structural floor work${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                      },
+                      {
+                        src: galleryImg6,
+                        label: "Completed Glazed Office",
+                        alt: `Completed glazed office construction${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        loading: "lazy",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Your Project
+                    </h2>
+                    <p class="text-brand-100">
+                      Planning a loft conversion or room alteration? Whether it's a small alteration or a complete conversion — I'd be happy to chat and see how I can help.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={location} />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+

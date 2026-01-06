@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+import { LOCATIONS } from "../../constants/locations";
+import Page from "./building-maintenance.astro";
+
+export const getStaticPaths = (() => {
+  const paths: GetStaticPathsResult = [];
+
+  LOCATIONS.forEach((location) => {
+    paths.push({
+      params: {
+        location: location.slug,
+      },
+    });
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { location } = Astro.params;
+const locationString = typeof location === 'string' ? location : undefined;
+---
+
+<Page location={locationString} />
+

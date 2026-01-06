@@ -4,17 +4,19 @@ import type { APIRoute } from "astro";
 // Priority mapping: high-priority (0.9), medium (0.8), low/roofing (0.6)
 const services = [
   // High-Priority Services (0.9)
-  { slug: "kitchen-installers", priority: "0.9" },
-  { slug: "bespoke-joinery", priority: "0.9" },
   { slug: "general-joinery", priority: "0.9" },
-  { slug: "garden-offices", priority: "0.9" },
-  { slug: "garden-rooms", priority: "0.9" },
+  { slug: "kitchen-installers", priority: "0.9" },
+  { slug: "small-build-services", priority: "0.9" },
+  { slug: "building-maintenance", priority: "0.9" },
+  { slug: "accessible-kitchen-installers", priority: "0.9" },
   
   // Medium-Priority Services (0.8)
-  { slug: "heritage-restoration-joinery", priority: "0.8" },
-  { slug: "accessible-kitchen-installers", priority: "0.8" },
-  { slug: "stud-wall-partitioning", priority: "0.8" },
+  { slug: "bespoke-joinery", priority: "0.8" },
+  { slug: "garden-offices", priority: "0.8" },
+  { slug: "garden-rooms", priority: "0.8" },
   { slug: "steel-fire-exit-doors-installers", priority: "0.8" },
+  { slug: "heritage-restoration-joinery", priority: "0.8" },
+  { slug: "stud-wall-partitioning", priority: "0.8" },
   { slug: "joinery-subcontractors", priority: "0.8" },
   
   // Lower-Priority Services (0.6) - Roofing services grouped together at end
