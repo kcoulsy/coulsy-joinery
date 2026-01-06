@@ -1,23 +1,30 @@
 import type { APIRoute } from "astro";
 
-// Define services and locations directly to avoid import issues
+// Define services in SEO-optimized order: high-value services first, roofing services last
+// Priority mapping: high-priority (0.9), medium (0.8), low/roofing (0.6)
 const services = [
-  "joiner",
-  "carpenter", 
-  "joinery",
-  "kitchen-installers",
-  "garden-offices",
-  "garden-rooms",
-  "bespoke-joinery",
-  "heritage-restoration-joinery",
-  "general-joinery",
-  "steel-fire-exit-doors-installers",
-  "truss-roof-installers",
-  "traditional-cut-roofs",
-  "stud-wall-partitioning",
-  "door-hanging",
-  "joinery-subcontractors",
-  "accessible-kitchen-installers"
+  // High-Priority Services (0.9)
+  { slug: "kitchen-installers", priority: "0.9" },
+  { slug: "bespoke-joinery", priority: "0.9" },
+  { slug: "general-joinery", priority: "0.9" },
+  { slug: "garden-offices", priority: "0.9" },
+  { slug: "garden-rooms", priority: "0.9" },
+  
+  // Medium-Priority Services (0.8)
+  { slug: "heritage-restoration-joinery", priority: "0.8" },
+  { slug: "accessible-kitchen-installers", priority: "0.8" },
+  { slug: "stud-wall-partitioning", priority: "0.8" },
+  { slug: "steel-fire-exit-doors-installers", priority: "0.8" },
+  { slug: "joinery-subcontractors", priority: "0.8" },
+  
+  // Lower-Priority Services (0.6) - Roofing services grouped together at end
+  { slug: "traditional-cut-roofs", priority: "0.6" },
+  { slug: "truss-roof-installers", priority: "0.6" },
+  
+  // Legacy/Deprecated (keep for backwards compatibility)
+  { slug: "joiner", priority: "0.7" },
+  { slug: "carpenter", priority: "0.7" },
+  { slug: "joinery", priority: "0.7" },
 ];
 
 // Define locations directly to avoid import issues
@@ -84,25 +91,29 @@ export const GET: APIRoute = async ({ url }) => {
   const baseUrl = url.origin;
   const currentDate = new Date().toISOString();
 
-  // Generate all location-based URLs
+  // Generate all location-based URLs with optimized priorities
   const locationUrls = [];
   
   for (const service of services) {
-    // Add the main service page
+    const serviceSlug = typeof service === 'string' ? service : service.slug;
+    const servicePriority = typeof service === 'string' ? "0.8" : service.priority;
+    
+    // Add the main service page with service-specific priority
     locationUrls.push({
-      url: `${baseUrl}/joinery-services/${service}`,
+      url: `${baseUrl}/joinery-services/${serviceSlug}`,
       lastmod: currentDate,
       changefreq: "weekly",
-      priority: "0.8"
+      priority: servicePriority
     });
 
-    // Add all location-specific pages
+    // Add all location-specific pages with adjusted priority (0.1 lower than main page)
+    const locationPriority = parseFloat(servicePriority) - 0.1;
     for (const location of LOCATIONS) {
       locationUrls.push({
-        url: `${baseUrl}/joinery-services/${location.slug}-${service}`,
+        url: `${baseUrl}/joinery-services/${location.slug}-${serviceSlug}`,
         lastmod: currentDate,
         changefreq: "weekly", 
-        priority: "0.7"
+        priority: locationPriority.toFixed(1)
       });
     }
   }

@@ -126,10 +126,10 @@
         if (servicesResponse.ok) {
           this.searchData.services = await servicesResponse.json();
         } else {
-          // Fallback data if API fails
+          // Fallback data if API fails (ordered by SEO priority)
           this.searchData.services = [
             {
-              title: "Kitchen Installation",
+              title: "Fitted Kitchens",
               url: "/joinery-services/kitchen-installers",
               type: "service",
             },
@@ -139,8 +139,18 @@
               type: "service",
             },
             {
+              title: "General Joinery",
+              url: "/joinery-services/general-joinery",
+              type: "service",
+            },
+            {
               title: "Garden Offices",
               url: "/joinery-services/garden-offices",
+              type: "service",
+            },
+            {
+              title: "Garden Rooms",
+              url: "/joinery-services/garden-rooms",
               type: "service",
             },
             {
@@ -149,13 +159,8 @@
               type: "service",
             },
             {
-              title: "General Joinery",
-              url: "/joinery-services/general-joinery",
-              type: "service",
-            },
-            {
-              title: "Door Hanging",
-              url: "/joinery-services/door-hanging",
+              title: "Accessible Kitchens",
+              url: "/joinery-services/accessible-kitchen-installers",
               type: "service",
             },
             {
@@ -164,28 +169,18 @@
               type: "service",
             },
             {
-              title: "Cut Roofs",
-              url: "/joinery-services/traditional-cut-roofs",
-              type: "service",
-            },
-            {
-              title: "Truss Roofs",
-              url: "/joinery-services/truss-roof-installers",
-              type: "service",
-            },
-            {
               title: "Steel Fire Exit Doors",
               url: "/joinery-services/steel-fire-exit-doors-installers",
               type: "service",
             },
             {
-              title: "Accessible Kitchens",
-              url: "/joinery-services/accessible-kitchen-installers",
+              title: "Joinery Subcontractors",
+              url: "/joinery-services/joinery-subcontractors",
               type: "service",
             },
             {
-              title: "Joinery Subcontractors",
-              url: "/joinery-services/joinery-subcontractors",
+              title: "Roofing Services",
+              url: "/joinery-services/traditional-cut-roofs",
               type: "service",
             },
           ];
@@ -226,7 +221,7 @@
         this.searchData = {
           services: [
             {
-              title: "Kitchen Installation",
+              title: "Fitted Kitchens",
               url: "/joinery-services/kitchen-installers",
               type: "service",
             },

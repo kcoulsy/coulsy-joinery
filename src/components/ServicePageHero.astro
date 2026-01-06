@@ -1,0 +1,50 @@
+---
+import Breadcrumb from "./Breadcrumb.astro";
+
+interface Props {
+  badge?: string;
+  title: string;
+  description: string;
+  breadcrumbs: Array<{ label: string; href?: string; current?: boolean }>;
+  cta?: {
+    text: string;
+    href: string;
+  };
+}
+
+const { badge, title, description, breadcrumbs, cta } = Astro.props;
+---
+
+<section class="bg-white border-b border-neutral-200">
+  <div class="container-wide">
+    <div class="pt-4 pb-6">
+      <Breadcrumb crumbs={breadcrumbs} />
+    </div>
+
+    <div class="pb-8">
+      {badge && (
+        <div class="flex items-center gap-3 mb-3">
+          <span class="badge badge-primary">{badge}</span>
+        </div>
+      )}
+      <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-3">
+        {title}
+      </h1>
+      <p class="text-lg text-neutral-600 max-w-3xl mb-6">
+        {description}
+      </p>
+      
+      {cta && (
+        <div class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-medium">
+          <a href={cta.href} class="hover:underline">
+            {cta.text}
+          </a>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+

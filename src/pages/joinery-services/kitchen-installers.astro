@@ -58,168 +58,97 @@ const finalDescription =
   </Fragment>
 
   <main class="mx-auto relative z-10">
-    <!-- Hero Section with modern styling -->
-    <section
-      class="section bg-gradient-to-br from-brand-50 via-white to-accent-50/30 relative overflow-hidden"
-    >
-      <!-- Background decoration -->
-      <div class="absolute inset-0 opacity-5">
-        <div
-          class="absolute top-0 right-0 w-96 h-96 bg-brand-600 rounded-full translate-x-48 -translate-y-48"
-        >
+    <!-- Clean Hero Section -->
+    <section class="bg-white py-8 lg:py-12">
+      <div class="container-wide">
+        <div class="mb-6">
+          <Breadcrumb
+            crumbs={[
+              { label: "Joinery Services", href: "/joinery-services" },
+              ...(cleanLocationName
+                ? [
+                    {
+                      label: formattedServiceName,
+                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+                    },
+                    { label: cleanLocationName, current: true },
+                  ]
+                : [{ label: formattedServiceName, current: true }]),
+            ]}
+          />
         </div>
-        <div
-          class="absolute bottom-0 left-0 w-64 h-64 bg-accent-500 rounded-full -translate-x-32 translate-y-32"
-        >
-        </div>
-      </div>
 
-      <div class="container-wide relative">
-        <div class="animate-on-scroll">
-          <div class="pt-8 pb-6">
-            <Breadcrumb
-              crumbs={[
-                { label: "Joinery Services", href: "/joinery-services" },
-                ...(cleanLocationName
-                  ? [
-                      {
-                        label: formattedServiceName,
-                        href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
-                      },
-                      { label: cleanLocationName, current: true },
-                    ]
-                  : [{ label: formattedServiceName, current: true }]),
-              ]}
-            />
-          </div>
-
-          <div class="text-center mb-8">
-            <span class="badge badge-primary mb-4">Kitchen Installation</span>
-            <h1 class="section-title text-gradient mb-6">
-              {pageTitle}
-            </h1>
-            <p class="section-subtitle text-balance max-w-4xl mx-auto">
-              Expert kitchen installation services by City & Guilds qualified
-              joiner. Full kitchen fitting, Howdens & Magnet installations,
-              bespoke designs & repairs.
-            </p>
-          </div>
-
-          <!-- Hero CTA Card -->
-          <div
-            class="card card-hover gradient-brand text-white max-w-4xl mx-auto"
-          >
-            <div class="card-body text-center">
-              <div
-                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <svg
-                  class="w-8 h-8 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
-                  ></path>
-                </svg>
-              </div>
-              <h2 class="text-2xl font-bold mb-4">Personal, Expert Service</h2>
-              <p class="text-brand-100 mb-6">
-                I'm Robert, the owner and joiner behind Coulsy Joinery. When you
-                work with me, you're getting more than a kitchen fitter — you're
-                getting personal, expert service from the first conversation to
-                the final handover.
-              </p>
-              <a
-                href="/contact"
-                class="btn btn-secondary btn-lg hover-lift focus-ring"
-              >
-                Get in Touch About Your Kitchen
-              </a>
-            </div>
-          </div>
+        <div>
+          <span class="badge badge-primary mb-3 inline-block">Fitted Kitchens</span>
+          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+            {pageTitle}
+          </h1>
+          <p class="text-lg text-neutral-600 max-w-3xl leading-relaxed">
+            I'm Robert, a City & Guilds qualified joiner with over 30 years' experience fitting kitchens {locationInText}. 
+            Whether you've got a Howdens or Magnet kitchen ready to install, or need help choosing the right setup, 
+            I'll make sure it's measured, fitted, and finished properly — no shortcuts.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Main Content Section -->
-    <section class="section bg-white">
+    <section class="bg-white py-12 lg:py-16">
       <div class="container-wide">
-        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-16">
           <!-- Content Column -->
-          <div class="order-2 lg:order-1 animate-on-scroll">
-            <div
-              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
-            >
-              <div class="card card-hover p-6">
-                <div class="flex items-start gap-4 mb-4">
-                  <div
-                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-6 h-6 text-brand-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
-                      Meet Robert
-                    </h2>
-                    <p class="text-neutral-600">
-                      I'm Robert — a qualified joiner with over 30 years of
-                      experience fitting kitchens {locationInText}. I personally
-                      handle everything from the first measurement to the final
-                      handover. No middlemen, no fuss — just a reliable job done
-                      right.
-                    </p>
-                  </div>
-                </div>
+          <div class="order-2 lg:order-1">
+            <div class="space-y-8 text-neutral-700">
+              <div class="bg-neutral-50 rounded-lg p-6 border border-neutral-200">
+                <h2 class="text-xl font-bold text-neutral-900 mb-3">
+                  Hi, I'm Robert
+                </h2>
+                <p class="text-neutral-700 leading-relaxed">
+                  I've been fitting kitchens for over 30 years {locationInText}, and I still love the craft. 
+                  When you work with me, you're dealing directly with me — no sales team, no middlemen. 
+                  I'll measure up, talk through what you need, and then get on with fitting it properly. 
+                  Simple as that.
+                </p>
               </div>
 
-              <div class="space-y-4">
+              <div class="space-y-5 text-neutral-700 leading-relaxed">
                 <p>
-                  Whether it's your home, a rental property, or a commercial
-                  kitchen, I bring the same care and precision to every fit.
-                  I've worked on everything from one-off domestic kitchens to
-                  multi-unit housing developments and trade-supplied kitchen
-                  installs.
+                  I fit kitchens in all sorts of places — your home, rental properties, offices, even the odd commercial kitchen. 
+                  Over the years I've done everything from single domestic fits to multi-unit developments and trade work. 
+                  The approach is always the same: measure carefully, fit precisely, finish properly.
                 </p>
                 {
                   cleanLocationName && (
                     <p>
-                      {cleanLocationName} includes a wide mix of property types,
-                      and I tailor kitchen installs to suit. From tight
-                      retrofits to open-plan layouts, I always make sure the
-                      kitchen is fitted with care, to match the space and how
-                      it's going to be used.
+                      Working in {cleanLocationName} means I see a real mix — period properties needing careful retrofits, 
+                      new builds with open-plan layouts, everything in between. I'll always take the time to understand 
+                      how you're going to use the space, then fit it accordingly. A kitchen that looks right and works right.
                     </p>
                   )
                 }
+                <p>
+                  If you've already got your kitchen units sorted, great — I'll fit them. If you're still deciding, 
+                  I'm happy to chat through options and help you choose something that'll work well for your space and budget.
+                </p>
               </div>
 
               <!-- Brand Logos Section -->
-              <div class="card card-hover p-6">
-                <h2 class="text-2xl font-bold text-neutral-900 mb-4">
-                  Fitting Kitchens from All Major Brands
+              <div class="bg-white border border-neutral-200 rounded-lg p-6">
+                <h2 class="text-lg font-bold text-neutral-900 mb-3">
+                  I Fit Kitchens from All the Major Brands
                 </h2>
-                <p class="mb-4">
-                  I fit kitchens from Howdens, Magnet, DIY Kitchens, and others
-                  — always to a high standard. Whether you've already got your
-                  kitchen ready or need help choosing the right setup, I'll make
-                  sure it's measured, installed, and finished properly.
+                <p class="text-neutral-700 mb-5 leading-relaxed text-sm">
+                  Howdens, Magnet, DIY Kitchens — I've fitted them all over the years. 
+                  The brand doesn't matter as much as how it's fitted. I'll make sure everything's 
+                  measured right, installed properly, and finished to a standard I'm happy with.
                 </p>
-                <div class="flex items-center gap-4 mt-4">
+                <div class="flex flex-wrap items-center gap-6 pt-4 border-t border-neutral-200">
                   <Image
                     src={howdensLogo}
                     alt="Howdens Joinery Logo"
                     width={100}
                     height={40}
-                    class="h-8 w-auto"
+                    class="h-7 w-auto opacity-60"
                     loading="lazy"
                   />
                   <Image
@@ -227,7 +156,7 @@ const finalDescription =
                     alt="Magnet Kitchens Logo"
                     width={100}
                     height={40}
-                    class="h-8 w-auto"
+                    class="h-7 w-auto opacity-60"
                     loading="lazy"
                   />
                   <Image
@@ -235,110 +164,87 @@ const finalDescription =
                     alt="DIY Kitchens Logo"
                     width={100}
                     height={40}
-                    class="h-8 w-auto"
+                    class="h-7 w-auto opacity-60"
                     loading="lazy"
                   />
                 </div>
               </div>
 
               <!-- Services Section -->
-              <div class="space-y-6">
-                <div class="card card-hover border-l-4 border-accent-500">
-                  <div class="card-body">
-                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                      Domestic Kitchen Fitting
-                    </h3>
-                    <p class="text-neutral-600">
-                      I fit kitchens in homes {locationInText} — whether it's a fresh
-                      renovation or part of a new build. You get a clean, precise
-                      finish every time.
-                    </p>
-                  </div>
+              <div class="space-y-4">
+                <div class="border-l-4 border-brand-500 py-6" style="padding-left: 1.5rem;">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Domestic Kitchen Fitting
+                  </h3>
+                  <p class="text-neutral-700 leading-relaxed">
+                    Most of my work is fitting kitchens in people's homes {locationInText}. 
+                    Whether it's a full renovation or part of a new build, I'll make sure 
+                    everything lines up properly and finishes cleanly.
+                  </p>
                 </div>
 
-                <div class="card card-hover border-l-4 border-accent-500">
-                  <div class="card-body">
-                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                      Commercial Installations
-                    </h3>
-                    <p class="text-neutral-600">
-                      I also fit kitchens for offices, retail units, and
-                      hospitality spaces {locationInText}. Always on time and
-                      built to last.
-                    </p>
-                  </div>
+                <div class="border-l-4 border-brand-500 py-6" style="padding-left: 1.5rem;">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Commercial & Trade Work
+                  </h3>
+                  <p class="text-neutral-700 leading-relaxed">
+                    I also fit kitchens for offices, retail spaces, and hospitality venues {locationInText}. 
+                    Same attention to detail, just working around business hours when needed.
+                  </p>
                 </div>
 
-                <div class="card card-hover border-l-4 border-accent-500">
-                  <div class="card-body">
-                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                      Accessible Kitchens
-                    </h3>
-                    <p class="text-neutral-600">
-                      I can adapt kitchens for wheelchair users or reduced
-                      mobility — with safety, comfort, and independence in mind.
-                    </p>
-                    <a
-                      href="/joinery-services/accessible-kitchen-installers"
-                      class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
-                    >
-                      Explore Accessible Options
-                    </a>
-                  </div>
+                <div class="border-l-4 border-brand-500 py-6" style="padding-left: 1.5rem;">
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    Accessible Kitchens
+                  </h3>
+                  <p class="text-neutral-700 leading-relaxed mb-2">
+                    I can adapt kitchens for wheelchair users or reduced mobility — lowered worktops, 
+                    accessible storage, the works. It's about making the space work for you, safely and comfortably.
+                  </p>
+                  <a
+                    href="/joinery-services/accessible-kitchen-installers"
+                    class="text-brand-600 hover:text-brand-700 font-medium text-sm inline-flex items-center gap-1"
+                  >
+                    Find out more about accessible kitchens
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
 
               <!-- Why Choose Me Section -->
-              <div
-                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
-              >
-                <div class="card-body">
-                  <h2
-                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
-                  >
-                    <svg
-                      class="w-6 h-6 text-accent-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                    Why Choose Me?
-                  </h2>
-                  <div class="space-y-4">
-                    <div>
-                      <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                        Dependable
-                      </h3>
-                      <p class="text-neutral-600">
-                        From start to finish, I'll keep things running smoothly
-                        — turning up when I say and getting it done to a high
-                        standard.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                        Experienced
-                      </h3>
-                      <p class="text-neutral-600">
-                        With three decades of hands-on experience, I bring
-                        joinery skill and kitchen-fitting know-how that makes a
-                        difference.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                        Trusted Locally
-                      </h3>
-                      <p class="text-neutral-600">
-                        Many of my kitchen projects {locationInText} come from word
-                        of mouth. I take pride in that, and I work hard to keep it
-                        that way.
-                      </p>
-                    </div>
+              <div class="bg-brand-50 border-l-4 border-brand-600 p-6 rounded-r-lg">
+                <h2 class="text-xl font-bold text-neutral-900 mb-4">
+                  Why Work With Me?
+                </h2>
+                <div class="space-y-5 text-neutral-700">
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 mb-1.5">
+                      I turn up when I say I will
+                    </h3>
+                    <p class="leading-relaxed text-sm">
+                      No disappearing acts, no excuses. If I say I'll be there Tuesday morning, I'll be there. 
+                      Simple reliability goes a long way.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 mb-1.5">
+                      30+ years of hands-on experience
+                    </h3>
+                    <p class="leading-relaxed text-sm">
+                      I've seen most problems before, and I know how to solve them properly. 
+                      That experience shows in the finish — everything lines up, everything works.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 mb-1.5">
+                      Most of my work comes from recommendations
+                    </h3>
+                    <p class="leading-relaxed text-sm">
+                      A lot of my kitchen work {locationInText} comes from people who've worked with me before, 
+                      or friends of theirs. That means something to me, and I work hard to keep earning it.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -348,16 +254,16 @@ const finalDescription =
           </div>
 
           <!-- Sidebar Column -->
-          <div class="order-1 lg:order-2 animate-on-scroll">
-            <div class="space-y-8">
+          <div class="order-1 lg:order-2">
+            <div class="space-y-6">
               <!-- Gallery Section -->
               <div class="card card-hover overflow-hidden">
                 <div class="card-header">
                   <h2 class="text-xl font-bold text-neutral-900">
-                    Our Kitchen Installations
+                    Some Recent Kitchen Projects
                   </h2>
-                  <p class="text-neutral-600 mt-2">
-                    Examples of our kitchen fitting projects
+                  <p class="text-neutral-600 mt-2 text-sm">
+                    A few examples of kitchens I've fitted recently
                   </p>
                 </div>
                 <div class="card-body p-0">
@@ -401,34 +307,19 @@ const finalDescription =
               </div>
 
               <!-- Contact Form Section -->
-              <div class="card card-hover gradient-brand text-white">
+              <div class="card card-hover bg-brand-600 text-white">
                 <div class="card-body">
-                  <div class="text-center mb-6">
-                    <div
-                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
-                    >
-                      <svg
-                        class="w-8 h-8 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                        ></path>
-                        <path
-                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <h2 class="text-2xl font-bold mb-2">Get in Touch</h2>
-                    <p class="text-brand-100">
-                      Planning a new kitchen installation or upgrade? I'd love
-                      to help bring your vision to life.
+                  <div class="mb-6">
+                    <h2 class="text-xl font-bold mb-2">Want to Chat About Your Kitchen?</h2>
+                    <p class="text-brand-100 text-sm leading-relaxed">
+                      If you're planning a new kitchen or need an existing one refitted, 
+                      drop me a message. I'm happy to talk through what you need and give you 
+                      a straightforward quote — no hard sell, just honest advice.
                     </p>
                   </div>
                   <ModernContactForm
-                    title="Get Your Professional Quote"
-                    subtitle="Ready to start your kitchen installation project? Get in touch for a professional, no-obligation quote."
+                    title=""
+                    subtitle=""
                   />
                 </div>
               </div>
@@ -439,11 +330,9 @@ const finalDescription =
     </section>
 
     <!-- Nearby Areas Section -->
-    <section class="section bg-neutral-50">
+    <section class="bg-neutral-50 py-12 lg:py-16">
       <div class="container-wide">
-        <div class="animate-on-scroll">
-          <NearbyAreas location={Astro.params.location} />
-        </div>
+        <NearbyAreas location={Astro.params.location} />
       </div>
     </section>
   </main>
