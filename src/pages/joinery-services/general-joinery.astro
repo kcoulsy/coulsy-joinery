@@ -1,9 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import ModernContactForm from "../../components/ModernContactForm.astro";
 import { getFormattedPageData } from "../../utils/pageMeta";
 import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import MeetRobertCard from "../../components/MeetRobertCard.astro";
+import ServiceFeatureCard from "../../components/ServiceFeatureCard.astro";
+import ServiceListCard from "../../components/ServiceListCard.astro";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
 import NearbyAreas from "../../components/NearbyAreasGeneralJoinery.astro"; // this location is unique a specific for the service offered !! CHECK
@@ -53,39 +56,23 @@ const finalDescription =
   </Fragment>
 
   <main class="mx-auto relative z-10">
-    <!-- Clean Hero Section -->
-    <section class="bg-white py-8 lg:py-12">
-      <div class="container-wide">
-        <div class="mb-6">
-          <Breadcrumb
-            crumbs={[
-              { label: "Joinery Services", href: "/joinery-services" },
-              ...(cleanLocationName
-                ? [
-                    {
-                      label: formattedServiceName,
-                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
-                    },
-                    { label: cleanLocationName, current: true },
-                  ]
-                : [{ label: formattedServiceName, current: true }]),
-            ]}
-          />
-        </div>
-
-        <div>
-          <span class="badge badge-primary mb-3 inline-block">General Joinery</span>
-          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-            {pageTitle}
-          </h1>
-          <p class="text-lg text-neutral-600 max-w-3xl">
-            Expert general joinery services with personal attention to detail.
-            Doors, floors, stairs, repairs and finishing work by a City &
-            Guilds qualified joiner.
-          </p>
-        </div>
-      </div>
-    </section>
+    <ServiceHero
+      badge="General Joinery"
+      title={pageTitle}
+      description="Expert general joinery services with personal attention to detail. Doors, floors, stairs, repairs and finishing work by a City & Guilds qualified joiner."
+      breadcrumbCrumbs={[
+        { label: "Joinery Services", href: "/joinery-services" },
+        ...(cleanLocationName
+          ? [
+              {
+                label: formattedServiceName,
+                href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+              },
+              { label: cleanLocationName, current: true },
+            ]
+          : [{ label: formattedServiceName, current: true }]),
+      ]}
+    />
 
     <!-- Main Content Section -->
     <section class="section bg-white">
@@ -96,35 +83,9 @@ const finalDescription =
             <div
               class="space-y-6 text-neutral-700 leading-relaxed text-balance"
             >
-              <div class="card card-hover p-6">
-                <div class="flex items-start gap-4 mb-4">
-                  <div
-                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-6 h-6 text-brand-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
-                      Meet Robert
-                    </h2>
-                    <p class="text-neutral-600">
-                      I provide friendly, high-quality general joinery services{
-                        locationInText
-                      }, personally delivered with the care and detail you'd
-                      expect from someone who genuinely loves the craft. I'm
-                      Robert — a fully time-served joiner with over 30 years of
-                      hands-on experience in woodwork and building.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <MeetRobertCard
+                introText={`I provide friendly, high-quality general joinery services${locationInText}, personally delivered with the care and detail you'd expect from someone who genuinely loves the craft. I'm Robert — a fully time-served joiner with over 30 years of hands-on experience in woodwork and building.`}
+              />
 
               <div class="space-y-4">
                 <p>
@@ -142,154 +103,31 @@ const finalDescription =
               </div>
 
               <!-- Services Section -->
-              <div class="card card-hover border-l-4 border-accent-500">
-                <div class="card-body">
-                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                    General Joinery Services{locationInText}
-                  </h3>
-                  <ul class="space-y-2 text-neutral-600">
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Door hanging and adjustments
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Skirting and architrave fitting
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Stud wall and partition wall construction
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Flooring installation (engineered wood, laminate, hardwood)
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Pipe and radiator boxing
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Staircase repairs and refurbishments
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      Window seats and made-to-measure shelving
-                    </li>
-                    <li class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4 text-accent-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      General internal joinery and finishing work
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <ServiceListCard
+                title="General Joinery Services"
+                locationInText={locationInText}
+                services={[
+                  "Door hanging and adjustments",
+                  "Skirting and architrave fitting",
+                  "Stud wall and partition wall construction",
+                  "Flooring installation (engineered wood, laminate, hardwood)",
+                  "Pipe and radiator boxing",
+                  "Staircase repairs and refurbishments",
+                  "Window seats and made-to-measure shelving",
+                  "General internal joinery and finishing work",
+                ]}
+              />
 
               <div class="space-y-6">
-                <div class="card card-hover border-l-4 border-accent-500">
-                  <div class="card-body">
-                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                      Dependable Craftsmanship
-                    </h3>
-                    <p class="text-neutral-600">
-                      When you work with me, you're getting real craftsmanship —
-                      I care about the finish and the finer details. We take the
-                      same care on a simple door hanging as we do on a full
-                      renovation.
-                    </p>
-                    <p class="text-neutral-600 mt-2">
-                      I'm a <a
-                        href="/qualifications"
-                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
-                        >fully qualified City & Guilds joiner</a
-                      > with decades of practical site experience.
-                    </p>
-                  </div>
-                </div>
+                <ServiceFeatureCard
+                  title="Dependable Craftsmanship"
+                  description={`When you work with me, you're getting real craftsmanship — I care about the finish and the finer details. We take the same care on a simple door hanging as we do on a full renovation.<br><br>I'm a <a href="/qualifications" class="font-semibold text-brand-600 hover:text-brand-700 transition-colors">fully qualified City & Guilds joiner</a> with decades of practical site experience.`}
+                />
 
-                <div class="card card-hover border-l-4 border-accent-500">
-                  <div class="card-body">
-                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-                      Skilled and Experienced
-                    </h3>
-                    <p class="text-neutral-600">
-                      I'm a fully qualified City & Guilds joiner with decades of
-                      experience and a reputation for honest advice, quality
-                      work, and treating every home with care.
-                    </p>
-                  </div>
-                </div>
+                <ServiceFeatureCard
+                  title="Skilled and Experienced"
+                  description="I'm a fully qualified City & Guilds joiner with decades of experience and a reputation for honest advice, quality work, and treating every home with care."
+                />
               </div>
 
               <!-- Why Choose Me Section -->

@@ -1,0 +1,35 @@
+---
+import Breadcrumb from "./Breadcrumb.astro";
+import ProminentPhoneButton from "./ProminentPhoneButton.astro";
+
+interface Props {
+  badge: string;
+  title: string;
+  description: string;
+  breadcrumbCrumbs: Array<{ label: string; href?: string; current?: boolean }>;
+}
+
+const { badge, title, description, breadcrumbCrumbs } = Astro.props;
+---
+
+<!-- Clean Hero Section -->
+<section class="bg-white py-8 lg:py-12">
+  <div class="container-wide">
+    <div class="mb-6">
+      <Breadcrumb crumbs={breadcrumbCrumbs} />
+    </div>
+
+    <div>
+      <span class="badge badge-primary mb-3 inline-block">{badge}</span>
+      <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        {title}
+      </h1>
+      <p class="text-lg text-neutral-600 max-w-3xl mb-6">
+        {description}
+      </p>
+      
+      <ProminentPhoneButton />
+    </div>
+  </div>
+</section>
+

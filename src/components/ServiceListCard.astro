@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  services: string[];
+  locationInText?: string;
+  borderColor?: "accent" | "brand";
+}
+
+const {
+  title,
+  services,
+  locationInText = "",
+  borderColor = "accent",
+} = Astro.props;
+
+const borderClass =
+  borderColor === "brand"
+    ? "border-brand-500"
+    : "border-accent-500";
+---
+
+<div class={`card card-hover border-l-4 ${borderClass}`}>
+  <div class="card-body">
+    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+      {title}{locationInText}
+    </h3>
+    <ul class="space-y-2 text-neutral-600">
+      {services.map((service) => (
+        <li class="flex items-center gap-2">
+          <svg
+            class="w-4 h-4 text-accent-600"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          {service}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+

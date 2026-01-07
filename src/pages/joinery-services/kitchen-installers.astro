@@ -1,9 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import ModernContactForm from "../../components/ModernContactForm.astro";
 import { getFormattedPageData } from "../../utils/pageMeta";
 import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import MeetRobertCard from "../../components/MeetRobertCard.astro";
+import ServiceFeatureCard from "../../components/ServiceFeatureCard.astro";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
 import NearbyAreas from "../../components/NearbyAreasKitchenInstallers.astro"; // this location is unique a specific for the service offered !! CHECK
@@ -58,39 +60,23 @@ const finalDescription =
   </Fragment>
 
   <main class="mx-auto relative z-10">
-    <!-- Clean Hero Section -->
-    <section class="bg-white py-8 lg:py-12">
-      <div class="container-wide">
-        <div class="mb-6">
-          <Breadcrumb
-            crumbs={[
-              { label: "Joinery Services", href: "/joinery-services" },
-              ...(cleanLocationName
-                ? [
-                    {
-                      label: formattedServiceName,
-                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
-                    },
-                    { label: cleanLocationName, current: true },
-                  ]
-                : [{ label: formattedServiceName, current: true }]),
-            ]}
-          />
-        </div>
-
-        <div>
-          <span class="badge badge-primary mb-3 inline-block">Fitted Kitchens</span>
-          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-            {pageTitle}
-          </h1>
-          <p class="text-lg text-neutral-600 max-w-3xl leading-relaxed">
-            I'm Robert, a City & Guilds qualified joiner with over 30 years' experience fitting kitchens {locationInText}. 
-            Whether you've got a Howdens or Magnet kitchen ready to install, or need help choosing the right setup, 
-            I'll make sure it's measured, fitted, and finished properly — no shortcuts.
-          </p>
-        </div>
-      </div>
-    </section>
+    <ServiceHero
+      badge="Fitted Kitchens"
+      title={pageTitle}
+      description={`I'm Robert, a City & Guilds qualified joiner with over 30 years' experience fitting kitchens ${locationInText}. Whether you've got a Howdens or Magnet kitchen ready to install, or need help choosing the right setup, I'll make sure it's measured, fitted, and finished properly — no shortcuts.`}
+      breadcrumbCrumbs={[
+        { label: "Joinery Services", href: "/joinery-services" },
+        ...(cleanLocationName
+          ? [
+              {
+                label: formattedServiceName,
+                href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+              },
+              { label: cleanLocationName, current: true },
+            ]
+          : [{ label: formattedServiceName, current: true }]),
+      ]}
+    />
 
     <!-- Main Content Section -->
     <section class="bg-white py-12 lg:py-16">
@@ -99,17 +85,9 @@ const finalDescription =
           <!-- Content Column -->
           <div class="order-2 lg:order-1">
             <div class="space-y-8 text-neutral-700">
-              <div class="bg-neutral-50 rounded-lg p-6 border border-neutral-200">
-                <h2 class="text-xl font-bold text-neutral-900 mb-3">
-                  Hi, I'm Robert
-                </h2>
-                <p class="text-neutral-700 leading-relaxed">
-                  I've been fitting kitchens for over 30 years {locationInText}, and I still love the craft. 
-                  When you work with me, you're dealing directly with me — no sales team, no middlemen. 
-                  I'll measure up, talk through what you need, and then get on with fitting it properly. 
-                  Simple as that.
-                </p>
-              </div>
+              <MeetRobertCard
+                introText={`I've been fitting kitchens for over 30 years ${locationInText}, and I still love the craft. When you work with me, you're dealing directly with me — no sales team, no middlemen. I'll measure up, talk through what you need, and then get on with fitting it properly. Simple as that.`}
+              />
 
               <div class="space-y-5 text-neutral-700 leading-relaxed">
                 <p>

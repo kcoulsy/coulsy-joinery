@@ -1,9 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import ModernContactForm from "../../components/ModernContactForm.astro";
 import { getFormattedPageData } from "../../utils/pageMeta";
 import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import MeetRobertCard from "../../components/MeetRobertCard.astro";
+import ServiceFeatureCard from "../../components/ServiceFeatureCard.astro";
+import ServiceListCard from "../../components/ServiceListCard.astro";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
 import NearbyAreas from "../../components/NearbyAreasSteelExitDoors.astro"; // this location is unique a specific for the service offered !! CHECK
@@ -53,39 +56,23 @@ const finalDescription =
   </Fragment>
 
   <main class="mx-auto relative z-10">
-    <!-- Clean Hero Section -->
-    <section class="bg-white py-8 lg:py-12">
-      <div class="container-wide">
-        <div class="mb-6">
-          <Breadcrumb
-            crumbs={[
-              { label: "Joinery Services", href: "/joinery-services" },
-              ...(cleanLocationName
-                ? [
-                    {
-                      label: formattedServiceName,
-                      href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
-                    },
-                    { label: cleanLocationName, current: true },
-                  ]
-                : [{ label: formattedServiceName, current: true }]),
-            ]}
-          />
-        </div>
-
-        <div>
-          <span class="badge badge-primary mb-3 inline-block">Steel Fire Exit Doors</span>
-          <h1 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-            {pageTitle}
-          </h1>
-          <p class="text-lg text-neutral-600 max-w-3xl">
-            Professional steel fire exit door installation for safety and
-            security compliance. High-security doors, emergency exits and
-            compliant fitting by qualified joiners.
-          </p>
-        </div>
-      </div>
-    </section>
+    <ServiceHero
+      badge="Steel Fire Exit Doors"
+      title={pageTitle}
+      description="Professional steel fire exit door installation for safety and security compliance. High-security doors, emergency exits and compliant fitting by qualified joiners."
+      breadcrumbCrumbs={[
+        { label: "Joinery Services", href: "/joinery-services" },
+        ...(cleanLocationName
+          ? [
+              {
+                label: formattedServiceName,
+                href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+              },
+              { label: cleanLocationName, current: true },
+            ]
+          : [{ label: formattedServiceName, current: true }]),
+      ]}
+    />
 
     <!-- Main Content Section -->
     <section class="section bg-white">
