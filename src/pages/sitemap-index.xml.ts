@@ -1,32 +1,34 @@
 import type { APIRoute } from "astro";
 
 // Define services in SEO-optimized order: high-value services first, roofing services last
-// Priority mapping: high-priority (0.9), medium (0.8), low/roofing (0.6)
+// Priority mapping: 
+//   Base service pages: 0.95 (high), 0.85 (medium), 0.75 (low/roofing)
+//   Location pages: 0.9 (high), 0.8 (medium), 0.7 (low/roofing) - These are the "money pages"
 const services = [
-  // High-Priority Services (0.9)
-  { slug: "general-joinery", priority: "0.9" },
-  { slug: "kitchen-installers", priority: "0.9" },
-  { slug: "small-build-services", priority: "0.9" },
-  { slug: "building-maintenance", priority: "0.9" },
-  { slug: "accessible-kitchen-installers", priority: "0.9" },
+  // High-Priority Services (base: 0.95, location: 0.9)
+  { slug: "general-joinery", basePriority: "0.95", locationPriority: "0.9" },
+  { slug: "kitchen-installers", basePriority: "0.95", locationPriority: "0.9" },
+  { slug: "small-build-services", basePriority: "0.95", locationPriority: "0.9" },
+  { slug: "building-maintenance", basePriority: "0.95", locationPriority: "0.9" },
+  { slug: "accessible-kitchen-installers", basePriority: "0.95", locationPriority: "0.9" },
   
-  // Medium-Priority Services (0.8)
-  { slug: "bespoke-joinery", priority: "0.8" },
-  { slug: "garden-offices", priority: "0.8" },
-  { slug: "garden-rooms", priority: "0.8" },
-  { slug: "steel-fire-exit-doors-installers", priority: "0.8" },
-  { slug: "heritage-restoration-joinery", priority: "0.8" },
-  { slug: "stud-wall-partitioning", priority: "0.8" },
-  { slug: "joinery-subcontractors", priority: "0.8" },
+  // Medium-Priority Services (base: 0.85, location: 0.8)
+  { slug: "bespoke-joinery", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "garden-offices", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "garden-rooms", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "steel-fire-exit-doors-installers", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "heritage-restoration-joinery", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "stud-wall-partitioning", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "joinery-subcontractors", basePriority: "0.85", locationPriority: "0.8" },
   
-  // Lower-Priority Services (0.6) - Roofing services grouped together at end
-  { slug: "traditional-cut-roofs", priority: "0.6" },
-  { slug: "truss-roof-installers", priority: "0.6" },
+  // Lower-Priority Services (base: 0.75, location: 0.7) - Roofing services grouped together at end
+  { slug: "traditional-cut-roofs", basePriority: "0.75", locationPriority: "0.7" },
+  { slug: "truss-roof-installers", basePriority: "0.75", locationPriority: "0.7" },
   
   // Legacy/Deprecated (keep for backwards compatibility)
-  { slug: "joiner", priority: "0.7" },
-  { slug: "carpenter", priority: "0.7" },
-  { slug: "joinery", priority: "0.7" },
+  { slug: "joiner", basePriority: "0.8", locationPriority: "0.75" },
+  { slug: "carpenter", basePriority: "0.8", locationPriority: "0.75" },
+  { slug: "joinery", basePriority: "0.8", locationPriority: "0.75" },
 ];
 
 // Define locations directly to avoid import issues
@@ -98,37 +100,36 @@ export const GET: APIRoute = async ({ url }) => {
   
   for (const service of services) {
     const serviceSlug = typeof service === 'string' ? service : service.slug;
-    const servicePriority = typeof service === 'string' ? "0.8" : service.priority;
+    const basePriority = typeof service === 'string' ? "0.85" : service.basePriority;
+    const locationPriority = typeof service === 'string' ? "0.8" : service.locationPriority;
     
-    // Add the main service page with service-specific priority
+    // Add the main service page (category/authority page)
     locationUrls.push({
       url: `${baseUrl}/joinery-services/${serviceSlug}`,
       lastmod: currentDate,
       changefreq: "weekly",
-      priority: servicePriority
+      priority: basePriority
     });
 
-    // Add all location-specific pages with adjusted priority (0.1 lower than main page)
-    const locationPriority = parseFloat(servicePriority) - 0.1;
+    // Add all location-specific pages (these are the "money pages" - highest enquiry potential)
     for (const location of LOCATIONS) {
       locationUrls.push({
         url: `${baseUrl}/joinery-services/${location.slug}-${serviceSlug}`,
         lastmod: currentDate,
         changefreq: "weekly", 
-        priority: locationPriority.toFixed(1)
+        priority: locationPriority
       });
     }
   }
 
-  // Static pages
+  // Static pages (excluding noindex pages: sustainability, compliance, qualifications)
   const staticPages = [
     { url: baseUrl, priority: "1.0", changefreq: "daily", lastmod: currentDate },
-    { url: `${baseUrl}/about`, priority: "0.8", changefreq: "monthly", lastmod: currentDate },
+    { url: `${baseUrl}/about`, priority: "0.7", changefreq: "monthly", lastmod: currentDate },
     { url: `${baseUrl}/contact`, priority: "0.9", changefreq: "monthly", lastmod: currentDate },
-    { url: `${baseUrl}/joinery-services`, priority: "0.9", changefreq: "weekly", lastmod: currentDate },
-    { url: `${baseUrl}/about/qualifications`, priority: "0.7", changefreq: "monthly", lastmod: currentDate },
-    { url: `${baseUrl}/about/compliance`, priority: "0.7", changefreq: "monthly", lastmod: currentDate },
-    { url: `${baseUrl}/about/sustainability`, priority: "0.7", changefreq: "monthly", lastmod: currentDate },
+    { url: `${baseUrl}/joinery-services`, priority: "0.85", changefreq: "weekly", lastmod: currentDate },
+    { url: `${baseUrl}/faq`, priority: "0.8", changefreq: "monthly", lastmod: currentDate },
+    // Excluded (noindex): /about/qualifications, /about/compliance, /about/sustainability
   ];
 
   const allUrls = [...staticPages, ...locationUrls];
