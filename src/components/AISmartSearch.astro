@@ -156,20 +156,35 @@
     }
 
     async buildSearchIndex() {
-      // Build search index from joinery services and content
       const pages = [
         {
-          title: "General Joinery Services",
-          url: "/joinery-services/general-joinery",
+          title: "Joiner Services",
+          url: "/joinery-services/joiner",
           content:
-            "Comprehensive general joinery services including repairs, installations, and woodwork projects.",
+            "Professional joiner services for doors, floors, stairs, shelves, storage and all general joinery work.",
           keywords: [
-            "general",
-            "repairs",
+            "joiner",
+            "joinery",
             "woodwork",
             "carpentry",
-            "joinery",
-            "installations",
+            "professional",
+            "doors",
+            "floors",
+            "stairs",
+          ],
+        },
+        {
+          title: "Door Hanging",
+          url: "/joinery-services/door-hanging",
+          content:
+            "Internal, external and fire door hanging. Hung straight, sealed and finished by a qualified joiner.",
+          keywords: [
+            "door hanging",
+            "door fitting",
+            "internal doors",
+            "external doors",
+            "fire doors",
+            "doors",
           ],
         },
         {
@@ -187,55 +202,10 @@
           ],
         },
         {
-          title: "Small Build Services",
-          url: "/joinery-services/small-build-services",
-          content:
-            "Expert small build services including extensions, renovations, and construction projects. Home extensions, kitchen extensions, loft conversions, and property renovations.",
-          keywords: [
-            "small build",
-            "extensions",
-            "renovations",
-            "construction",
-            "loft conversion",
-            "kitchen extension",
-            "home extension",
-            "refurbishment",
-          ],
-        },
-        {
-          title: "Building Maintenance",
-          url: "/joinery-services/building-maintenance",
-          content:
-            "Expert building maintenance and property upkeep services. Routine maintenance, emergency repairs, door and window repairs, and general property upkeep.",
-          keywords: [
-            "building maintenance",
-            "property maintenance",
-            "repairs",
-            "upkeep",
-            "maintenance work",
-            "property repairs",
-            "building repairs",
-          ],
-        },
-        {
-          title: "Accessible Kitchen Installation",
-          url: "/joinery-services/accessible-kitchen-installers",
-          content:
-            "Specialist accessible kitchen installation for mobility needs. Lowered worktops, accessible cabinets, and mobility-friendly designs.",
-          keywords: [
-            "accessible",
-            "mobility",
-            "disabled",
-            "wheelchair",
-            "lowered",
-            "adapted",
-          ],
-        },
-        {
           title: "Bespoke Joinery Services",
           url: "/joinery-services/bespoke-joinery",
           content:
-            "Custom bespoke joinery and carpentry work. Handcrafted furniture, fitted wardrobes, and unique wooden pieces.",
+            "Custom bespoke joinery and carpentry work. Made-to-measure joinery tailored to your space and style.",
           keywords: [
             "bespoke",
             "custom",
@@ -246,58 +216,36 @@
           ],
         },
         {
-          title: "Garden Offices & Annexes",
-          url: "/joinery-services/garden-offices",
+          title: "Garden Rooms",
+          url: "/joinery-services/garden-rooms",
           content:
-            "Custom garden office and annexe construction. Professional workspace solutions for home working.",
+            "Garden rooms and offices - insulated, tailored, and built to last. Create additional living or work space in your garden.",
           keywords: [
+            "garden room",
             "garden office",
             "annexe",
             "workspace",
             "home office",
+            "outdoor room",
             "outbuilding",
             "studio",
           ],
         },
         {
-          title: "Garden Rooms",
-          url: "/joinery-services/garden-rooms",
+          title: "Small Build Services",
+          url: "/joinery-services/small-build-services",
           content:
-            "Beautiful garden room construction and design. Create additional living space in your garden.",
+            "Extensions, renovations, maintenance, and small construction projects. Home extensions, loft conversions, and property refurbishment.",
           keywords: [
-            "garden room",
-            "living space",
-            "garden building",
-            "outdoor room",
-            "conservatory",
-          ],
-        },
-        {
-          title: "Steel Fire Exit Doors",
-          url: "/joinery-services/steel-fire-exit-doors-installers",
-          content:
-            "Steel fire exit door installation and maintenance. Commercial fire safety compliance and security.",
-          keywords: [
-            "steel doors",
-            "fire exit",
-            "fire safety",
-            "commercial",
-            "security",
-            "compliance",
-          ],
-        },
-        {
-          title: "Heritage & Restoration Joinery",
-          url: "/joinery-services/heritage-restoration-joinery",
-          content:
-            "Specialist heritage joinery and restoration work for period properties and listed buildings.",
-          keywords: [
-            "heritage",
-            "restoration",
-            "period",
-            "listed",
-            "traditional",
-            "vintage",
+            "small build",
+            "extensions",
+            "renovations",
+            "construction",
+            "loft conversion",
+            "home extension",
+            "refurbishment",
+            "building maintenance",
+            "repairs",
           ],
         },
         {
@@ -315,71 +263,31 @@
           ],
         },
         {
-          title: "Truss Roof Installation",
-          url: "/joinery-services/truss-roof-installers",
-          content:
-            "Professional truss roof installation and construction services for new builds and extensions.",
-          keywords: [
-            "truss roof",
-            "roofing",
-            "construction",
-            "new build",
-            "extension",
-            "roof",
-          ],
-        },
-        {
           title: "Traditional Cut Roofs",
           url: "/joinery-services/traditional-cut-roofs",
           content:
-            "Traditional cut roof construction and restoration. Heritage roofing techniques and craftsmanship.",
+            "Cut roofs and truss roofs - hand-cut or prefabricated, fitted on site. Traditional timber roof framing.",
           keywords: [
             "traditional roof",
             "cut roof",
-            "heritage roof",
-            "roof construction",
+            "truss roof",
             "roofing",
+            "roof construction",
+            "timber roof",
           ],
         },
         {
-          title: "Joinery Subcontractors",
-          url: "/joinery-services/joinery-subcontractors",
+          title: "Steel Fire Exit Doors",
+          url: "/joinery-services/steel-fire-exit-doors-installers",
           content:
-            "Professional joinery subcontracting services for builders, developers, and construction companies.",
+            "Robust, compliant steel fire exit doors for commercial spaces. Commercial fire safety compliance and security.",
           keywords: [
-            "subcontractor",
-            "contractor",
+            "steel doors",
+            "fire exit",
+            "fire safety",
             "commercial",
-            "construction",
-            "builder",
-            "developer",
-          ],
-        },
-        {
-          title: "Joiner Services",
-          url: "/joinery-services/joiner",
-          content:
-            "Professional joiner services for all types of woodwork and joinery projects.",
-          keywords: [
-            "joiner",
-            "joinery",
-            "woodwork",
-            "carpentry",
-            "professional",
-          ],
-        },
-        {
-          title: "Carpenter Services",
-          url: "/joinery-services/carpenter",
-          content:
-            "Skilled carpenter services for structural work, repairs, and custom woodwork projects.",
-          keywords: [
-            "carpenter",
-            "carpentry",
-            "structural",
-            "repairs",
-            "woodwork",
-            "construction",
+            "security",
+            "compliance",
           ],
         },
         {

@@ -126,11 +126,16 @@
         if (servicesResponse.ok) {
           this.searchData.services = await servicesResponse.json();
         } else {
-          // Fallback data if API fails (ordered by SEO priority)
+          // Fallback data if API fails
           this.searchData.services = [
             {
-              title: "General Joinery",
-              url: "/joinery-services/general-joinery",
+              title: "Joiner",
+              url: "/joinery-services/joiner",
+              type: "service",
+            },
+            {
+              title: "Door Hanging",
+              url: "/joinery-services/door-hanging",
               type: "service",
             },
             {
@@ -139,28 +144,8 @@
               type: "service",
             },
             {
-              title: "Small Build Services",
-              url: "/joinery-services/small-build-services",
-              type: "service",
-            },
-            {
-              title: "Building Maintenance",
-              url: "/joinery-services/building-maintenance",
-              type: "service",
-            },
-            {
-              title: "Accessible Kitchens",
-              url: "/joinery-services/accessible-kitchen-installers",
-              type: "service",
-            },
-            {
               title: "Bespoke Joinery",
               url: "/joinery-services/bespoke-joinery",
-              type: "service",
-            },
-            {
-              title: "Garden Offices",
-              url: "/joinery-services/garden-offices",
               type: "service",
             },
             {
@@ -169,13 +154,8 @@
               type: "service",
             },
             {
-              title: "Steel Fire Exit Doors",
-              url: "/joinery-services/steel-fire-exit-doors-installers",
-              type: "service",
-            },
-            {
-              title: "Heritage Restoration",
-              url: "/joinery-services/heritage-restoration-joinery",
+              title: "Small Build Services",
+              url: "/joinery-services/small-build-services",
               type: "service",
             },
             {
@@ -184,28 +164,13 @@
               type: "service",
             },
             {
-              title: "Joinery Subcontractors",
-              url: "/joinery-services/joinery-subcontractors",
-              type: "service",
-            },
-            {
               title: "Traditional Cut Roofs",
               url: "/joinery-services/traditional-cut-roofs",
               type: "service",
             },
             {
-              title: "Truss Roof Installers",
-              url: "/joinery-services/truss-roof-installers",
-              type: "service",
-            },
-            {
-              title: "Small Build Services",
-              url: "/joinery-services/small-build-services",
-              type: "service",
-            },
-            {
-              title: "Building Maintenance",
-              url: "/joinery-services/building-maintenance",
+              title: "Steel Fire Exit Doors",
+              url: "/joinery-services/steel-fire-exit-doors-installers",
               type: "service",
             },
           ];

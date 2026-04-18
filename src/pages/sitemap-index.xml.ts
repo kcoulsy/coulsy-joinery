@@ -5,30 +5,15 @@ import type { APIRoute } from "astro";
 //   Base service pages: 0.95 (high), 0.85 (medium), 0.75 (low/roofing)
 //   Location pages: 0.9 (high), 0.8 (medium), 0.7 (low/roofing) - These are the "money pages"
 const services = [
-  // High-Priority Services (base: 0.95, location: 0.9)
-  { slug: "general-joinery", basePriority: "0.95", locationPriority: "0.9" },
+  { slug: "joiner", basePriority: "0.95", locationPriority: "0.9" },
+  { slug: "door-hanging", basePriority: "0.95", locationPriority: "0.9" },
   { slug: "kitchen-installers", basePriority: "0.95", locationPriority: "0.9" },
-  { slug: "small-build-services", basePriority: "0.95", locationPriority: "0.9" },
-  { slug: "building-maintenance", basePriority: "0.95", locationPriority: "0.9" },
-  { slug: "accessible-kitchen-installers", basePriority: "0.95", locationPriority: "0.9" },
-  
-  // Medium-Priority Services (base: 0.85, location: 0.8)
   { slug: "bespoke-joinery", basePriority: "0.85", locationPriority: "0.8" },
-  { slug: "garden-offices", basePriority: "0.85", locationPriority: "0.8" },
   { slug: "garden-rooms", basePriority: "0.85", locationPriority: "0.8" },
-  { slug: "steel-fire-exit-doors-installers", basePriority: "0.85", locationPriority: "0.8" },
-  { slug: "heritage-restoration-joinery", basePriority: "0.85", locationPriority: "0.8" },
+  { slug: "small-build-services", basePriority: "0.85", locationPriority: "0.8" },
   { slug: "stud-wall-partitioning", basePriority: "0.85", locationPriority: "0.8" },
-  { slug: "joinery-subcontractors", basePriority: "0.85", locationPriority: "0.8" },
-  
-  // Lower-Priority Services (base: 0.75, location: 0.7) - Roofing services grouped together at end
   { slug: "traditional-cut-roofs", basePriority: "0.75", locationPriority: "0.7" },
-  { slug: "truss-roof-installers", basePriority: "0.75", locationPriority: "0.7" },
-  
-  // Legacy/Deprecated (keep for backwards compatibility)
-  { slug: "joiner", basePriority: "0.8", locationPriority: "0.75" },
-  { slug: "carpenter", basePriority: "0.8", locationPriority: "0.75" },
-  { slug: "joinery", basePriority: "0.8", locationPriority: "0.75" },
+  { slug: "steel-fire-exit-doors-installers", basePriority: "0.75", locationPriority: "0.7" },
 ];
 
 // Define locations directly to avoid import issues

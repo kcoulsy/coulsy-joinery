@@ -2,29 +2,29 @@
 import { Image } from "astro:assets";
 import studWall from "../assets/images/stud-wall-new-build.jpeg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
-import gardenOffice from "../assets/images/garden-offices/garden-office.jpeg";
 import gardenRooms from "../assets/images/garden-rooms/garden-rooms.jpeg";
 import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
-import SubcontractImg from "../assets/images/sub-contract.jpg";
-import rooftop from "../assets/images/rooftop.jpg";
 import cutRoofHeader from "../assets/images/cut-roofs/cut-roof-header.jpg";
-import trussRoofImage from "../assets/images/truss-roofs/attic-trusses.jpg";
-import heritage from "../assets/images/heritage/oak-window-restoration.jpg";
-import complianceImage from "../assets/images/compliance.jpeg";
-import accessibleKitchen from "../assets/images/accessible-kitchens/accessible-kitchen-main.jpg";
 import steelFireExit from "../assets/images/steel-exit-doors/Security-Fire-Exit-Door-510x510.jpg";
-import generalJoinery from "../assets/images/general-joinery/fencing-and-gates.jpg";
 import smallBuildImage from "../assets/images/small-build-services/small-building-works-glazed-office-800x600.jpg";
-import buildingMaintenanceImage from "../assets/images/building-maintenance/building-maintenance-before-after-800x600.jpg";
+import doorImage from "../assets/images/doors/fire-doors1.jpg";
+import joinerImage from "../assets/images/general-joinery/fencing-and-gates.jpg";
 
-// Services ordered by SEO priority: high-value/high-volume services first, roofing services last
 const services = [
   {
-    title: "General Joinery",
-    href: "/joinery-services/general-joinery",
-    image: generalJoinery,
-    alt: "General joinery services in York",
+    title: "Joiner",
+    href: "/joinery-services/joiner",
+    image: joinerImage,
+    alt: "Qualified joiner in York and Yorkshire",
     description: "Doors, floors, stairs, shelves, storage and all general joinery work.",
+    category: "Joinery",
+  },
+  {
+    title: "Door Hanging",
+    href: "/joinery-services/door-hanging",
+    image: doorImage,
+    alt: "Door hanging and fitting service in York",
+    description: "Internal, external and fire door hanging — hung straight, sealed and finished.",
     category: "Joinery",
   },
   {
@@ -36,30 +36,6 @@ const services = [
     category: "Kitchens",
   },
   {
-    title: "Small Build Services",
-    href: "/joinery-services/small-build-services",
-    image: smallBuildImage,
-    alt: "Small build services including extensions and renovations in York",
-    description: "Extensions, renovations, and small construction projects of all sizes.",
-    category: "Building",
-  },
-  {
-    title: "Building Maintenance",
-    href: "/joinery-services/building-maintenance",
-    image: buildingMaintenanceImage,
-    alt: "Building maintenance and property upkeep services in York",
-    description: "Reliable building maintenance, repairs, and property upkeep services.",
-    category: "Building",
-  },
-  {
-    title: "Accessible Kitchens",
-    href: "/joinery-services/accessible-kitchen-installers",
-    image: accessibleKitchen,
-    alt: "Accessible kitchens York",
-    description: "Practical kitchen solutions designed for accessibility.",
-    category: "Specialist",
-  },
-  {
     title: "Bespoke Joinery",
     href: "/joinery-services/bespoke-joinery",
     image: mouldingPlane,
@@ -68,36 +44,20 @@ const services = [
     category: "Bespoke",
   },
   {
-    title: "Garden Offices",
-    href: "/joinery-services/garden-offices",
-    image: gardenOffice,
-    alt: "Timber-framed garden office installation in York",
-    description: "Custom-built insulated garden offices for home working and productivity, designed for comfort year-round.",
-    category: "Bespoke",
-  },
-  {
     title: "Garden Rooms",
     href: "/joinery-services/garden-rooms",
     image: gardenRooms,
     alt: "Bespoke garden room built with timber cladding in York",
-    description: "Made-to-measure garden rooms designed for leisure, hobbies, or guest space — fully insulated and tailored to your style.",
+    description: "Garden rooms and offices — insulated, tailored, and built to last.",
     category: "Bespoke",
   },
   {
-    title: "Steel Fire Exit Doors",
-    href: "/joinery-services/steel-fire-exit-doors-installers",
-    image: steelFireExit,
-    alt: "Steel fire exit and fire escape doors",
-    description: "Robust, compliant fire exit doors for commercial spaces.",
-    category: "Commercial",
-  },
-  {
-    title: "Heritage Joinery",
-    href: "/joinery-services/heritage-restoration-joinery",
-    image: heritage,
-    alt: "Heritage Joinery Restoration",
-    description: "Expert restoration and reproduction of period joinery.",
-    category: "Heritage",
+    title: "Small Build Services",
+    href: "/joinery-services/small-build-services",
+    image: smallBuildImage,
+    alt: "Small build services including extensions and renovations in York",
+    description: "Extensions, renovations, maintenance, and small construction projects.",
+    category: "Building",
   },
   {
     title: "Stud Walls",
@@ -108,28 +68,20 @@ const services = [
     category: "Construction",
   },
   {
-    title: "Subcontract Joinery",
-    href: "/joinery-services/joinery-subcontractors",
-    image: SubcontractImg,
-    alt: "Sub contract Joinery",
-    description: "Joinery labour and support services for larger projects.",
-    category: "Commercial",
-  },
-  {
     title: "Traditional Cut Roofs",
     href: "/joinery-services/traditional-cut-roofs",
     image: cutRoofHeader,
     alt: "Traditional cut roofs and timber roof framing in York",
-    description: "Traditional hand-cut roof construction designed and built to suit any shape or layout.",
+    description: "Cut roofs and truss roofs — hand-cut or prefabricated, fitted on site.",
     category: "Roofing",
   },
   {
-    title: "Truss Roof Installers",
-    href: "/joinery-services/truss-roof-installers",
-    image: trussRoofImage,
-    alt: "Truss roof installation and structural joinery in York",
-    description: "Professional truss roof installation from attic conversions to large-scale commercial projects.",
-    category: "Roofing",
+    title: "Steel Fire Exit Doors",
+    href: "/joinery-services/steel-fire-exit-doors-installers",
+    image: steelFireExit,
+    alt: "Steel fire exit and fire escape doors",
+    description: "Robust, compliant fire exit doors for commercial spaces.",
+    category: "Commercial",
   },
 ];
 ---
