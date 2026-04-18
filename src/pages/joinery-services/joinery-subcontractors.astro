@@ -1,0 +1,311 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ModernContactForm from "../../components/ModernContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import MeetRobertCard from "../../components/MeetRobertCard.astro";
+import ServiceFeatureCard from "../../components/ServiceFeatureCard.astro";
+import ServiceListCard from "../../components/ServiceListCard.astro";
+
+// import NearbyAreas from "../../components/NearbyAreasList.astro";
+import NearbyAreas from "../../components/NearbyAreasJoinerySubcontractors.astro"; // this location is unique a specific for the service offered !! CHECK
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/joinery-subcontractors/stud-walls-commercial.jpg";
+import galleryImg2 from "../../assets/images/joinery-subcontractors/sub-contract-joinery1.jpg";
+import galleryImg3 from "../../assets/images/joinery-subcontractors/sub-contract-joinery2.jpg";
+import galleryImg4 from "../../assets/images/joinery-subcontractors/sub-contract-joinery3.jpg";
+
+const {
+  formattedServiceName,
+  locationInText,
+  cleanLocationName,
+  businessSchema,
+  serviceSchema,
+  faqSchema,
+  defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
+} = getFormattedPageData(Astro);
+
+const description = `Expert joinery subcontracting ${locationInText} by City & Guilds qualified joiner. Site joinery for construction & fit-out. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
+---
+
+<Layout
+  title={`${pageTitle} | Site Joinery Subcontractors for Construction & Fit-Out`}
+  description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
+>
+  <Fragment slot="head">
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="mx-auto relative z-10">
+    <ServiceHero
+      badge="Subcontract Joinery"
+      title={pageTitle}
+      description="Skilled and reliable joinery subcontractors offering supply-and-fix or labour-only services. Commercial, public sector and residential projects with fully qualified, trusted craftsmanship."
+      breadcrumbCrumbs={[
+        { label: "Joinery Services", href: "/joinery-services" },
+        ...(cleanLocationName
+          ? [
+              {
+                label: formattedServiceName,
+                href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+              },
+              { label: cleanLocationName, current: true },
+            ]
+          : [{ label: formattedServiceName, current: true }]),
+      ]}
+    />
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Professional Subcontracting
+                    </h2>
+                    <p class="text-neutral-600">
+                      I provide subcontract joinery services {locationInText} for
+                      main contractors, developers, and builders who need a skilled,
+                      reliable, and straightforward tradesperson on site.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  Based in York, I work across {locationInText} and the wider Yorkshire
+                  and Humberside areas. I'm happy to work on a labour-only or supply-and-fix
+                  basis, depending on what suits your job best.
+                </p>
+                <p>
+                  My background includes projects across housing, offices,
+                  education, healthcare and more — always with a commitment to
+                  high standards and site-friendly professionalism.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} has a constant flow of commercial and
+                      residential building work — and I regularly support local
+                      contractors with reliable site-based joinery services.
+                      Whether it's internal fit-outs, first fix work or joinery
+                      for specialist environments, I bring experience and
+                      consistency to the job.
+                    </p>
+                  )
+                }
+              </div>
+
+              <!-- Services Section -->
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Straightforward and Dependable
+                    </h3>
+                    <p class="text-neutral-600">
+                      If you need a dependable subcontract joiner who turns up
+                      and gets on with the job, I'm your man. I take pride in
+                      delivering clean, accurate joinery work that aligns with
+                      programme goals and contractor expectations.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      Whether it's first fix, stud walls, doors or finishings, I
+                      work closely with site managers and other trades to keep
+                      things running smoothly.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      I'm fully qualified, time-served, and understand the pace
+                      and pressures of site-based joinery — especially when
+                      dealing with live environments like schools or care homes.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Fully Certified
+                    </h3>
+                    <p class="text-neutral-600">
+                      All relevant paperwork is sorted — including RAMS and site
+                      guidance. You'll get a professional setup that doesn't
+                      create extra work or risk.
+                    </p>
+                    <p class="text-neutral-600 mt-2">
+                      Need to see qualifications or past examples? No problem —
+                      just ask. I'm always happy to provide details or
+                      references.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Let's Talk
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      If you're looking for a joinery subcontractor {
+                        locationInText
+                      } who's committed to getting it done properly, get in touch
+                      — I'd be happy to have a chat and see how I can help.
+                    </p>
+                    <p class="text-neutral-600">
+                      Every subcontract project is approached with the same
+                      level of professionalism and attention to detail that
+                      commercial construction demands.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Subcontract Work
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our commercial joinery projects
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Professional timber stud wall framing for commercial interior fit-out ${locationInText}by trusted joinery subcontractors`,
+                        label: "Commercial Joinery",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Timber joinery subcontractors working on live construction site ${locationInText}across Yorkshire and nearby regions`,
+                        label: "Site-Based Joinery Work",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Expert bespoke joinery installation on-site ${locationInText}with high attention to detail`,
+                        label:
+                          "Subfloor installation for a distribution centre",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Complete commercial joinery subcontractor fit-out ${locationInText}in progress, showcasing quality workmanship`,
+                        label: "Roof joists for use as a decking area",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Get in Touch</h2>
+                    <p class="text-brand-100">
+                      Looking for a joinery subcontractor you can rely on? I'd
+                      be happy to have a chat and see how we can support your
+                      next project.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

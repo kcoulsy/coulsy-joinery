@@ -12,6 +12,11 @@ const url = Astro.url.pathname;
 const segments = url.split("/").filter(Boolean);
 const currentSlug = segments[1] || segments[0] || "";
 
+// These variables were calculated but not used in the current logic
+// const isJoiner = currentSlug.endsWith("-joiner") || url === "/joiner";
+// const isJoinery = currentSlug.endsWith("-joinery") || url === "/joinery";
+// const isCarpenter = currentSlug.endsWith("-carpenter") || url === "/carpenter";
+
 let serviceText = "I provide my services in nearby areas";
 let suffix = "";
 let radius = 20;
@@ -33,6 +38,14 @@ if (
   serviceText = "I provide joinery services in nearby areas";
   suffix = "-joinery";
   radius = 10;
+} else if (
+  url === "/carpenter" ||
+  url.startsWith("/carpenter/") ||
+  currentSlug.endsWith("-carpenter")
+) {
+  serviceText = "I offer carpenter services in nearby areas";
+  suffix = "-carpenter";
+  radius = 12;
 }
 basePath = "joinery-services";
 

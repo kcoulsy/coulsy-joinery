@@ -1,0 +1,331 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ModernContactForm from "../../components/ModernContactForm.astro";
+import { getFormattedPageData } from "../../utils/pageMeta";
+import ReviewsLinkSection from "../../components/ReviewsLinkSection.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import MeetRobertCard from "../../components/MeetRobertCard.astro";
+import ServiceFeatureCard from "../../components/ServiceFeatureCard.astro";
+import ServiceListCard from "../../components/ServiceListCard.astro";
+
+// import NearbyAreas from "../../components/NearbyAreasList.astro";
+import NearbyAreas from "../../components/NearbyAreasGardenOffices.astro";
+
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import galleryImg1 from "../../assets/images/garden-offices/garden-office-image1.jpg";
+import galleryImg2 from "../../assets/images/garden-offices/garden-office-image2.jpg";
+import galleryImg3 from "../../assets/images/garden-offices/garden-office-image3.jpg";
+import galleryImg4 from "../../assets/images/garden-offices/garden-office-timber-clad.jpeg";
+import galleryImg5 from "../../assets/images/garden-offices/annex-under-construction.jpeg";
+import galleryImg6 from "../../assets/images/garden-offices/garden-office-interior.jpeg";
+
+const {
+  formattedServiceName,
+  locationInText,
+  cleanLocationName,
+  businessSchema,
+  serviceSchema,
+  faqSchema,
+  defaultDescription,
+  enhancedKeywords,
+  enhancedDescription,
+  pageTitle,
+} = getFormattedPageData(Astro);
+
+const description = `Expert garden office construction ${locationInText} by City & Guilds qualified joiner. Bespoke timber garden offices for work & productivity. 30+ years experience, quality craftsmanship.`;
+const finalDescription =
+  enhancedDescription || description || defaultDescription;
+---
+
+<Layout
+  title={`${pageTitle} | Beautiful Bespoke Garden Offices — Designed & Built to Last`}
+  description={finalDescription}
+  keywords={enhancedKeywords}
+  structuredData={businessSchema}
+>
+  <Fragment slot="head">
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
+    <script is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(serviceSchema)}
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="mx-auto relative z-10">
+    <ServiceHero
+      badge="Garden Offices"
+      title={pageTitle}
+      description="Transform your garden into a perfect workspace with bespoke garden offices designed for productivity and comfort. Fully insulated, energy-efficient, and built to last."
+      breadcrumbCrumbs={[
+        { label: "Joinery Services", href: "/joinery-services" },
+        ...(cleanLocationName
+          ? [
+              {
+                label: formattedServiceName,
+                href: `/joinery-services/${formattedServiceName.toLowerCase().replace(/\s+/g, "-")}`,
+              },
+              { label: cleanLocationName, current: true },
+            ]
+          : [{ label: formattedServiceName, current: true }]),
+      ]}
+    />
+
+    <!-- Main Content Section -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <div class="grid lg:grid-cols-2 items-start gap-12 lg:gap-20">
+          <!-- Content Column -->
+          <div class="order-2 lg:order-1 animate-on-scroll">
+            <div
+              class="space-y-6 text-neutral-700 leading-relaxed text-balance"
+            >
+              <div class="card card-hover p-6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-brand-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-neutral-900 mb-2">
+                      Meet Robert
+                    </h2>
+                    <p class="text-neutral-600">
+                      I'm Robert, a time-served joiner near York with over 30
+                      years of hands-on experience. I build bespoke garden
+                      offices that balance form and function — crafted with care
+                      and precision.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  If you want a garden office that feels like a true extension
+                  of your home, I'd love to help.
+                </p>
+                <p>
+                  Transform your outdoor space into a peaceful, practical escape
+                  — ideal for working, creating, or simply unwinding.
+                </p>
+                <p>
+                  Every project starts with a conversation — whether you've got
+                  a full plan, a quick sketch, or just an idea. I'll help shape
+                  it into a garden office that's beautiful, durable, and right
+                  for your space.
+                </p>
+                <p>
+                  I use high-quality, insulated timber frames and premium
+                  materials to make sure your garden office is warm, efficient,
+                  and built to last. Every build is tailored to your style, your
+                  space, and how you want to use it — whether that's a focused
+                  workspace, creative studio, or quiet retreat.
+                </p>
+                {
+                  cleanLocationName && (
+                    <p>
+                      {cleanLocationName} is full of different property types —
+                      from contemporary homes to older period builds — and I
+                      always tailor each garden office to complement the
+                      setting. From scale and cladding to rooflines and glazing,
+                      it all matters in getting a result that feels like it
+                      belongs.
+                    </p>
+                  )
+                }
+                <p>
+                  Your ideal garden office is just a few steps away. Let's
+                  design something warm, welcoming, and built to last — whether
+                  it's a quiet studio, a work-from-home hub, or a retreat from
+                  the daily rush.
+                </p>
+              </div>
+
+              <!-- Services Section -->
+              <div class="space-y-6">
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Rules & Regulations
+                    </h3>
+                    <p class="text-neutral-600">
+                      Most garden offices can be built without planning
+                      permission, as long as they meet certain limits on height,
+                      placement, and use. I'll talk you through what applies and
+                      make sure the build complies with relevant Building Regs,
+                      especially for insulation and electrics.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card card-hover border-l-4 border-accent-500">
+                  <div class="card-body">
+                    <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                      Quality & Craftsmanship
+                    </h3>
+                    <p class="text-neutral-600">
+                      Every garden office is built with the same attention to
+                      detail and quality materials that I'd use in my own home.
+                      From the foundation to the finishing touches, nothing is
+                      overlooked.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why Choose Me Section -->
+              <div
+                class="card card-hover border-l-4 border-accent-500 bg-gradient-to-r from-accent-50 to-white"
+              >
+                <div class="card-body">
+                  <h2
+                    class="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-3"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Why Choose Me?
+                  </h2>
+                  <div class="space-y-4">
+                    <p class="text-neutral-600">
+                      Ready to get started? I'd be happy to discuss your garden
+                      office project and help bring your vision to life.
+                    </p>
+                    <p class="text-neutral-600">
+                      After something simpler? My <a
+                        href="/joinery-services/garden-rooms"
+                        class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                        >bespoke garden rooms</a
+                      > are perfect for relaxing, hobbies, or enjoying your garden
+                      in comfort.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <ReviewsLinkSection />
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="order-1 lg:order-2 animate-on-scroll">
+            <div class="space-y-8">
+              <!-- Gallery Section -->
+              <div class="card card-hover overflow-hidden">
+                <div class="card-header">
+                  <h2 class="text-xl font-bold text-neutral-900">
+                    Our Garden Office Portfolio
+                  </h2>
+                  <p class="text-neutral-600 mt-2">
+                    Examples of our bespoke garden office projects
+                  </p>
+                </div>
+                <div class="card-body p-0">
+                  <GalleryGrid
+                    items={[
+                      {
+                        src: galleryImg1,
+                        alt: `Exterior view of a bespoke garden office built by Coulsy Joinery ${cleanLocationName}`,
+                        label: "Bespoke Garden Office Exterior",
+                      },
+                      {
+                        src: galleryImg2,
+                        alt: `Interior workspace of a custom garden office ${cleanLocationName}`,
+                        label: "Custom Garden Office Interior",
+                      },
+                      {
+                        src: galleryImg3,
+                        alt: `Modern insulated timber-framed garden office ${cleanLocationName}`,
+                        label: "Modern Garden Office",
+                      },
+                      {
+                        src: galleryImg4,
+                        alt: `Compact timber garden office built by Coulsy Joinery ${cleanLocationName}`,
+                        label: "Compact Timber Garden Office",
+                      },
+                      {
+                        src: galleryImg5,
+                        alt: `Garden office annex under construction by Coulsy Joinery ${cleanLocationName}`,
+                        label: "Garden Granny Annex Under Construction",
+                      },
+                      {
+                        src: galleryImg6,
+                        alt: `Interior of a completed timber garden office ${cleanLocationName}`,
+                        label: "Finished Garden Office Interior",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Form Section -->
+              <div class="card card-hover gradient-brand text-white">
+                <div class="card-body">
+                  <div class="text-center mb-6">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">
+                      Get in Touch About Your Garden Office
+                    </h2>
+                    <p class="text-brand-100">
+                      Whether it's a fully insulated office, hobby space or a
+                      relaxing retreat, I'd be happy to help you design and
+                      build something that fits perfectly.
+                    </p>
+                  </div>
+                  <ModernContactForm
+                    title="Get Your Professional Quote"
+                    subtitle="Ready to start your project? Get in touch for a professional, no-obligation quote."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nearby Areas Section -->
+    <section class="section bg-neutral-50">
+      <div class="container-wide">
+        <div class="animate-on-scroll">
+          <NearbyAreas location={Astro.params.location} />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
