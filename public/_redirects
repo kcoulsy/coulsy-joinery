@@ -1054,5 +1054,14 @@
 /joinery-services/ossett-building-maintenance        /joinery-services/ossett-small-build-services  301!
 /joinery-services/ossett-building-maintenance.html   /joinery-services/ossett-small-build-services  301!
 
-# --- Catch-all: any remaining .html URL → clean URL equivalent ---
-/*.html  /:splat  301!
+# --- Remaining .html URLs outside /joinery-services/ ---
+# Netlify's splat wildcard doesn't support suffix matching (/*.html),
+# so these are enumerated explicitly. Only URLs Google has actually
+# indexed are listed; anything else that 404s is fine.
+/about.html                      /about                      301!
+/contact.html                    /contact                    301!
+/joinery-services.html           /joinery-services           301!
+/about/compliance.html           /about/compliance           301!
+/about/qualifications.html       /about/qualifications       301!
+/about/sustainability.html       /about/sustainability       301!
+/web-development.html            /                           301!
