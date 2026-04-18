@@ -7,7 +7,6 @@ import WebDevFooter from "../components/WebDevFooter.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
 
 import PerformanceOptimiser from "../components/PerformanceOptimiser.astro";
-import PerformanceMonitor from "../components/PerformanceMonitor.astro";
 import ModernUIEnhancer from "../components/ModernUIEnhancer.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -92,6 +91,21 @@ const {
     <!-- Performance Optimisations -->
     <PerformanceOptimiser />
 
+    <!-- Fonts: non-blocking via preload + onload swap. `display=swap` handles
+         FOIT. Noscript fallback keeps it working when JS is off. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      />
+    </noscript>
+
     <!-- Structured Data -->
     {
       structuredData && (
@@ -102,6 +116,9 @@ const {
         />
       )
     }
+
+    <!-- Page-specific head injections (extra JSON-LD, etc) -->
+    <slot name="head" />
 
     <!-- Modern UI Enhancements -->
     <ModernUIEnhancer />
@@ -124,6 +141,5 @@ const {
     <Footer />
     <WebDevFooter />
     <SmoothScroll />
-    <PerformanceMonitor />
   </body>
 </html>

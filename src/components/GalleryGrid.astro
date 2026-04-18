@@ -40,10 +40,10 @@ const { items } = Astro.props;
             </button>
           </div>
           <div
-            style="background-color: Gray; width:70%;"
-            class="p-2 rounded-xl opacity-90 absolute bottom-0 z-20 m-0 pb-3 ps-3 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100"
+            style="background-color: rgba(31, 41, 55, 0.9); width:70%;"
+            class="p-2 rounded-xl absolute bottom-0 z-20 m-0 pb-3 ps-3 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110"
           >
-            <h4 class="text-xs font-medium text-white leading-tight">
+            <h3 class="text-xs font-medium text-white leading-tight">
               {item.link ? (
                 <a href={item.link} class="hover:underline">
                   {item.label}
@@ -51,7 +51,7 @@ const { items } = Astro.props;
               ) : (
                 item.label
               )}
-            </h4>
+            </h3>
           </div>
         </div>
       </div>

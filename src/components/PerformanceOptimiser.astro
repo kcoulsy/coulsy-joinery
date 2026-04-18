@@ -61,17 +61,11 @@
     });
   }
 
-  // Service Worker registration for caching
+  // Service worker has been retired. Register the self-unregistering sw.js so
+  // existing visitors evict their cached workers + caches on next visit.
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration);
-        })
-        .catch((registrationError) => {
-          console.log("SW registration failed: ", registrationError);
-        });
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
     });
   }
 </script>

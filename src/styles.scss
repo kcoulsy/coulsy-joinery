@@ -2,8 +2,8 @@
 @use 'tailwindcss/components' as *;
 @use 'tailwindcss/utilities' as *;
 
-// Import Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+// Fonts are loaded via <link> in Layout.astro for faster first paint
+// (the @import chain here adds an extra blocking round-trip).
 
 // CSS Custom Properties for theming
 :root {
@@ -22,6 +22,7 @@
   // Accent colors
   --color-accent-500: #f97316;
   --color-accent-600: #ea580c;
+  --color-accent-700: #c2410c;
   
   // Success colors
   --color-success-500: #22c55e;
@@ -301,30 +302,19 @@
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
   }
   
-  // Focus utilities
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
-}
+  // Focus utilities — keyboard-only focus ring via :focus-visible.
+  // Mouse clicks don't get the outline; keyboard users still see it.
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2;
+  }
 
-// Remove ugly blue focus rings globally
-*:focus {
-  outline: none !important;
-}
-
-// Add custom focus styles for interactive elements
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-select:focus,
-[tabindex]:focus {
-  outline: 2px solid #1e2a38 !important;
-  outline-offset: 2px !important;
-  border-radius: 4px;
-}
+  :focus-visible {
+    outline: 2px solid var(--color-brand-900);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 
 
-  
   // Scrollbar styling
   .scrollbar-thin {
     scrollbar-width: thin;

@@ -231,15 +231,59 @@ export function getFormattedPageData(Astro: any): {
     pageTitle = pageTitle.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
   }
 
-  const fallbackGeo = { lat: 53.9655, lng: -1.205 };
-  const geo = LOCATIONS.find((l) => l.slug === location) ?? fallbackGeo;
+  const fallbackLocation = {
+    slug: "york",
+    lat: 53.9655,
+    lng: -1.205,
+    postcode: "YO26",
+    type: "city" as const,
+    region: "North Yorkshire",
+  };
+  const locationData = LOCATIONS.find((l) => l.slug === location) ?? fallbackLocation;
+  const geo = { lat: locationData.lat, lng: locationData.lng };
+  const locationPostcode = locationData.postcode;
+  const locationRegion = locationData.region;
+  const locationType = locationData.type;
 
-  const defaultDescription = `Trusted local joiner offering bespoke joinery services ${locationInText.trim()}, including kitchens, staircases, windows, doors, and heritage woodwork. Over 30 years' experience. Professional quotes across Yorkshire.`;
+  // Deterministic hash so the same slug always picks the same variant.
+  // This stabilises output across builds (Google dislikes flapping content).
+  const variantKey = `${location ?? "base"}-${baseType}`;
+  let variantHash = 0;
+  for (let i = 0; i < variantKey.length; i++) {
+    variantHash = ((variantHash << 5) - variantHash + variantKey.charCodeAt(i)) | 0;
+  }
+  variantHash = Math.abs(variantHash);
 
-  // Enhanced description with location context
-  const enhancedDescription = location 
-    ? `${defaultDescription} Serving ${cleanLocationName} and surrounding areas. Local expertise, quality craftsmanship, and reliable service.`
-    : defaultDescription;
+  const lowerService = formattedServiceName.toLowerCase();
+  const locTypeWord =
+    locationType === "city" ? "city"
+    : locationType === "market-town" ? "market town"
+    : locationType === "town" ? "town"
+    : locationType === "suburb" ? "suburb"
+    : locationType === "village" ? "village"
+    : "area";
+
+  // Pool of 5 description variants picked deterministically per slug+service.
+  // Each variant opens differently and highlights a different angle (experience,
+  // locality, qualifications, scope, trust) so near-duplicate signals drop.
+  const descriptionVariants = location
+    ? [
+        `30+ years' experience, City & Guilds qualified joiner covering ${cleanLocationName} (${locationPostcode}) — ${lowerService} and general joinery across ${locationRegion}. Fully insured, free quotes.`,
+        `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner with 30+ years on the tools, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
+        `Quality ${lowerService} in ${cleanLocationName} ${locationPostcode}. City & Guilds qualified since 1989, CSCS Gold, VAT registered. Serving homes and businesses across ${locationRegion}.`,
+        `Professional ${lowerService} for homes and businesses in ${cleanLocationName} — a ${locTypeWord} I've worked across for decades. 30+ years' experience, reliable service.`,
+        `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified and fully insured. Covering ${locationRegion}.`,
+      ]
+    : [
+        `30+ years' experience, City & Guilds qualified joiner covering Yorkshire — ${lowerService} and general joinery. Fully insured, free quotes.`,
+        `${formattedServiceName} across Yorkshire. Local joiner with 30+ years on the tools, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
+        `Quality ${lowerService} across Yorkshire. City & Guilds qualified since 1989, CSCS Gold, VAT registered.`,
+        `Professional ${lowerService} for homes and businesses across Yorkshire. 30+ years' experience, reliable service.`,
+        `Trusted joiner across Yorkshire — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified and fully insured.`,
+      ];
+
+  const defaultDescription = descriptionVariants[variantHash % descriptionVariants.length];
+  const enhancedDescription = defaultDescription;
 
   // Enhanced keywords with location and service
   const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, bespoke joinery ${locationInText}, heritage restoration ${locationInText}, ${formattedServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
@@ -281,7 +325,8 @@ export function getFormattedPageData(Astro: any): {
     address: {
       "@type": "PostalAddress",
       addressLocality: cleanLocationName || "York",
-      postalCode: "YO26 7NW",
+      addressRegion: locationRegion,
+      postalCode: locationPostcode,
       addressCountry: "GB",
     },
     geo: {
@@ -296,7 +341,7 @@ export function getFormattedPageData(Astro: any): {
       name: city,
       containedIn: {
         "@type": "State",
-        name: "North Yorkshire"
+        name: locationRegion,
       }
     })),
     // ServiceArea schema for geo-targeting SEO
@@ -338,7 +383,8 @@ export function getFormattedPageData(Astro: any): {
       "address": {
         "@type": "PostalAddress",
         "addressLocality": cleanLocationName || "York",
-        "postalCode": "YO26 7NW",
+        "addressRegion": locationRegion,
+        "postalCode": locationPostcode,
         "addressCountry": "GB"
       }
     },
@@ -349,7 +395,7 @@ export function getFormattedPageData(Astro: any): {
         "name": cleanLocationName || "York",
         "containedIn": {
           "@type": "State",
-          "name": "North Yorkshire"
+          "name": locationRegion,
         }
       },
       ...enhancedAreaServed.slice(0, 5).map((city) => ({
@@ -357,7 +403,7 @@ export function getFormattedPageData(Astro: any): {
         "name": city,
         "containedIn": {
           "@type": "State",
-          "name": "North Yorkshire"
+          "name": locationRegion,
         }
       }))
     ],
@@ -384,50 +430,82 @@ export function getFormattedPageData(Astro: any): {
     }
   };
 
-  // FAQ Schema for better search visibility with enhanced location-specific questions
+  // FAQ Schema: pool of candidate questions; each page shows 4 picked
+  // deterministically by slug hash. This breaks near-duplicate signals vs the
+  // previous single 4-Q template applied to every page.
+  const faqPool: { name: string; text: string }[] = [];
+
+  if (location) {
+    faqPool.push({
+      name: `Are you available for work in ${cleanLocationName}?`,
+      text: `Yes — I regularly carry out ${lowerService} and general joinery work in ${cleanLocationName} and nearby ${locationRegion}. My familiarity with the ${locTypeWord}'s housing stock (${locationPostcode} and surrounding postcodes) means the job fits the building first time.`,
+    });
+    faqPool.push({
+      name: `Do you cover the ${locationPostcode} postcode area?`,
+      text: `Yes, ${locationPostcode} is firmly within my service area. I work across ${cleanLocationName} and the wider ${locationRegion} region daily, so travel and scheduling are rarely a problem.`,
+    });
+    if (nearbyLocations.length > 0) {
+      faqPool.push({
+        name: `What areas near ${cleanLocationName} do you serve?`,
+        text: `I serve ${cleanLocationName} and surrounding areas within roughly 30 miles — including ${nearbyLocations.slice(0, 5).join(", ")}${nearbyLocations.length > 5 ? ", and more" : ""}. If you're unsure whether you're in my service area, just get in touch.`,
+      });
+    }
+    if (locationType === "market-town" || locationType === "village" || locationType === "city") {
+      faqPool.push({
+        name: `Do you work on period or listed properties in ${cleanLocationName}?`,
+        text: `Yes. ${cleanLocationName} has a lot of older and period buildings, and I handle sympathetic joinery repairs — sash window restoration, door repairs, timber-frame and heritage work — while respecting the property's character and any conservation requirements.`,
+      });
+    }
+  } else {
+    faqPool.push({
+      name: `What ${lowerService} services do you offer?`,
+      text: `I offer ${lowerService} across Yorkshire — bespoke joinery, kitchen installation, heritage repairs, and general carpentry. All work is carried out personally with over 30 years' experience on the tools.`,
+    });
+  }
+
+  // Trust / commercial FAQs (service-flavoured but not location-coupled)
+  faqPool.push({
+    name: `Are you qualified and insured${locationInText}?`,
+    text: "Yes — City & Guilds qualified since 1989, CSCS Gold Card holder, fully insured and VAT registered. Over 30 years' experience in joinery and carpentry.",
+  });
+  faqPool.push({
+    name: `Do you provide free quotes${locationInText}?`,
+    text: location
+      ? `Yes — I provide professional, no-obligation quotes for ${lowerService} work across ${cleanLocationName} and surrounding areas. Get in touch to discuss your project.`
+      : `Yes — I provide professional, no-obligation quotes for all joinery work. Get in touch to discuss your project.`,
+  });
+  faqPool.push({
+    name: `How long does a typical job take${locationInText}?`,
+    text: `Project time varies with scope — a small repair or single-door job can be a day, a full kitchen or larger build runs one to three weeks. I'll give you a realistic timeline with the quote, not a best-case guess.`,
+  });
+  faqPool.push({
+    name: `What payment methods do you accept?`,
+    text: "Bank transfer and cash are both fine. I'm VAT registered so a proper invoice is issued for every job. No deposits required for standard work — materials for larger jobs may be billed separately up front.",
+  });
+
+  // Pick 4 FAQs deterministically from the pool, offset by variantHash so
+  // different pages show different subsets.
+  const faqCount = Math.min(4, faqPool.length);
+  const pickedFaqs: typeof faqPool = [];
+  const seen = new Set<number>();
+  for (let i = 0; i < faqPool.length && pickedFaqs.length < faqCount; i++) {
+    const idx = (variantHash + i * 3) % faqPool.length;
+    if (seen.has(idx)) continue;
+    seen.add(idx);
+    pickedFaqs.push(faqPool[idx]);
+  }
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": location 
-          ? `Do you provide ${formattedServiceName.toLowerCase()} services in ${cleanLocationName}?`
-          : `What ${formattedServiceName.toLowerCase()} services do you offer?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": location
-            ? `Yes, I regularly work in ${cleanLocationName} and surrounding areas. I offer comprehensive ${formattedServiceName.toLowerCase()} services ${locationInText} including bespoke joinery, kitchen installations, heritage restoration, and general carpentry. My local knowledge of ${cleanLocationName}'s building styles and planning requirements ensures quality work that complements the area's character.`
-            : `We offer comprehensive ${formattedServiceName.toLowerCase()} services including bespoke joinery, kitchen installations, heritage restoration, and general carpentry. All work is carried out by qualified craftsmen with over 30 years' experience.`
-        }
+    "mainEntity": pickedFaqs.map((f) => ({
+      "@type": "Question",
+      "name": f.name,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.text,
       },
-      {
-        "@type": "Question", 
-        "name": `Are you qualified and insured${locationInText}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, I'm City & Guilds qualified since 1989, fully insured, and VAT registered. I hold a CSCS Gold Card and have over 30 years of experience in joinery and carpentry."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Do you provide free quotes${locationInText}?`,
-        "acceptedAnswer": {
-          "@type": "Answer", 
-          "text": location
-            ? `Yes, I provide professional, no-obligation quotes for all joinery work in ${cleanLocationName} and surrounding areas. Contact me to discuss your project requirements and I'll provide a detailed, competitive quote tailored to your needs.`
-            : "I provide professional quotes for all joinery work. Contact me to discuss your project requirements and I'll provide a detailed, competitive quote."
-        }
-      },
-      ...(location ? [{
-        "@type": "Question",
-        "name": `What areas near ${cleanLocationName} do you serve?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `I serve ${cleanLocationName} and surrounding areas within approximately 30 miles. This includes ${nearbyLocations.slice(0, 5).join(", ")}${nearbyLocations.length > 5 ? ", and more" : ""}. If you're unsure whether you're within my service area, feel free to contact me and I'll be happy to confirm.`
-        }
-      }] : [])
-    ]
+    })),
   };
 
   // Restore the original pathname to avoid side effects
