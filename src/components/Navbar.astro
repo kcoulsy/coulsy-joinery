@@ -487,7 +487,10 @@ const socialLinks = [
 
   // Handle keyboard navigation for mobile menu
   const toggleMenu = () => {
-    const isOpen = menu?.classList.contains("-translate-y-full");
+    // `-translate-y-full` is present while the menu is CLOSED, so the open state
+    // is its negation. Read before the class is toggled: `isOpen` is the state
+    // we are leaving, which is what every consumer below expects.
+    const isOpen = !menu?.classList.contains("-translate-y-full");
     menu?.classList.toggle("-translate-y-full");
     overlay?.classList.toggle("opacity-0");
     overlay?.classList.toggle("pointer-events-none");
