@@ -101,6 +101,45 @@ Door Hanging (low-value work), Steel Fire Exit Doors (see §5).
 
 ---
 
+## 2a. The capability model — **specified, sourced and installed**
+
+**This is the single most important thing to get right on this site, and it has been stated
+wrongly in both directions.** Verified with the owner, 13 July 2026.
+
+| Claim | Accurate? |
+| --- | --- |
+| "Manufactured by Coulsy Joinery" / "made in our workshop" | ❌ **NO.** There is no workshop and no in-house manufacture. |
+| "Made to measure" | ✅ **YES** — made-to-measure cabinets and doors are *sourced from specialist manufacturers*. |
+| "Fitted" / "we fit kitchens" | ⚠️ **True but badly undersells it.** It reduces the service to labour. |
+| **"Specified, sourced and installed"** | ✅ **This is the correct frame.** |
+
+**What Coulsy Joinery actually does:**
+
+1. **Surveys** the property.
+2. **Plans** the job around the space.
+3. **Specifies** the solution — including combinations of cabinets and doors to suit the property.
+4. **Sources** the products, including **made-to-measure** cabinets and doors from specialist
+   manufacturers, where standard ranges will not work.
+5. **Adapts** and **installs** — the same joiner from survey through to finished installation.
+
+**The differentiator is the specification and sourcing, not the manufacture and not the labour.**
+Robert is neither a flat-pack fitter nor a workshop. He is the person who works out what the room
+needs, obtains it, and installs it.
+
+**Rules for all copy on this site:**
+
+- Never write "we manufacture", "our workshop", "handcrafted by us", or anything implying in-house
+  fabrication.
+- **Do** claim made-to-measure — it is true, and it is the capability most likely to win the job.
+- Prefer "specified, sourced and installed" (or the survey → plan → source → install narrative)
+  over the bare word "fitted".
+- On-site *restoration* and *repair* (e.g. sash windows) remain accurate and are unaffected.
+
+Reference implementation of this wording: the kitchens supplier card in
+`src/pages/joinery-services/kitchen-installers.astro`.
+
+---
+
 ## 3. Secondary services — on site, indexed, not in primary navigation
 
 Reachable by contextual link and from the `/joinery-services` hub, but not given menu prominence.
@@ -110,7 +149,7 @@ Reachable by contextual link and from the `/joinery-services` hub, but not given
 | Truss Roof Installers | Keep indexed. Contextual link from Traditional Cut Roofs. |
 | Accessible Kitchens | Keep indexed. Contextual link from Fitted Kitchens. Genuine niche. |
 | Garden Rooms | Keep indexed. Overlaps Garden Offices; link between them. |
-| Bespoke Joinery | **Keep, but rewrite.** Currently promises staircases, timber windows, garage doors and handmade furniture across 58 URLs. There is no workshop. Reframe as *fitted* joinery installed on site (alcove units, panelling, shelving, window seats). |
+| Bespoke Joinery | **Keep, but rewrite** — see §2a for the correct frame. Currently promises staircases, timber windows, garage doors and handmade furniture across 58 URLs, which implies in-house manufacture. Reframe as **specified, sourced and installed**. Do *not* reframe it as merely "fitted" — that undersells the service. |
 | Heritage & Restoration | **Keep indexed. Remove from navigation and homepage cards.** Do not delete, noindex or redirect — it holds real authority (92 clicks). Simply stop advertising it. Business decision, not an SEO one. |
 
 ---
@@ -165,9 +204,145 @@ They share a URL. Any structural action on one affects the other. Additionally,
 | Work | Destination brand | Notes |
 | --- | --- | --- |
 | Fire doors, steel fire exit doors, fire-door inspection | **Coulsy Fire Doors** | Frozen — see §5. |
-| Small callout work, window/door repairs, odd jobs | **Handyman** (personal, non-VAT sole trader) | Note: "handyman" draws **zero** impressions in the current data — but that is because no handyman content exists, so the site cannot appear. Absence of impressions is *not* evidence of absent demand. Size with keyword-tool data before building. |
+| Handyman, repairs, property maintenance — domestic **and** commercial | **Dedicated handyman / property-maintenance site** | **Legal entity, VAT position and insurance wording are undecided and are the owner's to determine.** The work may continue to be delivered through Coulsy Ltd. Do not record or assume otherwise. Note: "handyman" draws **zero** impressions in the current data — but only because no handyman content exists, so the site cannot appear. Absence of impressions is *not* evidence of absent demand; size it with keyword-tool data. **This repository is the intended architectural template — see §6a.** |
 | Extensions, structural work, full renovations | **Builder** | Coulsy Joinery legitimately keeps *small* build services as an extension of joinery; the Builder brand takes the larger projects. No cannibalisation. |
 | ICWCI, clerk of works, quality consultancy, compliance inspection | **Professional Inspection / Consultancy** | ICWCI election effective **28 Aug 2026** — until then the site must not claim membership or the post-nominal. |
+
+---
+
+## 6a. This repository as an architectural template for a handyman / property-maintenance site
+
+This Astro repository **may be reused as the architectural template** for a future dedicated
+handyman, repairs and property-maintenance website.
+
+> **Nothing about that site's business position is decided.** Its service catalogue, branding,
+> VAT presentation, insurance wording and legal-entity position are **owner decisions and must not
+> be invented here.** The work may continue to be delivered through Coulsy Ltd. This section
+> records the *architecture* that can be reused — nothing more.
+
+**What is reusable — the machinery, not the content:**
+
+| Reuse | Why |
+| --- | --- |
+| The **Astro project structure** and build/deploy setup | Proven; Netlify auto-build from `main` |
+| The **locations engine** — `src/constants/locations.ts`, `[location]-*.astro`, `getNearbyLocations.ts` | The genuinely valuable part. One template → N town pages. |
+| **SEO patterns** — `pageMeta.ts` (titles, descriptions, schema), the sitemap and canonical setup | The rotating description variants avoid near-duplicate meta across town pages |
+| **Shared components** — `ServiceHero`, `HeroEvidencePanel`, `Breadcrumb`, the enquiry-form wiring | Already conversion-tested here |
+
+**Likely differences:**
+
+- **A smaller, more focused service catalogue.** Not eighteen services. Copying this catalogue
+  wholesale would import the intra-town competition problem described in §8 P0(a) on day one.
+- **Audience: primarily domestic, but not domestic-only.** It must also serve commercial
+  maintenance clients — **estate agents, letting agents, landlords, property managers** and other
+  commercial clients needing repairs, maintenance and general building care. Do not frame the site
+  as domestic-only; the commercial/repeat side is significant.
+- Joinery-specific copy, imagery and qualifications framing will not transfer as-is.
+
+**Template-safety rule — verify, never inherit:**
+
+**Every business claim must be verified for that site before publication, not copied across from
+this repository.** That includes insurance wording, VAT presentation, legal-entity details,
+qualifications and service scope. This site shipped a **false £10m public liability claim** for
+years (see §12); templating is exactly how that kind of error propagates into a second site.
+
+**Things this site learned that a new site should start with, not rediscover:**
+
+- Trust signals **above the fold** (see the hero evidence panel), not below.
+- **Text credentials, not logos.** Logos rot — this site advertised suppliers for years after they
+  stopped being used.
+- For callout work, a **clear price/scope presentation** and the **Google Business Profile** may
+  matter more than long-tail geo pages. Do not assume the geo strategy transfers wholesale;
+  validate it for that market.
+- **Coulsy Joinery does NOT currently serve this audience well.** See §6c — the routes exist and are
+  prominent, but the content does not target the language these customers actually search. Any new
+  site must be positioned against §6c's findings, not against an assumption that this ground is
+  already covered.
+
+---
+
+## 6c. Handyman / property repairs — verified gap on THIS site
+
+**Investigated 13 July 2026 from the repository and the Search Console exports. Facts, not inference.**
+
+**What exists:**
+
+| Route | Hub | Geo pages | In navbar |
+| --- | --- | --- | --- |
+| `/joinery-services/building-maintenance` | yes | **56** | **yes — 4th, above both roof services** |
+| `/joinery-services/small-build-services` | yes | **56** | yes |
+| `/joinery-services/handyman` | **no** | **0** | — |
+| `/joinery-services/property-maintenance` | **no** | **0** | — |
+| any `*repairs*` route | **no** | **0** | — |
+
+"Property Maintenance" exists **only as a footer link label**, pointing at `building-maintenance`.
+There is no such page.
+
+**What is missing — measured across all 1,035 built pages:**
+
+| Term | Occurrences |
+| --- | --- |
+| handyman | **0** |
+| odd job / small job / call out | **0 / 0 / 0** |
+| letting agent | **0** |
+| property manager | **0** |
+
+**Why the existing page does not convert.** `building-maintenance` is framed around **commercial
+facilities management**:
+
+> `TITLE: Building Maintenance in Leeds | Commercial Building Maintenance & Facilities Management`
+
+Landlord (×3) and estate agent (×4) appear in passing body copy. Handyman, repairs-callout, letting
+agent and property manager appear **nowhere**.
+
+**The cost.** 34 repair/maintenance queries draw **2,887 impressions and ZERO clicks** — nineteen
+towns of `window repairs [town]` (Thorner 302, Moortown 204, Pocklington 173) ranking at positions
+14–54 and converting nothing. `building-maintenance` itself earns **3 clicks**, against 40 for
+traditional cut roofs and 31 for truss roofs.
+
+**Diagnosis: a content and naming gap, NOT a navigation gap.** The geo machinery, the nav slot and
+1,035 internal links already exist — all pointed at the wrong words.
+
+**Conclusion: the audience and the demand both exist; the current content does not serve or convert
+them.**
+
+### Future bounded investigation (not scoped, not scheduled)
+
+Review whether the existing `/joinery-services/building-maintenance` hub and its 56 geographical
+pages should be **repositioned in place** around a broader **"property repairs and building
+maintenance"** proposition — covering domestic repairs, window and door repairs, landlord and
+letting-agent callouts, property managers, and appropriate commercial maintenance work.
+
+**Constraints on that investigation:**
+
+- **Preserve the existing route initially.** It holds 57 indexed pages and their authority.
+- **Do NOT create a competing `handyman` or `property-maintenance` geo-page family.** Two
+  maintenance services competing in the same town is precisely the intra-town competition described
+  in §8 P0(a), which is the strongest evidenced cause of the current de-indexing. Adding one would
+  make matters worse.
+- Assess current rankings, queries, internal links and the existing commercial content before
+  changing anything.
+- Determine how to **broaden** the proposition **without discarding** the valid
+  commercial-maintenance capability — the commercial/repeat side is significant business, not a
+  distraction from the domestic side.
+- Any **redirect or new slug is a later owner decision**, not part of the investigation.
+
+---
+
+## 6b. Backlog — future content opportunity (not an active task)
+
+**"DIY Kitchens fitter [town]"**
+
+DIY Kitchens is a **supply-only** brand: every one of their customers must find their own fitter.
+That is unusually well-matched intent — the buyer has already committed to the product and needs
+exactly the service Coulsy Joinery provides.
+
+Current position: the site **earns no impressions at all** for DIY Kitchens queries, despite naming
+the brand in body copy. The niche is entirely uncontested by this site today.
+
+**Not scoped, not scheduled.** Recorded so it is not lost. Any work here must be sized against real
+keyword data first (see §7 — impressions in the raw exports are inflated by non-commercial traffic),
+and must respect the nominative-use principle: describe the *service*, do not appropriate the brand.
 
 ---
 
@@ -426,7 +601,7 @@ Items marked **DONE** are deployed — see §12.
 | — | Correct the false **£10m public liability** claim; state real cover | ✅ **DONE** |
 | 1 | **Confirm the 103-page de-indexing is real** (live GSC, Indexing → Pages) | ⏳ Robert — 30 seconds |
 | 2 | **Deepen geo pages with genuine local content** | ⏳ Strategy decision |
-| 5 | Rewrite Bespoke Joinery for no-workshop reality | ⏳ Not started |
+| 5 | **Site-wide capability wording review** (re-scoped — see below) | ⏳ Not started |
 | 6 | New page: Window & Door Repairs (live demand, 0 clicks) | ⏳ Robert's confirmation |
 | 7 | New page: Fencing, Gates & Decking (~1,300 impressions, 0 clicks) | ⏳ Robert's confirmation |
 | 8 | Delete dead robots/sitemap sources (behaviour-neutral) | ⏳ Not started |
@@ -436,6 +611,27 @@ Items marked **DONE** are deployed — see §12.
 | — | Review snippets; singular headings; `OptimizedImage` debt; homepage 3×`<h1>` | ⏳ Not started |
 | 10 | Fire-door restructuring | 🔒 **FROZEN** — brand decision |
 | 11 | Service consolidation | ❌ **NOT RECOMMENDED** (§9) |
+
+### Item 5, re-scoped — site-wide capability wording review
+
+**Previously:** *"Rewrite Bespoke Joinery for no-workshop reality."* That framing was wrong in the
+opposite direction — it would have reduced the service to "fitted", which undersells it (see §2a).
+
+**Now:** review the remaining site wording so it consistently reflects **specified, sourced and
+installed**, correcting copy that errs in *either* direction:
+
+| Failure mode | Example | Fix |
+| --- | --- | --- |
+| **Overclaims** — implies in-house manufacture | "handcrafted", "custom staircases", "reproduction of period joinery", "made-to-order furniture" | Reframe as specified/sourced, or remove if it is genuinely not offered |
+| **Underclaims** — reduces the service to labour | "I fit kitchens", "door fitting" | Reframe as survey → plan → specify → source → install |
+
+Known locations (not exhaustive; audit before acting):
+`bespoke-joinery.astro` (staircases, timber windows, garage doors, handmade furniture across 58
+URLs), `joiner.astro`, `joinery.astro`, `general-joinery.astro`, gallery alt text on several
+service pages, and the `handmade-*` image filenames under `src/assets/images/`.
+
+**Reference implementation:** the kitchens supplier card in `kitchen-installers.astro` — that is
+what the correct wording looks like.
 
 ---
 

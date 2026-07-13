@@ -61,6 +61,21 @@ route that only exports `POST` therefore cannot run and is dead code.
   Anchor copy to the **year**, never a drifting "N+ years" figure — it goes stale annually
   and previously drifted out of sync across pages.
 
+- **Capability: specified, sourced and installed.** There is **no workshop** and **no in-house
+  manufacture**. Robert surveys, plans, specifies, sources, adapts and installs — including
+  **made-to-measure** cabinets and doors obtained from specialist manufacturers.
+
+  | Wording | Allowed? |
+  | --- | --- |
+  | "manufactured by us", "our workshop", "handcrafted by us" | ❌ **Never** — untrue |
+  | "made to measure" | ✅ Accurate — the products are *sourced*, not made in-house |
+  | "fitted" alone | ⚠️ True but **undersells it** — it reduces the service to labour |
+  | **"specified, sourced and installed"** | ✅ **Use this** |
+
+  The differentiator is the **specification and sourcing**, not the manufacture and not the
+  labour. See `ARCHITECTURE.md` §2a. Reference wording:
+  `src/pages/joinery-services/kitchen-installers.astro`.
+
 - **Insurance.** State the three covers separately. **Never collapse them into one figure**,
   and never imply a single limit applies to all of them:
 
