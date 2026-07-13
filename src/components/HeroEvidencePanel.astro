@@ -1,0 +1,104 @@
+---
+/**
+ * Evidence panel for the service-page hero.
+ *
+ * Purpose: answer "can I trust you?" before the visitor scrolls. Current guidance
+ * for trade sites is that a page has ~10 seconds to answer three questions — can
+ * you fix my problem, can I trust you, and how do I contact you. The hero
+ * previously answered only the first and third.
+ *
+ * Every claim here is verifiable and none of it goes stale:
+ *  - no review count or star rating (a hardcoded figure rots and nobody owns it);
+ *  - no aggregateRating schema (separate eligibility rules — deliberately not
+ *    reintroduced just because a reviews link is now visible);
+ *  - insurance is stated as the actual cover held, not a vague "fully insured".
+ *
+ * ICWCI is deliberately absent: election takes effect 28 August 2026. Add the
+ * conferred post-nominal only after that date.
+ */
+import { Image } from "astro:assets";
+import robertPortrait from "../assets/images/team/robert-portrait.jpg";
+import { DETAILS } from "../constants/details";
+
+const credentials = [
+  "On the tools since 1988",
+  "City & Guilds qualified",
+  "£5m public liability insurance",
+  "VAT registered",
+];
+---
+
+<aside
+  class="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm"
+  aria-labelledby="hero-evidence-heading"
+>
+  <h2 id="hero-evidence-heading" class="sr-only">
+    About Robert Coulson and his qualifications
+  </h2>
+
+  <div class="flex items-center gap-4">
+    {/*
+      Sized at 112px but sourced at 224px so high-density screens are not fed a
+      stretched derivative. Eager, because it is above the fold — but WITHOUT
+      fetchpriority="high": the <h1> should remain the LCP element, and a small
+      portrait must not compete with it.
+    */}
+    <Image
+      src={robertPortrait}
+      alt="Robert Coulson on site in a hard hat and hi-vis"
+      width={224}
+      height={224}
+      loading="eager"
+      format="webp"
+      quality={80}
+      class="h-28 w-28 flex-shrink-0 rounded-full object-cover"
+    />
+    <div>
+      <p class="text-lg font-semibold text-neutral-900">Robert Coulson</p>
+      <p class="text-neutral-600">Time-served joiner</p>
+    </div>
+  </div>
+
+  <ul class="mt-5 space-y-2 border-t border-neutral-200 pt-5">
+    {
+      credentials.map((item) => (
+        <li class="flex items-start gap-2 text-neutral-700">
+          <svg
+            class="mt-1 h-4 w-4 flex-shrink-0 text-green-700"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span>{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-5 space-y-2 border-t border-neutral-200 pt-5">
+    <a
+      href="/about/qualifications"
+      class="inline-flex items-center gap-1 font-medium text-brand-700 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+    >
+      View my qualifications
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+    <br />
+    <a
+      href={DETAILS.GOOGLE_REVIEWS_LINK}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-1 font-medium text-brand-700 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+    >
+      Read my Google reviews
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</aside>
