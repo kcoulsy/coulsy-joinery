@@ -1,9 +1,13 @@
 # Coulsy Joinery — Service & Information Architecture
 
-**Status:** PROPOSAL — for Robert's review. Nothing in this document has been implemented.
+**Status:** APPROVED. Partially implemented and deployed — see §12 (Release log).
 **Date:** 13 July 2026
-**Evidence base:** the repository, `AUDIT_2026-07-13.md`, and the Search Console export in
-`seo-data/` (12 months to 2026-04-18). Where a claim rests on measurement, the number is given.
+**Evidence base:** the repository, `AUDIT_2026-07-13.md`, and the Search Console exports in
+`seo-data/` (12 months to 2026-04-18, and 3 months to 2026-07-11). Where a claim rests on
+measurement, the number is given.
+
+> **The repository is public.** Never record policy numbers, certificate numbers, or anything
+> not already published on the live site.
 
 ---
 
@@ -403,25 +407,35 @@ differentiating a page over merging it, unless the page is genuinely duplicative
 
 ---
 
-## 10. Suggested implementation order
-
-**Nothing below is implemented. Awaiting approval.**
+## 10. Implementation status
 
 **Revised 13 July 2026** in light of the 3-month export (see §8 P0/P1).
+Items marked **DONE** are deployed — see §12.
 
-| # | Item | Risk | Blocked on |
-| --- | --- | --- | --- |
-| 1 | **Confirm the 103-page de-indexing is real** (live GSC, Indexing → Pages) | None | Robert — 30 seconds |
-| 2 | **Deepen geo pages with genuine local content** — Google is actively rejecting them | High effort | Strategy decision |
-| 3 | Make `/about/qualifications` indexable + add to sitemap | Low | Robert's confirmation |
-| 4 | Remove Heritage from navbar + homepage cards (keep page indexed) | Low | Robert's confirmation |
-| 5 | Rewrite Bespoke Joinery for no-workshop reality | Low | — |
-| 6 | New page: Window & Door Repairs (still 0 clicks on live demand) | Low | Robert's confirmation |
-| 7 | New page: Fencing, Gates & Decking (still 0 clicks on ~1,300 impressions) | Low | Robert's confirmation |
-| 8 | Delete dead robots/sitemap sources (behaviour-neutral) | Low | — |
-| 9 | `.html` → clean-URL 301s (generated) — **preventative debt, not urgent** | Medium | — |
-| 10 | Fire-door restructuring | — | **FROZEN** — brand decision |
-| 11 | Service consolidation | — | **NOT RECOMMENDED** (§9) |
+| # | Item | Status |
+| --- | --- | --- |
+| — | Remove dead `coulsycontractsolutions.co.uk` link (was on all 1,035 pages) | ✅ **DONE** |
+| — | Fix 399 dead `/qualifications` links across 342 pages | ✅ **DONE** |
+| — | Anchor experience claims to 1988 (were "30+" / "35+" / "since 1989") | ✅ **DONE** |
+| — | Remove `aggregateRating` from 1,027 pages that render no reviews | ✅ **DONE** |
+| — | Remove unevidenced "35+ years fire safety experience" (58 pages) | ✅ **DONE** |
+| — | Mobile phone CTA on homepage (had none between `<main>` and `<footer>`) | ✅ **DONE** |
+| 3 | Make `/about/qualifications` indexable + add to sitemap | ✅ **DONE** |
+| 4 | Remove Heritage from navbar + homepage cards (page kept indexed) | ✅ **DONE** |
+| — | Service-page hero: evidence panel, portrait, dual CTA, badge removed | ✅ **DONE** |
+| — | Correct the false **£10m public liability** claim; state real cover | ✅ **DONE** |
+| 1 | **Confirm the 103-page de-indexing is real** (live GSC, Indexing → Pages) | ⏳ Robert — 30 seconds |
+| 2 | **Deepen geo pages with genuine local content** | ⏳ Strategy decision |
+| 5 | Rewrite Bespoke Joinery for no-workshop reality | ⏳ Not started |
+| 6 | New page: Window & Door Repairs (live demand, 0 clicks) | ⏳ Robert's confirmation |
+| 7 | New page: Fencing, Gates & Decking (~1,300 impressions, 0 clicks) | ⏳ Robert's confirmation |
+| 8 | Delete dead robots/sitemap sources (behaviour-neutral) | ⏳ Not started |
+| 9 | `.html` → clean-URL 301s — **preventative debt, not urgent** | ⏳ Not started |
+| — | Heritage signals audit (359 FAQ schema instances) — see §10a | ⏳ Not started |
+| — | Supplier logos: order, and Howarth Timber asset | ⏳ Not started |
+| — | Review snippets; singular headings; `OptimizedImage` debt; homepage 3×`<h1>` | ⏳ Not started |
+| 10 | Fire-door restructuring | 🔒 **FROZEN** — brand decision |
+| 11 | Service consolidation | ❌ **NOT RECOMMENDED** (§9) |
 
 ---
 
@@ -458,9 +472,58 @@ enquiries, injected into the schema of pages that are not heritage pages, fails 
 
 ## 11. Open questions for Robert
 
-1. **Confirm the primary service list** in §2. It is inferred, not stated.
+1. **Confirm the primary service list** in §2. It is inferred, not stated. **The Services
+   navigation is deliberately unchanged pending this** — it is not an oversight.
 2. **Coulsy Fire Doors** — real, or not? Everything in §5 waits on this.
-3. **Qualifications page** — any reason it was deliberately hidden from Google, or was that an
-   index-bloat measure that overshot?
-4. **Window & Door Repairs / Fencing** — do you want this work? Both are on-site, no workshop, and
-   both have live demand you currently earn nothing from.
+3. **Window & Door Repairs / Fencing** — do you want this work? Both are on-site, no workshop,
+   and both have live demand you currently earn nothing from.
+4. **Howarth Timber logo** — not in the repository. Needed for the supplier slice.
+
+*(Resolved: the qualifications page was hidden from Google as an index-bloat measure that
+overshot. It is now indexable — it carries the entire experience-and-expertise case.)*
+
+---
+
+## 12. Release log
+
+### 2026-07-13 — deployed to production (`cc5e794` → `570f27d`)
+
+Four commits, pushed to `origin/main`, auto-built by Netlify and **verified live** by polling
+production until it served the new build (not assumed from a successful push).
+
+| Commit | What |
+| --- | --- |
+| `cc5e794` | Stale claims, dead links, invalid schema, mobile CTA, qualifications indexing, heritage demotion |
+| `33d7c07` | This document, `AUDIT_2026-07-13.md`, and a rewritten `README.md` |
+| `6f8d5bd` | Service-page hero: two-column layout, evidence panel, portrait, dual CTA, badge removed |
+| `570f27d` | Insurance wording — see below |
+
+**Verified in production:** `astro check` 0 errors / 0 warnings · 1,035 pages · 84,994 internal
+links, 0 broken · 10 live URLs all HTTP 200.
+
+#### The most important thing in this release
+
+**The site was advertising insurance it does not hold.** `/about/compliance` claimed
+**"£10 million Public Liability Insurance"**. The actual cover is **£5m**. The £10m figure was
+introduced by an unattributed commit (`8e209eb`, *"minor changes"*) with no evidence behind it,
+and had been live ever since.
+
+It was found only because the new hero evidence panel required every claim to be *verifiable* —
+and the verification failed. **The correct response to an unverifiable claim is to stop, not to
+pick the more flattering number.** The release was deliberately blocked until the owner supplied
+the policy figures.
+
+Correct cover is now stated on the site, with the three limits kept separate. See `README.md`
+→ *Facts that must stay accurate*. **Never collapse them into a single figure.**
+
+#### Also worth knowing
+
+- **The live site sits behind Cloudflare**, which rewrites every `mailto:` to
+  `/cdn-cgi/l/email-protection#…` and decodes it with JavaScript on click. This predates the
+  release. Consequence: **the email link depends on JS**; the phone link and the enquiry form
+  do not. Not a defect, but don't be surprised by it when diffing production against `dist/`.
+- **Deployment is Netlify auto-build on push to `origin/main`.** There is no `netlify.toml`;
+  the only GitHub workflow (`_studio.yml`) is an Astro Studio DB job and does **not** deploy.
+  Build configuration lives in the Netlify dashboard.
+- The `data-deploy` attribute on `<body>` is a stale marker from an April deploy and is **not**
+  a reliable way to tell which build is live. Poll for actual content instead.

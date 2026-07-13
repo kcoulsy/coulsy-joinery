@@ -54,16 +54,51 @@ route that only exports `POST` therefore cannot run and is dead code.
 
 ## Facts that must stay accurate
 
+> **This repository is public.** Never commit policy numbers, certificate numbers, or any
+> document not already published on the live site. The figures below are all already public.
+
 - **In the trade since 1988**; City & Guilds Craft (Distinction) 1987–89, Advanced 1990.
   Anchor copy to the **year**, never a drifting "N+ years" figure — it goes stale annually
   and previously drifted out of sync across pages.
+
+- **Insurance.** State the three covers separately. **Never collapse them into one figure**,
+  and never imply a single limit applies to all of them:
+
+  | Cover | Limit |
+  | --- | --- |
+  | Public and Products Liability | **£5m** |
+  | Employers' Liability | **£10m** |
+  | Professional Indemnity | **£1m** |
+
+  Professional indemnity belongs on `/about/compliance` and `/about/qualifications` only —
+  it is a commercial/consultancy signal, not something a homeowner booking a kitchen weighs.
+  The site previously claimed **£10m public liability**, which was false; see
+  `ARCHITECTURE.md` §12.
+
 - **ICWCI**: election takes effect **28 August 2026**. Until then the site must not claim
   membership or the MICWCI post-nominal. See the comment in `src/pages/about/qualifications.astro`.
-- Claims of qualification (CSCS, CITB, GQA, FireQual, City & Guilds) appear in schema markup
-  as well as visible copy — update both.
+
+- **CSCS Gold** card is current to **end of January 2029**. Recheck before that date.
+
+- Claims of qualification (CSCS, CITB, GQA, FireQual, City & Guilds) appear in **schema markup
+  as well as visible copy** — update both, or they will disagree.
+
+## Project documentation
+
+| Document | What it is |
+| --- | --- |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | **Read this first.** Service architecture (primary / secondary / SEO-only tiers), navigation philosophy, the brand-migration map for the future Handyman, Builder, Fire Doors and Inspection sites, technical SEO priorities, and the release log. Records conclusions that were reached and then **overturned by evidence** — read those before repeating them. |
+| [`AUDIT_2026-07-13.md`](AUDIT_2026-07-13.md) | Forensic site audit: 78 findings raised, 73 surviving adversarial verification. |
 
 ## Search Console data
 
 `seo-data/` holds Search Console exports (queries, pages, coverage). They're the evidence
 base for keyword and pruning decisions — read them before changing titles or descriptions.
-`AUDIT_2026-07-13.md` is a full audit against that data.
+
+Two cautions learned the hard way, both documented in `ARCHITECTURE.md`:
+
+1. **Check the date range.** A 12-month export describes a year that has largely passed. It is
+   not a description of the present.
+2. **Impressions are inflated by non-commercial traffic.** One cluster carried 16,249
+   impressions and zero clicks at positions 1–5, which is not human behaviour. Judge on
+   **clicks**, and on UK traffic.
