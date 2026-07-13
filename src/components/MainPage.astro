@@ -151,13 +151,22 @@ const seoData = {
         jobTitle: "Project Manager",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "10",
-      bestRating: "5",
-      worstRating: "1",
-    },
+    // NO aggregateRating, and no Review nodes. This is deliberate — do not add them.
+    //
+    // The reviews are Google reviews of us, and this schema describes us. Ratings a
+    // business publishes about itself are "self-serving": since 2019 Google has not
+    // shown review rich results for self-serving LocalBusiness/Organization markup,
+    // so this could never have earned a star snippet. It was ineligible, not merely
+    // inaccurate — and it had drifted anyway, claiming 10 reviews while 12 were on
+    // the page.
+    //
+    // Removing it costs nothing. The stars Coulsy actually shows in Maps and the
+    // local pack come from the Google Business Profile, which this markup does not
+    // feed. The twelve reviews remain visible on the page for human readers.
+    //
+    // `cc5e794` already stripped aggregateRating from 1,027 service pages for the
+    // adjacent rule (the rated reviews must be present on the page). It missed this
+    // one. This completes it.
     award: [
       "City & Guilds Qualified (1989)",
       "CSCS Gold Card Holder",
