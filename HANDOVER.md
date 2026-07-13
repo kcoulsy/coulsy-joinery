@@ -13,7 +13,7 @@
 
 | | |
 | --- | --- |
-| **Last code / dependency change** | `40b0a74` (Astro 5.18.2, §5a). Docs commits may sit on top. |
+| **Last code change** | `3529367` (verbatim customer reviews, §1b). Docs commits may sit on top. |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
@@ -94,6 +94,65 @@ link's centre resolves to the menu and not the scrim; chevron expands the 14-lin
 dropdown; the open menu scrolls its overflow; a menu link navigates; the close button closes,
 re-arms `inert` and restores page scrolling; desktop nav, hover dropdown and scrolling
 unaffected; zero console errors.
+
+---
+
+## 1b. Customer reviews — the site was misquoting real people (`3529367`, 13 July 2026)
+
+**This is the third false-claim class found on this site, and the worst of them.** The first two
+(£10m public liability, "35+ years of fire safety experience") were claims about *us*. **This one
+put words into named customers' mouths.**
+
+Three reviews carried wording the reviewer never wrote:
+
+| Reviewer | Was on the site | What they actually published |
+| --- | --- | --- |
+| Sales UK | "everything you want **a builder to be**" | "everything you want **a tradesperson should be**" |
+| Luisa D | "delighted with **the result**" | "delighted with **the installation of the door**" |
+| Sophie Vohra | "**Thorough, professional, and kept us informed every step of the way**" | **She never wrote this sentence.** |
+
+Two more were silently truncated, and **two reviews were missing entirely** (Barbara, Richard Hand).
+The homepage schema claimed **10** reviews while **12** were live.
+
+### The rules now in force — see `src/constants/reviews.ts`
+
+- **`text` is VERBATIM.** No paraphrasing, no tidying, no shortening. Keep the customers' own typos
+  ("Cousy", "unforseen") and Graeme Kynman's trailing signature. **Redundancy is not a licence to
+  edit a customer's words.**
+- **Names are EXACTLY as Google displays them** — including lower-case (`Kim hosking`,
+  `graeme ian kynman`, `edris mahmud`) and run-together names (`MartinS`).
+  **Capitalisation is an alteration too.** Do not normalise.
+- **ONE SOURCE OF TRUTH.** The list previously existed **twice** inside `Reviews.astro` — the second
+  copy sat in a dead `!useHardcoded` branch that nothing invoked and no page loaded. **That
+  duplication is how the copies drifted apart.** Both it and the broken Google Places fetch it
+  wrapped are gone.
+- **NO DATES.** The old list stored relative phrases ("a month ago") that were true the day they
+  were typed and rotted from then on — a September 2025 review still told visitors it was
+  "a month ago" in July 2026. **A date that rots is worse than no date.** If dates ever return,
+  store absolute ones.
+
+### Self-serving review schema — removed, deliberately. Do not add it back.
+
+`aggregateRating` sat on our **own** `LocalBusiness` entity. **Google has not shown review rich
+results for self-serving LocalBusiness/Organization markup since 2019**, so it was **ineligible** —
+it could never have earned a star snippet, whatever the values said. Removing it forfeits nothing:
+the stars Coulsy shows in Maps and the local pack come from the **Google Business Profile**, which
+this markup does not feed.
+
+`cc5e794` stripped the same markup from 1,027 service pages for the adjacent rule (the rated
+reviews must be present on the page) but **missed the homepage**. This completes it. Sitewide there
+are now **0** `aggregateRating`, `ratingValue`, `reviewCount` and `Review` nodes. **Normal
+`LocalBusiness` schema is retained on 1,028 pages.**
+
+**The human-facing evidence stays, and is derived:** the homepage shows
+**"★★★★★ 5.0 out of 5 (12 reviews on Google)"**, computed from the array — so the number shown can
+never again disagree with the reviews on the page.
+
+### Deferred — do not guess it
+
+**The Google Business Profile URL is still outstanding** and is **not** in `sameAs` (the business
+schema currently has no `sameAs` at all). **Do not invent or derive one.** Add it only when Robert
+supplies the verified profile URL.
 
 ---
 
@@ -234,6 +293,7 @@ Windows; we are on macOS.
 | --- | --- |
 | **`astro.config.mjs` disables minification** — `minify: false` on both the Vite build and esbuild, so production ships **unminified JS and CSS across all 1,035 pages**. Likely a significant payload win. Needs its own **measured** slice: record before/after transfer sizes; do not assume. **Not started.** | `astro.config.mjs` |
 | **Copy defect — `fitting kitchens .`** (stray space before the full stop) in the kitchens service hero. Small content correction, own slice. **Not started.** | `kitchen-installers.astro` |
+| **Google Business Profile URL → `sameAs`.** Deferred from §1b. The business schema has **no `sameAs` at all**. **Do not guess or derive the URL** — it must come from Robert, verified. **Not started.** | §1b |
 | **Astro 6/7 + Tailwind 4** — deferred deliberately, see §5a. Not urgent; not a security requirement under the current static architecture. **Not started.** | §5a |
 | §6c bounded investigation — reposition Building Maintenance around property repairs | `ARCHITECTURE.md` §6c |
 | Item 5 — site-wide capability wording review ("specified, sourced and installed") | `ARCHITECTURE.md` §10, item 5 |
