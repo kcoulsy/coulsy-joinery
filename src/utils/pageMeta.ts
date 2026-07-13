@@ -268,18 +268,18 @@ export function getFormattedPageData(Astro: any): {
   // locality, qualifications, scope, trust) so near-duplicate signals drop.
   const descriptionVariants = location
     ? [
-        `Joiner since 1988, City & Guilds qualified, covering ${cleanLocationName} (${locationPostcode}) — ${lowerService} and general joinery across ${locationRegion}. Fully insured, free quotes.`,
-        `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner, on the tools since 1988, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
+        `Joiner since 1988, City & Guilds qualified, covering ${cleanLocationName} (${locationPostcode}) — ${lowerService} and general joinery across ${locationRegion}. £5m public liability cover, free quotes.`,
+        `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
         `Quality ${lowerService} in ${cleanLocationName} ${locationPostcode}. City & Guilds qualified in 1989, CSCS Gold, VAT registered. Serving homes and businesses across ${locationRegion}.`,
         `Professional ${lowerService} for homes and businesses in ${cleanLocationName} — a ${locTypeWord} I've worked across for decades. Joiner since 1988, reliable service.`,
-        `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified and fully insured. Covering ${locationRegion}.`,
+        `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified, with £5m public liability cover. Covering ${locationRegion}.`,
       ]
     : [
-        `Joiner since 1988, City & Guilds qualified, covering Yorkshire — ${lowerService} and general joinery. Fully insured, free quotes.`,
-        `${formattedServiceName} across Yorkshire. Local joiner, on the tools since 1988, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
+        `Joiner since 1988, City & Guilds qualified, covering Yorkshire — ${lowerService} and general joinery. £5m public liability cover, free quotes.`,
+        `${formattedServiceName} across Yorkshire. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
         `Quality ${lowerService} across Yorkshire. City & Guilds qualified in 1989, CSCS Gold, VAT registered.`,
         `Professional ${lowerService} for homes and businesses across Yorkshire. Joiner since 1988, reliable service.`,
-        `Trusted joiner across Yorkshire — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified and fully insured.`,
+        `Trusted joiner across Yorkshire — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified, with £5m public liability cover.`,
       ];
 
   const defaultDescription = descriptionVariants[variantHash % descriptionVariants.length];
@@ -461,7 +461,7 @@ export function getFormattedPageData(Astro: any): {
   // Trust / commercial FAQs (service-flavoured but not location-coupled)
   faqPool.push({
     name: `Are you qualified and insured${locationInText}?`,
-    text: "Yes — City & Guilds qualified in 1989, CSCS Gold Card holder, fully insured and VAT registered. Joinery and carpentry experience going back to 1988.",
+    text: "Yes — City & Guilds qualified in 1989, CSCS Gold Card holder, VAT registered, and insured with £5m public and products liability and £10m employers' liability cover. Joinery and carpentry experience going back to 1988.",
   });
   faqPool.push({
     name: `Do you provide free quotes${locationInText}?`,
