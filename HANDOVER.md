@@ -13,7 +13,7 @@
 
 | | |
 | --- | --- |
-| **HEAD** | `58ef9d6` |
+| **Last code / dependency change** | `40b0a74` (Astro 5.18.2, §5a). Docs commits may sit on top. |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
@@ -195,11 +195,46 @@ claim** for years. Templating is exactly how such an error propagates into a sec
 
 ---
 
+## 5a. Dependencies — where we are, and why we stopped where we did
+
+**Astro 5.18.2** (was 5.15.3, updated 13 July 2026, `40b0a74`). Also on that slice:
+`@astrojs/sitemap` 3.7.3, `@astrojs/check` 0.9.9, `sass` 1.101.0, `tailwindcss` 3.4.19,
+`typescript` 5.9.3. **Lockfile-only** — the declared `^` ranges already permitted all of it, so
+`package.json` was not touched.
+
+**Advisories: 23 → 3.** Every advisory with a fix inside the 5.x line is cleared.
+
+### Why we did NOT go to Astro 6 or 7
+
+**`@astrojs/tailwind@6.0.2` is the latest, and it peers `astro ^3 || ^4 || ^5`. It does not
+support Astro 6+.** So crossing that major is not an Astro upgrade — it forces a **Tailwind 3 → 4
+migration**: CSS-first `@theme` config, `tailwind.config.mjs` deleted, the `brand-*` palette
+re-declared, and utility-level breaking changes across ~50 components and 1,035 pages whose entire
+visual layer is utility classes. That is the real cost, and it is much larger than the version
+numbers suggest. Astro 7.0.0 is also very young (22 June 2026; 7.0.8 landed three weeks later).
+
+### The 3 remaining advisories are not reachable here — but that argument has a limit
+
+This site is **pure static**: no adapter, no `output` mode, no `define:vars`, no `searchParams` or
+`Astro.request`, no server islands. **No Astro server runs in production** — Netlify serves flat
+HTML. The residual Astro items each need a running server or a template feature the site does not
+use, and none have a 5.x fix (they land in 6.x). The `esbuild` item is a dev-server file read on
+Windows; we are on macOS.
+
+> ⚠️ **That whole argument rests on "static, no adapter."** The day anything becomes
+> server-rendered — a real contact-form endpoint, live reviews — **the calculus flips and Astro 6+
+> becomes a security requirement, Tailwind migration and all.** Re-run `npm audit` and re-read this
+> section before adding any SSR.
+
+---
+
 ## 6. Outstanding work — none started
 
 | Item | Reference |
 | --- | --- |
-| **Astro upgrade — on 5.15.3, latest is 7.x.** Two majors behind. **Not** related to the §1a mobile-nav defect. Own bounded slice; not started. | §1a |
+| **`astro.config.mjs` disables minification** — `minify: false` on both the Vite build and esbuild, so production ships **unminified JS and CSS across all 1,035 pages**. Likely a significant payload win. Needs its own **measured** slice: record before/after transfer sizes; do not assume. **Not started.** | `astro.config.mjs` |
+| **Copy defect — `fitting kitchens .`** (stray space before the full stop) in the kitchens service hero. Small content correction, own slice. **Not started.** | `kitchen-installers.astro` |
+| **Astro 6/7 + Tailwind 4** — deferred deliberately, see §5a. Not urgent; not a security requirement under the current static architecture. **Not started.** | §5a |
 | §6c bounded investigation — reposition Building Maintenance around property repairs | `ARCHITECTURE.md` §6c |
 | Item 5 — site-wide capability wording review ("specified, sourced and installed") | `ARCHITECTURE.md` §10, item 5 |
 | Add ICWCI to the hero evidence panel — **only after 28 August 2026** | `HeroEvidencePanel.astro` |
@@ -216,6 +251,16 @@ claim** for years. Templating is exactly how such an error propagates into a sec
 
 - **This repository is PUBLIC** (`kcoulsy/coulsy-joinery`). Never commit policy numbers, certificate
   numbers, or anything not already published on the live site.
+- **A green browser test can be green for the wrong site.** The sibling `fire-doors` repo is often
+  running its own `astro dev`. Whoever starts second gets bumped off port 4321 to **4322** — and a
+  test pointed at 4321 then passes happily against the *wrong site*. This happened during the
+  dependency slice: a 10/10 run turned out to be testing fire doors (4 dropdown links instead of 14,
+  navigating to `/fire-door-installers`). **Before trusting any browser result, confirm the port
+  AND assert site identity** — check the `<title>`, a known link count, or a route that only this
+  site has. Astro prints its actual port in the dev-server banner; read it, don't assume 4321.
+- **`<meta name="generator">` is a real deploy marker; `data-deploy` on `<body>` is not.** Astro
+  stamps its own version into `generator` at build time (`Astro v5.18.2`), so polling it proves
+  which build is live. The `data-deploy` attribute is a stale hardcoded April string — ignore it.
 - **Production sits behind Cloudflare**, which rewrites every `mailto:` to
   `/cdn-cgi/l/email-protection#…`. `dist/` and production will legitimately differ. Not a defect.
 - **Astro renders HTML comments (`<!-- -->`) into production.** Use `{/* … */}` for internal notes.
