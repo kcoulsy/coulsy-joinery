@@ -9,11 +9,11 @@ import cityAndGuildsImage from "../../assets/images/cityandguilds_logo.png";
 // Modern SEO optimization with personal voice preserved
 const seoData = {
   title:
-    "Qualifications & Certifications - Robert Coulson | 35+ Years Experience Since 1989",
+    "Qualifications & Certifications - Robert Coulson | Joiner in York Since 1988",
   description:
-    "Robert Coulson's qualifications include NVQ Level 7, City & Guilds Distinction, CSCS Gold Card. 35+ years experience since 1989. Fully insured and certified for all joinery work in York.",
+    "Robert Coulson's qualifications include NVQ Level 7, City & Guilds Distinction, CSCS Gold Card. Joiner since 1988. Fully insured and certified for all joinery work in York.",
   keywords:
-    "Robert Coulson qualifications, joinery qualifications York, CSCS Gold Card, City & Guilds joinery, NVQ Level 7 construction, qualified joiner 1989",
+    "Robert Coulson qualifications, joinery qualifications York, CSCS Gold Card, City & Guilds joinery, NVQ Level 7 construction, qualified joiner since 1988",
   canonical: "https://coulsyjoinery.co.uk/about/qualifications",
   structuredData: {
     "@context": "https://schema.org",
@@ -26,7 +26,7 @@ const seoData = {
       "@type": "Person",
       name: "Robert Coulson",
       jobTitle: "Master Joiner",
-      description: "Qualified since 1989 with 35+ years of joinery experience",
+      description: "City & Guilds qualified in 1989 with joinery experience going back to 1988",
       hasCredential: [
         {
           "@type": "EducationalOccupationalCredential",
@@ -52,7 +52,7 @@ const seoData = {
 };
 ---
 
-<Layout title={seoData.title} description={seoData.description} noindex={true}>
+<Layout title={seoData.title} description={seoData.description}>
   <main class="mx-auto relative z-10">
     <section class="w-full container mx-auto px-4 sm:px-6 py-8">
       <div class="pt-8 pb-6">
@@ -97,6 +97,25 @@ const seoData = {
               My Qualifications
             </h3>
             <div class="space-y-6">
+              {
+                /* ICWCI: election takes effect 28 August 2026. Until that date the
+                   wording below is the only accurate form — do not claim membership
+                   or the post-nominal before then. Revisit after 28/08/2026. */
+              }
+              <div
+                class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
+              >
+                <h4 class="font-semibold text-brand-900 mb-2">
+                  Institute of Clerks of Works and Construction Inspectorate
+                  (ICWCI)
+                </h4>
+                <p class="text-brand-600">
+                  Successfully assessed and approved for election to the grade of
+                  Member of the Institute of Clerks of Works and Construction
+                  Inspectorate, effective 28 August 2026.
+                </p>
+              </div>
+
               <div
                 class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
               >

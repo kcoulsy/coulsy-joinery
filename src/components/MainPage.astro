@@ -6,6 +6,7 @@ import HeroSlider from "../components/HeroSlider.astro";
 import Why from "../components/Why.astro";
 import OurServicesBody from "../components/OurServicesBody.astro";
 import Reviews from "../components/Reviews.astro";
+import ProminentPhoneButton from "../components/ProminentPhoneButton.astro";
 import { DETAILS } from "../constants/details";
 
 // Import images with modern priority loading
@@ -48,7 +49,7 @@ const seoData = {
   title:
     "Coulsy Joinery - Professional Joinery Services in York | Bespoke Kitchens & Garden Offices",
   description:
-    "Expert joinery services in York including bespoke kitchens, garden offices, heritage restoration, and small building works. Family-run business with 35+ years experience since 1989. Professional quotes available.",
+    "Expert joinery services in York including bespoke kitchens, garden offices, heritage restoration, and small building works. Family-run business with experience going back to 1988. Professional quotes available.",
   keywords:
     "joinery York, bespoke kitchens, garden offices, heritage joinery, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner, local joiner York, qualified carpenter Yorkshire",
   ogImage: "/og-image.jpg",
@@ -135,14 +136,14 @@ const seoData = {
       name: "Robert Coulson",
       jobTitle: "Master Joiner",
       description:
-        "Qualified since 1989 with over 35 years of joinery experience",
+        "City & Guilds qualified in 1989 with joinery experience going back to 1988",
     },
     employee: [
       {
         "@type": "Person",
         name: "Robert Coulson",
         jobTitle: "Master Joiner",
-        description: "Qualified since 1989 with 35+ years experience",
+        description: "City & Guilds qualified in 1989 with experience going back to 1988",
       },
       {
         "@type": "Person",
@@ -183,6 +184,33 @@ const seoData = {
   <!-- Hero Section with modern optimization -->
   <section class="relative z-10 mx-auto animate-on-scroll">
     <HeroSlider slides={slides} />
+  </section>
+
+  <!--
+    Primary call-to-action. The hero fills the first mobile screen and the only
+    other phone links on this page are in the collapsed menu and the footer, so
+    without this the homepage gives a mobile visitor no way to ring Robert.
+    Static markup only — no JS, no images, so it cannot shift layout.
+  -->
+  <section
+    class="relative z-10 bg-brand-50 border-y border-brand-100"
+    aria-labelledby="call-cta-heading"
+  >
+    <div
+      class="container mx-auto px-4 py-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left"
+    >
+      <div>
+        <h2 id="call-cta-heading" class="text-xl font-semibold text-brand-900">
+          Got a job in mind? Talk to Robert directly.
+        </h2>
+        <p class="mt-1 text-brand-600">
+          No sales team, no call centre — you speak to the joiner doing the work.
+        </p>
+      </div>
+      <div class="flex-shrink-0">
+        <ProminentPhoneButton note={null} />
+      </div>
+    </div>
   </section>
 
   <!-- Why Choose Us Section with personal voice preserved -->

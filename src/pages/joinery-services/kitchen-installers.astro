@@ -36,7 +36,7 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert kitchen installation ${locationInText} by City & Guilds qualified joiner. Domestic & trade kitchen fitting. 30+ years experience, quality craftsmanship.`;
+const description = `Expert kitchen installation ${locationInText} by City & Guilds qualified joiner. Domestic & trade kitchen fitting. Joiner since 1988, quality craftsmanship.`;
 const finalDescription =
   enhancedDescription || description || defaultDescription;
 ---
@@ -63,7 +63,7 @@ const finalDescription =
     <ServiceHero
       badge="Fitted Kitchens"
       title={pageTitle}
-      description={`I'm Robert, a City & Guilds qualified joiner with over 30 years' experience fitting kitchens ${locationInText}. Whether you've got a Howdens or Magnet kitchen ready to install, or need help choosing the right setup, I'll make sure it's measured, fitted, and finished properly — no shortcuts.`}
+      description={`I'm Robert, a City & Guilds qualified joiner with experience going back to 1988 fitting kitchens ${locationInText}. Whether you've got a Howdens or Magnet kitchen ready to install, or need help choosing the right setup, I'll make sure it's measured, fitted, and finished properly — no shortcuts.`}
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName
@@ -86,7 +86,7 @@ const finalDescription =
           <div class="order-2 lg:order-1">
             <div class="space-y-8 text-neutral-700">
               <MeetRobertCard
-                introText={`I've been fitting kitchens for over 30 years ${locationInText}, and I still love the craft. When you work with me, you're dealing directly with me — no sales team, no middlemen. I'll measure up, talk through what you need, and then get on with fitting it properly. Simple as that.`}
+                introText={`I've been fitting kitchens since 1988 ${locationInText}, and I still love the craft. When you work with me, you're dealing directly with me — no sales team, no middlemen. I'll measure up, talk through what you need, and then get on with fitting it properly. Simple as that.`}
               />
 
               <div class="space-y-5 text-neutral-700 leading-relaxed">
@@ -208,7 +208,7 @@ const finalDescription =
                   </div>
                   <div>
                     <h3 class="font-semibold text-neutral-900 mb-1.5">
-                      30+ years of hands-on experience
+                      hands-on experience going back to 1988
                     </h3>
                     <p class="leading-relaxed text-sm">
                       I've seen most problems before, and I know how to solve them properly. 

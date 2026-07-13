@@ -30,7 +30,7 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert traditional cut roofs ${locationInText} by City & Guilds qualified joiner. Timber roof framing & traditional joinery. 30+ years experience, quality craftsmanship.`;
+const description = `Expert traditional cut roofs ${locationInText} by City & Guilds qualified joiner. Timber roof framing & traditional joinery. Joiner since 1988, quality craftsmanship.`;
 const finalDescription =
   enhancedDescription || description || defaultDescription;
 ---
@@ -57,7 +57,7 @@ const finalDescription =
     <ServiceHero
       badge="Traditional Cut Roofs"
       title={pageTitle}
-      description="Traditional cut roof installation designed and built to suit any shape or layout. Expert timber roof framing from a time-served joiner with over 30 years of experience."
+      description="Traditional cut roof installation designed and built to suit any shape or layout. Expert timber roof framing from a time-served joiner with experience going back to 1988."
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName
@@ -104,7 +104,7 @@ const finalDescription =
                       If you're considering a traditional cut roof {
                         locationInText
                       }, I'd be happy to help. I'm Robert — a time-served joiner
-                      with over 30 years of hands-on experience in bespoke
+                      with hands-on experience going back to 1988 in bespoke
                       timber framing and roof construction.
                     </p>
                   </div>

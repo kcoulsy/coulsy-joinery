@@ -30,7 +30,7 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert truss roof installation ${locationInText} by City & Guilds qualified joiner. Structural joinery & roof framing. 30+ years experience, quality craftsmanship.`;
+const description = `Expert truss roof installation ${locationInText} by City & Guilds qualified joiner. Structural joinery & roof framing. Joiner since 1988, quality craftsmanship.`;
 const finalDescription =
   enhancedDescription || description || defaultDescription;
 ---
@@ -57,7 +57,7 @@ const finalDescription =
     <ServiceHero
       badge="Truss Roofs"
       title={pageTitle}
-      description="Professional truss roof installation services from attic conversions to large-scale commercial projects. Structural joinery and compliant roofing with over 30 years' experience."
+      description="Professional truss roof installation services from attic conversions to large-scale commercial projects. Structural joinery and compliant roofing with experience going back to 1988."
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName

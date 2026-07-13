@@ -18,8 +18,11 @@ export default defineConfig({
         // Exclude supporting pages (trust signals, not enquiry drivers)
         if (page.includes('/about/sustainability')) return false;
         if (page.includes('/about/compliance')) return false;
-        if (page.includes('/about/qualifications')) return false;
-        
+
+        // /about/qualifications IS included: it carries City & Guilds, CSCS, CITB,
+        // GQA, FireQual, NVQ L7 and ICWCI. Those are the experience/expertise signals,
+        // and it is the target of every "view my credentials" link on the site.
+
         return true;
       },
       serialize: (item) => {

@@ -33,7 +33,7 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert joiner services ${locationInText} by City & Guilds qualified craftsman. Bespoke staircases, sash windows, doors & fine joinery. 30+ years experience, traditional craftsmanship.`;
+const description = `Expert joiner services ${locationInText} by City & Guilds qualified craftsman. Bespoke staircases, sash windows, doors & fine joinery. Joiner since 1988, traditional craftsmanship.`;
 const finalDescription =
   enhancedDescription || description || defaultDescription;
 ---
@@ -61,7 +61,7 @@ const finalDescription =
     <ServiceHero
       badge="Expert Joiner"
       title={pageTitle}
-      description="City & Guilds qualified joiner with 30+ years experience. From sash windows to custom staircases, every project is crafted with traditional techniques and modern precision."
+      description="City & Guilds qualified joiner with experience going back to 1988. From sash windows to custom staircases, every project is crafted with traditional techniques and modern precision."
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName
@@ -105,8 +105,7 @@ const finalDescription =
                       Meet Robert
                     </h2>
                     <p class="text-neutral-600">
-                      Hi, I'm Robert — a time-served joiner with over 30 years
-                      of hands-on experience. I've worked across domestic,
+                      Hi, I'm Robert — a time-served joiner with hands-on experience going back to 1988. I've worked across domestic,
                       commercial, and heritage projects, and I still get great
                       satisfaction from delivering proper, well-finished joinery
                       the right way.
@@ -194,7 +193,7 @@ const finalDescription =
                         >learn more about me here</a
                       >
                       or take a look at <a
-                        href="/qualifications"
+                        href="/about/qualifications"
                         class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
                         >my qualifications and experience</a
                       >.

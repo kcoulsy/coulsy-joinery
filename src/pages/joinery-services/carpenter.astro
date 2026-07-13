@@ -30,7 +30,7 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert carpentry services ${locationInText} by City & Guilds qualified joiner. Structural carpentry for roofs, floors & timber frames. 30+ years experience, quality craftsmanship.`;
+const description = `Expert carpentry services ${locationInText} by City & Guilds qualified joiner. Structural carpentry for roofs, floors & timber frames. Joiner since 1988, quality craftsmanship.`;
 const finalDescription =
   enhancedDescription || description || defaultDescription;
 ---
@@ -57,7 +57,7 @@ const finalDescription =
     <ServiceHero
       badge="Structural Carpentry"
       title={pageTitle}
-      description="Expert structural carpentry for roofs, floors, and timber framing. City & Guilds qualified with 30+ years experience in new builds and renovations."
+      description="Expert structural carpentry for roofs, floors, and timber framing. City & Guilds qualified with experience going back to 1988 in new builds and renovations."
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName
@@ -102,7 +102,7 @@ const finalDescription =
                     </h2>
                     <p class="text-neutral-600">
                       Hi, I'm Robert — a time-served carpenter and joiner with
-                      over 30 years of experience working on everything from new
+                      experience going back to 1988 working on everything from new
                       builds and extensions to restorations and roofing. I take
                       pride in doing things properly — no shortcuts, no
                       guesswork — just solid, reliable work.
@@ -114,7 +114,7 @@ const finalDescription =
               <div class="space-y-4">
                 <p>
                   I'm a <a
-                    href="/qualifications"
+                    href="/about/qualifications"
                     class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
                     >fully qualified City & Guilds joiner</a
                   > with decades of practical site experience.
@@ -188,7 +188,7 @@ const finalDescription =
                         >learn more about me here</a
                       >
                       or see <a
-                        href="/qualifications"
+                        href="/about/qualifications"
                         class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
                         >what qualifications and experience I bring to the job</a
                       >.

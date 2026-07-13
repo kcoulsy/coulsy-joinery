@@ -268,17 +268,17 @@ export function getFormattedPageData(Astro: any): {
   // locality, qualifications, scope, trust) so near-duplicate signals drop.
   const descriptionVariants = location
     ? [
-        `30+ years' experience, City & Guilds qualified joiner covering ${cleanLocationName} (${locationPostcode}) — ${lowerService} and general joinery across ${locationRegion}. Fully insured, free quotes.`,
-        `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner with 30+ years on the tools, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
-        `Quality ${lowerService} in ${cleanLocationName} ${locationPostcode}. City & Guilds qualified since 1989, CSCS Gold, VAT registered. Serving homes and businesses across ${locationRegion}.`,
-        `Professional ${lowerService} for homes and businesses in ${cleanLocationName} — a ${locTypeWord} I've worked across for decades. 30+ years' experience, reliable service.`,
+        `Joiner since 1988, City & Guilds qualified, covering ${cleanLocationName} (${locationPostcode}) — ${lowerService} and general joinery across ${locationRegion}. Fully insured, free quotes.`,
+        `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner, on the tools since 1988, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
+        `Quality ${lowerService} in ${cleanLocationName} ${locationPostcode}. City & Guilds qualified in 1989, CSCS Gold, VAT registered. Serving homes and businesses across ${locationRegion}.`,
+        `Professional ${lowerService} for homes and businesses in ${cleanLocationName} — a ${locTypeWord} I've worked across for decades. Joiner since 1988, reliable service.`,
         `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified and fully insured. Covering ${locationRegion}.`,
       ]
     : [
-        `30+ years' experience, City & Guilds qualified joiner covering Yorkshire — ${lowerService} and general joinery. Fully insured, free quotes.`,
-        `${formattedServiceName} across Yorkshire. Local joiner with 30+ years on the tools, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
-        `Quality ${lowerService} across Yorkshire. City & Guilds qualified since 1989, CSCS Gold, VAT registered.`,
-        `Professional ${lowerService} for homes and businesses across Yorkshire. 30+ years' experience, reliable service.`,
+        `Joiner since 1988, City & Guilds qualified, covering Yorkshire — ${lowerService} and general joinery. Fully insured, free quotes.`,
+        `${formattedServiceName} across Yorkshire. Local joiner, on the tools since 1988, City & Guilds qualified, fully insured. Free no-obligation quotes.`,
+        `Quality ${lowerService} across Yorkshire. City & Guilds qualified in 1989, CSCS Gold, VAT registered.`,
+        `Professional ${lowerService} for homes and businesses across Yorkshire. Joiner since 1988, reliable service.`,
         `Trusted joiner across Yorkshire — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified and fully insured.`,
       ];
 
@@ -321,7 +321,7 @@ export function getFormattedPageData(Astro: any): {
     paymentAccepted: ["Cash", "Bank Transfer"],
     currenciesAccepted: "GBP",
     knowsAbout: ["Joinery", "Carpentry", "Kitchen Fitting", "Heritage Restoration", "Bespoke Joinery"],
-    award: ["City & Guilds Qualified", "30+ Years Experience"],
+    award: ["City & Guilds Qualified", "Joiner Since 1988"],
     address: {
       "@type": "PostalAddress",
       addressLocality: cleanLocationName || "York",
@@ -362,13 +362,8 @@ export function getFormattedPageData(Astro: any): {
       "https://www.linkedin.com/company/coulsy-limited/?viewAsMember=true",
       "https://www.youtube.com/@coulsyjoinery"
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "10",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
+    // No aggregateRating: these pages link to reviews but don't render them, and
+    // Google requires the rated reviews to be present on the page claiming the rating.
   };
 
   // Service-specific schema for better service search rankings
@@ -459,14 +454,14 @@ export function getFormattedPageData(Astro: any): {
   } else {
     faqPool.push({
       name: `What ${lowerService} services do you offer?`,
-      text: `I offer ${lowerService} across Yorkshire — bespoke joinery, kitchen installation, heritage repairs, and general carpentry. All work is carried out personally with over 30 years' experience on the tools.`,
+      text: `I offer ${lowerService} across Yorkshire — bespoke joinery, kitchen installation, heritage repairs, and general carpentry. All work is carried out personally, on the tools since 1988.`,
     });
   }
 
   // Trust / commercial FAQs (service-flavoured but not location-coupled)
   faqPool.push({
     name: `Are you qualified and insured${locationInText}?`,
-    text: "Yes — City & Guilds qualified since 1989, CSCS Gold Card holder, fully insured and VAT registered. Over 30 years' experience in joinery and carpentry.",
+    text: "Yes — City & Guilds qualified in 1989, CSCS Gold Card holder, fully insured and VAT registered. Joinery and carpentry experience going back to 1988.",
   });
   faqPool.push({
     name: `Do you provide free quotes${locationInText}?`,
