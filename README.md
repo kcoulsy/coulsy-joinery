@@ -100,10 +100,15 @@ route that only exports `POST` therefore cannot run and is dead code.
 
 ## Project documentation
 
-| Document | What it is |
-| --- | --- |
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | **Read this first.** Service architecture (primary / secondary / SEO-only tiers), navigation philosophy, the brand-migration map for the future Handyman, Builder, Fire Doors and Inspection sites, technical SEO priorities, and the release log. Records conclusions that were reached and then **overturned by evidence** — read those before repeating them. |
-| [`AUDIT_2026-07-13.md`](AUDIT_2026-07-13.md) | Forensic site audit: 78 findings raised, 73 surviving adversarial verification. |
+Read in this order. **There is no `docs/` directory** — if a prompt tells you to read
+`docs/00_START_HERE.md`, it is describing a different project.
+
+| # | Document | What it is |
+| --- | --- | --- |
+| 1 | `README.md` (this file) | How the site is built, and the facts that must stay accurate |
+| 2 | [`HANDOVER.md`](HANDOVER.md) | **Current state.** Release status, what shipped, what is outstanding, and the traps that will waste your time. Start a new session here. |
+| 3 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | Service architecture (primary / secondary / SEO-only tiers), navigation philosophy, the brand-migration map for future Coulsy sites, technical SEO priorities, and the release log. Records conclusions that were reached and then **overturned by evidence** — read those before repeating them. |
+| 4 | [`AUDIT_2026-07-13.md`](AUDIT_2026-07-13.md) | Forensic site audit: 78 findings raised, 73 surviving adversarial verification. |
 
 ## Search Console data
 
