@@ -13,7 +13,7 @@
 
 | | |
 | --- | --- |
-| **HEAD** | `9e3ba56` |
+| **HEAD** | `58ef9d6` |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
@@ -37,6 +37,63 @@ Verified against `https://coulsyjoinery.co.uk`:
 - On all three kitchen pages: **Howdens = 0, Magnet = 0, logo images = 0**, new card **present**
 - Supplier-neutral hero copy present; revised gallery alt text present
 - Sampled `/_astro/` image assets all **200** — no broken references
+
+---
+
+## 1a. P0 — mobile navigation was dead for ~3 months (`58ef9d6`, fixed 13 July 2026)
+
+**The mobile menu accepted no taps in production from 18 April to 13 July 2026.** It opened,
+but the chevrons would not expand the service dropdowns, links would not navigate, and neither
+the menu nor the page would scroll while it was open. Mobile is **55% of all clicks.**
+
+**Root cause — one inverted boolean in `Navbar.astro`.** `toggleMenu()` derived the open state
+from `menu.classList.contains("-translate-y-full")`. That class slides the menu **off-screen**,
+so it is present when the menu is **CLOSED**. The boolean was therefore inverted, and every
+consumer of it ran backwards: `aria-expanded`, both `aria-hidden` attributes, focus management,
+and — decisively — **`inert`**.
+
+**Tapping the burger slid the menu into view and simultaneously marked the now-visible menu
+`inert`.** An inert subtree is not hit-testable, so taps fell straight through to
+`#mobile-nav-overlay` behind it, whose handler closed the menu. That is why it read as "the menu
+does nothing". The burger kept working only because it sits **outside** the menu.
+
+**The fix is one line** — negate the producer, so `isOpen` means "was open when the toggle fired",
+which is what all five consumers already assumed:
+
+```js
+const isOpen = !menu?.classList.contains("-translate-y-full");
+```
+
+### Why it survived three months
+
+- **Desktop was never affected.** The defect is invisible to desktop testing.
+- **`astro check` and the build were clean throughout.** This is a logic inversion, not a type
+  error. A green build proves nothing here.
+- It shipped in `dd3f73f` — *"Housekeeping: SEO variation, perf cleanup, a11y to 100"* — the pass
+  that **introduced `inert`**. An accessibility improvement broke the thing it was improving.
+- **Astro was not the cause.** We were on 5.15.3 (latest is 7.x); the shipped bundle matched the
+  source line-for-line. The upgrade is unrelated backlog — do not conflate the two.
+
+### It was copied into the fire-doors site too
+
+`kcoulsy/fire-doors` carries the **identical** inverted boolean, introduced by its own
+`d30190e` — *"SEO + perf + a11y cleanup mirroring joinery site work"*. Both live sites were
+broken by the same copy-pasted defect. **These two repositories share navigation and
+accessibility code by copy-paste: a defect in one is a defect in both. Always check the sibling.**
+
+### Standing rule
+
+> **Any shared accessibility or navigation change must be exercised in a real mobile browser
+> before release.** Tap the burger, tap a chevron, follow a link, scroll the open menu, close it,
+> confirm the page scrolls again. `inert`, `overflow-hidden` scroll locks, `pointer-events` and
+> z-index/overlay stacking are all invisible to a type-check, to a clean build, and to desktop.
+
+Live verification used on 13 July 2026 (all passed against `https://coulsyjoinery.co.uk` at an
+iPhone 13 viewport): menu opens with `inert` cleared and ARIA correct; a hit-test at a menu
+link's centre resolves to the menu and not the scrim; chevron expands the 14-link Services
+dropdown; the open menu scrolls its overflow; a menu link navigates; the close button closes,
+re-arms `inert` and restores page scrolling; desktop nav, hover dropdown and scrolling
+unaffected; zero console errors.
 
 ---
 
@@ -142,6 +199,7 @@ claim** for years. Templating is exactly how such an error propagates into a sec
 
 | Item | Reference |
 | --- | --- |
+| **Astro upgrade — on 5.15.3, latest is 7.x.** Two majors behind. **Not** related to the §1a mobile-nav defect. Own bounded slice; not started. | §1a |
 | §6c bounded investigation — reposition Building Maintenance around property repairs | `ARCHITECTURE.md` §6c |
 | Item 5 — site-wide capability wording review ("specified, sourced and installed") | `ARCHITECTURE.md` §10, item 5 |
 | Add ICWCI to the hero evidence panel — **only after 28 August 2026** | `HeroEvidencePanel.astro` |
