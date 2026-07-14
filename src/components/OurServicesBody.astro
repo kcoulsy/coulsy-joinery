@@ -16,6 +16,7 @@ import generalJoinery from "../assets/images/general-joinery/fencing-and-gates.j
 import smallBuildImage from "../assets/images/small-build-services/small-building-works-glazed-office-800x600.jpg";
 import buildingMaintenanceImage from "../assets/images/building-maintenance/building-maintenance-before-after-800x600.jpg";
 import heritage from "../assets/images/heritage/oak-window-restoration.jpg";
+import fireDoor from "../assets/images/doors/fire-doors1.jpg";
 
 interface Props {
   /**
@@ -94,6 +95,24 @@ const services = [
     alt: "Bespoke garden room built with timber cladding in York",
     description: "Made-to-measure garden rooms designed for leisure, hobbies, or guest space — fully insulated and tailored to your style.",
     category: "Bespoke",
+  },
+  {
+    // Door Hanging was absent from BOTH this catalogue and the navbar, so its hub and all
+    // 56 geo pages were unreachable from anywhere on the site — a breadth-first crawl from
+    // the homepage reached 672 pages and never found it. Its only inbound links came from
+    // its own geo pages linking back to their own hub: a closed loop with no way in.
+    //
+    // It also happens to be where the fire-door hand-off to Coulsy Fire Doors lives (see
+    // `CommonFaults.astro`), so the bridge between the two sites sat on pages no visitor
+    // could navigate to. Placed beside Steel Fire Exit Doors to keep the door services
+    // together.
+    title: "Door Hanging",
+    href: "/joinery-services/door-hanging",
+    image: fireDoor,
+    alt: "Door hanging and fire door installation in York",
+    description:
+      "Internal, external and certified fire doors, hung and fitted properly.",
+    category: "Joinery",
   },
   {
     title: "Steel Fire Exit Doors",
