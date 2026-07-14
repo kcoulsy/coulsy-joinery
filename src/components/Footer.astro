@@ -2,6 +2,7 @@
 import OptimizedImage from "./OptimizedImage.astro";
 import coulsyLogo from "../assets/images/coulsy-logo-sm.jpg";
 import { DETAILS } from "../constants/details";
+import { COMPANY } from "../constants/company";
 ---
 
 <footer class="w-full text-[#c0c0c0] bg-[#1e2a38] body-font">
@@ -233,8 +234,14 @@ import { DETAILS } from "../constants/details";
   <!-- Copyright -->
 
   <div class="container px-5 py-4 mx-auto">
-    <p class="text-sm text-[#c0c0c0] capitalize text-center">
-      {DETAILS.COMPANY.NAME} © {new Date().getFullYear()}. All rights reserved.
+    <p class="text-sm text-[#c0c0c0] text-center">
+      {COMPANY.NAME} © {new Date().getFullYear()}. All rights reserved.
+      <span class="mx-1">·</span>
+      <a
+        href="/company-information"
+        class="underline hover:text-white transition-colors duration-200"
+        >Company information</a
+      >
     </p>
   </div>
 </footer>

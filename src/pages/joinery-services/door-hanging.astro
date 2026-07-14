@@ -25,7 +25,6 @@ const {
   locationInText,
   cleanLocationName,
   businessSchema,
-  serviceSchema,
   faqSchema,
   defaultDescription,
   enhancedKeywords,
@@ -45,14 +44,6 @@ const finalDescription =
   structuredData={businessSchema}
 >
   <Fragment slot="head">
-    <script is:inline
-      type="application/ld+json"
-      set:html={JSON.stringify(businessSchema)}
-    />
-    <script is:inline
-      type="application/ld+json"
-      set:html={JSON.stringify(serviceSchema)}
-    />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 

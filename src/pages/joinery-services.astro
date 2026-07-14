@@ -4,6 +4,7 @@ import OurServicesBody from "../components/OurServicesBody.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import ModernContactForm from "../components/ModernContactForm.astro";
 import { DETAILS } from "../constants/details";
+import { BUSINESS_NODE, BUSINESS_REF } from "../constants/business";
 
 // SEO and structured data
 const pageTitle =
@@ -13,33 +14,23 @@ const pageDescription =
 // const canonicalUrl = "https://coulsyjoinery.co.uk/joinery-services"; // Not used
 
 // Structured data for services page
+// One self-contained @graph: the canonical business, plus this hub's Service. The provider
+// references the business by @id rather than redeclaring it, and the business carries NO
+// address and NO geo — see `constants/business.ts`.
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Professional Joinery Services",
-  description: pageDescription,
-  provider: {
-    "@type": "LocalBusiness",
-    name: DETAILS.COMPANY.NAME,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "York",
-      addressRegion: "Yorkshire",
-      addressCountry: "GB",
-    },
-    telephone: DETAILS.PHONE,
-    email: DETAILS.EMAIL,
-    url: "https://coulsyjoinery.co.uk",
-  },
-  areaServed: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: 53.96,
-      longitude: -1.0873,
-    },
-    geoRadius: "50000",
-  },
+  "@graph": [
+    BUSINESS_NODE,
+    {
+      "@type": "Service",
+      "@id": "https://coulsyjoinery.co.uk/joinery-services#service",
+      name: "Professional Joinery Services",
+      description: pageDescription,
+      url: "https://coulsyjoinery.co.uk/joinery-services",
+      provider: BUSINESS_REF,
+      areaServed: ["York", "Wetherby", "Harrogate", "Leeds", "Yorkshire"].map(
+        (name) => ({ "@type": "City", name })
+      ),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Joinery Services",
@@ -78,8 +69,10 @@ const structuredData = {
           description: "Custom-built insulated garden offices for home working",
         },
       },
-    ],
-  },
+        ],
+      },
+    },
+  ],
 };
 ---
 

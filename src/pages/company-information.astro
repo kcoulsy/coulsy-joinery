@@ -1,0 +1,131 @@
+---
+/**
+ * Statutory company disclosure. THE ONLY page that may import `constants/company.ts`.
+ *
+ * This is a legal disclosure, not marketing copy, and NOT a customer location. The
+ * registered office is Robert's home; Coulsy is a service-area business and customers are
+ * not received there.
+ *
+ * Do NOT add a map, directions, "visit us" wording, or a `LocalBusiness` address to this
+ * page. Do NOT copy the address into any other page, component or schema block.
+ */
+import Layout from "../layouts/Layout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { COMPANY, REGISTERED_OFFICE_LINES } from "../constants/company";
+import { DETAILS } from "../constants/details";
+
+const seoData = {
+  title: "Company Information | Coulsy Limited",
+  description:
+    "Statutory company information for Coulsy Limited, trading as Coulsy Joinery & Small Build. Registered company number, registered office and VAT registration number.",
+  keywords: "Coulsy Limited, company information, registered office, VAT number",
+  canonical: "https://coulsyjoinery.co.uk/company-information",
+};
+---
+
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  keywords={seoData.keywords}
+>
+  <main class="mx-auto relative z-10">
+    <section class="bg-white">
+      <div class="mx-auto max-w-screen-md px-4 py-10 sm:px-6 lg:px-8">
+        <Breadcrumb crumbs={[{ label: "Company Information", current: true }]} />
+
+        <h1 class="mt-6 text-3xl font-bold text-gray-900 sm:text-4xl">
+          Company Information
+        </h1>
+
+        <p class="mt-4 text-gray-600">
+          Statutory information for {COMPANY.NAME}, trading as {
+            COMPANY.TRADING_NAME
+          }.
+        </p>
+
+        <dl
+          class="mt-8 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-gray-50"
+        >
+          <div class="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="font-semibold text-gray-900">Registered name</dt>
+            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0">
+              {COMPANY.NAME}
+            </dd>
+          </div>
+
+          <div class="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="font-semibold text-gray-900">Registered in</dt>
+            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0">
+              {COMPANY.JURISDICTION}
+            </dd>
+          </div>
+
+          <div class="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="font-semibold text-gray-900">Company number</dt>
+            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0">
+              {COMPANY.NUMBER}
+            </dd>
+          </div>
+
+          <div class="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="font-semibold text-gray-900">Registered office</dt>
+            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0">
+              <address class="not-italic">
+                {
+                  REGISTERED_OFFICE_LINES.map((line) => (
+                    <span class="block">{line}</span>
+                  ))
+                }
+              </address>
+              <p class="mt-2 text-sm text-gray-500">
+                This is the company&rsquo;s registered office for legal
+                correspondence. It is not a customer-facing premises and is not
+                open to visitors.
+              </p>
+            </dd>
+          </div>
+
+          <div class="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="font-semibold text-gray-900">VAT registration</dt>
+            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0">
+              {COMPANY.VAT_NUMBER}
+            </dd>
+          </div>
+        </dl>
+
+        <div class="mt-8 rounded-xl border border-gray-200 bg-white p-6">
+          <h2 class="text-lg font-semibold text-gray-900">
+            How to reach me
+          </h2>
+          <p class="mt-2 text-gray-600">
+            I work across York, Wetherby, Harrogate, Leeds and the surrounding
+            Yorkshire towns and villages, and I come to you. For anything about
+            a job, please get in touch directly.
+          </p>
+          <ul class="mt-4 space-y-2 text-gray-700">
+            <li>
+              <span class="font-medium">Phone:</span>{" "}
+              <a
+                href={`tel:${DETAILS.PHONE.replace(/\s+/g, "")}`}
+                class="text-brand-600 hover:text-brand-700">{DETAILS.PHONE}</a
+              >
+            </li>
+            <li>
+              <span class="font-medium">Email:</span>{" "}
+              <a
+                href={`mailto:${DETAILS.EMAIL}`}
+                class="text-brand-600 hover:text-brand-700">{DETAILS.EMAIL}</a
+              >
+            </li>
+          </ul>
+          <a
+            href="/contact"
+            class="mt-6 inline-flex items-center font-semibold text-brand-600 hover:text-brand-700"
+          >
+            Go to the contact page &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

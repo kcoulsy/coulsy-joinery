@@ -1,6 +1,7 @@
 import { formatLocationName } from "./capitalizeFirstLetter";
 import { LOCATIONS } from "../constants/locations";
 import { getNearbyLocations } from "./getNearbyLocations";
+import { BUSINESS_NODE, BUSINESS_REF } from "../constants/business";
 
 export function getFormattedPageData(Astro: any): {
   formattedServiceName: string;
@@ -9,7 +10,6 @@ export function getFormattedPageData(Astro: any): {
   cleanLocationName: string;
   defaultDescription: string;
   businessSchema: any;
-  serviceSchema: any;
   faqSchema: any;
   lastmod: string;
   enhancedKeywords: string;
@@ -306,124 +306,57 @@ export function getFormattedPageData(Astro: any): {
     ...(nearbyLocations as string[])
   ].filter((value, index, self) => self.indexOf(value) === index); // Remove duplicates
 
-  const businessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}#business`,
-    name: "Coulsy Joinery",
-    alternateName: "Coulsy Joinery & Small Build",
+  // ─────────────────────────────────────────────────────────────────────────────────────
+  // ONE self-contained @graph per page: the canonical business, plus this page's Service.
+  //
+  // This replaces two separate schema blocks that each declared their own LocalBusiness with
+  // a PAGE-SCOPED @id (`…/{town}-{service}#business`) and the page's town substituted into
+  // `address` / `geo`. The built site declared 1,026 different businesses at 36 postcodes.
+  //
+  // The business node now carries NO address, NO postcode, NO geo and NO hasMap — the
+  // registered office is Robert's home and Coulsy is a service-area business. Coverage is
+  // expressed by `Service.areaServed`, which stays page-specific and unchanged.
+  //
+  // The graph is emitted per page rather than declared once site-wide, because a bare
+  // `{"@id": …}` pointing at a node on another document is not reliably resolved by crawlers.
+  // Each page stands alone while still describing ONE entity. See `constants/business.ts`.
+  // ─────────────────────────────────────────────────────────────────────────────────────
+
+  const areaServedNodes = enhancedAreaServed.map((city) => ({
+    "@type": "City",
+    name: city,
+    containedIn: {
+      "@type": "State",
+      name: locationRegion,
+    },
+  }));
+
+  const serviceNode = {
+    "@type": "Service",
+    "@id": `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}#service`,
+    name: `${formattedServiceName} ${locationInText}`,
     description: enhancedDescription,
     url: `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}`,
-    image: "https://coulsyjoinery.co.uk/images/logo.png",
-    email: "robert@coulsy.co.uk",
-    telephone: "+44 7544 030486",
-    priceRange: "££",
-    paymentAccepted: ["Cash", "Bank Transfer"],
-    currenciesAccepted: "GBP",
-    knowsAbout: ["Joinery", "Carpentry", "Kitchen Fitting", "Heritage Restoration", "Bespoke Joinery"],
-    award: ["City & Guilds Qualified", "Joiner Since 1988"],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: cleanLocationName || "York",
-      addressRegion: locationRegion,
-      postalCode: locationPostcode,
-      addressCountry: "GB",
+    // The one business, referenced — not redeclared.
+    provider: BUSINESS_REF,
+    // Page-specific. This is the coverage signal, and it is correct. Do not touch it.
+    areaServed: areaServedNodes,
+    serviceType: formattedServiceName,
+    category: "Home Improvement",
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "GBP",
+      priceRange: "££",
+      availability: "https://schema.org/InStock",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: geo.lat,
-      longitude: geo.lng,
-    },
-    openingHours: "Mo-Fr 07:00-18:00",
-    // Enhanced areaServed with structured data
-    areaServed: enhancedAreaServed.map((city) => ({
-      "@type": "City",
-      name: city,
-      containedIn: {
-        "@type": "State",
-        name: locationRegion,
-      }
-    })),
-    // ServiceArea schema for geo-targeting SEO
-    serviceArea: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: String(geo.lat),
-        longitude: String(geo.lng),
-      },
-      geoRadius: {
-        "@type": "Distance",
-        name: "30 miles"
-      }
-    },
-    hasMap: `https://www.google.com/maps?q=${geo.lat},${geo.lng}`,
-    sameAs: [
-      "https://www.linkedin.com/company/coulsy-limited/?viewAsMember=true",
-      "https://www.youtube.com/@coulsyjoinery"
-    ],
-    // No aggregateRating: these pages link to reviews but don't render them, and
-    // Google requires the rated reviews to be present on the page claiming the rating.
   };
 
-  // Service-specific schema for better service search rankings
-  const serviceSchema = {
+  /** The page's complete structured data. Emitted ONCE — see the note in Layout.astro. */
+  const businessSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": `${formattedServiceName} ${locationInText}`,
-    "description": enhancedDescription,
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Coulsy Joinery",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": cleanLocationName || "York",
-        "addressRegion": locationRegion,
-        "postalCode": locationPostcode,
-        "addressCountry": "GB"
-      }
-    },
-    // Enhanced areaServed with multiple locations
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": cleanLocationName || "York",
-        "containedIn": {
-          "@type": "State",
-          "name": locationRegion,
-        }
-      },
-      ...enhancedAreaServed.slice(0, 5).map((city) => ({
-        "@type": "City",
-        "name": city,
-        "containedIn": {
-          "@type": "State",
-          "name": locationRegion,
-        }
-      }))
-    ],
-    // ServiceArea for geo-targeting
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": String(geo.lat),
-        "longitude": String(geo.lng),
-      },
-      "geoRadius": {
-        "@type": "Distance",
-        "name": "30 miles"
-      }
-    },
-    "serviceType": formattedServiceName,
-    "category": "Home Improvement",
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "GBP",
-      "priceRange": "££",
-      "availability": "https://schema.org/InStock"
-    }
+    "@graph": [BUSINESS_NODE, serviceNode],
   };
+
 
   // FAQ Schema: pool of candidate questions; each page shows 4 picked
   // deterministically by slug hash. This breaks near-duplicate signals vs the
@@ -513,7 +446,6 @@ export function getFormattedPageData(Astro: any): {
     cleanLocationName,
     defaultDescription,
     businessSchema,
-    serviceSchema,
     faqSchema,
     lastmod: "2025-01-27",
     enhancedKeywords,

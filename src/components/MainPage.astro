@@ -8,6 +8,7 @@ import OurServicesBody from "../components/OurServicesBody.astro";
 import Reviews from "../components/Reviews.astro";
 import ProminentPhoneButton from "../components/ProminentPhoneButton.astro";
 import { DETAILS } from "../constants/details";
+import { BUSINESS_NODE } from "../constants/business";
 
 // Import images with modern priority loading
 import timber20joinery from "../assets/images/timber20joinery.jpg";
@@ -56,39 +57,17 @@ const seoData = {
   canonical: "https://coulsyjoinery.co.uk",
   structuredData: {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Coulsy Joinery",
-    alternateName: "Coulsy Joinery & Small Build",
+    // The SAME canonical business entity used on every other page — same @id, same
+    // properties. See `constants/business.ts`.
+    //
+    // NO address, NO geo, NO serviceArea/GeoCircle. The registered office is Robert's home
+    // and Coulsy is a service-area business; the office is published once, as a legal
+    // disclosure, on /company-information. The previous block also claimed coordinates
+    // 0.11 miles from York city centre — ~9.5 miles from the address printed beside them.
+    ...BUSINESS_NODE,
     description:
       "Professional joinery services in York including bespoke joinery, kitchen installations, garden offices, heritage restoration, and small building works.",
-    url: "https://coulsyjoinery.co.uk",
-    telephone: DETAILS.PHONE,
-    email: DETAILS.EMAIL,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: DETAILS.ADDRESS.LINE_1,
-      addressLocality: DETAILS.ADDRESS.TOWN,
-      addressRegion: DETAILS.ADDRESS.COUNTY,
-      postalCode: DETAILS.ADDRESS.POSTCODE,
-      addressCountry: "GB",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "53.9590",
-      longitude: "-1.0792",
-    },
-    openingHours: ["Mo-Fr 08:00-18:00", "Sa 09:00-16:00"],
-    priceRange: "££",
     areaServed: ["York", "Wetherby", "Harrogate", "Yorkshire"],
-    serviceArea: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: "53.9590",
-        longitude: "-1.0792",
-      },
-      geoRadius: "50000",
-    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Joinery Services",
