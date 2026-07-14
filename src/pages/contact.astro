@@ -9,6 +9,7 @@ import Reviews from "../components/Reviews.astro";
 import { DETAILS } from "../constants/details";
 import { BUSINESS_NODE } from "../constants/business";
 import { COMPANY } from "../constants/company";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
 
 // Modern SEO optimization with personal voice preserved
 const seoData = {
@@ -159,6 +160,16 @@ const seoData = {
               >
                 {DETAILS.EMAIL}
               </a>
+            </div>
+
+            {/* Robert asks every caller for photos and a postcode. This lets people skip
+                straight to that, and reaches the ones who will not ring at all. */}
+            <div class="pt-2">
+              <WhatsAppButton />
+              <p class="mt-2 text-sm text-brand-500">
+                Quickest way to get a price — send me a few photos and your
+                postcode.
+              </p>
             </div>
           </div>
         </div>

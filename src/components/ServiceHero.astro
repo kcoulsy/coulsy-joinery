@@ -19,18 +19,26 @@
  */
 import Breadcrumb from "./Breadcrumb.astro";
 import ProminentPhoneButton from "./ProminentPhoneButton.astro";
+import WhatsAppButton from "./WhatsAppButton.astro";
 import HeroEvidencePanel from "./HeroEvidencePanel.astro";
 import { DETAILS } from "../constants/details";
 
 interface Props {
   title: string;
+  /**
+   * HUMAN phrasing for the WhatsApp pre-fill — "a fitted kitchen in Leeds".
+   * NOT the page title: "a quote for Kitchen Installers in Leeds" reads as though the
+   * customer wants to buy some installers. Each service page supplies its own wording.
+   */
+  quoteFor?: string;
   description: string;
   breadcrumbCrumbs: Array<{ label: string; href?: string; current?: boolean }>;
   /** Accepted for backwards compatibility with the 18 service templates; no longer rendered. */
   badge?: string;
 }
 
-const { title, description, breadcrumbCrumbs } = Astro.props;
+const { title,
+  quoteFor, description, breadcrumbCrumbs } = Astro.props;
 ---
 
 <section class="bg-white py-8 lg:py-12">
@@ -50,8 +58,13 @@ const { title, description, breadcrumbCrumbs } = Astro.props;
           {description}
         </p>
 
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
+        <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start">
           <ProminentPhoneButton note={null} />
+
+          {/* Robert's actual workflow: the phone rings and he asks for photos and a
+              postcode. This lets people start there. `title` is the page's service +
+              town, so the pre-filled message already says what the job is. */}
+          <WhatsAppButton quoteFor={quoteFor} />
 
           <!--
             Secondary CTA. The enquiry form already exists on all 18 service
