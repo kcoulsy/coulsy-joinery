@@ -175,27 +175,99 @@ search demand, not to represent the sales proposition.
 
 ---
 
-## 5. Fire doors — FROZEN, pending brand decision
+## 5. Fire doors — RESOLVED. **Option A was taken** (`3a32185`, 14 July 2026)
 
-**No changes are proposed and none have been made.**
+This section previously read *"FROZEN, pending brand decision"* and offered two options. **The
+decision is made: Option A.** Coulsy Fire Doors is a real specialist business, and Coulsy Joinery
+refers compliance work to it.
 
-The `door-hanging` template currently welds together two unrelated propositions:
+### 5.1 Specialist ownership — the boundary
 
-- **plain internal door hanging** — low-value work Robert does not want;
-- **fire doors and FireQual compliance** — legally mandated (Fire Safety (England) Regulations 2022:
-  flat entrance doors annually, communal doors quarterly), recurring, and Robert is *certified* for it.
+This is the load-bearing rule. **Each business is the authority for its own discipline.**
 
-They share a URL. Any structural action on one affects the other. Additionally,
-`steel-fire-exit-doors-installers` shows 23,849 impressions — but see §7: most of that is noise.
+| **Coulsy Joinery owns** | **Coulsy Fire Doors owns** |
+| --- | --- |
+| Joinery and carpentry | Fire door **inspections** |
+| Door installation | Compliance **surveys** |
+| **Certified fire-door installation, fitting and repair — as joinery work** | FRA remedial advice |
+| Structural joinery | Compliance **reporting** |
+| Building works | FireQual specialist inspection work |
 
-**Options, for later decision — not now:**
+**Joinery keeps the FireQual credential itself.** It is true, it is Robert's, and it evidences that
+the person hanging the door knows what a compliant one looks like. Holding the certification and
+selling the inspection service are different things.
 
-- **A.** If **Coulsy Fire Doors** becomes a real specialist business → Coulsy Joinery retains a single
-  concise "Fire Doors" capability page that refers users to the specialist brand.
-- **B.** If it never materialises → Coulsy Joinery keeps and develops the fire-door content, and the
-  compliance/inspection angle becomes a genuine recurring-revenue line here.
+- **Joinery may reference Fire Doors** where *compliance* becomes the visitor's primary need.
+- **Fire Doors may reference Joinery** where *wider building or joinery work* is required.
 
-**Do not restructure fire-door content until this is decided.** Acting early forecloses option A.
+### 5.2 Contextual hand-offs — not cross-linking
+
+**Specialist sites hand visitors over contextually, at the point their need exceeds the site's
+discipline. They do not cross-link generically.**
+
+**This is a user-first decision, not an SEO exercise.** The visitor came for one thing; when that
+thing turns out to belong to a sibling business, we say so plainly and take them there. We do not
+scatter links to other Coulsy sites in the hope of passing authority around.
+
+The reference implementation: `SpecialistHandoff.astro`, rendered once at the foot of the
+door-hanging pages — where a reader has just been told how fire doors fail, and may now realise
+they need an *inspection* rather than a *joiner*. That is the moment, and it is the only place it
+appears.
+
+### 5.3 Standing cross-site rules
+
+> - **No site-wide footer links to every specialist site.**
+> - **No portal behaviour.** Coulsy Joinery is a complete, truthful joinery business in its own
+>   right. It must never become a directory of other businesses.
+> - **No placeholder businesses. No "coming soon" specialist pages.** A site is listed only once it
+>   is live and its URL verifiably returns 200.
+> - **Each specialist site remains authoritative for its own subject** — and should not dilute
+>   itself by absorbing another's.
+
+### 5.4 One source of truth — `src/constants/specialists.ts`
+
+**Every cross-site link on this site derives from that file. Nothing hardcodes another Coulsy
+domain, anywhere.**
+
+This is not architecture for its own sake. **`coulsycontractsolutions.co.uk` was hardcoded into
+`Footer.astro`, shipped on all 1,035 pages, and stayed a dead outbound link for years after the
+domain lapsed.** One hardcoded URL in one shared component did that. One file, one URL, one place
+to fix. Adding a future specialist site is adding one object to an array — not editing components.
+
+---
+
+## 5a. The Coulsy group — long-term architecture
+
+**Recorded for continuity only. DO NOT IMPLEMENT ANY OF IT.**
+
+```
+coulsy.co.uk  ── parent company
+   ├── Coulsy Joinery & Small Build          ← this repository (LIVE)
+   ├── Coulsy Fire Doors                     ← coulsyfiredoors.co.uk (LIVE)
+   ├── Coulsy Property Maintenance           ← FUTURE. Does not exist.
+   ├── Coulsy Inspection / Clerk of Works    ← FUTURE. Not before 28 Aug 2026.
+   └── Future specialist businesses
+```
+
+**`coulsy.co.uk` is the long-term parent brand. It is NOT ready for public linking.** Robert owns
+it and intends to rebuild it. **It must not appear in production until a proper replacement website
+exists and is verified.** *Recorded ≠ linked* — the distinction matters, and this section is the
+record.
+
+**Nothing in this section may be built, referenced, hinted at or placeheld in production.** The
+ICWCI election is not effective until **28 August 2026**; no membership or post-nominal may be
+claimed before then.
+
+### Retired domain — never resurrect
+
+**`coulsycontractsolutions.co.uk` is permanently retired.** The domain has been relinquished. It
+generated **zero enquiries** in its lifetime.
+
+**It must never reappear in production, documentation as a live reference, metadata, schema,
+navigation, or future architecture.** It is purged from `src/`, `dist/`, `public/`, config and
+`seo-data/` (`cc5e794`); the only surviving mentions are the historical records of the defect in
+this file and the audit — kept deliberately, because that dead sitewide link is *the* argument for
+§5.4.
 
 ---
 
@@ -203,7 +275,9 @@ They share a URL. Any structural action on one affects the other. Additionally,
 
 | Work | Destination brand | Notes |
 | --- | --- | --- |
-| Fire doors, steel fire exit doors, fire-door inspection | **Coulsy Fire Doors** | Frozen — see §5. |
+| **Fire door inspection, compliance surveys, FRA remedials, compliance reporting** | **Coulsy Fire Doors** | ✅ **RESOLVED and shipped — see §5.** Joinery hands this intent over contextually. |
+| **Fire door installation, fitting and repair, as joinery work** | **STAYS on Coulsy Joinery** | ✅ Deliberate. Joinery is not a portal — see §5.1. The FireQual credential also stays here. |
+| Steel fire exit doors | **Coulsy Joinery — for now** | External escape/security doors. Arguably a distinct product from the timber flat-entrance-door compliance work Fire Doors sells. **Unresolved; not urgent.** Do not move without evidence. |
 | Handyman, repairs, property maintenance — domestic **and** commercial | **Dedicated handyman / property-maintenance site** | **Legal entity, VAT position and insurance wording are undecided and are the owner's to determine.** The work may continue to be delivered through Coulsy Ltd. Do not record or assume otherwise. Note: "handyman" draws **zero** impressions in the current data — but only because no handyman content exists, so the site cannot appear. Absence of impressions is *not* evidence of absent demand; size it with keyword-tool data. **This repository is the intended architectural template — see §6a.** |
 | Extensions, structural work, full renovations | **Builder** | Coulsy Joinery legitimately keeps *small* build services as an extension of joinery; the Builder brand takes the larger projects. No cannibalisation. |
 | ICWCI, clerk of works, quality consultancy, compliance inspection | **Professional Inspection / Consultancy** | ICWCI election effective **28 Aug 2026** — until then the site must not claim membership or the post-nominal. |

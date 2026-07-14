@@ -13,7 +13,7 @@
 
 | | |
 | --- | --- |
-| **Last code change** | `3529367` (verbatim customer reviews, §1b). Docs commits may sit on top. |
+| **Last code change** | `bcbbb39` (UK English) / `3a32185` (fire door hand-off, §1c). Docs commits may sit on top. |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
@@ -156,6 +156,53 @@ supplies the verified profile URL.
 
 ---
 
+## 1c. Fire door hand-off — Joinery is not a fire door compliance site (`3a32185`, 14 July 2026)
+
+**Full architecture: `ARCHITECTURE.md` §5 and §5a. Read those before touching anything cross-site.**
+
+### The defect
+
+**The joinery site was advertising fire door inspections on 57 pages — "Book a Fire Door
+Inspection" — and routing every one of those leads to its own `/contact` form.**
+`coulsyfiredoors.co.uk`, the site built for exactly that work, received **nothing: zero links, zero
+referrals.**
+
+That is not an SEO problem. It is a **lead leak** — the most valuable, credential-gated, legally
+compelled work Robert does was being captured by the wrong brand and dropped into a general joinery
+enquiry form.
+
+### What shipped
+
+- **The CTA is now a contextual hand-off** to `coulsyfiredoors.co.uk/fire-door-inspectors`, rendered
+  by `SpecialistHandoff.astro` at the foot of the door-hanging pages — the moment a reader who has
+  just learned how fire doors fail may realise they need an *inspection*, not a *joiner*.
+- **`src/constants/specialists.ts`** — the single source of truth for every cross-site link.
+  **One entry. No forward references. No hardcoded domains anywhere else.** See `ARCHITECTURE.md`
+  §5.4 for why this is not over-engineering.
+- **Three uncited statistics removed** — "75% fire door failures found in inspections", "6,500
+  workplace fires annually", "11 minutes average fire service response time". Presented as fact,
+  animated for emphasis, **with no source anywhere in the repository.** This site has already had to
+  remove an unevidenced "35+ years of fire safety experience" claim. **An uncited number is a claim
+  we cannot stand behind.**
+- **The FireQual credential card stays.** It is true, it is Robert's, and it evidences that the
+  person hanging the door knows what a compliant one looks like.
+- **RRO 2005 removed from the standards list**; Approved Document B and BS 8214 kept. The Regulatory
+  Reform Order governs the **Responsible Person's ongoing duty to inspect** — Fire Doors'
+  proposition. AD B and BS 8214 govern **how a door must be fitted** — which is the service the page
+  actually sells. The split is the boundary in miniature.
+- **"our qualified fire door inspectors" → singular.** There is no team.
+- **Dead `/about#qualifications` link fixed** on all 57 pages — no such anchor exists. `cc5e794`
+  fixed 399 dead qualification links and missed this one.
+
+### The rule this establishes
+
+> **Coulsy Joinery remains a complete, truthful joinery business — never a portal.** It hands a
+> visitor over **only** where their need genuinely exceeds its discipline, and it says so plainly
+> when it does. It does not scatter links to sibling businesses, and it does not carry a footer
+> directory of them.
+
+---
+
 ## 2. Supplier slice — shipped (`42537a2`)
 
 - **Howdens, Magnet and DIY Kitchens logos removed** from the kitchens card. **No supplier logos
@@ -294,6 +341,8 @@ Windows; we are on macOS.
 | **`astro.config.mjs` disables minification** — `minify: false` on both the Vite build and esbuild, so production ships **unminified JS and CSS across all 1,035 pages**. Likely a significant payload win. Needs its own **measured** slice: record before/after transfer sizes; do not assume. **Not started.** | `astro.config.mjs` |
 | **Copy defect — `fitting kitchens .`** (stray space before the full stop) in the kitchens service hero. Small content correction, own slice. **Not started.** | `kitchen-installers.astro` |
 | **Google Business Profile URL → `sameAs`.** Deferred from §1b. The business schema has **no `sameAs` at all**. **Do not guess or derive the URL** — it must come from Robert, verified. **Not started.** | §1b |
+| **Reciprocal hand-off — Fire Doors → Joinery.** The Joinery→Fire Doors direction shipped (§1c); the return leg has not. It belongs in the **fire-doors repository**, so it needs coordinating, not doing from here. **Not started.** | §1c |
+| **Geo-page family review — HIGH PRIORITY, and BLOCKED on evidence.** The site generates **1,026 geographical service pages across 18 service families** (18 × 57 towns). **Several families appear to target overlapping or synonymous intent** — `joiner`, `carpenter`, `joinery` and `general-joinery` are the obvious candidates — creating a **material risk of intra-town competition and diluted authority** (see `ARCHITECTURE.md` §8 P0(a)). **Search Console page/query evidence is required** before deciding which families should be consolidated, redirected, retained or removed. **Start with the synonym/intent overlap above.** **Genuinely distinct services may legitimately keep separate geographical families** — this is not an argument for fewer pages as such. **Do NOT delete a single page on a hypothesis.** | §8 P0(a) |
 | **Astro 6/7 + Tailwind 4** — deferred deliberately, see §5a. Not urgent; not a security requirement under the current static architecture. **Not started.** | §5a |
 | §6c bounded investigation — reposition Building Maintenance around property repairs | `ARCHITECTURE.md` §6c |
 | Item 5 — site-wide capability wording review ("specified, sourced and installed") | `ARCHITECTURE.md` §10, item 5 |
