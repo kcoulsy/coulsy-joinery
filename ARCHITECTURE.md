@@ -446,7 +446,32 @@ Mobile conversion outranks almost every other consideration.
 > previous revision were overturned by current data. Both corrections are recorded below rather
 > than quietly edited out.
 
-### P0(a) — STRONGEST EVIDENCED HYPOTHESIS: intra-town service competition
+### ⛔ P0(a) — **REFUTED BY SEARCH CONSOLE, 14 July 2026. DO NOT ACT ON IT.**
+
+> **The hypothesis below — that Google seats one page per town and suppresses the rest — is
+> WRONG.** It was drawn from a 16-town sample. A full 3-month export (`seo-data/gsc-2026-07/`)
+> refutes it.
+>
+> **NINE towns have MULTIPLE synonym pages earning clicks at the same time:**
+>
+> | Town | joiner | carpenter | joinery | general-joinery |
+> | --- | --- | --- | --- | --- |
+> | **Wetherby** | **12** | 0 | **1** | **11** |
+> | **Pocklington** | **1** | **1** | **1** | **12** |
+> | **Harrogate** | **1** | **1** | **3** | 0 |
+> | **Thirsk** | **10** | – | – | **3** |
+> | **York** | – | – | **4** | **6** |
+>
+> In Pocklington **all four earn**. Together these four families take **117 clicks — 26% of the
+> entire site.**
+>
+> **DO NOT CONSOLIDATE joiner / carpenter / joinery / general-joinery. DO NOT MASS-REDIRECT.**
+> It would have destroyed a quarter of the site's traffic. This does not prove every page is
+> optimal — it proves broad consolidation is off the table.
+>
+> The original text is kept below **as a record of a refuted hypothesis**, not as guidance.
+
+### P0(a) — [REFUTED] original hypothesis: intra-town service competition
 
 **This supersedes the "thin content" hypothesis below.** A page-level A/B was run, as it should have
 been before any conclusion was drawn.
@@ -810,6 +835,89 @@ The **footer hardcodes four geo pages** (`york-joinery`, `harrogate-joinery`, `w
 links** while `ilkley-joiner` shows **1** — the inbound-link counts in §8 P0(a) are distorted by four
 slugs someone typed into the footer, not by any editorial decision. **A separate link-graph
 decision.** It does not block anything.
+
+---
+
+## 8c. Search Console — what is VERIFIED (3 months, 13 Apr – 12 Jul 2026)
+
+**Evidence: `seo-data/gsc-2026-07/`. 449 clicks, 41,897 impressions, UK 417/437.**
+**READ THE DATE WARNING IN THAT FOLDER BEFORE DRAWING CONCLUSIONS.**
+
+### Clicks by family — the money question
+
+| Family | Clicks | % of site | Note |
+| --- | --- | --- | --- |
+| **heritage-restoration-joinery** | **49** | **10.9%** | **Best-performing family. Owner does not want the work.** |
+| bespoke-joinery | 48 | 10.7% | |
+| general-joinery | 45 | 10.0% | |
+| joiner | 43 | 9.6% | |
+| **door-hanging** | **41** | **9.1%** | **Was 100% orphaned — see below** |
+| kitchen-installers | 35 | 7.8% | |
+| stud-wall-partitioning | 23 | 5.1% | |
+| joinery / cut-roofs / trusses / subcontract / carpenter | 69 | 15.4% | |
+| garden rooms + offices + small build | 17 | 3.8% | |
+| steel-fire-exit-doors | **3** | 0.7% | **3,244 impressions. 0.09% CTR. Position 38–68.** |
+| **building-maintenance** | **1** | **0.2%** | **202 impressions across 22 pages** |
+| **accessible-kitchen-installers** | **0** | **0.0%** | **497 impressions. ZERO clicks.** |
+
+### Heritage — a business decision, NOT an SEO one. Do not "fix" it.
+
+**Heritage is the best-performing organic family.** `leeds-heritage-restoration-joinery` alone
+earns **32 clicks — the second-best page on the site** after the homepage.
+
+**It remains DEMOTED by owner decision, and that decision stands.** Demoting it costs roughly
+**11% of organic CLICKS — which is not the same as 11% of the business.** Those clicks are
+small, awkward timber repairs Robert does not want. **Traffic quality and commercial fit beat
+raw clicks.** Record both facts; do not let a future session "recover" this traffic.
+
+### Door Hanging — a genuine discoverability defect, now fixed (`8ddb478`)
+
+**41 clicks — the 4th-biggest family — earned while UNREACHABLE from anywhere on the site.**
+No nav, no footer, no hub; a BFS from the homepage never found it. It performed *despite* the
+site. Whether the new internal route improves impressions, rankings or clicks is **not yet
+measurable** — the fix postdates this export.
+
+### Building Maintenance — NO organic foundation. Remove from the SEO queue.
+
+**1 click. 202 impressions. 22 pages.** Any repositioning would be a **new commercial
+proposition** (B2B credibility for managing agents, landlords, commercial clients) — **not the
+optimisation of an existing asset.** Stop describing it as one. **Future business decision, not
+a current SEO priority.**
+
+---
+
+## 8d. 🔥 The fire-door leak — 3,955 impressions on the WRONG DOMAIN
+
+**23 fire-door queries land on `coulsyjoinery.co.uk`. They produced 2 clicks.**
+
+| Query | Clicks | Impressions | Position |
+| --- | --- | --- | --- |
+| fire door installation leeds | 0 | **890** | 29.4 |
+| fire door replacement harrogate | 0 | **442** | **9.9** |
+| fire door maintenance harrogate | 0 | **408** | **11.0** |
+| fire doors wakefield | 0 | 264 | 11.8 |
+| fire door inspections harrogate | 0 | 184 | 20.3 |
+| fire door survey harrogate | 0 | 181 | 33.8 |
+| fire door testing harrogate | 0 | 180 | 25.7 |
+
+**Google already rates Coulsy for "fire door replacement harrogate" at position 9.9 — and sends
+the visitor to a joinery page that does not sell it.** This is the highest-value, legally
+compelled, credential-gated work Robert does (FireQual, §5).
+
+### ⚠️ NEXT: a LANDING-PAGE AUDIT. "Wrong domain" is not yet the full diagnosis.
+
+**Do NOT strip fire-door language or redirect pages before this is done.** Establish:
+
+1. **Which Joinery URLs** received those impressions.
+2. **Which exact queries** hit each URL.
+3. **Which intent** each represents — timber fire doors, inspection/compliance, installation, or
+   **external steel escape doors** (which may be genuinely distinct — see §6).
+4. Whether **equivalent Fire Doors pages exist**.
+5. Whether **`coulsyfiredoors.co.uk` currently ranks** for the same queries.
+
+**The goal: preserve truthful Joinery INSTALLATION capability, while Fire Doors clearly owns
+INSPECTION, SURVEYS, COMPLIANCE and specialist remedial intent.** The hand-off shipped in
+`3a32185` is validated by this data — but it is a hand-off, not a purge.
 
 ---
 
