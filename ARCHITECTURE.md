@@ -752,6 +752,67 @@ are approved.**
 
 ---
 
+## 8b. 324 pages are unreachable from the homepage — bounded investigation, NOT started
+
+**Measured 14 July 2026 by a breadth-first crawl of the built site. No code changed.**
+
+### The measurement
+
+A BFS from `dist/index.html`, following only internal `href`s, at unlimited depth:
+
+| | |
+| --- | --- |
+| Total pages | **1,036** |
+| Reachable from the homepage | **711** |
+| **Orphaned** | **324** |
+
+**These pages exist, build, are in the sitemap and return 200 — but no chain of internal links
+reaches them.** Google can find them; a visitor cannot.
+
+Roughly **18 towns per service family** are stranded, consistently across all 18 families.
+
+### What was ALREADY fixed (`8ddb478`) — and what was not
+
+`door-hanging` was the extreme case: **all 57 pages orphaned, hub included.** It was missing from
+both the service catalogue and the navbar, so its geo pages linked only back to their own hub — a
+closed loop with no entrance. It also carried the fire-door hand-off to Coulsy Fire Doors, so the
+bridge between the two sites sat on pages nobody could navigate to. **Fixed: the hub is now one
+click from the homepage and 38 of its 56 geo pages are reachable.** Orphans fell 363 → 324.
+
+**The remaining 324 are a different problem and were deliberately left alone.**
+
+### ⚠️ What NOT to conclude — the trap
+
+> **Do NOT record `getNearbyLocations` measuring distance from a fixed base point as a defect.**
+>
+> It measures from Robert's operational base rather than from the page's own town. That looks wrong
+> geographically — but **proximity to Robert is genuinely relevant**: he has to drive there. Whether
+> "nearby areas" should mean *near the town* or *within my operating area* is a **product decision,
+> not a bug**, and Robert has said the distance from him matters.
+
+### The actual questions to investigate
+
+1. **Why do 37 of 56 towns fall back to the same hardcoded eight-town list?**
+   `NEARBY_LOCATIONS` has curated entries for only **19** towns. The other 37 fall through to
+   `default: [york, leeds, harrogate, wetherby, linton, boston-spa, collingham, spofforth]`.
+   Every one of those 37 pages therefore surfaces the same eight towns — and any town outside that
+   list is never linked from anywhere.
+2. **Does every generated geo page need a deliberate route in** — from the hub, a location index, or
+   another page — rather than relying on the nearby-areas engine to link it by side-effect?
+   Discoverability by accident is what produced 324 orphans.
+
+**Both are open. Neither is scoped. Do not act without evidence.**
+
+### Separate, related, and NOT blocking
+
+The **footer hardcodes four geo pages** (`york-joinery`, `harrogate-joinery`, `wetherby-joinery`,
+`yorkshire-joinery`) on all 1,036 pages. This is why `york-joinery` shows **1,035 inbound internal
+links** while `ilkley-joiner` shows **1** — the inbound-link counts in §8 P0(a) are distorted by four
+slugs someone typed into the footer, not by any editorial decision. **A separate link-graph
+decision.** It does not block anything.
+
+---
+
 ## 9. Risks of consolidation
 
 | Risk | Assessment |
