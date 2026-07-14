@@ -59,11 +59,38 @@ const opener = quoteFor
   ? `Hi Robert, I'd like a quote for ${quoteFor}.`
   : `Hi Robert, I'd like a quote.`;
 
-const message =
+// ─────────────────────────────────────────────────────────────────────────────────────────
+// ATTRIBUTION — deliberately a plain English sentence, not a tracking code.
+//
+// A wa.me click leaves the site: you can see that someone tapped a button, and nothing
+// after that. Not whether they sent anything, not whether they became a customer, and not
+// which site they came from. Counting clicks would be the same trap as counting impressions
+// or inbound links — a number that moves without meaning.
+//
+// So the ATTRIBUTION TRAVELS IN THE MESSAGE. It arrives in Robert's WhatsApp, where the
+// enquiry actually lands, with no analytics, no cookies and nothing hidden from the
+// customer. `SRC=JOINERY-KITCHENS-LEEDS` would be tracking. A sentence saying which website
+// it came from is just... information.
+//
+// WHERE IT SITS, AND WHY IT IS NOT LAST:
+//   - not FIRST, because WhatsApp's notification preview shows the opening line, and that
+//     line should tell Robert WHAT THE JOB IS, not where it came from;
+//   - not LAST, because the cursor lands at the end of pre-filled text and the labelled
+//     gaps have to be there for the customer to complete.
+//
+// When this component is ported to the Fire Doors site, change SITE_NAME — nothing else.
+// That single line is what will eventually answer "is Fire Doors generating its own work?"
+// ─────────────────────────────────────────────────────────────────────────────────────────
+const SITE_NAME = "Coulsy Joinery";
+const attribution = `Enquiry via the ${SITE_NAME} website.`;
+
+const message = [
   // `locationInText` arrives as " in Leeds" (leading space), so collapse any doubles rather
   // than depending on 18 service pages getting the spacing right.
-  `${opener} Happy to send photos if that helps.`.replace(/\s+/g, " ").trim() +
-  `\n\nPostcode:\nTimescale:\nWhat's involved:`;
+  `${opener} Happy to send photos if that helps.`.replace(/\s+/g, " ").trim(),
+  attribution,
+  `Postcode:\nTimescale:\nWhat's involved:`,
+].join("\n\n");
 
 const href = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 ---

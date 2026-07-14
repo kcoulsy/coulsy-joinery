@@ -22,7 +22,7 @@ const { transparent = false } = Astro.props;
 // which would presume more than the visitor has told us. The contextual version lives in
 // WhatsAppButton.astro, on the hero CTA, where the page DOES know the service and the town.
 const waHref = `https://wa.me/${DETAILS.PHONE.replace(/\D/g, "").replace(/^0/, "44")}?text=${encodeURIComponent(
-  "Hi Robert, I'd like to ask about some work. Happy to send photos if that helps.\n\nPostcode:\nTimescale:\nWhat's involved:"
+  "Hi Robert, I'd like to ask about some work. Happy to send photos if that helps.\n\nEnquiry via the Coulsy Joinery website.\n\nPostcode:\nTimescale:\nWhat's involved:"
 )}`;
 
 const menuitems = [
