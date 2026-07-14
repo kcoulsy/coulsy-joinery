@@ -10,6 +10,13 @@ interface Props {
 const { items, label } = Astro.props;
 // Sanitize label for use in ID by replacing spaces with hyphens
 const sanitizedLabel = label.replace(/\s+/g, "-");
+
+// Services carries 14 items. In a single 256px column that is a ~690px panel — 87% of the
+// height of a 13" laptop screen, and tall enough to need its own internal scrollbar. Split
+// long menus into two columns instead: same links, roughly half the height, no scrolling.
+// Short menus (About, 5 items) stay single-column — two columns would look broken.
+const COLUMN_SPLIT_THRESHOLD = 8;
+const isWide = items.length > COLUMN_SPLIT_THRESHOLD;
 ---
 
 <div class="group relative inline-block">
@@ -37,7 +44,14 @@ const sanitizedLabel = label.replace(/\s+/g, "-");
     </svg>
   </button>
   <ul
-    class="absolute top-full left-0 w-64 bg-white shadow-lg rounded-sm transform origin-top transition-all duration-200 ease-in-out scale-y-0 group-hover:scale-y-100 pointer-events-none group-hover:pointer-events-auto max-h-[80vh] overflow-y-auto"
+    class:list={[
+      "absolute top-full left-0 bg-white shadow-lg rounded-sm transform origin-top transition-all duration-200 ease-in-out scale-y-0 group-hover:scale-y-100 pointer-events-none group-hover:pointer-events-auto max-h-[80vh] overflow-y-auto py-1",
+      // CSS columns, not a grid: items flow DOWN the first column before starting the
+      // second, so the menu's priority order (see Navbar) survives — the top services stay
+      // in the left column, where the eye lands. It also auto-balances, so adding or
+      // removing a service cannot break the layout.
+      isWide ? "columns-2 gap-x-2 w-[34rem] [&_li]:break-inside-avoid" : "w-64",
+    ]}
     role="menu"
     aria-orientation="vertical"
   >
@@ -46,7 +60,7 @@ const sanitizedLabel = label.replace(/\s+/g, "-");
         <li role="none">
           <a
             href={item.link}
-            class="block px-4 py-3 text-[#1e2a38] hover:text-[#1e2a38] hover:bg-[#f5f5f5] transition-colors duration-200"
+            class="block px-4 py-2.5 text-[#1e2a38] hover:text-[#1e2a38] hover:bg-[#f5f5f5] transition-colors duration-200"
             role="menuitem"
           >
             {item.label}
