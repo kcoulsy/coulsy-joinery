@@ -214,6 +214,34 @@ door-hanging pages — where a reader has just been told how fire doors fail, an
 they need an *inspection* rather than a *joiner*. That is the moment, and it is the only place it
 appears.
 
+### 5.2a 🛑 REPOSITORY BOUNDARY — this repo owns JOINERY, and nothing else
+
+**Each repository is the authority for itself. This one is the authority for Coulsy Joinery.**
+
+**This repo OWNS:** Joinery architecture, SEO, UX, content, documentation — and **identifying when
+work appears to belong elsewhere.**
+
+**This repo does NOT own, and must NOT decide:**
+
+- how Fire Doors should rank, which Fire Doors pages to build, its navigation or SEO strategy;
+- the same for any future specialist site (Property Maintenance, Clerk of Works).
+
+**When this repo finds something materially relevant to another business, it writes a SHORT,
+FACTUAL HANDOVER and STOPS.** It states what it observed. It does not design the other site.
+
+> ✅ *"These search intents appear to belong to the specialist Fire Doors business. Their repo
+> should audit and decide."*
+>
+> ❌ *"Fire Doors should collapse its four geo families into two and lead with inspection."*
+
+**Why this rule exists:** on 14 July 2026 this session audited the fire-doors repository's geo
+structure, told it 216 pages were cannibalising, recommended a specific consolidation, and wrote
+that guidance into its memory. **That was overreach.** It risks duplicated thinking, contradictory
+decisions, and one repo becoming dependent on assumptions about another — the precise failure this
+brand architecture exists to avoid.
+
+**Receiving repo does its own thinking. Always.**
+
 ### 5.3 Standing cross-site rules
 
 > - **No site-wide footer links to every specialist site.**
@@ -904,20 +932,30 @@ a current SEO priority.**
 the visitor to a joinery page that does not sell it.** This is the highest-value, legally
 compelled, credential-gated work Robert does (FireQual, §5).
 
-### ⚠️ NEXT: a LANDING-PAGE AUDIT. "Wrong domain" is not yet the full diagnosis.
+### 📋 HANDOVER TO THE FIRE DOORS REPOSITORY — facts only. **This repo stops here.**
 
-**Do NOT strip fire-door language or redirect pages before this is done.** Establish:
+**Per §5.2a, this repository does NOT decide what Fire Doors does about this.** It records the
+observation and hands it over. The fire-doors repo performs its own audit and makes its own calls.
 
-1. **Which Joinery URLs** received those impressions.
-2. **Which exact queries** hit each URL.
-3. **Which intent** each represents — timber fire doors, inspection/compliance, installation, or
-   **external steel escape doors** (which may be genuinely distinct — see §6).
-4. Whether **equivalent Fire Doors pages exist**.
-5. Whether **`coulsyfiredoors.co.uk` currently ranks** for the same queries.
+> **Handover — fire-door search intent landing on Joinery**
+>
+> Search Console (13 Apr – 12 Jul 2026, `coulsyjoinery.co.uk`) shows **~3,955 impressions across
+> 23 fire-door queries landing on JOINERY URLs, producing 2 clicks.** The intents include
+> **installation, inspection, survey, testing, maintenance and replacement**, across Leeds,
+> Harrogate, Wakefield and York. Several rank on page one — *"fire door replacement harrogate"*
+> at position **9.9**, *"fire door maintenance harrogate"* at **11.0**.
+>
+> **The Fire Doors repository should perform its own landing-page audit** and decide how those
+> intents are owned: which URLs, which queries, which pages exist, which need creating, which
+> hand-offs should exist, and which content legitimately remains on Joinery.
+>
+> **Joinery will retain truthful fire-door INSTALLATION capability** (the agreed boundary, §5.1)
+> **and will not determine Fire Doors' implementation.**
 
-**The goal: preserve truthful Joinery INSTALLATION capability, while Fire Doors clearly owns
-INSPECTION, SURVEYS, COMPLIANCE and specialist remedial intent.** The hand-off shipped in
-`3a32185` is validated by this data — but it is a hand-off, not a purge.
+**What THIS repo may do, on its own pages only:** nothing yet. **Do NOT strip fire-door language or
+redirect any Joinery page** until the fire-doors repo has responded — a unilateral purge here could
+destroy intent that repo may want to receive. The hand-off shipped in `3a32185` is validated by
+this data and is sufficient for now.
 
 ---
 
