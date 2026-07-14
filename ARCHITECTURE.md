@@ -641,6 +641,117 @@ content for them — but that is a last resort, not a first move.
 
 ---
 
+## 8a. Structured data — the site declares 1,026 businesses that do not exist
+
+**Forensic investigation, 14 July 2026. No code changed. Bounded record; fix scoped separately.**
+
+### Severity — read this before acting
+
+This is a **high-priority structured-data truth and entity-consistency defect, with possible SEO
+consequences.** It is **NOT** a proven explanation for any ranking or indexing behaviour, and it must
+not be recorded as one. **The site ranks.** Google may simply be ignoring inconsistent structured
+data rather than acting on it; the visible content, titles and links are doing the work.
+
+**Fix it because it is false, not because it is costing clicks. Any SEO benefit is secondary and
+unproven.** Search Console is **not** required to establish that invented business entities are
+wrong — but it will be needed later to measure whether correcting them changed anything.
+
+### What the graph actually contains
+
+| | Verified |
+| --- | --- |
+| **Canonical business entity** | **NONE.** The homepage `LocalBusiness` has **no `@id`** — an anonymous node. |
+| **Page-scoped business entities** | **1,026 distinct `@id`s** — one per town × service (`…/aberford-joiner#business`, `…/aberford-carpenter#business`, …) |
+| **`LocalBusiness` nodes sitewide** | **3,080** |
+| **`Service` nodes sitewide** | **1,497** |
+| **Pages asserting a fabricated business address** | **1,029** |
+| **Distinct postcodes claimed for one business** | **36** |
+| **`areaServed`** | **Correct, on all 1,028 pages. KEEP IT.** |
+
+**The site does not describe one business 1,026 times. It declares 1,026 separate businesses**, all
+named "Coulsy Joinery", each with a different address and coordinates, none linked to any other.
+
+### The substitution
+
+`src/utils/pageMeta.ts:327` writes the *page's town* into the *business's address*:
+
+```ts
+addressLocality: cleanLocationName || "York",
+```
+
+`address` and `geo` state **where the business is physically located**. `areaServed` states **where
+the service is provided**. The site already emits `areaServed` correctly — and then also fabricates
+an address. **The correct signal is present; a false one sits beside it.**
+
+`hasMap` and `serviceArea.geoMidpoint` are derived from the same fabricated coordinates.
+
+### Why there are three `LocalBusiness` blocks per geo page
+
+1–2. **`businessSchema` is emitted twice.** Each of the **18** service files passes it to `Layout` as
+`structuredData` *and* re-emits it in the head slot. All 18 do this.
+3. **`serviceSchema.provider`** re-declares an *anonymous* `LocalBusiness` inline, with the same
+   fabricated address, instead of referencing the entity by `@id`.
+
+### The homepage contradicts itself
+
+Its schema claims the registered address but attaches coordinates **0.11 miles from York city
+centre — roughly 9.5 miles away from the address it sits beside.** The single page carrying the real
+address gets the coordinates wrong anyway.
+
+### 🔒 PRIVACY — the constraint that governs the fix
+
+**The registered address is Robert's HOME.** Coulsy operates as a **service-area business**;
+customers are **not** received there. Google's guidance is that service-area businesses should
+**hide the address and show only the service area**.
+
+> **This repository is PUBLIC.** Do not repeat the street address or postcode in documentation,
+> commit messages, comments or issues. It currently sits in `src/constants/details.ts` and on 2 live
+> pages; removing it from published output is part of the fix.
+
+> **The fix is NOT "publish the real address everywhere."** Robert has decided: **the private address
+> and coordinates are to be OMITTED from the site and its structured data.** Do not reintroduce them.
+> Do not derive them. Do not put them in a comment.
+
+### Agreed OBJECTIVES — settled
+
+These are decided and are not open for reinterpretation:
+
+- **One stable business identity.** A single `@id` (`https://coulsyjoinery.co.uk/#business`), used
+  identically wherever the business is declared.
+- **No page-scoped business identities.** The 1,026 `…/{town}-{service}#business` ids go.
+- **No fabricated `address` or `geo`.** The town is never substituted into `addressLocality`,
+  `postalCode` or `geo`. The private address is **omitted entirely** — see the privacy note above.
+- **At most ONE `LocalBusiness` node per page.** No duplicates within a page.
+- **Identical business properties wherever the entity is declared.**
+- **Accurate page-specific `Service` and `areaServed`.** `areaServed` is the coverage signal, it is
+  already correct, and it is not to be touched.
+
+### ⚠️ The entity-graph implementation is NOT yet decided
+
+**Do not implement from this section.** The design is under review. The open question:
+
+> **A bare `{"@id": "…/#business"}` reference on a geo page may not give a crawler access to a full
+> entity declared on a *different document*. JSON-LD nodes are not automatically joined across
+> separate pages merely because they share an `@id`.**
+
+Two candidates:
+
+- **A — one full declaration on the homepage, bare `@id` references elsewhere.** Minimal markup, but
+  relies on cross-document node joining, which is not a guaranteed crawler behaviour.
+- **B — a self-contained `@graph` per page**: one consistent `LocalBusiness` node (same `@id`, same
+  properties, no address, no geo) alongside that page's `Service`, with `Service.provider`
+  referencing it by `@id`. Each page stands alone, while still describing **one** entity rather than
+  1,026.
+
+**B is the working preference** unless primary documentation or validation shows A is reliably
+interpreted. **The objective was never "one `LocalBusiness` node in the entire built site" — it is
+one stable identity, declared consistently, at most once per page.**
+
+**Implementation is scoped separately and must not begin until the revised design and file boundary
+are approved.**
+
+---
+
 ## 9. Risks of consolidation
 
 | Risk | Assessment |
