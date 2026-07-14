@@ -1,0 +1,69 @@
+---
+// Contextual hand-off to a Coulsy specialist site.
+//
+// Shown at the exact point a visitor's need exceeds this site's discipline. It does NOT
+// advertise the other business generally — it intercepts one specific intent and explains,
+// confidently, that the work is done by a dedicated specialist service run by the same person.
+//
+// Every value comes from `src/constants/specialists.ts`. Do not hardcode a Coulsy URL here:
+// a hardcoded cross-site link in a shared component is precisely how a dead domain ended up
+// on all 1,035 pages for years (see the note in that file).
+import { getSpecialist, handoffUrl } from "../constants/specialists";
+
+interface Props {
+  /** Specialist id, e.g. "fire-doors". */
+  id: string;
+}
+
+const { id } = Astro.props;
+const specialist = getSpecialist(id);
+const href = handoffUrl(specialist);
+const { heading, body, ctaLabel } = specialist.handoff;
+---
+
+<aside
+  class="mt-12 fade-in-on-scroll delay-1000"
+  aria-label={`${specialist.name} — specialist service`}
+>
+  <div
+    class="rounded-lg border border-gray-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:shadow-lg"
+  >
+    <p
+      class="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500"
+    >
+      Specialist service
+    </p>
+
+    <h3 class="mb-4 text-xl font-semibold text-gray-900">
+      {heading}
+    </h3>
+
+    <p class="mx-auto mb-6 max-w-2xl text-gray-600">
+      {body}
+    </p>
+
+    <a
+      href={href}
+      class="group inline-flex items-center rounded-lg bg-brand px-6 py-3 font-medium text-white transition-all duration-300 ease-out hover:bg-brand-light hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/40"
+    >
+      {ctaLabel}
+      <svg
+        class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+      </svg>
+    </a>
+
+    <p class="mt-4 text-sm text-gray-500">
+      {specialist.name} is part of Coulsy Ltd.
+    </p>
+  </div>
+</aside>

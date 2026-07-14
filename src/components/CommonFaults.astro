@@ -1,5 +1,11 @@
 ---
-// Import icons for better visual appeal
+// Common fire door failures — shown on the door-hanging pages, where fire door
+// INSTALLATION is a genuine joinery service.
+//
+// The closing call to action is a hand-off, not a booking form. Inspection and compliance
+// work belongs to Coulsy Fire Doors; this page's job is to install and repair fire doors
+// well, and to send inspection intent to the specialist site.
+import SpecialistHandoff from "./SpecialistHandoff.astro";
 ---
 
 <section class="container mx-auto bg-gray-50">
@@ -14,7 +20,7 @@
       <p class="mt-4 text-gray-600 text-lg leading-relaxed fade-in-on-scroll delay-200">
         Fire doors are crucial for building safety, but they must be installed
         and maintained correctly to be effective. Here are the most common fire
-        door failures we encounter during inspections.
+        door failures I come across.
       </p>
     </div>
 
@@ -311,37 +317,11 @@
       </div>
     </div>
 
-    <!-- Call to action -->
-    <div class="mt-12 text-center fade-in-on-scroll delay-1000">
-      <div class="bg-white rounded-lg border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-        <h3 class="text-xl font-semibold text-gray-900 mb-4">
-          Concerned About Your Fire Doors?
-        </h3>
-        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Don't wait until it's too late. Our qualified fire door inspectors can
-          identify these issues and ensure your fire doors are compliant and
-          safe.
-        </p>
-        <a
-          href="/contact"
-          class="inline-flex items-center px-6 py-3 bg-brand text-white font-medium rounded-lg hover:bg-brand-light transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg transform group"
-        >
-          Book a Fire Door Inspection
-          <svg
-            class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
+    {/* This used to be a "Book a Fire Door Inspection" button pointing at /contact — it
+        advertised the specialist compliance service and then routed the lead to the joinery
+        contact form, while the dedicated fire door site received nothing. It is now a
+        hand-off. */}
+    <SpecialistHandoff id="fire-doors" />
   </div>
 </section>
 

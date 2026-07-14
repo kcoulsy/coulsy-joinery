@@ -1,5 +1,24 @@
 ---
-// FireStats component with enhanced micro-interactions and scroll-triggered animations
+// Fire door installation standards, shown on the door-hanging pages.
+//
+// WHAT WAS REMOVED, AND WHY IT MUST NOT COME BACK:
+//
+// This component used to open with three animated statistics — "75% fire door failures found
+// in inspections", "6,500 workplace fires annually", "11 minutes average fire service response
+// time" — presented as bare fact with NO source anywhere in the component or the repository.
+// They could not be verified, so they are gone. This site has already had to remove an
+// unevidenced "35+ years of fire safety experience" claim for exactly this reason.
+// If you want statistics here, cite them. An uncited number is a claim we cannot stand behind.
+//
+// WHAT STAYS, AND WHY:
+//
+// The standards below govern how a fire door must be FITTED — which is the joinery service
+// this page sells. Approved Document B and BS 8214 are the reason a door hung by a qualified
+// joiner is different from one hung by anyone else.
+//
+// The Regulatory Reform (Fire Safety) Order 2005 was removed from this list. It governs the
+// Responsible Person's ONGOING DUTY to inspect and risk-assess — which is the proposition
+// Coulsy Fire Doors exists to serve, not this one.
 ---
 
 <section class="bg-white">
@@ -8,68 +27,22 @@
       <h2
         class="text-3xl font-bold text-gray-900 sm:text-4xl fade-in-on-scroll"
       >
-        Fire Safety Compliance is Critical
+        Fire Doors Fitted to Standard
       </h2>
 
       <p class="mt-4 text-gray-500 sm:text-xl fade-in-on-scroll delay-200">
-        Recent UK fire statistics and regulatory requirements highlight the
-        importance of proper fire door maintenance and compliance with Building
-        Regulations Approved Document B and the Regulatory Reform (Fire Safety)
-        Order 2005.
+        A fire door only performs if it is installed correctly. I fit certified
+        fire door assemblies to the standards that govern them, and I hold a
+        FireQual Fire Door Inspection certification.
       </p>
     </div>
 
+    {/* Three uncited statistics were removed from here. See the note at the top of this
+        file. Do not reintroduce a number without a source. */}
     <div class="mt-8 sm:mt-12">
-      <dl
-        class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:divide-x sm:divide-gray-100"
-      >
+      <dl class="mx-auto max-w-sm">
         <div
           class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-300 hover:scale-105 transition-transform duration-300"
-        >
-          <dt class="order-last text-lg font-medium text-gray-500">
-            Fire door failures found in inspections
-          </dt>
-
-          <dd
-            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
-            data-target="75"
-          >
-            <span class="counter">0</span>%
-          </dd>
-        </div>
-
-        <div
-          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-400 hover:scale-105 transition-transform duration-300"
-        >
-          <dt class="order-last text-lg font-medium text-gray-500">
-            Workplace fires annually
-          </dt>
-
-          <dd
-            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
-            data-target="6500"
-          >
-            <span class="counter">0</span>
-          </dd>
-        </div>
-
-        <div
-          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-500 hover:scale-105 transition-transform duration-300"
-        >
-          <dt class="order-last text-lg font-medium text-gray-500">
-            Average fire service response time
-          </dt>
-
-          <dd
-            class="text-4xl font-extrabold text-brand md:text-5xl counter-animation"
-            data-target="11"
-          >
-            <span class="counter">0</span> minutes
-          </dd>
-        </div>
-
-        <div
-          class="flex flex-col px-4 py-8 text-center stat-card fade-in-on-scroll delay-600 hover:scale-105 transition-transform duration-300"
         >
           <dt class="order-last text-lg font-medium text-gray-500">
             Fire Door Inspection certified
@@ -82,31 +55,27 @@
       </dl>
     </div>
 
-    <!-- Regulatory Compliance Section -->
+    {/* The standards that govern how a fire door must be FITTED. These evidence the joinery
+        service. The Regulatory Reform (Fire Safety) Order 2005 was deliberately removed: it
+        governs the Responsible Person's ongoing duty to inspect and risk-assess, which is
+        Coulsy Fire Doors' proposition, not this page's. */}
     <div class="mt-12 bg-gray-50 rounded-xl p-8">
       <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">
-        Key Fire Safety Regulations
+        The standards I fit to
       </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <h4 class="font-semibold text-brand mb-2">Building Regulations</h4>
           <p class="text-sm text-gray-600">
-            Approved Document B - Fire Safety: Volume 1 (Dwellings) and Volume 2
+            Approved Document B — Fire Safety: Volume 1 (Dwellings) and Volume 2
             (Buildings other than dwellings)
-          </p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-sm">
-          <h4 class="font-semibold text-brand mb-2">RRO 2005</h4>
-          <p class="text-sm text-gray-600">
-            Regulatory Reform (Fire Safety) Order 2005 - Requires regular fire
-            risk assessments and maintenance
           </p>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <h4 class="font-semibold text-brand mb-2">British Standards</h4>
           <p class="text-sm text-gray-600">
-            BS 9999:2017 and BS 8214:2016 - Fire safety design and fire door
-            assembly standards
+            BS 8214:2016 — the code of practice for fire door assemblies, and
+            BS 9999:2017 for fire safety design
           </p>
         </div>
       </div>
