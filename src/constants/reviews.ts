@@ -1,10 +1,17 @@
 /**
  * Google reviews for Coulsy Joinery & Small Build.
  *
- * SINGLE SOURCE OF TRUTH. `Reviews.astro` renders these and `MainPage.astro`
- * derives its AggregateRating schema from them, so the count Google is told can
- * never disagree with the reviews actually on the page. Add a review here and
- * both update together.
+ * SINGLE SOURCE OF TRUTH. `Reviews.astro` renders these AND derives the visible
+ * "N out of 5 (M reviews on Google)" line from `AVERAGE_RATING` / `REVIEW_COUNT`
+ * below, so the numbers on the page can never disagree with the reviews on it.
+ * Add a review here and both update together.
+ *
+ * NO SCHEMA READS THIS FILE. `MainPage.astro` used to emit an AggregateRating
+ * derived from these reviews; `cc5e794` stripped it from 1,027 service pages and
+ * it is deliberately not coming back. Ratings a business publishes about itself
+ * are "self-serving", and since 2019 Google has not shown review rich results for
+ * self-serving LocalBusiness/Organization markup — it was ineligible, not merely
+ * inaccurate. See the note in `MainPage.astro`. Do not reintroduce it.
  *
  * RULES:
  *
@@ -19,7 +26,7 @@
  * 3. `rating` drives the schema. Do not hardcode a rating value anywhere else.
  *
  * Source: https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg
- * Last reconciled against Google: 13 July 2026 — 12 reviews, all five stars.
+ * Last reconciled against Google: 12 September 2026 — 13 reviews, all five stars.
  */
 
 export interface Review {
@@ -37,6 +44,11 @@ export interface Review {
 
 /** Newest first, matching the order Google presents them. */
 export const REVIEWS: Review[] = [
+  {
+    author: "Tom Waller",
+    rating: 5,
+    text: "A flawless experience. Rob is someone with a real passion for his work, who was able to immediately identify and explain all issues with my fire door. He then did very thorough remedial work dealing with every deficiency in a timely and professional manner. If you want the job done properly, come to Rob.",
+  },
   {
     author: "Barbara",
     rating: 5,
