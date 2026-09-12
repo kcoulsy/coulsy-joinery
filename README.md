@@ -90,8 +90,11 @@ route that only exports `POST` therefore cannot run and is dead code.
   The site previously claimed **£10m public liability**, which was false; see
   `ARCHITECTURE.md` §12.
 
-- **ICWCI**: election takes effect **28 August 2026**. Until then the site must not claim
-  membership or the MICWCI post-nominal. See the comment in `src/pages/about/qualifications.astro`.
+- **MICWCI**: Robert was elected to Member grade of the Institute of Clerks of Works and
+  Construction Inspectorate, effective **28 August 2026**. The post-nominal is conferred and is
+  published on `/about/qualifications`. It is a professional **membership** grade — not a
+  qualification, and not a licence: it does not make Robert a "qualified Clerk of Works", and it
+  does not put a clerk-of-works or inspection *service* on this site (see `ARCHITECTURE.md` §5a).
 
 - **CSCS Gold** card is current to **end of January 2029**. Recheck before that date.
 

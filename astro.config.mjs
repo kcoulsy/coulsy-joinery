@@ -20,7 +20,7 @@ export default defineConfig({
         if (page.includes('/about/compliance')) return false;
 
         // /about/qualifications IS included: it carries City & Guilds, CSCS, CITB,
-        // GQA, FireQual, NVQ L7 and ICWCI. Those are the experience/expertise signals,
+        // GQA, FireQual, NVQ L7 and MICWCI. Those are the experience/expertise signals,
         // and it is the target of every "view my credentials" link on the site.
 
         return true;

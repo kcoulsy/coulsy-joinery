@@ -27,6 +27,11 @@ const seoData = {
       name: "Robert Coulson",
       jobTitle: "Master Joiner",
       description: "City & Guilds qualified in 1989 with joinery experience going back to 1988",
+      memberOf: {
+        "@type": "Organization",
+        name: "Institute of Clerks of Works and Construction Inspectorate",
+        alternateName: "ICWCI",
+      },
       hasCredential: [
         {
           "@type": "EducationalOccupationalCredential",
@@ -98,9 +103,11 @@ const seoData = {
             </h3>
             <div class="space-y-6">
               {
-                /* ICWCI: election takes effect 28 August 2026. Until that date the
-                   wording below is the only accurate form — do not claim membership
-                   or the post-nominal before then. Revisit after 28/08/2026. */
+                /* MICWCI: elected to Member grade, effective 28 August 2026. The
+                   post-nominal is conferred, so it is used here. It is a professional
+                   MEMBERSHIP grade — not a qualification, and not a licence. Do not
+                   restate it as "qualified Clerk of Works" or move it into
+                   hasCredential alongside the NVQ/City & Guilds/CSCS entries. */
               }
               <div
                 class="qualification-card bg-white rounded-xl p-6 shadow-lg border border-brand-100 hover:shadow-xl transition-all duration-500"
@@ -110,9 +117,9 @@ const seoData = {
                   (ICWCI)
                 </h4>
                 <p class="text-brand-600">
-                  Successfully assessed and approved for election to the grade of
                   Member of the Institute of Clerks of Works and Construction
-                  Inspectorate, effective 28 August 2026.
+                  Inspectorate (MICWCI), elected to Member grade effective
+                  28 August 2026.
                 </p>
               </div>
 

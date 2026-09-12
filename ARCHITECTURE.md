@@ -273,7 +273,7 @@ coulsy.co.uk  ── parent company
    ├── Coulsy Joinery & Small Build          ← this repository (LIVE)
    ├── Coulsy Fire Doors                     ← coulsyfiredoors.co.uk (LIVE)
    ├── Coulsy Property Maintenance           ← FUTURE. Does not exist.
-   ├── Coulsy Inspection / Clerk of Works    ← FUTURE. Not before 28 Aug 2026.
+   ├── Coulsy Inspection / Clerk of Works    ← FUTURE. Does not exist.
    └── Future specialist businesses
 ```
 
@@ -282,9 +282,11 @@ it and intends to rebuild it. **It must not appear in production until a proper 
 exists and is verified.** *Recorded ≠ linked* — the distinction matters, and this section is the
 record.
 
-**Nothing in this section may be built, referenced, hinted at or placeheld in production.** The
-ICWCI election is not effective until **28 August 2026**; no membership or post-nominal may be
-claimed before then.
+**Nothing in this section may be built, referenced, hinted at or placeheld in production.**
+Robert's **MICWCI** membership became effective **28 August 2026** and is published as a
+credential on `/about/qualifications`. That credential does **not** unblock anything in this
+section: a membership is not a business, and Coulsy Inspection / Clerk of Works still does not
+exist.
 
 ### Retired domain — never resurrect
 
@@ -308,7 +310,7 @@ this file and the audit — kept deliberately, because that dead sitewide link i
 | Steel fire exit doors | **Coulsy Joinery — for now** | External escape/security doors. Arguably a distinct product from the timber flat-entrance-door compliance work Fire Doors sells. **Unresolved; not urgent.** Do not move without evidence. |
 | Handyman, repairs, property maintenance — domestic **and** commercial | **Dedicated handyman / property-maintenance site** | **Legal entity, VAT position and insurance wording are undecided and are the owner's to determine.** The work may continue to be delivered through Coulsy Ltd. Do not record or assume otherwise. Note: "handyman" draws **zero** impressions in the current data — but only because no handyman content exists, so the site cannot appear. Absence of impressions is *not* evidence of absent demand; size it with keyword-tool data. **This repository is the intended architectural template — see §6a.** |
 | Extensions, structural work, full renovations | **Builder** | Coulsy Joinery legitimately keeps *small* build services as an extension of joinery; the Builder brand takes the larger projects. No cannibalisation. |
-| ICWCI, clerk of works, quality consultancy, compliance inspection | **Professional Inspection / Consultancy** | ICWCI election effective **28 Aug 2026** — until then the site must not claim membership or the post-nominal. |
+| ICWCI, clerk of works, quality consultancy, compliance inspection | **Professional Inspection / Consultancy** | **MICWCI** membership effective **28 Aug 2026**, now published as a credential on `/about/qualifications`. The *credential* stays here; the *service* does not belong on the Joinery site. |
 
 ---
 
@@ -658,7 +660,7 @@ generated, never hand-written.
 from the sitemap ("trust signals, not enquiry drivers"). Same for `/about/compliance` and
 `/about/sustainability`.
 
-This page carries City & Guilds, NVQ Level 7, CSCS, CITB, GQA, FireQual — and now ICWCI. It is the
+This page carries City & Guilds, NVQ Level 7, CSCS, CITB, GQA, FireQual — and now MICWCI. It is the
 entire experience-and-expertise case, and Google is forbidden from seeing it. It is also the target
 of the 399 internal links just repaired.
 

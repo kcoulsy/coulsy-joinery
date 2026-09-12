@@ -20,9 +20,10 @@
  *    right now. No placeholders, no "coming soon", no aspirational entries. In particular:
  *      - `coulsy.co.uk` (the future parent brand site) is OWNED but does not yet resolve.
  *        It must NOT be linked from production until the replacement is live and verified.
- *      - Nothing may reference Property Maintenance, Clerk of Works, MICWCI or an
- *        inspection website before those exist. ICWCI election is not effective until
- *        28 August 2026.
+ *      - Nothing may reference Property Maintenance, Clerk of Works or an inspection
+ *        website before those exist. Robert's MICWCI membership became effective
+ *        28 August 2026 and is published as a CREDENTIAL on /about/qualifications —
+ *        that is not licence to link or allude to an inspection business that does not.
  * 2. `url` + `ctaPath` MUST return 200. Verify before shipping, and re-verify periodically.
  *    A dead cross-site link is the exact failure this file exists to prevent.
  * 3. `notOurs` is not decoration. It states what deliberately STAYS on the Joinery site.

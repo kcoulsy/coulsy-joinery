@@ -353,7 +353,7 @@ Windows; we are on macOS.
 | **Astro 6/7 + Tailwind 4** — deferred deliberately, see §5a. Not urgent; not a security requirement under the current static architecture. **Not started.** | §5a |
 | **Building Maintenance — NO organic foundation (1 click, 202 impressions, 22 pages). NOT an SEO priority.** Any repositioning is a **new commercial proposition** (B2B credibility for managing agents/landlords), not the optimisation of an existing asset. Future business decision. | `ARCHITECTURE.md` §6c |
 | Item 5 — site-wide capability wording review ("specified, sourced and installed") | `ARCHITECTURE.md` §10, item 5 |
-| Add ICWCI to the hero evidence panel — **only after 28 August 2026** | `HeroEvidencePanel.astro` |
+| Add MICWCI to the hero evidence panel — **no longer date-blocked** (membership effective 28 Aug 2026); now purely a content decision for Robert, as the panel deliberately carries four credentials | `HeroEvidencePanel.astro` |
 | P1-2 — review snippets | — |
 | P2-1 — singular headings (person-nouns only) | — |
 | `OptimizedImage` technical debt (`loading="lazy"` + `fetchpriority` conflict) | — |
