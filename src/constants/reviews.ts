@@ -23,7 +23,7 @@
  *    the day they were typed and rotted from then on — a review from September
  *    2025 was still telling visitors it was "a month ago" in July 2026. If you
  *    ever add dates back, store an absolute date, never a relative phrase.
- * 3. `rating` drives the schema. Do not hardcode a rating value anywhere else.
+ * 3. `rating` drives the displayed average. Do not hardcode a rating value anywhere else.
  *
  * Source: https://search.google.com/local/reviews?placeid=ChIJFREqq2Poe0gRFoS-2A2H_cg
  * Last reconciled against Google: 12 September 2026 — 13 reviews, all five stars.
