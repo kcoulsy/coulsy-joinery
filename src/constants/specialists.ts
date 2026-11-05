@@ -58,25 +58,33 @@ const FIRE_DOORS: SpecialistBusiness = {
   id: "fire-doors",
   name: "Coulsy Fire Doors",
   url: "https://coulsyfiredoors.co.uk",
-  discipline: "Fire door inspection and compliance",
+  // As of 5 Nov 2026, Coulsy Fire Doors no longer sells independent fire-door inspection,
+  // compliance assessment or certification as a standalone product — see
+  // FIRE_DOORS_COMPLIANCE_HANDOVER.md. This entry hands off to the SPECIALIST CONTRACTING
+  // end of fire-door work (multi-door programmes, formal insurer/RP-facing paperwork),
+  // never to an inspection product. Joinery keeps advertising, and doing, ordinary
+  // fire-door install/repair/maintenance work — including the physical remedial work
+  // arising from a customer-supplied fire risk assessment.
+  discipline: "Fire door remedial work and compliance programmes",
   owns: [
-    "Fire door inspections",
-    "Fire door surveys",
-    "Compliance reporting",
-    "Fire risk assessment remedial works",
+    "Remedial work against an existing fire risk assessment",
+    "Multi-door compliance programmes",
+    "New fire door fit-outs for landlords, HMOs and commercial buildings",
+    "Written fire-door records for insurers and Responsible Persons",
   ],
   notOurs:
-    "Fire door installation, fitting and repair carried out as part of joinery work stays " +
-    "on the Joinery site, as does the FireQual credential itself.",
+    "Fire door installation, fitting and repair carried out as part of joinery work — " +
+    "including remedial work identified by a fire risk assessment — stays on the Joinery " +
+    "site, as does the FireQual credential itself.",
   handoff: {
-    heading: "Need a fire door inspection?",
+    heading: "Got a fire risk assessment flagging multiple doors?",
     body:
-      "Fire door inspection and compliance reporting is specialist work, so I run it as a " +
-      "dedicated service. I install, fit and repair certified fire doors as part of my " +
-      "joinery — but if you need a FireQual-certified inspection, a compliance survey or a " +
-      "fire door report, that is handled by Coulsy Fire Doors.",
+      "A single fire door fitted or repaired as part of joinery work stays with me — but a " +
+      "multi-door compliance programme, or a written record for your insurer or Responsible " +
+      "Person, is specialist contracting work that Coulsy Fire Doors runs as a dedicated " +
+      "service.",
     ctaLabel: "Visit Coulsy Fire Doors",
-    ctaPath: "/fire-door-inspectors",
+    ctaPath: "/fire-door-services",
   },
 };
 

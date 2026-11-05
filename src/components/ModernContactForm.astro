@@ -24,10 +24,26 @@ const {
     <p class="text-gray-600 animate-slide-up-delay">{subtitle}</p>
   </div>
 
+  <!--
+    5 Nov 2026 — fetch()-based submission, same fix proven on Coulsy Fire Doors.
+    `action` is a LITERAL constant, identical on every page that embeds this component
+    (21 pages). Netlify's deploy-time scanner keeps only one redirect target per shared
+    form name sitewide — that is the exact defect found on the Fire Doors site, where
+    the action differed per page. Keeping one hardcoded value here, everywhere, avoids it
+    by construction. Do not compute `action` from the current page.
+
+    This `action` is also the no-JS fallback: without JavaScript the browser does a plain
+    POST-and-redirect to "/contact?success=true". /contact always embeds this same
+    component, so the script below — which reads the same query parameters on every page
+    load, not just after a fetch() submission — is guaranteed to be present there to show
+    the banner. (The homepage does NOT embed this component, which is why the fallback
+    points at /contact rather than "/".)
+  -->
   <form
     id="contact"
     name="contact"
     method="post"
+    action="/contact?success=true"
     data-netlify="true"
     netlify-honeypot="bot-field"
     class="space-y-6"
@@ -288,7 +304,7 @@ const {
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("modern-contact-form");
+    const form = document.getElementById("contact");
     const submitBtn = document.getElementById("submit-btn");
     // These elements are used in CSS for styling states
     // const btnText = document.getElementById("btn-text");
@@ -330,17 +346,64 @@ const {
       }, 8000);
     }
 
-    // Form submission handling
-    if (form && submitBtn) {
-      form.addEventListener("submit", function () {
-        // Show loading state
-        submitBtn!.classList.add("loading");
-        (submitBtn as HTMLButtonElement).disabled = true;
+    // Form submission handling — fetch()-based, so the page never navigates away.
+    //
+    // The form's native method="post" + action="/contact?success=true" stays in the markup
+    // as a no-JS fallback. With JS enabled, we intercept submit, POST the same fields (including
+    // form-name and the honeypot) via fetch(), and show the banner from the fetch response
+    // instead of relying on a redirect. This also fixes a real bug: the previous script
+    // looked for an element with id "modern-contact-form", which never existed — the form's
+    // id is "contact" — so the loading state and this whole handler silently never ran.
+    function hideBanner(el: Element | null) {
+      if (!el) return;
+      el.classList.remove("show");
+      setTimeout(() => el.classList.add("hidden"), 500);
+    }
 
-        // Add a small delay to show the loading animation
-        setTimeout(() => {
-          // Form will submit normally to Netlify
-        }, 100);
+    function showBanner(el: Element | null) {
+      if (!el) return;
+      el.classList.remove("hidden");
+      el.classList.add("show");
+      setTimeout(() => hideBanner(el), 8000);
+    }
+
+    if (form && submitBtn) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formEl = form as HTMLFormElement;
+        const button = submitBtn as HTMLButtonElement;
+
+        button.classList.add("loading");
+        button.disabled = true;
+        hideBanner(successMessage);
+        hideBanner(errorMessage);
+
+        const formData = new FormData(formEl);
+        const body = new URLSearchParams();
+        formData.forEach((value, key) => body.append(key, value.toString()));
+
+        fetch(formEl.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        })
+          .then((response) => {
+            button.classList.remove("loading");
+            button.disabled = false;
+
+            if (response.ok) {
+              formEl.reset();
+              showBanner(successMessage);
+            } else {
+              showBanner(errorMessage);
+            }
+          })
+          .catch(() => {
+            button.classList.remove("loading");
+            button.disabled = false;
+            showBanner(errorMessage);
+          });
       });
     }
 

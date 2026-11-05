@@ -338,6 +338,7 @@ Windows; we are on macOS.
 
 | Item | Reference |
 | --- | --- |
+| **⏳ Insurance renewal verification, due after 13 November 2026.** The published figures (£5m public/products liability, £10m employers' liability, £1m professional indemnity) were NOT changed in the 5 Nov 2026 compliance remediation — they are retained as the last-verified figures, not reconfirmed. Professional indemnity cover for independent fire-door inspection/assessment specifically was difficult to renew (see `FIRE_DOORS_COMPLIANCE_HANDOVER.md` §A). **Re-verify all three figures against the actual renewed policy once it completes, and correct any page where a figure has changed.** Not a deployment blocker. | `about/compliance.astro`, `about/qualifications.astro`, `about.astro`, `MainPage.astro` |
 | **🔥 FIRE-DOOR INTENT — HANDED OVER TO THE FIRE DOORS REPO. This repo does NOT audit or redesign it (§5.2a).** 23 fire-door queries put **3,955 impressions** on the JOINERY site for **2 clicks** ("fire door replacement harrogate" sits at position **9.9**). **The fire-doors repository performs its own landing-page audit and makes its own decisions.** Joinery's only jobs: keep truthful INSTALLATION capability, and **do NOT strip fire-door language or redirect anything until that repo responds** — a unilateral purge could destroy intent it may want. | `ARCHITECTURE.md` §8d |
 | **⛔ DO NOT consolidate joiner/carpenter/joinery/general-joinery — REFUTED by Search Console.** 9 towns have multiple synonym pages earning simultaneously (Pocklington: all four). Together **117 clicks = 26% of the site**. §8 P0(a) was drawn from a 16-town sample and is **wrong**. Broad consolidation or mass redirects would destroy a quarter of the traffic. | `ARCHITECTURE.md` §8 P0(a) |
 | **Re-export Search Console after a post-fix window.** The 13 Apr–12 Jul export predates the mobile-nav fix (13 Jul), the Door Hanging route (14 Jul) and the fire-door hand-off (14 Jul). **Mobile earned 54% of clicks at 3× desktop CTR *with a broken menu*.** Their benefit is **not yet measurable**. Compare like for like later. | `seo-data/gsc-2026-07/` |
@@ -358,7 +359,7 @@ Windows; we are on macOS.
 | P2-1 — singular headings (person-nouns only) | — |
 | `OptimizedImage` technical debt (`loading="lazy"` + `fetchpriority` conflict) | — |
 | Homepage ships **three `<h1>`s** (`HeroSlider`, one per slide) | pre-existing |
-| Heritage signals audit — **359 FAQ schema instances** | `ARCHITECTURE.md` §10a |
+| Heritage signals audit — **359 FAQ schema instances + 1,027 geo keyword refs** across the geo pages (`pageMeta.ts`). The homepage meta description/keywords/schema instance was fixed 5 Nov 2026 as a standalone, narrow correction — this larger, bounded audit of `pageMeta.ts` itself remains **not yet authorised**. Separately, whether the 57-page `heritage-restoration-joinery` family should ever be deleted, redirected or noindexed is **not decided** — it stays live and indexed pending Search Console evidence, per the existing rule below. | `ARCHITECTURE.md` §10a, §3 |
 | "DIY Kitchens fitter [town]" niche | `ARCHITECTURE.md` §6b |
 
 ---

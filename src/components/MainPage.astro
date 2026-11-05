@@ -50,10 +50,19 @@ const slides = [
 const seoData = {
   title:
     "Coulsy Joinery - Professional Joinery Services in York | Bespoke Kitchens & Garden Offices",
+  // "heritage restoration" / "heritage joinery" removed from the homepage description and
+  // keywords (5 Nov 2026) — the homepage does not display heritage work at all (it was
+  // already demoted from the nav and homepage cards), so promoting it in the one meta
+  // surface every visitor's search result is built from was a mismatch between promotion
+  // and actual page content. This is a narrow, homepage-only fix, NOT the bounded heritage
+  // signals audit ARCHITECTURE.md §10a calls for (pageMeta.ts's 1,027 geo keyword refs and
+  // 359 FAQ schema instances across the geo pages) — that remains deliberately deferred and
+  // not yet authorised. Do not extend this fix into pageMeta.ts on the strength of this
+  // comment.
   description:
-    "Expert joinery services in York including bespoke kitchens, garden offices, heritage restoration, and small building works. Family-run business with experience going back to 1988. Professional quotes available.",
+    "Expert joinery services in York including bespoke kitchens, garden offices, and small building works. Family-run business with experience going back to 1988. Professional quotes available.",
   keywords:
-    "joinery York, bespoke kitchens, garden offices, heritage joinery, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner, local joiner York, qualified carpenter Yorkshire",
+    "joinery York, bespoke kitchens, garden offices, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner, local joiner York, qualified carpenter Yorkshire",
   ogImage: "/og-image.jpg",
   canonical: "https://coulsyjoinery.co.uk",
   structuredData: {
@@ -67,7 +76,7 @@ const seoData = {
     // 0.11 miles from York city centre — ~9.5 miles from the address printed beside them.
     ...BUSINESS_NODE,
     description:
-      "Professional joinery services in York including bespoke joinery, kitchen installations, garden offices, heritage restoration, and small building works.",
+      "Professional joinery services in York including bespoke joinery, kitchen installations, garden offices, and small building works.",
     areaServed: ["York", "Wetherby", "Harrogate", "Yorkshire"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -99,15 +108,9 @@ const seoData = {
             description: "Timber-framed garden office installation",
           },
         },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Heritage Restoration",
-            description:
-              "Expert restoration and reproduction of period joinery",
-          },
-        },
+        // "Heritage Restoration" removed — Robert does not pursue heritage restoration
+        // leads (they are small rotten-timber repairs, not a service worth advertising).
+        // See the memory note; this is a business decision, not a wording fix.
       ],
     },
     foundingDate: "1989",
@@ -115,7 +118,7 @@ const seoData = {
       "@type": "Person",
       name: "Robert Coulson",
       honorificSuffix: "MICWCI",
-      jobTitle: "Joiner, Builder and Construction Inspector",
+      jobTitle: "Joiner, Builder and Fire Door Specialist",
       description:
         "City & Guilds qualified in 1989 with joinery experience going back to 1988",
     },
@@ -124,7 +127,7 @@ const seoData = {
         "@type": "Person",
         name: "Robert Coulson",
         honorificSuffix: "MICWCI",
-        jobTitle: "Joiner, Builder and Construction Inspector",
+        jobTitle: "Joiner, Builder and Fire Door Specialist",
         description: "City & Guilds qualified in 1989 with experience going back to 1988",
       },
       {

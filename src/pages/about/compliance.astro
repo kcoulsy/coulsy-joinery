@@ -7,9 +7,9 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 // Modern SEO optimization with personal voice preserved
 const seoData = {
   title:
-    "Compliance & Safety Standards - Coulsy Joinery | Insured & Certified",
+    "Compliance & Safety Standards - Coulsy Joinery",
   description:
-    "Coulsy Joinery meets all UK safety regulations including Fire Safety 2022, CDM 2015, and Health & Safety Act 1974. £5m public liability and £10m employers' liability cover, fully qualified, RAMS available.",
+    "Coulsy Joinery carries out all work in line with CDM 2015 and the Health & Safety at Work Act 1974. £5m public liability and £10m employers' liability cover, fully qualified, RAMS available.",
   keywords:
     "joinery compliance York, fire safety regulations, CDM 2015, health and safety joinery, public liability insurance, RAMS documents",
   canonical: "https://coulsyjoinery.co.uk/about/compliance",
@@ -24,46 +24,19 @@ const seoData = {
       "@type": "Organization",
       name: "Coulsy Joinery",
       description:
-        "Family-run joinery business with full compliance and safety standards",
+        "Family-run joinery business, operating to CDM 2015 and UK health & safety law",
       url: "https://coulsyjoinery.co.uk",
       address: {
         "@type": "PostalAddress",
         addressRegion: "North Yorkshire",
         addressCountry: "UK",
       },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Compliance & Safety Standards",
-        itemListElement: [
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Fire Safety Compliance",
-              description:
-                "Full compliance with Fire Safety Regulations (England) 2022",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "CDM 2015 Compliance",
-              description:
-                "Construction (Design and Management) Regulations 2015 compliance",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Health & Safety Compliance",
-              description:
-                "Full compliance with Health & Safety at Work Act 1974",
-            },
-          },
-        ],
-      },
+      // Deliberately NO hasOfferCatalog here. Operating in line with a regulation (CDM 2015,
+      // the Health & Safety at Work Act) is how this business carries out its own work — it is
+      // not a sellable "compliance" service, and it is not Coulsy independently certifying a
+      // customer's property or a completed assembly as regulation-compliant. Do not reintroduce
+      // "Fire Safety Compliance" / "CDM Compliance" / "Health & Safety Compliance" as Offers.
+      // See FIRE_DOORS_COMPLIANCE_HANDOVER.md §D.
     },
   },
 };
@@ -194,28 +167,15 @@ const seoData = {
             <h2 class="text-2xl font-semibold text-brand-900 mb-6">
               Key Regulations We Comply With
             </h2>
+            <!--
+              Fire Safety Regulations (England) 2022 was deliberately removed from this list.
+              That Order places duties on a building's Responsible Person, not on a contractor
+              carrying out work in it — listing it here read as Coulsy claiming a compliance
+              status under legislation that does not regulate this business. See the matching
+              removal of RRO 2005 from FireStats.astro and FIRE_DOORS_COMPLIANCE_HANDOVER.md §D.
+            -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ul class="space-y-3">
-                <li class="flex items-start group">
-                  <div
-                    class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-3 h-3 text-brand-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <span
-                    class="text-brand-600 group-hover:text-brand-700 transition-colors duration-300"
-                    >Fire Safety Regulations (England) 2022</span
-                  >
-                </li>
                 <li class="flex items-start group">
                   <div
                     class="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-brand-200 transition-colors duration-300"
