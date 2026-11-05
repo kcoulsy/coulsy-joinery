@@ -1,6 +1,6 @@
 # Handover — start here
 
-**Last updated:** 13 July 2026
+**Last updated:** 5 November 2026
 **Read after:** `README.md`. Then `ARCHITECTURE.md` for strategy, `AUDIT_2026-07-13.md` for the audit record.
 
 > This repository has **no `docs/` directory** and no `00_START_HERE.md` / `01_PROJECT_STATUS.md`.
@@ -13,11 +13,11 @@
 
 | | |
 | --- | --- |
-| **Last code change** | `bcbbb39` (UK English) / `3a32185` (fire door hand-off, §1c). Docs commits may sit on top. |
+| **Last code change** | `7061a2e` (contact-form confirmation fix, §1e) / `4bf7716` (fire-door, compliance, insurance and contact-form remediation, §1d). Docs commits may sit on top. |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
-| **Production** | **deployed and verified serving** |
+| **Production** | **deployed and verified serving** (5 November 2026) |
 
 **Deployment method:** Netlify auto-build on push to `origin/main`. There is **no `netlify.toml`**;
 the only GitHub workflow (`_studio.yml`) is an Astro Studio DB job and does **not** deploy. Build
@@ -28,12 +28,33 @@ and cannot identify the live build. **Poll for actual content instead.**
 
 ### Production checks used to verify this release
 
-Verified against `https://coulsyjoinery.co.uk`:
+Verified against `https://coulsyjoinery.co.uk`, 5 November 2026 (§1d/§1e):
 
-- `/joinery-services/kitchen-installers` (hub) — **200**
-- `/joinery-services/leeds-kitchen-installers` (geo) — **200**
-- `/joinery-services/harrogate-kitchen-installers` (geo) — **200**
-- `/`, `/sitemap-index.xml`, `/sitemap-0.xml` — **200**; sitemap serving **1,032 URLs**
+- `/`, `/about`, `/about/qualifications`, `/about/compliance`, `/joinery-services/door-hanging`,
+  `/joinery-services/steel-fire-exit-doors-installers`, `/contact` — all **200**
+- `/about`: 4× "Fire Door Specialist", 0× "Construction Inspector"
+- `/about/qualifications`: all three FireQual courses present (Installation/Maintenance/
+  Inspection), "Professional Membership" section separate from "My Qualifications"
+- `/about/compliance`: title corrected, 0 `hasOfferCatalog`
+- `/joinery-services/door-hanging`: new hand-off copy present, links to
+  `coulsyfiredoors.co.uk/fire-door-services`, 0 `fire-door-inspectors`
+- `/joinery-services/steel-fire-exit-doors-installers`: 0 blanket "meets all necessary
+  regulations"/"fully compliant" phrasing
+- `/contact`: form `id="contact"`, `action="/contact?success=true"`, honeypot + `form-name`
+  + `data-netlify` all present; success/error banners render **above** the form with
+  `role="status"`/`role="alert"`, `tabindex="-1"`, and accessible dismiss buttons; 0 residual
+  `8000`ms auto-hide timers
+- Sampled two town pages (Leeds door-hanging, Harrogate steel-fire-exit) — clean
+- Sitemap unchanged at **1,033 URLs**, `lastmod` matching the deploy
+- The actual script served by production was extracted and run through a 5-scenario
+  Node/DOM-shim regression harness (no stale-timer flash/disappear, duplicate-submission
+  guard, dismiss button, error path, no-JS fallback) — all 5 passed against the live script,
+  not just the local build
+
+Earlier release (13 July 2026) also verified:
+
+- `/joinery-services/kitchen-installers` (hub), `/joinery-services/leeds-kitchen-installers`
+  (geo), `/joinery-services/harrogate-kitchen-installers` (geo) — **200**
 - On all three kitchen pages: **Howdens = 0, Magnet = 0, logo images = 0**, new card **present**
 - Supplier-neutral hero copy present; revised gallery alt text present
 - Sampled `/_astro/` image assets all **200** — no broken references
@@ -203,6 +224,120 @@ enquiry form.
 
 ---
 
+## 1d. Fire-door, compliance, insurance and contact-form remediation (`4bf7716`, 5 November 2026)
+
+**Driven by a separate, real-world event: Coulsy Fire Doors withdrew independent fire-door
+inspection, compliance assessment and certification as a sellable service on 5 November 2026**,
+because professional indemnity insurance for that specific activity was hard to renew ahead of
+its 13 November 2026 renewal date (see `FIRE_DOORS_COMPLIANCE_HANDOVER.md`). Joinery's own
+contracting work — installation, repair, maintenance, including remedial work identified by a
+customer's fire risk assessment — was never affected and was not reduced by this change. An
+audit against that handover's checklist found Joinery was carrying several related issues of
+its own, independent of the Fire Doors situation:
+
+- **The fire-door hand-off (§1c) still pointed at the withdrawn service.** The box on all 57
+  door-hanging pages was headed "Need a fire door inspection?" and linked to
+  `coulsyfiredoors.co.uk/fire-door-inspectors`, which Fire Doors had just 301'd away. Retargeted
+  to the legitimate specialist-contracting end (multi-door compliance programmes, FRA-remedial
+  work) at `/fire-door-services`. Joinery keeps advertising, and doing, its own fire-door
+  install/repair/maintenance work — nothing about what Joinery itself sells changed.
+- **`/about/compliance` listed "Fire Safety Compliance" / "CDM 2015 Compliance" / "Health &
+  Safety Compliance" as sellable `Offer`s** in its structured data — read as Joinery
+  independently certifying regulatory compliance, which it does not do. Removed, along with
+  Fire Safety Regulations (England) 2022 from the "we comply with" list (that Order is the
+  building's Responsible Person's duty, not a contractor's — the same reasoning that removed
+  RRO 2005 from `FireStats.astro` in §1c).
+- **Two pages promised "ensuring your property meets all necessary regulations" /
+  "fully compliant with fire safety regulations"** (door-hanging and steel-fire-exit, 57 pages
+  each) — a whole-property compliance guarantee the work doesn't confer. Reworded to describe
+  fitting to the governing standard.
+- **`jobTitle` was "Joiner, Builder and Construction Inspector"** in structured data (homepage,
+  `/about` ×2, `/qualifications`) and in `/about`'s visible copy (4 places) — the same
+  occupational framing the Fire Doors remediation removed from that site. Changed to "Joiner,
+  Builder and Fire Door Specialist". All three genuinely-held FireQual credentials
+  (Installation CQ014193, Maintenance CQ014198, Inspection CQ014192; awarded 4 Dec 2024,
+  expiring 4 Dec 2027, UK Fire Door Training) are now listed on `/qualifications`, prioritising
+  Installation/Maintenance since that's what the door-hanging pages sell. MICWCI moved into its
+  own "Professional Membership" section, separate from "My Qualifications" — it is a membership
+  grade, never a training credential (see `project_icwci_election_aug_2026` memory note).
+- **Blanket insurance statements** ("Fully Qualified & Insured", "fully qualified, insured, and
+  compliant with all industry requirements", "Insured for all the work we carry out... protected
+  at all times") removed from `/about` and `/qualifications`. The specific published figures
+  (£5m public/products liability, £10m employers' liability, £1m professional indemnity) were
+  **kept unchanged** — see the outstanding item in §6 to re-verify them once the 13 November
+  renewal completes.
+- **"Heritage Restoration" removed** from the homepage and `/joinery-services` structured-data
+  `Offer` lists and from the homepage meta description/keywords, where it no longer matched
+  visible page content (the homepage doesn't show heritage work at all). The 57-page
+  `heritage-restoration-joinery` family and its already-demoted, non-prominent hub tile were
+  deliberately **not** touched — see §10a in `ARCHITECTURE.md` and the heritage row in §6.
+- **The contact form's confirmation never worked at all.** The script looked for an element
+  with id `modern-contact-form`, which never existed (the real form id is `contact`) — so the
+  loading state and the whole submit handler silently never ran, and every submission fell
+  through to the browser's native POST-and-redirect. Rewritten to submit via `fetch()`, the same
+  fix already proven on Coulsy Fire Doors: same fields, same `form-name`, same honeypot, no page
+  navigation. `action="/contact?success=true"` is a literal constant, identical across all 1,029
+  pages that embed the form — not computed per page, which is exactly the pattern that caused a
+  redirect defect on the Fire Doors site.
+
+**Deployed via PR #1, squash-merged as `4bf7716`.** Build: 1,036 pages, 0 `astro check` errors.
+Production verified against all seven representative pages plus two town pages — see the
+production-checks list in §1.
+
+---
+
+## 1e. Contact-form confirmation reliability and accessibility fix (`7061a2e`, 5 November 2026)
+
+**Robert personally tested the live form after §1d deployed and found the green confirmation
+inconsistent** — it sometimes flashed briefly and disappeared, other times stayed up longer, and
+could appear outside the viewport.
+
+**Root cause, confirmed by reproduction, not assumption:** the fetch() success path and the
+no-JS `?success=true` fallback each ran an independent copy of "show the banner, then auto-hide
+after a fixed 8 seconds", and neither cancelled a previously scheduled hide timer before
+scheduling a new one. Showing the banner more than once in a page's lifetime — exactly what
+happens testing a second enquiry without reloading — left an earlier, still-pending timer that
+fired and hid a banner only just re-shown. Extracting the pre-fix script and running it through a
+scripted two-submission scenario reproduced the early hide exactly. Ruled out, by checking rather
+than assuming: duplicate listeners, duplicate form instances, DOM replacement, and
+`ViewTransitions.astro` (confirmed dead code — not imported anywhere in the site). Separately,
+there was no `scrollIntoView`/focus call anywhere, so a visitor submitting via Enter from an
+upper field (without scrolling to the button) never saw the confirmation at all.
+
+**The fix:**
+
+- One shared `showMessage`/`hideMessage` pair backs both the fetch path and the no-JS fallback —
+  no more duplicated, independently-timed logic.
+- **No auto-hide timer at all.** The confirmation stays visible until dismissed, or until the
+  visitor leaves the page (free on this static, non-SPA site).
+- `scrollIntoView({block:"center"})` + `.focus()` on show, fixing the below-the-fold problem and
+  giving a reliable screen-reader announcement regardless of `aria-live` timing nuances.
+- Banners moved to render **immediately above the form**, with `role="status"`/
+  `aria-live="polite"` (success) or `role="alert"`/`aria-live="assertive"` (error), plus an
+  accessible dismiss button (44×44px tap target).
+- An explicit `isSubmitting` guard was added alongside the existing `submitBtn.disabled`.
+- Netlify Forms integration, the honeypot, the hidden `form-name` field, the literal
+  `action="/contact?success=true"`, and the no-JS fallback are all unchanged. No email/
+  notification configuration was touched.
+
+**Verification:** a Node/DOM-shim harness evaluates the actual compiled script — extracted
+verbatim from the built HTML, not a reimplementation — across 5 scenarios (no stale-timer flash,
+duplicate-submission guard, dismiss button, error path, no-JS fallback). All 5 pass against the
+local build, the deploy preview, and the script live in production. The same harness against the
+pre-fix script reproduces the bug, confirming the test is sensitive to it, not tautological.
+**Real-browser visual/viewport confirmation could not be performed** — Playwright's browser tool
+was non-functional for the whole session (`net::ERR_BLOCKED_BY_CLIENT` even on
+`https://example.com`), so this is flagged rather than claimed. A manual click-through on
+desktop and mobile is recommended before treating this as fully closed.
+
+**Follow-up identified, not fixed (separate repository, not touched):** Coulsy Fire Doors'
+`src/components/ContactForm.astro` has the identical `setTimeout(..., 8000)`-with-no-cancellation
+pattern and no `scrollIntoView`/focus call — read-only finding; see the row in §6.
+
+**Deployed via PR #2, squash-merged as `7061a2e`.**
+
+---
+
 ## 2. Supplier slice — shipped (`42537a2`)
 
 - **Howdens, Magnet and DIY Kitchens logos removed** from the kitchens card. **No supplier logos
@@ -339,10 +474,11 @@ Windows; we are on macOS.
 | Item | Reference |
 | --- | --- |
 | **⏳ Insurance renewal verification, due after 13 November 2026.** The published figures (£5m public/products liability, £10m employers' liability, £1m professional indemnity) were NOT changed in the 5 Nov 2026 compliance remediation — they are retained as the last-verified figures, not reconfirmed. Professional indemnity cover for independent fire-door inspection/assessment specifically was difficult to renew (see `FIRE_DOORS_COMPLIANCE_HANDOVER.md` §A). **Re-verify all three figures against the actual renewed policy once it completes, and correct any page where a figure has changed.** Not a deployment blocker. | `about/compliance.astro`, `about/qualifications.astro`, `about.astro`, `MainPage.astro` |
+| **Fire Doors' `ContactForm.astro` has the identical confirmation-timer bug fixed here in §1e** — `showBanner()` with an unconditional `setTimeout(..., 8000)` and no cancellation, plus no `scrollIntoView`/focus call. Read-only finding from inspecting that repository while fixing Joinery's copy; **this repository was not modified.** Needs its own fix in the `fire-doors` repo, following the same pattern as §1e. | `fire-doors` repo: `src/components/ContactForm.astro` |
 | **🔥 FIRE-DOOR INTENT — HANDED OVER TO THE FIRE DOORS REPO. This repo does NOT audit or redesign it (§5.2a).** 23 fire-door queries put **3,955 impressions** on the JOINERY site for **2 clicks** ("fire door replacement harrogate" sits at position **9.9**). **The fire-doors repository performs its own landing-page audit and makes its own decisions.** Joinery's only jobs: keep truthful INSTALLATION capability, and **do NOT strip fire-door language or redirect anything until that repo responds** — a unilateral purge could destroy intent it may want. | `ARCHITECTURE.md` §8d |
 | **⛔ DO NOT consolidate joiner/carpenter/joinery/general-joinery — REFUTED by Search Console.** 9 towns have multiple synonym pages earning simultaneously (Pocklington: all four). Together **117 clicks = 26% of the site**. §8 P0(a) was drawn from a 16-town sample and is **wrong**. Broad consolidation or mass redirects would destroy a quarter of the traffic. | `ARCHITECTURE.md` §8 P0(a) |
 | **Re-export Search Console after a post-fix window.** The 13 Apr–12 Jul export predates the mobile-nav fix (13 Jul), the Door Hanging route (14 Jul) and the fire-door hand-off (14 Jul). **Mobile earned 54% of clicks at 3× desktop CTR *with a broken menu*.** Their benefit is **not yet measurable**. Compare like for like later. | `seo-data/gsc-2026-07/` |
-| **⭐ Record where every enquiry ACTUALLY came from. Highest-value item on this list, and it is not a code task.** After 6–12 months this answers the questions that decide where to invest: *is Fire Doors generating its own work? Is Joinery mainly serving existing customers? Does the Google Business Profile outperform the website? Are referrals still the strongest channel?* Log every job: client, source (referral / Google search / Google Business Profile / website / existing contact), and detail. **Nothing on this website is worth as much as knowing this.** Everything shipped in July 2026 was done WITHOUT it. | §1d |
+| **⭐ Record where every enquiry ACTUALLY came from. Highest-value item on this list, and it is not a code task.** After 6–12 months this answers the questions that decide where to invest: *is Fire Doors generating its own work? Is Joinery mainly serving existing customers? Does the Google Business Profile outperform the website? Are referrals still the strongest channel?* Log every job: client, source (referral / Google search / Google Business Profile / website / existing contact), and detail. **Nothing on this website is worth as much as knowing this.** Everything shipped in July 2026 was done WITHOUT it. | — |
 | **Search Console exports — joinery AND fire doors.** 3 months, UK, **judge on clicks, not impressions.** Blocks the geo-page family review (§8 P0(a)), the 324 orphans (§8b), and the fire-doors 4-family consolidation. Until this lands, every conclusion about synonym pages, orphans, geo pages and internal linking is an educated guess. | `ARCHITECTURE.md` §8, §8b |
 | **324 pages unreachable from the homepage — INVESTIGATED, not started.** A BFS crawl of the built site reaches **711 of 1,036** pages; the rest exist, build, are in the sitemap and return 200, but **no chain of internal links reaches them** (~18 towns per family). `door-hanging` — the extreme case, all 57 pages orphaned — was fixed in `8ddb478`. **Do NOT record the fixed-base distance calculation as a defect: proximity to Robert's base is genuinely relevant.** The real questions are why 37 of 56 towns fall back to one hardcoded 8-town list, and whether every geo page needs a deliberate route in rather than being linked by side-effect. | `ARCHITECTURE.md` §8b |
 | **🔒 Structured data — the site declares 1,026 businesses that do not exist. INVESTIGATED, NOT FIXED.** `pageMeta.ts:327` substitutes each page's town into the **business address** (`addressLocality`, `postalCode`, `geo`), producing **1,026 distinct `@id`s**, **3,080 `LocalBusiness` nodes** and **36 claimed postcodes** for one business. `areaServed` is already correct and must be kept. **Objectives settled** (one stable `@id`, no page-scoped identities, no fabricated address/geo, at most one `LocalBusiness` per page, `areaServed` untouched) — **but the entity-graph implementation is NOT decided and must not be built from the doc.** **The registered address is Robert's HOME and must NEVER be published** — Coulsy is a service-area business. **Truth defect first; SEO effect unproven — do not record it as a diagnosis.** | `ARCHITECTURE.md` §8a |
