@@ -25,19 +25,141 @@ const {
   </div>
 
   <!--
-    5 Nov 2026 — fetch()-based submission, same fix proven on Coulsy Fire Doors.
-    `action` is a LITERAL constant, identical on every page that embeds this component
-    (21 pages). Netlify's deploy-time scanner keeps only one redirect target per shared
-    form name sitewide — that is the exact defect found on the Fire Doors site, where
-    the action differed per page. Keeping one hardcoded value here, everywhere, avoids it
-    by construction. Do not compute `action` from the current page.
+    5 Nov 2026 — confirmation reliability fix.
 
-    This `action` is also the no-JS fallback: without JavaScript the browser does a plain
-    POST-and-redirect to "/contact?success=true". /contact always embeds this same
-    component, so the script below — which reads the same query parameters on every page
-    load, not just after a fetch() submission — is guaranteed to be present there to show
-    the banner. (The homepage does NOT embed this component, which is why the fallback
-    points at /contact rather than "/".)
+    WHY THE BANNER USED TO FLASH OR LINGER INCONSISTENTLY:
+
+    The old script had TWO independent copies of "show, then auto-hide after
+    8 seconds" — one for the fetch() success path, one for the no-JS
+    ?success=true fallback — and neither cancelled a previously scheduled
+    hide timer before scheduling a new one. If the banner was shown more
+    than once in a page's lifetime (e.g. testing a second enquiry without a
+    full reload), an earlier still-pending 8-second timer would fire and
+    hide a banner that had only just been shown seconds before — exactly
+    "flashes briefly and disappears, other times remains longer". Ruled out
+    as NOT the cause: duplicate listeners (this component is embedded at
+    most once per page, confirmed by grep), duplicate form instances, DOM
+    replacement, and ViewTransitions.astro (dead code — not imported
+    anywhere, so it cannot be interfering).
+
+    THE FIX: one function (`showMessage`/`hideMessage`) used by both paths,
+    no auto-hide timer at all — the confirmation now stays up until the
+    visitor dismisses it or leaves the page, which this static,
+    non-SPA site already gives for free on any real navigation.
+    `scrollIntoView()` + `.focus()` on show fixes the "appears outside the
+    viewport" problem (a visitor who submits via Enter from the Email field,
+    for instance, never scrolls to where the button and banner sit) and is
+    also the most reliable cross-screen-reader way to announce it.
+  -->
+  <div
+    id="success-message"
+    class="hidden mb-6 p-4 bg-green-50 border border-green-200 rounded-lg transform transition-all duration-500"
+    role="status"
+    aria-live="polite"
+    tabindex="-1"
+  >
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex items-center">
+        <svg
+          class="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-green-800 font-medium"
+          >Message sent successfully! We'll get back to you soon.</span
+        >
+      </div>
+      <button
+        type="button"
+        id="dismiss-success"
+        aria-label="Dismiss success message"
+        class="flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded text-green-600 hover:text-green-800 focus:outline-none focus:ring-2 focus:ring-green-500"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="error-message"
+    class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-lg transform transition-all duration-500"
+    role="alert"
+    aria-live="assertive"
+    tabindex="-1"
+  >
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex items-center">
+        <svg
+          class="w-5 h-5 text-red-500 mr-3 flex-shrink-0"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-red-800 font-medium"
+          >Something went wrong. Please try again or call us directly.</span
+        >
+      </div>
+      <button
+        type="button"
+        id="dismiss-error"
+        aria-label="Dismiss error message"
+        class="flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded text-red-600 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!--
+    `action` is a LITERAL constant, identical on every page that embeds this
+    component (21 pages). Netlify's deploy-time scanner keeps only one
+    redirect target per shared form name sitewide — that is the exact
+    defect found on the Fire Doors site, where the action differed per
+    page. Keeping one hardcoded value here, everywhere, avoids it by
+    construction. Do not compute `action` from the current page.
+
+    This `action` is also the no-JS fallback: without JavaScript the
+    browser does a plain POST-and-redirect to "/contact?success=true".
+    /contact always embeds this same component, so the script below — which
+    reads the same query parameters on every page load, not just after a
+    fetch() submission — is guaranteed to be present there to show the
+    banner. (The homepage does NOT embed this component, which is why the
+    fallback points at /contact rather than "/".)
   -->
   <form
     id="contact"
@@ -171,50 +293,6 @@ const {
       </span>
     </button>
   </form>
-
-  <!-- Success Message -->
-  <div
-    id="success-message"
-    class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg transform transition-all duration-500"
-  >
-    <div class="flex items-center">
-      <svg
-        class="w-5 h-5 text-green-500 mr-3 animate-bounce"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-          clip-rule="evenodd"></path>
-      </svg>
-      <span class="text-green-800 font-medium"
-        >Message sent successfully! We'll get back to you soon.</span
-      >
-    </div>
-  </div>
-
-  <!-- Error Message -->
-  <div
-    id="error-message"
-    class="hidden mt-6 p-4 bg-red-50 border border-red-200 rounded-lg transform transition-all duration-500"
-  >
-    <div class="flex items-center">
-      <svg
-        class="w-5 h-5 text-red-500 mr-3 animate-pulse"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-          clip-rule="evenodd"></path>
-      </svg>
-      <span class="text-red-800 font-medium"
-        >Something went wrong. Please try again or call us directly.</span
-      >
-    </div>
-  </div>
 </div>
 
 <style>
@@ -287,7 +365,18 @@ const {
   /* Success/Error message animations */
   #success-message.show,
   #error-message.show {
-    animation: slideInFromTop 0.5s ease-out;
+    animation: slideInFromTop 0.5s ease-out forwards;
+  }
+
+  /* Visible focus ring when the banner itself is programmatically focused
+     (tabindex="-1" + .focus() in the script below) — without this Chrome/
+     Firefox draw no outline at all for a non-interactive focused element,
+     which would make the "bring into view" behaviour invisible to a
+     sighted keyboard user even though it IS announced to a screen reader. */
+  #success-message:focus-visible,
+  #error-message:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
   @keyframes slideInFromTop {
@@ -304,105 +393,101 @@ const {
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contact");
-    const submitBtn = document.getElementById("submit-btn");
-    // These elements are used in CSS for styling states
-    // const btnText = document.getElementById("btn-text");
-    // const sendIcon = document.getElementById("send-icon");
-    // const loadingSpinner = document.getElementById("loading-spinner");
+    const form = document.getElementById("contact") as HTMLFormElement | null;
+    const submitBtn = document.getElementById(
+      "submit-btn"
+    ) as HTMLButtonElement | null;
     const successMessage = document.getElementById("success-message");
     const errorMessage = document.getElementById("error-message");
+    const dismissSuccessBtn = document.getElementById("dismiss-success");
+    const dismissErrorBtn = document.getElementById("dismiss-error");
 
-    // Check URL parameters for success/error messages
-    const urlParams = new URLSearchParams(window.location.search);
+    // Explicit duplicate-submission guard. `submitBtn.disabled` already
+    // suppresses a second click or Enter-key resubmission in every
+    // evergreen browser, but this makes the intent explicit rather than
+    // relying on that implicitly.
+    let isSubmitting = false;
 
-    if (urlParams.get("success") === "true" && successMessage) {
-      setTimeout(() => {
-        successMessage.classList.remove("hidden");
-        successMessage.classList.add("show");
-      }, 500);
-
-      // Auto-hide after 8 seconds
-      setTimeout(() => {
-        successMessage.classList.remove("show");
-        setTimeout(() => {
-          successMessage.classList.add("hidden");
-        }, 500);
-      }, 8000);
-    }
-
-    if (urlParams.get("error") === "true" && errorMessage) {
-      setTimeout(() => {
-        errorMessage.classList.remove("hidden");
-        errorMessage.classList.add("show");
-      }, 500);
-
-      // Auto-hide after 8 seconds
-      setTimeout(() => {
-        errorMessage.classList.remove("show");
-        setTimeout(() => {
-          errorMessage.classList.add("hidden");
-        }, 500);
-      }, 8000);
-    }
-
-    // Form submission handling — fetch()-based, so the page never navigates away.
-    //
-    // The form's native method="post" + action="/contact?success=true" stays in the markup
-    // as a no-JS fallback. With JS enabled, we intercept submit, POST the same fields (including
-    // form-name and the honeypot) via fetch(), and show the banner from the fetch response
-    // instead of relying on a redirect. This also fixes a real bug: the previous script
-    // looked for an element with id "modern-contact-form", which never existed — the form's
-    // id is "contact" — so the loading state and this whole handler silently never ran.
-    function hideBanner(el: Element | null) {
-      if (!el) return;
-      el.classList.remove("show");
-      setTimeout(() => el.classList.add("hidden"), 500);
-    }
-
-    function showBanner(el: Element | null) {
+    // ONE place that shows a banner, used by both the fetch() success path
+    // below and the no-JS ?success=true/?error=true fallback. No auto-hide
+    // timer — see the comment above the markup for why that was the actual
+    // cause of the inconsistent flash/linger behaviour. The confirmation
+    // now stays visible until dismissed, or until the visitor leaves the
+    // page (which a real navigation on this static site gives for free).
+    function showMessage(el: HTMLElement | null) {
       if (!el) return;
       el.classList.remove("hidden");
       el.classList.add("show");
-      setTimeout(() => hideBanner(el), 8000);
+      // Bring it into view and focus it — covers a visitor who submitted
+      // via Enter from an upper field without ever scrolling to the button,
+      // and focusing a tabindex="-1" element is the most reliable
+      // cross-screen-reader way to announce a newly shown status/alert.
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.focus({ preventScroll: true });
     }
 
+    function hideMessage(el: HTMLElement | null) {
+      if (!el) return;
+      el.classList.remove("show");
+      el.classList.add("hidden");
+    }
+
+    if (dismissSuccessBtn) {
+      dismissSuccessBtn.addEventListener("click", () =>
+        hideMessage(successMessage)
+      );
+    }
+    if (dismissErrorBtn) {
+      dismissErrorBtn.addEventListener("click", () =>
+        hideMessage(errorMessage)
+      );
+    }
+
+    // No-JS fallback: a real page navigation lands here with ?success=true
+    // or ?error=true after the browser's native POST-and-redirect.
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("success") === "true") showMessage(successMessage);
+    if (urlParams.get("error") === "true") showMessage(errorMessage);
+
+    // Form submission handling — fetch()-based, so the page never navigates
+    // away. The form's native method="post" + action="/contact?success=true"
+    // stays in the markup as the no-JS fallback above.
     if (form && submitBtn) {
       form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const formEl = form as HTMLFormElement;
-        const button = submitBtn as HTMLButtonElement;
+        if (isSubmitting) return;
+        isSubmitting = true;
 
-        button.classList.add("loading");
-        button.disabled = true;
-        hideBanner(successMessage);
-        hideBanner(errorMessage);
+        submitBtn.classList.add("loading");
+        submitBtn.disabled = true;
+        hideMessage(successMessage);
+        hideMessage(errorMessage);
 
-        const formData = new FormData(formEl);
+        const formData = new FormData(form);
         const body = new URLSearchParams();
         formData.forEach((value, key) => body.append(key, value.toString()));
 
-        fetch(formEl.action, {
+        fetch(form.action, {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: body.toString(),
         })
           .then((response) => {
-            button.classList.remove("loading");
-            button.disabled = false;
-
             if (response.ok) {
-              formEl.reset();
-              showBanner(successMessage);
+              form.reset();
+              showMessage(successMessage);
             } else {
-              showBanner(errorMessage);
+              showMessage(errorMessage);
             }
           })
           .catch(() => {
-            button.classList.remove("loading");
-            button.disabled = false;
-            showBanner(errorMessage);
+            showMessage(errorMessage);
+          })
+          .finally(() => {
+            submitBtn.classList.remove("loading");
+            submitBtn.disabled = false;
+            isSubmitting = false;
           });
       });
     }
