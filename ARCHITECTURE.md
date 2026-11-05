@@ -991,6 +991,7 @@ Items marked **DONE** are deployed — see §12.
 | — | Mobile phone CTA on homepage (had none between `<main>` and `<footer>`) | ✅ **DONE** |
 | 3 | Make `/about/qualifications` indexable + add to sitemap | ✅ **DONE** |
 | 4 | Remove Heritage from navbar + homepage cards (page kept indexed) | ✅ **DONE** |
+| — | Remove heritage mentions from the homepage meta description/keywords (§10a's "Homepage meta description / keywords / schema" row) — a narrow, homepage-only fix, not the bounded §10a audit | ✅ **DONE** (5 Nov 2026) |
 | — | Service-page hero: evidence panel, portrait, dual CTA, badge removed | ✅ **DONE** |
 | — | Correct the false **£10m public liability** claim; state real cover | ✅ **DONE** |
 | 1 | **Confirm the 103-page de-indexing is real** (live GSC, Indexing → Pages) | ⏳ Robert — 30 seconds |
@@ -1042,7 +1043,7 @@ Outstanding, for a separate bounded investigation:
 | Geo keyword references ("heritage restoration {town}") | **1,027** | `pageMeta.ts:289` |
 | Period-property FAQ in **structured data** | **359** | `pageMeta.ts:451` |
 | Geo meta descriptions ("heritage repairs") | **267** | `pageMeta.ts:275, 282` |
-| Homepage meta description / keywords / schema | 2+ | `MainPage.astro:52, 54, 63` |
+| ~~Homepage meta description / keywords / schema~~ | ~~2+~~ | **✅ DONE 5 Nov 2026** — removed; the homepage schema's own `hasOfferCatalog` Offer was also removed the same day. Resolved as a standalone fix, not as part of this bounded audit. |
 | Sitewide default keywords | 1 | `Layout.astro:32` |
 
 That investigation must classify each instance as one of:
