@@ -12,6 +12,13 @@ const {
   showPhone = true,
   className = "",
 } = Astro.props;
+
+// Telephone pattern. Written with String.raw because Astro drops backslashes from a quoted
+// attribute value, which silently turned this into a pattern that matched nothing sensible.
+// Accepts UK and international formats ("07544 030486", "+44 (0)7544 030486", "(01904) 123456",
+// "+1 415-555-2671"): an optional leading +, then digits with spaces, dots, hyphens or brackets,
+// and between 7 and 15 digits in all. Letters are rejected. (v-flag safe: - ( ) are escaped.)
+const PHONE_PATTERN = String.raw`^(?=(?:\D*\d){7,15}\D*$)\+?[\d\s.\-\(\)]+$`;
 ---
 
 <div
@@ -185,13 +192,14 @@ const {
           type="text"
           id="name"
           name="name"
+          autocomplete="name"
           required
           placeholder=" "
-          class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
+          class="w-full px-4 py-4 border-2 border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
         />
         <label
           for="name"
-          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-amber-700 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
         >
           Full Name <span class="text-red-500">*</span>
         </label>
@@ -205,13 +213,14 @@ const {
           type="email"
           id="email"
           name="email"
+          autocomplete="email"
           required
           placeholder=" "
-          class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
+          class="w-full px-4 py-4 border-2 border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
         />
         <label
           for="email"
-          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-amber-700 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
         >
           Email Address <span class="text-red-500">*</span>
         </label>
@@ -227,13 +236,18 @@ const {
               type="tel"
               id="phone"
               name="phone"
+              autocomplete="tel"
+              inputmode="tel"
+              maxlength="25"
+              pattern={PHONE_PATTERN}
+              title="Enter a UK or international phone number, for example 07544 030486 or +44 7544 030486."
               required
               placeholder=" "
-              class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
+              class="w-full px-4 py-4 border-2 border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer"
             />
             <label
               for="phone"
-              class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+              class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-amber-700 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
             >
               Phone Number <span class="text-red-500">*</span>
             </label>
@@ -251,11 +265,11 @@ const {
           rows="4"
           required
           placeholder=" "
-          class="w-full px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer resize-vertical"
+          class="w-full px-4 py-4 border-2 border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 bg-transparent peer resize-vertical"
         ></textarea>
         <label
           for="message"
-          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-yellow-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
+          class="absolute left-4 top-4 text-gray-500 transition-all duration-300 transform peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-amber-700 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 pointer-events-none"
         >
           Project Details <span class="text-red-500">*</span>
         </label>
@@ -337,11 +351,43 @@ const {
     box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
   }
 
-  /* Floating label adjustments */
+  /*
+   * Field text colour. These inputs are transparent, and the form is embedded in sections with a
+   * dark gradient and white text (every service page's contact block). With no colour of their own
+   * they INHERITED that white and typed text was white on a white card — invisible (1:1 contrast).
+   * Browser autofill paints its own dark text, which is why Name and Email looked fine when filled
+   * by the browser. Colour is now set on the fields themselves (and `color-scheme: light` stops a
+   * dark-mode browser restyling the controls), so it no longer depends on where the form is placed.
+   */
+  .form-group input,
+  .form-group textarea {
+    color: #111827;
+    caret-color: #111827;
+    color-scheme: light;
+  }
+
+  /* Autofilled values: keep the dark text on a white field in every browser. */
+  .form-group input:-webkit-autofill,
+  .form-group input:-webkit-autofill:hover,
+  .form-group input:-webkit-autofill:focus,
+  .form-group textarea:-webkit-autofill {
+    -webkit-text-fill-color: #111827;
+    caret-color: #111827;
+    box-shadow: 0 0 0 1000px #ffffff inset;
+  }
+
+  /* A value that fails validation (for example letters in the phone field) is marked in red once
+     the visitor has typed something. The :not(:placeholder-shown) guard keeps empty fields neutral. */
+  .form-group input:not(:placeholder-shown):invalid,
+  .form-group textarea:not(:placeholder-shown):invalid {
+    border-color: #dc2626;
+  }
+
+  /* Floating label adjustments. #b45309 (amber-700) is 5:1 on white; the previous #d97706 was 3.2:1. */
   .peer:focus ~ label,
   .peer:not(:placeholder-shown) ~ label {
     transform: translateY(-1.5rem) scale(0.75);
-    color: #d97706;
+    color: #b45309;
   }
 
   /* Button hover effects */
