@@ -17,7 +17,19 @@ import { BUSINESS_NODE, BUSINESS_REF } from "../constants/business";
  */
 const SERVICE_DISPLAY_NAMES: Record<string, string> = {
   "small-build-services": "Building Alterations & Refurbishment",
-  "building-maintenance": "Commercial Property Maintenance",
+    "building-maintenance": "Commercial Property Maintenance",
+};
+
+/**
+ * Meta descriptions for renamed services. The rotating variants below are written for joinery
+ * ("general joinery", "homes and businesses", "kitchens") and read wrongly for these two.
+ * `where` is "in <Town>" on a town page and a regional phrase on the hub.
+ */
+const SERVICE_DESCRIPTIONS: Record<string, (where: string) => string> = {
+  "small-build-services": (where) =>
+    `Building alterations and refurbishment ${where}, inside existing homes and business premises. Time-served joiner and builder, in the trade since 1988.`,
+  "building-maintenance": (where) =>
+    `Repairs and maintenance for shops, offices and other commercial premises ${where}. Time-served joiner and builder, in the trade since 1988.`,
 };
 
 export function getFormattedPageData(Astro: any): {
@@ -303,7 +315,11 @@ export function getFormattedPageData(Astro: any): {
         `Trusted joiner across Yorkshire — ${lowerService}, refurbishment, kitchens and general carpentry. Qualified, with £5m public liability cover.`,
       ];
 
-  const defaultDescription = descriptionVariants[variantHash % descriptionVariants.length];
+  const serviceDescription = SERVICE_DESCRIPTIONS[baseType]?.(
+    location ? `in ${cleanLocationName}` : "in York and across Yorkshire"
+  );
+  const defaultDescription =
+    serviceDescription ?? descriptionVariants[variantHash % descriptionVariants.length];
   const enhancedDescription = defaultDescription;
 
   // Enhanced keywords with location and service
@@ -363,7 +379,7 @@ export function getFormattedPageData(Astro: any): {
     // Page-specific. This is the coverage signal, and it is correct. Do not touch it.
     areaServed: areaServedNodes,
     serviceType: displayServiceName,
-    category: "Home Improvement",
+    category: baseType === "building-maintenance" ? "Commercial Property Maintenance" : "Home Improvement",
     offers: {
       "@type": "Offer",
       priceCurrency: "GBP",
