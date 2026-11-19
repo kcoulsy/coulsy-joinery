@@ -1,3 +1,8 @@
+> **SUPERSEDED — 20 November 2026.** The Coulsy Code footer promotion described below has been
+> removed from the website (owner decision: Coulsy Code has never generated income and is no longer
+> promoted through Coulsy Joinery). `WebDevFooter.astro` and `public/coulsycode_brand_pack/` no longer
+> exist in the repository. This file is kept as a historical development record only; do not follow it.
+
 # Coulsy Code Integration Summary
 
 This document summarizes the changes made to integrate Coulsy Code branding and update footer links to point to the new Coulsy Code website.
