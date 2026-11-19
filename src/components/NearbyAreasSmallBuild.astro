@@ -11,7 +11,7 @@ interface Props {
 
 const { location } = Astro.props;
 // Set the max search radius (in miles) for nearby locations that i'm willing to travel for this service
-// Wider radius for small build projects as they are larger projects
+// Wider radius for alteration and refurbishment projects as they are larger projects
 const radius = 35;
 const nearbyLocations = getNearbyLocations(location, radius);
 ---
@@ -21,10 +21,10 @@ const nearbyLocations = getNearbyLocations(location, radius);
     <div class="animate-on-scroll">
       <div class="text-center mb-12">
         <h2 class="section-title text-gradient mb-4">
-          Small Build Services Near {formatLocationName(location)}
+          Building Alterations & Refurbishment Near {formatLocationName(location)}
         </h2>
         <p class="section-subtitle text-balance max-w-2xl mx-auto">
-          I offer small build services including loft conversions, room alterations, and internal renovations
+          I carry out building alterations and refurbishment
           {location ? ` near ${formatLocationName(location)}` : ""}, whether
           you're in a village, town or city nearby. Let me know where you're
           based — I'll do my best to help.
@@ -40,8 +40,8 @@ const nearbyLocations = getNearbyLocations(location, radius);
               class="card card-hover group animate-on-scroll"
               style={`animation-delay: ${index * 0.1}s`}
               href={`/joinery-services/${slug}-small-build-services`}
-              title={`Small build services in ${formatLocationName(slug)}`}
-              aria-label={`View small build services in ${formatLocationName(slug)}`}
+              title={`Building alterations and refurbishment in ${formatLocationName(slug)}`}
+              aria-label={`View building alterations and refurbishment in ${formatLocationName(slug)}`}
             >
               <div class="card-body text-center p-4">
                 <div class="text-base font-semibold text-neutral-900 group-hover:text-brand-600 transition-colors duration-300">
