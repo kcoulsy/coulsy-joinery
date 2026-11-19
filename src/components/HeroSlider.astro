@@ -51,9 +51,17 @@ const { slides } = Astro.props;
           <!-- Enhanced overlay with gradient -->
           <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 flex items-center justify-center">
             <div class="glass rounded-2xl p-8 lg:p-12 max-w-5xl mx-4 shadow-2xl border border-white/10 animate-on-scroll">
-              <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center px-4 text-white leading-tight mb-4 text-balance">
-                {text}
-              </h1>
+              {/* One <h1> per page: only the first slide carries it. The others use the same
+                  classes on an <h2>, so the slides look identical. */}
+              {index === 0 ? (
+                <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center px-4 text-white leading-tight mb-4 text-balance">
+                  {text}
+                </h1>
+              ) : (
+                <h2 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center px-4 text-white leading-tight mb-4 text-balance">
+                  {text}
+                </h2>
+              )}
               {subtitle && (
                 <p class="text-lg md:text-xl lg:text-2xl text-center px-4 text-white/90 mb-6 text-balance">
                   {subtitle}

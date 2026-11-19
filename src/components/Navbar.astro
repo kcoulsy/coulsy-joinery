@@ -33,53 +33,35 @@ const menuitems = [
       // Core Services
       // { label: "Joiner", link: "/joinery-services/joiner" },
       // { label: "Carpenter", link: "/joinery-services/carpenter" },
-      { label: "All Joinery Services", link: "/joinery-services" },
+      { label: "All Services", link: "/joinery-services" },
 
-      // High-Priority Services (SEO-optimized order)
-      { label: "General Joinery", link: "/joinery-services/general-joinery" },
+      // Primary services only — what the business wants to be found and chosen for.
+      // Owner decision, 19 Nov 2026. Bespoke joinery, door hanging, steel fire exit doors,
+      // both roof families and heritage are deliberately NOT here: their pages stay live,
+      // indexed and reachable from the /joinery-services hub (see OurServicesBody.astro),
+      // but they are no longer advertised in the navigation. Garden buildings and the
+      // standalone accessible-kitchens family are being retired altogether.
+      { label: "Joinery & Carpentry", link: "/joinery-services/general-joinery" },
       {
-        label: "Fitted Kitchens",
-        link: "/joinery-services/kitchen-installers",
-      },
-      {
-        label: "Small Build Services",
+        label: "Building Alterations & Refurbishment",
         link: "/joinery-services/small-build-services",
       },
       {
-        label: "Building Maintenance",
+        label: "Commercial Property Maintenance",
         link: "/joinery-services/building-maintenance",
-      },
-      {
-        label: "Accessible Kitchens",
-        link: "/joinery-services/accessible-kitchen-installers",
-      },
-      { label: "Bespoke Joinery", link: "/joinery-services/bespoke-joinery" },
-      { label: "Garden Offices", link: "/joinery-services/garden-offices" },
-      { label: "Garden Rooms", link: "/joinery-services/garden-rooms" },
-      { label: "Door Hanging", link: "/joinery-services/door-hanging" },
-      {
-        label: "Steel Fire Exit Doors",
-        link: "/joinery-services/steel-fire-exit-doors-installers",
-      },
-      // Heritage & Restoration is deliberately NOT in the primary navigation.
-      // The pages remain live, indexed and in the sitemap — they hold real
-      // authority — but heritage enquiries are work Robert does not want, so the
-      // site should not advertise it as a principal service. Business decision,
-      // not an SEO one. See ARCHITECTURE.md §3.
-      {
-        label: "Stud Wall Partitioning",
-        link: "/joinery-services/stud-wall-partitioning",
       },
       {
         label: "Subcontract Joinery",
         link: "/joinery-services/joinery-subcontractors",
       },
-      // Roofing Services (grouped together at end)
       {
-        label: "Traditional Cut Roofs",
-        link: "/joinery-services/traditional-cut-roofs",
+        label: "Stud Partitions",
+        link: "/joinery-services/stud-wall-partitioning",
       },
-      { label: "Truss Roofs", link: "/joinery-services/truss-roof-installers" },
+      {
+        label: "Kitchen Installation",
+        link: "/joinery-services/kitchen-installers",
+      },
     ],
   },
   {
