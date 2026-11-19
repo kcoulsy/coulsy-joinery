@@ -13,17 +13,19 @@
  *    reintroduced just because a reviews link is now visible);
  *  - insurance is stated as the actual cover held, not a vague "fully insured".
  *
- * MICWCI is absent by choice, not by date: the election took effect 28 August 2026,
- * so the post-nominal is conferred and available. Keeping this list to four
- * credentials is a content decision — see /about/qualifications for the full set.
+  * Robert's MICWCI membership (conferred 28 August 2026) appears in the name line and, since
+ * 20 November 2026, as a membership line in the list. It is stated as HIS membership of the
+ * Institute — never as an accreditation of the business. See /about/qualifications for the
+ * full set.
  */
 import { Image } from "astro:assets";
 import robertPortrait from "../assets/images/team/robert-portrait.jpg";
-import { DETAILS } from "../constants/details";
+import { DETAILS, MEMBERSHIP } from "../constants/details";
 
 const credentials = [
   "On the tools since 1988",
-  "City & Guilds qualified",
+    "City & Guilds qualified",
+  `Member of the ${MEMBERSHIP.INSTITUTE} (${MEMBERSHIP.POST_NOMINAL})`,
   "£5m public liability insurance",
   "VAT registered",
 ];

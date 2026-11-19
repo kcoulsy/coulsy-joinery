@@ -5,8 +5,30 @@
  * deliberately does NOT live here. It is in `src/constants/company.ts` and is imported by
  * exactly ONE page. See the note in that file.
  */
+/**
+ * Robert Coulson's professional MEMBERSHIP — one source of truth for the wording.
+ *
+ * MICWCI is a membership GRADE, conferred 28 August 2026. It is not a qualification, not a
+ * licence, and it does not mean Coulsy Joinery is accredited or certified by the Institute.
+ * Never use "qualified Clerk of Works", never put it in `hasCredential`, and do not use the
+ * Institute's logo without permission. See `about/qualifications.astro`.
+ */
+export const MEMBERSHIP = {
+  POST_NOMINAL: "MICWCI",
+  INSTITUTE: "Institute of Clerks of Works and Construction Inspectorate",
+  INSTITUTE_SHORT: "ICWCI",
+} as const;
+
+/** Schema.org `memberOf` for Robert's Person nodes. Never a credential or an accreditation. */
+export const MEMBER_OF_NODE = {
+  "@type": "Organization",
+  name: MEMBERSHIP.INSTITUTE,
+  alternateName: MEMBERSHIP.INSTITUTE_SHORT,
+} as const;
+
 export const DETAILS = {
-  PHONE: "07544 030486",
+    PHONE: "07544 030486",
+  
   EMAIL: "robert@coulsy.co.uk",
   FIRST_NAME: "Robert",
   SOCIALS: {
