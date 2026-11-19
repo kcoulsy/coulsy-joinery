@@ -103,6 +103,11 @@ export function getSpecialist(id: string): SpecialistBusiness {
   return found;
 }
 
+/** Absolute URL for any path on a specialist's site, built from its single source-of-truth origin. */
+export function specialistUrl(s: SpecialistBusiness, path: string): string {
+  return `${s.url}${path}`;
+}
+
 /** Absolute URL for a specialist's hand-off CTA. */
 export function handoffUrl(s: SpecialistBusiness): string {
   return `${s.url}${s.handoff.ctaPath}`;

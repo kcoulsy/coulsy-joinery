@@ -4,11 +4,6 @@ import studWall from "../assets/images/stud-wall-new-build.jpeg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
 import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import SubcontractImg from "../assets/images/sub-contract.jpg";
-import rooftop from "../assets/images/rooftop.jpg";
-import cutRoofHeader from "../assets/images/cut-roofs/cut-roof-header.jpg";
-import trussRoofImage from "../assets/images/truss-roofs/attic-trusses.jpg";
-import complianceImage from "../assets/images/compliance.jpeg";
-import steelFireExit from "../assets/images/steel-exit-doors/Security-Fire-Exit-Door-510x510.jpg";
 import generalJoinery from "../assets/images/general-joinery/fencing-and-gates.jpg";
 import smallBuildImage from "../assets/images/small-build-services/small-building-works-glazed-office-800x600.jpg";
 import buildingMaintenanceImage from "../assets/images/building-maintenance/building-maintenance-before-after-800x600.jpg";
@@ -84,6 +79,11 @@ const services = [
 // promoted on the homepage or in the navigation. Owner decision, 19 Nov 2026 — no URL is retired
 // by this. See ARCHITECTURE.md §1 and §3.
 //
+// 20 Nov 2026: the Steel Fire Exit Doors, Traditional Cut Roofs and Truss Roof Installers cards
+// were REMOVED from this hub (owner: not services to promote; fire-exit-door work is directed to
+// Coulsy Fire Doors). Their pages, canonicals and sitemap entries are untouched; they are now
+// reachable only from their own town pages and the sitemap. Do not re-add the cards without asking.
+//
 // DO NOT remove an entry from this list without giving its pages another way in. The hub link
 // here is each family's only route from the rest of the site: Door Hanging was once absent from
 // both this catalogue and the navbar, and its hub and all 56 town pages became unreachable. It
@@ -105,30 +105,6 @@ const secondaryServices = [
     description:
       "Door sets, frames and fire doors fitted as part of refurbishment, joinery and commercial maintenance work.",
     category: "Joinery",
-  },
-  {
-    title: "Steel Fire Exit Doors",
-    href: "/joinery-services/steel-fire-exit-doors-installers",
-    image: steelFireExit,
-    alt: "Steel fire exit and fire escape doors",
-    description: "Robust, compliant fire exit doors for commercial spaces.",
-    category: "Commercial",
-  },
-  {
-    title: "Traditional Cut Roofs",
-    href: "/joinery-services/traditional-cut-roofs",
-    image: cutRoofHeader,
-    alt: "Traditional cut roofs and timber roof framing in York",
-    description: "Traditional hand-cut roof construction designed and built to suit any shape or layout.",
-    category: "Roofing",
-  },
-  {
-    title: "Truss Roof Installers",
-    href: "/joinery-services/truss-roof-installers",
-    image: trussRoofImage,
-    alt: "Truss roof installation and structural joinery in York",
-    description: "Truss roof installation for domestic and commercial builds.",
-    category: "Roofing",
   },
   {
     title: "Period Property Joinery",
