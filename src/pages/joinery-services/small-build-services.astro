@@ -31,17 +31,16 @@ const {
   displayServiceName,
   locationInText,
   cleanLocationName,
-  businessSchema,
-  faqSchema,
+    businessSchema,
+
   defaultDescription,
   enhancedKeywords,
   enhancedDescription,
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Building alterations and refurbishment ${locationInText} inside existing homes and business premises. Time-served joiner and builder, in the trade since 1988.`;
-const finalDescription =
-  enhancedDescription || description || defaultDescription;
+// The description comes from SERVICE_DESCRIPTIONS in pageMeta.ts (one source of truth).
+const finalDescription = enhancedDescription || defaultDescription;
 ---
 
 <Layout
@@ -50,9 +49,9 @@ const finalDescription =
   keywords={enhancedKeywords}
   structuredData={businessSchema}
 >
-  <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </Fragment>
+    {/* No FAQ JSON-LD on this page. The shared FAQ pool in pageMeta.ts is written for domestic
+      joinery (kitchens, housing stock) and none of it is visible on the page, so emitting it
+      here would publish answers this service does not give. */}
 
   <main class="mx-auto relative z-10">
     <ServiceHero

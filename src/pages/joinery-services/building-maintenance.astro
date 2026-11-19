@@ -31,17 +31,16 @@ const {
   displayServiceName,
   locationInText,
   cleanLocationName,
-  businessSchema,
-  faqSchema,
+    businessSchema,
+
   defaultDescription,
   enhancedKeywords,
   enhancedDescription,
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Repairs and maintenance for shops, offices and other commercial premises ${locationInText}. Time-served joiner and builder, in the trade since 1988.`;
-const finalDescription =
-  enhancedDescription || description || defaultDescription;
+// The description comes from SERVICE_DESCRIPTIONS in pageMeta.ts (one source of truth).
+const finalDescription = enhancedDescription || defaultDescription;
 ---
 
 <Layout
@@ -50,9 +49,9 @@ const finalDescription =
   keywords={enhancedKeywords}
   structuredData={businessSchema}
 >
-  <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </Fragment>
+    {/* No FAQ JSON-LD on this page. The shared FAQ pool in pageMeta.ts is written for domestic
+      joinery (kitchens, housing stock) and none of it is visible on the page, so emitting it
+      here would publish answers this service does not give. */}
 
   <main class="mx-auto relative z-10">
     <ServiceHero
@@ -95,7 +94,7 @@ const finalDescription =
                   This service is for retailers, office occupiers, landlords, managing agents and property management companies{locationInText}. Facilities management companies that need a reliable local joiner and builder to carry out work on site are welcome to get in touch.
                 </p>
                 <p>
-                  I work with landlords, estate agents and property management companies{locationInText}, providing reliable maintenance for let properties and managed portfolios. Urgent repairs for commercial customers can be undertaken subject to availability.
+                  Urgent repairs for commercial customers can be undertaken subject to availability.
                 </p>
               </div>
 
@@ -342,7 +341,7 @@ const finalDescription =
                       For Facilities Management Companies
                     </h3>
                     <p class="text-neutral-600">
-                      If you manage premises for clients and need joinery, building repairs and small works carried out on site, I can work as your contractor. I don't provide facilities management myself — I carry out the work, to your instruction, with RAMS and site paperwork in order.
+                      If you manage premises for clients and need joinery, building repairs and small works carried out on site, I can work as your contractor. I don't provide facilities management myself — I carry out the work, to your instruction, with RAMS provided where required.
                     </p>
                   </div>
                 </div>
@@ -434,7 +433,7 @@ const finalDescription =
                       {
                         src: galleryImg6,
                         label: "Previous Work",
-                        alt: `Photograph of previous work${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        alt: `Photograph of previous work`,
                         loading: "lazy",
                       },
                     ]}
