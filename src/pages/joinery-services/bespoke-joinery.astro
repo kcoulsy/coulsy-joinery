@@ -31,12 +31,12 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert bespoke joinery ${locationInText} by City & Guilds qualified joiner. Doors, windows & staircases. Joiner since 1988, quality craftsmanship.`;
+const description = `Expert bespoke joinery ${locationInText} by City & Guilds qualified joiner. Fitted and architectural joinery, specified, sourced and installed. Joiner since 1988.`;
 const finalDescription = description || defaultDescription;
 ---
 
 <Layout
-  title={`${pageTitle} | Bespoke Joinery for Doors, Windows & Staircases`}
+  title={`${pageTitle} | Fitted & Architectural Joinery, Specified and Installed`}
   description={finalDescription}
   keywords={enhancedKeywords}
   structuredData={businessSchema}
@@ -54,7 +54,7 @@ const finalDescription = description || defaultDescription;
       quoteFor={`bespoke joinery${locationInText}`.trim()}
       badge="Bespoke Joinery"
       title={pageTitle}
-      description="Expert bespoke joinery crafted with precision and care. From custom staircases to handcrafted furniture, every piece is made-to-measure for your unique space."
+      description="Fitted and architectural joinery for whole rooms and whole properties — surveyed, specified, sourced from specialist manufacturers and installed by the same joiner."
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName
@@ -99,7 +99,7 @@ const finalDescription = description || defaultDescription;
                     </h2>
                     <p class="text-neutral-600">
                       Hi, I'm Robert — a City & Guilds Advanced Craft qualified
-                      joiner with over three decades of hands-on experience. I
+                      joiner with hands-on experience going back to 1988. I
                       offer personal, made-to-measure joinery solutions {
                         locationInText
                       }, working with clients who value craftsmanship,
@@ -118,11 +118,7 @@ const finalDescription = description || defaultDescription;
                   techniques, and attention to detail.
                 </p>
                 <p>
-                  My work includes traditional and modern joinery, from hand-cut
-                  timber features to router-assisted finishes and full project
-                  installations {locationInText}. Whether it's a one-off piece
-                  or a full property refit, you'll always get quality that
-                  lasts.
+                  My work includes traditional and modern joinery, from fitted furniture and architectural joinery to full project installations {locationInText}. Whether it's one room or a full property refit, you'll always get quality that lasts.
                 </p>
                 {
                   cleanLocationName && (
@@ -206,7 +202,7 @@ const finalDescription = description || defaultDescription;
                     Our Bespoke Joinery Work
                   </h2>
                   <p class="text-neutral-600 mt-2">
-                    Examples of our handcrafted joinery projects
+                    Examples of previous work
                   </p>
                 </div>
                 <div class="card-body p-0">
@@ -214,8 +210,8 @@ const finalDescription = description || defaultDescription;
                     items={[
                       {
                         src: galleryImg1,
-                        alt: `Bespoke ash bathroom vanity cabinet handcrafted with traditional joinery techniques${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                        label: "Handmade Ash Vanity Cabinet",
+                        alt: `Ash bathroom vanity cabinet from a previous project${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        label: "Ash Vanity Cabinet — Previous Work",
                       },
                       {
                         src: galleryImg2,
@@ -224,8 +220,8 @@ const finalDescription = description || defaultDescription;
                       },
                       {
                         src: galleryImg3,
-                        alt: `Custom-built wooden garage door crafted with solid timber and traditional joinery${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                        label: "Handmade Timber Garage Door",
+                        alt: `Solid timber garage door from a previous project${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        label: "Timber Garage Door — Previous Work",
                       },
                       {
                         src: galleryImg4,
@@ -234,8 +230,8 @@ const finalDescription = description || defaultDescription;
                       },
                       {
                         src: galleryImg5,
-                        alt: `Handmade oak mirror frame crafted with fine detailing and traditional joinery methods${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
-                        label: "Handmade Oak Mirror Frame",
+                        alt: `Oak mirror frame from a previous project${cleanLocationName ? ` ${cleanLocationName}` : ""}`,
+                        label: "Oak Mirror Frame — Previous Work",
                         loading: "lazy",
                       },
                       {

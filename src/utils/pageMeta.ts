@@ -272,21 +272,21 @@ export function getFormattedPageData(Astro: any): {
         `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
         `Quality ${lowerService} in ${cleanLocationName} ${locationPostcode}. City & Guilds qualified in 1989, CSCS Gold, VAT registered. Serving homes and businesses across ${locationRegion}.`,
         `Professional ${lowerService} for homes and businesses in ${cleanLocationName} — a ${locTypeWord} I've worked across for decades. Joiner since 1988, reliable service.`,
-        `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified, with £5m public liability cover. Covering ${locationRegion}.`,
+        `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, refurbishment, kitchens and general carpentry. Qualified, with £5m public liability cover. Covering ${locationRegion}.`,
       ]
     : [
         `Joiner since 1988, City & Guilds qualified, covering Yorkshire — ${lowerService} and general joinery. £5m public liability cover, free quotes.`,
         `${formattedServiceName} across Yorkshire. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
         `Quality ${lowerService} across Yorkshire. City & Guilds qualified in 1989, CSCS Gold, VAT registered.`,
         `Professional ${lowerService} for homes and businesses across Yorkshire. Joiner since 1988, reliable service.`,
-        `Trusted joiner across Yorkshire — ${lowerService}, kitchens, doors, heritage repairs and general carpentry. Qualified, with £5m public liability cover.`,
+        `Trusted joiner across Yorkshire — ${lowerService}, refurbishment, kitchens and general carpentry. Qualified, with £5m public liability cover.`,
       ];
 
   const defaultDescription = descriptionVariants[variantHash % descriptionVariants.length];
   const enhancedDescription = defaultDescription;
 
   // Enhanced keywords with location and service
-  const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, bespoke joinery ${locationInText}, heritage restoration ${locationInText}, ${formattedServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
+  const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, ${formattedServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
 
   // Get nearby locations for enhanced areaServed
   const nearbyLocations = location 
@@ -381,13 +381,13 @@ export function getFormattedPageData(Astro: any): {
     if (locationType === "market-town" || locationType === "village" || locationType === "city") {
       faqPool.push({
         name: `Do you work on period or listed properties in ${cleanLocationName}?`,
-        text: `Yes. ${cleanLocationName} has a lot of older and period buildings, and I handle sympathetic joinery repairs — sash window restoration, door repairs, timber-frame and heritage work — while respecting the property's character and any conservation requirements.`,
+        text: `Yes. ${cleanLocationName} has many older and period buildings, and I take on joinery and refurbishment in them, respecting the property's character.`,
       });
     }
   } else {
     faqPool.push({
       name: `What ${lowerService} services do you offer?`,
-      text: `I offer ${lowerService} across Yorkshire — bespoke joinery, kitchen installation, heritage repairs, and general carpentry. All work is carried out personally, on the tools since 1988.`,
+      text: `I offer ${lowerService} across Yorkshire — joinery, kitchen installation, refurbishment and general carpentry. All work is carried out personally, on the tools since 1988.`,
     });
   }
 
@@ -404,7 +404,7 @@ export function getFormattedPageData(Astro: any): {
   });
   faqPool.push({
     name: `How long does a typical job take${locationInText}?`,
-    text: `Project time varies with scope — a small repair or single-door job can be a day, a full kitchen or larger build runs one to three weeks. I'll give you a realistic timeline with the quote, not a best-case guess.`,
+    text: `It depends on scope — a full kitchen installation typically runs one to three weeks. I'll give you a realistic timeline with the quote, not a best-case guess.`,
   });
   faqPool.push({
     name: `What payment methods do you accept?`,

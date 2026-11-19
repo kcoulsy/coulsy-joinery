@@ -6,12 +6,12 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 
 const faqData = [
   {
-    category: "General Joinery & Small Build Services",
+    category: "Joinery & Building Services",
     questions: [
       {
-        question: "What joinery and small build services do you provide?",
+        question: "What joinery and building services do you provide?",
         answer:
-          "We provide comprehensive joinery and small build services including kitchen installation, bespoke joinery, general joinery, heritage restoration, garden offices, stud wall partitioning, door hanging, roof construction, and more. Our services cover both domestic and commercial properties across Yorkshire.",
+          "We provide professional joinery and building services: joinery and carpentry, building alterations and refurbishment, commercial property maintenance, subcontract joinery, stud partitions and kitchen installation. We work in both domestic and commercial properties across Yorkshire.",
       },
       {
         question:
@@ -62,22 +62,22 @@ const faqData = [
       {
         question: "What bespoke joinery services do you offer?",
         answer:
-          "We offer a wide range of bespoke joinery services including custom furniture, fitted wardrobes, handcrafted pieces, unique wooden items, and tailored joinery solutions to meet your specific requirements.",
+          "Fitted wardrobes, window seats, made-to-measure shelving and architectural joinery — surveyed, specified, sourced from specialist manufacturers where needed, and installed.",
       },
       {
         question: "How long does bespoke joinery take?",
         answer:
-          "Bespoke joinery timelines vary depending on the complexity and size of the project. Simple pieces may take 1-2 weeks, while complex custom furniture can take 4-8 weeks. We'll provide a detailed timeline during the consultation.",
+          "It depends on the scope and on manufacturers' lead times for made-to-measure items. We'll give you a realistic timeline with the quote.",
       },
       {
         question: "Do you work with different types of wood?",
         answer:
-          "Yes, we work with a variety of wood types including oak, pine, mahogany, walnut, and more. We can recommend the best wood for your project based on your requirements and budget.",
+          "Yes, we work with hardwoods, softwoods and manufactured boards, and will recommend what suits the job and budget.",
       },
       {
         question: "Can you create custom designs?",
         answer:
-          "Absolutely! We specialise in creating custom designs based on your ideas, requirements, and space. We work closely with you to bring your vision to life.",
+          "We can work from your design or an architect's drawings, or help you specify made-to-measure joinery to suit the space.",
       },
     ],
   },
@@ -107,22 +107,17 @@ const faqData = [
     ],
   },
   {
-    category: "General Joinery & Repairs",
+    category: "General Joinery",
     questions: [
       {
         question: "What general joinery services do you provide?",
         answer:
-          "Our general joinery services include repairs, installations, woodwork projects, door hanging, window repairs, shelving, and general carpentry work for both residential and commercial properties.",
+          "Internal joinery, second-fix carpentry, fitted joinery installation and joinery for refurbishments, for homes and commercial premises.",
       },
       {
-        question: "How quickly can you respond to repair requests?",
+        question: "Do you carry out urgent repairs?",
         answer:
-          "We aim to respond to repair requests within 24-48 hours, and often much sooner depending on the nature of the repair and your location. Emergency repairs are prioritised.",
-      },
-      {
-        question: "Do you provide emergency repair services?",
-        answer:
-          "Yes, we provide emergency callout services for urgent joinery repairs. Contact us immediately if you have a joinery issue that needs immediate attention.",
+          "For commercial customers, urgent repairs can be undertaken subject to availability. Please phone to check.",
       },
       {
         question: "How much do general joinery repairs cost?",
@@ -132,12 +127,12 @@ const faqData = [
     ],
   },
   {
-    category: "Heritage & Restoration",
+    category: "Period Properties",
     questions: [
       {
         question: "What heritage joinery services do you offer?",
         answer:
-          "We offer specialist heritage joinery and restoration work for period properties and listed buildings, including traditional joinery techniques, restoration of original features, and sympathetic repairs.",
+          "We take on joinery and refurbishment in period properties, using traditional techniques where the building calls for them. We don't generally take on isolated minor repairs.",
       },
       {
         question: "Do you work on listed buildings?",
@@ -147,7 +142,7 @@ const faqData = [
       {
         question: "What qualifications do you have for heritage work?",
         answer:
-          "Our team has experience going back to 1988 in heritage joinery and restoration. We're fully qualified to handle all aspects of heritage joinery work and compliance.",
+          "Robert has worked on period properties since 1988, using traditional construction methods.",
       },
       {
         question: "How do you approach heritage restoration?",
@@ -162,12 +157,12 @@ const faqData = [
       {
         question: "Do you provide quotes?",
         answer:
-          "Yes, we provide detailed quotes for all our services. We'll assess your requirements and provide a comprehensive quote including all necessary work, materials, and any required certifications.",
+          "Yes, we provide detailed quotes for all our services. We'll assess your requirements and provide a comprehensive quote including all necessary work and materials.",
       },
       {
         question: "Are your quotes free?",
         answer:
-          "We provide competitive quotes for all joinery and small build services. Contact us to discuss your requirements and we'll provide a detailed quote tailored to your specific needs.",
+          "We provide competitive quotes for all joinery and building services. Contact us to discuss your requirements and we'll provide a detailed quote tailored to your specific needs.",
       },
       {
         question: "Do you offer maintenance contracts?",
@@ -181,27 +176,7 @@ const faqData = [
       },
     ],
   },
-  {
-    category: "Emergency Services",
-    questions: [
-      {
-        question: "Do you provide emergency callout services?",
-        answer:
-          "Yes, we provide emergency callout services for urgent joinery repairs and building issues. Contact us immediately if you have a joinery or building problem that needs immediate attention.",
-      },
-      {
-        question: "How quickly can you respond to emergencies?",
-        answer:
-          "We aim to respond to emergency callouts within 24 hours, and often much sooner depending on the nature of the emergency and your location.",
-      },
-      {
-        question: "What constitutes a joinery emergency?",
-        answer:
-          "Joinery emergencies include structural issues, security problems, water damage, broken doors or windows, or any issue that compromises safety or security.",
-      },
-    ],
-  },
-];
+  ];
 
 // Flatten all questions for schema
 const allFaqs = faqData.flatMap((category) => category.questions);
@@ -209,11 +184,11 @@ const allFaqs = faqData.flatMap((category) => category.questions);
 // SEO data
 const seoData = {
   title:
-    "Joinery & Small Build FAQ - Common Questions About Joinery Services | Coulsy Joinery",
+    "Joinery & Building Services FAQ - Common Questions | Coulsy Joinery",
   description:
-    "Get answers to common questions about joinery services, kitchen installation, bespoke joinery, garden offices, and small build work. Expert joinery services in Yorkshire since 1988.",
+    "Get answers to common questions about joinery and building services, kitchen installation and fitted joinery. In the trade in Yorkshire since 1988.",
   keywords:
-    "joinery FAQ, joinery questions, kitchen installation, bespoke joinery, garden offices, small build, Yorkshire joinery",
+    "joinery FAQ, joinery questions, kitchen installation, building alterations, refurbishment, Yorkshire joinery",
 };
 ---
 
@@ -221,8 +196,8 @@ const seoData = {
   <!-- FAQ Schema -->
   <FAQSchema
     faqs={allFaqs}
-    pageTitle="Joinery & Small Build FAQ"
-    pageDescription="Common questions about joinery services, kitchen installation, bespoke joinery, and small build work"
+    pageTitle="Joinery & Building Services FAQ"
+    pageDescription="Common questions about joinery and building services, kitchen installation and fitted joinery"
   />
 
   <main class="mx-auto relative z-10">
@@ -407,8 +382,7 @@ const seoData = {
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-lg">
               <h3 class="text-2xl font-semibold text-brand-900 mb-6">
-                Quick Response
-              </h3>
+                Getting in Touch </h3>
               <ul class="text-left space-y-3 text-gray-700 text-lg">
                 <li class="flex items-center">
                   <span class="w-2 h-2 bg-brand rounded-full mr-3"></span>
@@ -416,7 +390,7 @@ const seoData = {
                 </li>
                 <li class="flex items-center">
                   <span class="w-2 h-2 bg-brand rounded-full mr-3"></span>
-                  Emergency callout service
+                  Urgent commercial repairs, subject to availability
                 </li>
                 <li class="flex items-center">
                   <span class="w-2 h-2 bg-brand rounded-full mr-3"></span>
