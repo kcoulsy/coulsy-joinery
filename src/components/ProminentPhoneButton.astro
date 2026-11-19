@@ -11,7 +11,7 @@ interface Props {
 const { note = "Available for quotes and enquiries" } = Astro.props;
 
 // tel: URIs must not contain spaces.
-const telHref = `tel:${DETAILS.PHONE.replace(/\s+/g, "")}`;
+const telHref = DETAILS.PHONE_HREF;
 ---
 
 <div class="mb-4">

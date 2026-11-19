@@ -115,8 +115,18 @@ const { items } = Astro.props;
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    const lightbox = document.getElementById("lightbox");
-    let originalContainer: HTMLElement | null = null; // Track where lightbox originally was
+        const lightbox = document.getElementById("lightbox");
+
+    // Move the (closed) lightbox to <body> as soon as the page loads, and leave it there.
+    // It is `position: fixed; width: 100vw`, but it is rendered inside `.animate-on-scroll`
+    // ancestors whose `transform` makes THEM its containing block — so it was offset by the
+    // container's padding and stuck out 16px past the right edge of a 375px phone, giving every
+    // page with a gallery a sideways scroll. In <body> it is relative to the viewport, and a
+    // viewport-fixed box adds nothing to the page's scrollable width.
+    if (lightbox && lightbox.parentElement !== document.body) {
+      document.body.appendChild(lightbox);
+    }
+
 
     // Add click event listener to close lightbox when clicking overlay
     if (lightbox) {
@@ -163,12 +173,7 @@ const { items } = Astro.props;
 
         // Move lightbox to document body to escape parent positioning context
         if (lightbox.parentElement !== document.body) {
-          originalContainer = lightbox.parentElement;
           document.body.appendChild(lightbox);
-          console.log(
-            "Moved lightbox to document body from:",
-            originalContainer
-          );
         }
 
         // Force positioning
@@ -200,11 +205,7 @@ const { items } = Astro.props;
         lightbox.classList.add("opacity-0", "pointer-events-none");
         document.body.style.overflow = "";
 
-        // Restore lightbox to original container if it was moved to body
-        if (lightbox.parentElement === document.body && originalContainer) {
-          originalContainer.appendChild(lightbox);
-          console.log("Restored lightbox to original container");
-        }
+        
 
         console.log("Lightbox closed");
       }
