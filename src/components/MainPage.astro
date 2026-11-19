@@ -10,6 +10,7 @@ import ProminentPhoneButton from "../components/ProminentPhoneButton.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { DETAILS } from "../constants/details";
 import { BUSINESS_NODE } from "../constants/business";
+import { MEMBER_OF_NODE } from "../constants/details";
 
 // Import images with modern priority loading
 import timber20joinery from "../assets/images/timber20joinery.jpg";
@@ -135,7 +136,8 @@ const seoData = {
     founder: {
       "@type": "Person",
       name: "Robert Coulson",
-      honorificSuffix: "MICWCI",
+            honorificSuffix: "MICWCI",
+      memberOf: MEMBER_OF_NODE,
       jobTitle: "Joiner, Builder and Fire Door Specialist",
       description:
         "City & Guilds qualified in 1989 with joinery experience going back to 1988",
@@ -144,7 +146,8 @@ const seoData = {
       {
         "@type": "Person",
         name: "Robert Coulson",
-        honorificSuffix: "MICWCI",
+                honorificSuffix: "MICWCI",
+        memberOf: MEMBER_OF_NODE,
         jobTitle: "Joiner, Builder and Fire Door Specialist",
         description: "City & Guilds qualified in 1989 with experience going back to 1988",
       },

@@ -9,6 +9,7 @@ import DebbieProfileImage from "../assets/images/team/debbie-profile-image.jpg";
 import RobertProfileImage from "../assets/images/team/robert-profile-image.jpg";
 import Reviews from "../components/Reviews.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
+import { MEMBER_OF_NODE } from "../constants/details";
 // import { DETAILS } from "../constants/details"; // Not used
 
 // Modern SEO optimization with personal voice preserved
@@ -33,7 +34,8 @@ const seoData = {
       founder: {
         "@type": "Person",
         name: "Robert Coulson",
-        honorificSuffix: "MICWCI",
+                honorificSuffix: "MICWCI",
+        memberOf: MEMBER_OF_NODE,
         jobTitle: "Joiner, Builder and Fire Door Specialist",
         description:
           "City & Guilds qualified in 1989 with joinery experience going back to 1988",
@@ -43,7 +45,8 @@ const seoData = {
         {
           "@type": "Person",
           name: "Robert Coulson",
-          honorificSuffix: "MICWCI",
+                    honorificSuffix: "MICWCI",
+          memberOf: MEMBER_OF_NODE,
           jobTitle: "Joiner, Builder and Fire Door Specialist",
           description: "City & Guilds qualified in 1989 with experience going back to 1988",
         },
@@ -369,8 +372,12 @@ const seoData = {
                   Professional Joiner, Builder &amp; Fire Door Specialist
                 </p>
                 <p class="text-sm text-brand-500 mt-1">Since 1988</p>
-                <p class="text-xs text-brand-400 mt-1">
-                  Qualified &amp; Insured
+                <p class="text-sm text-brand-500 mt-1">
+                  City &amp; Guilds qualified
+                </p>
+                <p class="text-xs text-brand-500 mt-1 max-w-xs mx-auto">
+                  Member of the Institute of Clerks of Works and Construction
+                  Inspectorate
                 </p>
               </div>
             </div>
