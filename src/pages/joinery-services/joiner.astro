@@ -32,7 +32,7 @@ const {
   pageTitle,
 } = getFormattedPageData(Astro);
 
-const description = `Expert joiner services ${locationInText} by City & Guilds qualified craftsman. Bespoke staircases, sash windows, doors & fine joinery. Joiner since 1988, traditional craftsmanship.`;
+const description = `Expert joiner services ${locationInText} by City & Guilds qualified craftsman. Internal joinery, door sets and fitted joinery. Joiner since 1988.`;
 const finalDescription =
   enhancedDescription || description || defaultDescription;
 ---
@@ -53,7 +53,7 @@ const finalDescription =
       quoteFor={`joinery work${locationInText}`.trim()}
       badge="Expert Joiner"
       title={pageTitle}
-      description="City & Guilds qualified joiner with experience going back to 1988. From sash windows to custom staircases, every project is crafted with traditional techniques and modern precision."
+      description="City & Guilds qualified joiner with experience going back to 1988. From internal joinery and second-fix work to fitted joinery, every job is done with traditional skills and modern precision."
       breadcrumbCrumbs={[
         { label: "Joinery Services", href: "/joinery-services" },
         ...(cleanLocationName
@@ -108,11 +108,7 @@ const finalDescription =
 
               <div class="space-y-4">
                 <p>
-                  I work on sash windows, custom staircases, bespoke doors,
-                  heritage repairs, and traditional roofing — with proper care
-                  and attention to detail. Whether you need something unique
-                  crafting from scratch or a reliable installation service, I
-                  offer truly bespoke joinery {locationInText}.
+                  I work on internal joinery, door sets and frames, staircase repairs and structural carpentry {locationInText} — with proper care and attention to detail. Made-to-measure items are specified by me, sourced from specialist manufacturers and installed by me.
                 </p>
                 <p>
                   Every job is different, and that's why I combine traditional
@@ -121,9 +117,7 @@ const finalDescription =
                   and second fix joinery to fine finishing work.
                 </p>
                 <p>
-                  That includes heritage restorations, sash windows, custom
-                  staircases, doors, skirtings, architraves, roofs, and
-                  shopfitting — all delivered with care and attention to detail.
+                  That includes period-property joinery, staircase repairs, doors, skirtings, architraves, roofs, and shopfitting — all delivered with care and attention to detail.
                 </p>
                 {
                   cleanLocationName && (
@@ -234,8 +228,8 @@ const finalDescription =
                       },
                       {
                         src: galleryImg3,
-                        alt: `Bespoke wooden garage door by local joiner${locationInText}`,
-                        label: "Handmade Garage Door",
+                        alt: `Timber garage door from a previous project${locationInText}`,
+                        label: "Timber Garage Door — Previous Work",
                       },
                       {
                         src: galleryImg4,
@@ -271,8 +265,7 @@ const finalDescription =
                       Get in Touch About Your Joinery Project
                     </h2>
                     <p class="text-brand-100">
-                      Whether it's a bespoke staircase, sash window repair, or a
-                      full joinery refit — I'd be happy to chat and see how I
+                      Whether it's fitted joinery, a refurbishment or a full joinery refit — I'd be happy to chat and see how I
                       can help.
                     </p>
                   </div>
