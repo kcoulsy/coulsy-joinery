@@ -3,8 +3,26 @@ import { LOCATIONS } from "../constants/locations";
 import { getNearbyLocations } from "./getNearbyLocations";
 import { BUSINESS_NODE, BUSINESS_REF } from "../constants/business";
 
+/**
+ * What a service is CALLED, where that differs from its URL slug.
+ *
+ * Every name on a service page — title, heading, metadata, schema — was derived from the URL
+ * slug, so a service could not be renamed without changing its URL. This map lets the name
+ * change while the URL (and its 56 town pages, their links and their search history) stays put.
+ *
+ * RULES:
+ * - `formattedServiceName` stays slug-derived. Pages build breadcrumb HREFS from it. Never build
+ *   a link from a display name.
+ * - A slug that is not listed here behaves exactly as before.
+ */
+const SERVICE_DISPLAY_NAMES: Record<string, string> = {
+  "small-build-services": "Building Alterations & Refurbishment",
+  "building-maintenance": "Commercial Property Maintenance",
+};
+
 export function getFormattedPageData(Astro: any): {
-  formattedServiceName: string;
+    formattedServiceName: string;
+  displayServiceName: string;
   locationFormated: string;
   locationInText: string;
   cleanLocationName: string;
@@ -194,6 +212,9 @@ export function getFormattedPageData(Astro: any): {
     formattedServiceName = formattedServiceName.replace(/html/gi, '').replace(/\s+/g, ' ').trim();
   }
 
+    // The name shown to people and search engines. Falls back to the slug-derived name.
+  const displayServiceName = SERVICE_DISPLAY_NAMES[baseType] ?? formattedServiceName;
+
   const locationFormated = location ? formatLocationName(location) : "";
   const locationInText = location ? ` in ${locationFormated}` : "";
 
@@ -202,10 +223,10 @@ export function getFormattedPageData(Astro: any): {
     : "";
 
   // Create SEO-friendly page title
-  let pageTitle = formattedServiceName;
+  let pageTitle = displayServiceName;
   if (location) {
     // For location-specific pages, use format: "Door Hanging in Boston Spa" or "Boston Spa Door Hanging Services"
-    pageTitle = `${formattedServiceName} in ${cleanLocationName}`;
+    pageTitle = `${displayServiceName} in ${cleanLocationName}`;
   }
   
   // FINAL SAFETY CHECK: Ensure the page title is completely clean before any processing
@@ -254,7 +275,7 @@ export function getFormattedPageData(Astro: any): {
   }
   variantHash = Math.abs(variantHash);
 
-  const lowerService = formattedServiceName.toLowerCase();
+  const lowerService = displayServiceName.toLowerCase();
   const locTypeWord =
     locationType === "city" ? "city"
     : locationType === "market-town" ? "market town"
@@ -269,14 +290,14 @@ export function getFormattedPageData(Astro: any): {
   const descriptionVariants = location
     ? [
         `Joiner since 1988, City & Guilds qualified, covering ${cleanLocationName} (${locationPostcode}) — ${lowerService} and general joinery across ${locationRegion}. £5m public liability cover, free quotes.`,
-        `${formattedServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
+        `${displayServiceName} in ${cleanLocationName} and the wider ${locationRegion} area. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
         `Quality ${lowerService} in ${cleanLocationName} ${locationPostcode}. City & Guilds qualified in 1989, CSCS Gold, VAT registered. Serving homes and businesses across ${locationRegion}.`,
         `Professional ${lowerService} for homes and businesses in ${cleanLocationName} — a ${locTypeWord} I've worked across for decades. Joiner since 1988, reliable service.`,
         `Trusted joiner in ${cleanLocationName} (${locationPostcode}) — ${lowerService}, refurbishment, kitchens and general carpentry. Qualified, with £5m public liability cover. Covering ${locationRegion}.`,
       ]
     : [
         `Joiner since 1988, City & Guilds qualified, covering Yorkshire — ${lowerService} and general joinery. £5m public liability cover, free quotes.`,
-        `${formattedServiceName} across Yorkshire. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
+        `${displayServiceName} across Yorkshire. Local joiner, on the tools since 1988, City & Guilds qualified, £5m public liability cover. Free no-obligation quotes.`,
         `Quality ${lowerService} across Yorkshire. City & Guilds qualified in 1989, CSCS Gold, VAT registered.`,
         `Professional ${lowerService} for homes and businesses across Yorkshire. Joiner since 1988, reliable service.`,
         `Trusted joiner across Yorkshire — ${lowerService}, refurbishment, kitchens and general carpentry. Qualified, with £5m public liability cover.`,
@@ -286,7 +307,7 @@ export function getFormattedPageData(Astro: any): {
   const enhancedDescription = defaultDescription;
 
   // Enhanced keywords with location and service
-  const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, ${formattedServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
+  const enhancedKeywords = `joinery ${locationInText}, carpentry ${locationInText}, kitchen installation ${locationInText}, ${displayServiceName.toLowerCase()} ${locationInText}, local joiner ${locationInText}, qualified carpenter ${locationInText}`;
 
   // Get nearby locations for enhanced areaServed
   const nearbyLocations = location 
@@ -334,14 +355,14 @@ export function getFormattedPageData(Astro: any): {
   const serviceNode = {
     "@type": "Service",
     "@id": `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}#service`,
-    name: `${formattedServiceName} ${locationInText}`,
+    name: `${displayServiceName} ${locationInText}`,
     description: enhancedDescription,
     url: `https://coulsyjoinery.co.uk/joinery-services/${location ? `${location}-${baseType}` : baseType}`,
     // The one business, referenced — not redeclared.
     provider: BUSINESS_REF,
     // Page-specific. This is the coverage signal, and it is correct. Do not touch it.
     areaServed: areaServedNodes,
-    serviceType: formattedServiceName,
+    serviceType: displayServiceName,
     category: "Home Improvement",
     offers: {
       "@type": "Offer",
@@ -439,8 +460,9 @@ export function getFormattedPageData(Astro: any): {
   // Restore the original pathname to avoid side effects
   Astro.url.pathname = originalPathname;
   
-  return {
+    return {
     formattedServiceName,
+    displayServiceName,
     locationFormated,
     locationInText,
     cleanLocationName,
