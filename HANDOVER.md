@@ -1,6 +1,6 @@
 # Handover — start here
 
-**Last updated:** 20 November 2026
+**Last updated:** 20 November 2026 (end of session)
 **Read after:** `README.md`. Then `ARCHITECTURE.md` for strategy, `AUDIT_2026-07-13.md` for the audit record.
 
 > This repository has **no `docs/` directory** and no `00_START_HERE.md` / `01_PROJECT_STATUS.md`.
@@ -13,7 +13,7 @@
 
 | | |
 | --- | --- |
-| **Last code change** | `74503b5` (homepage, navigation and service cards, §1f) — preceded by `49f649c` (two service pages) and `25dde5c` (wording). Docs commits may sit on top. |
+| **Last code change** | `8e1162b` (hero/phone/gallery fixes, §1g) — preceded by `cd70f47`, `9f8b46e`, `35ac10d`, `386ad04` (all 20 Nov 2026) and `74503b5`/`49f649c`/`25dde5c` (19 Nov, §1f). Docs commits may sit on top. |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
@@ -411,77 +411,50 @@ unaffected by the setting itself.
 
 ---
 
-## 1g. 20 November 2026 session — changes PREPARED, not yet deployed (PRs #8–#12)
+## 1g. 20 November 2026 — Coulsy Code removal, credentials, service cards, phone fixes, form fix (DEPLOYED)
 
-**State when written: all five PRs are open and unmerged; nothing here is live.** Update this section when
-they are merged. The stacked PRs #9→#10→#11→#12 each have the previous PR's branch as base; retarget each
-to `main` after its predecessor merges (use `git rebase --onto origin/main <old-base> <branch>` — a plain
-rebase after a squash-merge conflicts).
+All merged by squash and **verified live on https://coulsyjoinery.co.uk on 20 Nov 2026**.
 
-| PR | What | Notes |
+| PR | Commit | What |
 | --- | --- | --- |
-| #9 | Remove the Coulsy Code promotion | `WebDevFooter.astro`, its use in `Layout.astro`, `public/coulsycode_brand_pack/` deleted. Only the sub-footer block changes on any page. `COULSY_CODE_INTEGRATION_SUMMARY.md` kept as a historical record, with a superseded note. |
-| #10 | Credentials | MICWCI membership line in the service-page evidence panel, homepage "Why", About, contact, footer; `memberOf` on Robert's Person nodes (never `hasCredential`). One constant: `MEMBERSHIP` / `MEMBER_OF_NODE` in `constants/details.ts`. About's blanket "Qualified & Insured" replaced. |
-| #11 | Stop promoting steel doors and roofs | Cards removed from the All Services hub; door-hanging pages' steel sentence now points at Coulsy Fire Doors via `specialistUrl()` in `constants/specialists.ts`; garden/small-build remnants on About/FAQ; subcontract heading "Fully Certified" → "Paperwork Sorted". **No URL, canonical, robots tag, title, description or sitemap entry changed on any of the 1,036 pages.** Consequence: steel/cut-roof/truss families (171 URLs) are no longer reachable by a crawl from the homepage — only from their own town pages and the sitemap. |
-| #12 | Technical fixes | Hero scroll icon overlap; all `tel:` links = `DETAILS.PHONE_HREF` (`tel:+447544030486`); **a 16px sideways scroll on every gallery page at 375px (also live today) caused by the closed `#lightbox` sitting inside a transformed ancestor — it is now moved to `<body>` on load.** |
-| #8 | CI | Removes `.github/workflows/_studio.yml` (see below). Independent of the stack. |
+| #8 | `d2e4f8d` | Removed `.github/workflows/_studio.yml` (see below). There is now **no GitHub workflow**; Netlify builds every PR and production deploy. |
+| #13 | `1e07ed2` | Docs; repointed §1f to the website records directory. |
+| #9 | `386ad04` | Coulsy Code promotion removed: `WebDevFooter.astro`, its use in `Layout.astro`, `public/coulsycode_brand_pack/` (those URLs now 404). `COULSY_CODE_INTEGRATION_SUMMARY.md` kept as a historical record with a superseded note. |
+| #10 | `35ac10d` | Credentials: MICWCI **membership** line in the service-page evidence panel, homepage "Why", About, contact, footer; `memberOf` on Robert's Person nodes (never `hasCredential`). One constant: `MEMBERSHIP` / `MEMBER_OF_NODE` in `constants/details.ts`. About's blanket "Qualified & Insured" replaced. Not in any page title; no logo; never "qualified Clerk of Works"; not an accreditation of the business. |
+| #14 | `9f8b46e` | **Contact form text was invisible on every service page** — see below. |
+| #11 | `cd70f47` | Steel Fire Exit Doors, Traditional Cut Roofs and Truss Roof Installers cards removed from All Services; door-hanging pages' steel sentence now points to Coulsy Fire Doors (`specialistUrl()` in `constants/specialists.ts`); About garden card/timeline, FAQ garden category, carpenter "new builds", subcontract "Fully Certified" → "Paperwork Sorted", FAQ conservation/"Qualified specialists" claims, and the contact page's "respond within a few hours" removed. |
+| #12 | `8e1162b` | Hero scroll icon no longer overlaps controls; every `tel:` link = `DETAILS.PHONE_HREF` (`tel:+447544030486`); gallery lightbox moved to `<body>` on load (it caused a 16px sideways scroll at 375px). |
 
-### The "DB" check — cause established
-`withastro/action-studio@main` runs Astro DB verification on pull requests and stops with
-`@astrojs/db is required`. This project has no `db/`, no `@astrojs/db`, no `ASTRO_STUDIO_APP_TOKEN`, and
-nothing imports `astro:db`. On push to `main` the action does nothing, which is why only PRs fail (every PR
-since 5 Nov 2026 → a failure email each time). It was the only workflow; `main` has no branch protection;
-real builds are Netlify's. #8 removes it. Revert #8 if the integration is ever wanted (needs `@astrojs/db`
-and a token).
+**No URL, canonical, robots tag, title, description, H1 or sitemap entry changed on any of the 1,033 sitemap URLs** (all 200 on production, compared with the pre-release build: 0 metadata differences; 0 `noindex`). robots.txt and `_redirects` unchanged.
 
-### Browser testing — it works, the MCP browser tool does not
-The Playwright MCP tool returns `ERR_BLOCKED_BY_CLIENT` for every URL. **Playwright itself works:** the
-library is in the npx cache and the browsers in `~/Library/Caches/ms-playwright`. Run with
-`NODE_PATH=~/.npm/_npx/<hash>/node_modules` (pick the dir containing `playwright-core`) and
-`chromium.launch({ executablePath: ~/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell })`
-(the library wants a newer shell build than is installed, hence the explicit path). Use `devices[...]` with
-touch for phone widths; `astro preview` on 127.0.0.1. The 42-check suite used for #12 (overflow on 11 pages,
-hero overlap, tel format, mobile menu open/expand/navigate/close/scroll, desktop dropdown) is in the
-session scratchpad and should be recreated rather than assumed to exist; its checks are listed in #12. The
-§1a standing rule (exercise the mobile menu in a real mobile browser) is now satisfiable.
+**Accepted consequence:** the steel-door, cut-roof and truss families (171 URLs) are no longer reachable by clicking from the homepage. They remain live, canonical, indexable and in the sitemap, linked only from their own town pages. Do not retire, redirect or re-promote them without a decision.
 
-### Contact form — UNRESOLVED (tracing blocked)
-A live test enquiry ("TEST ENQUIRY - SEO review - please ignore", 19 Nov) showed the success banner but
-produced no email. **Established from the repository:**
-- The form POSTs with `fetch()` to the literal `action="/contact?success=true"` (urlencoded, `form-name=contact`,
-  honeypot `bot-field`) and shows the success banner when `response.ok`. **That proves only that Netlify's edge
-  returned a 2xx/redirect — not that a submission was recorded, passed spam filtering, or was emailed.**
-  Netlify returns an indistinguishable success to spam-filtered posts: the Fire Doors repo recorded
-  (5 Nov 2026) two diagnostic posts with byte-identical responses, both of which then arrived in the inbox,
-  so the spam theory was tested and did not hold there. Cause there was never confirmed either.
-- `src/pages/api/contact.ts` is a stub (`console.log`, "In a real implementation, you would send an email")
-  and is **not** used by the form; in static output it is not even built (`dist/api/` holds only `reviews`).
-- Production HTML has no `data-netlify` attribute while the source and the build have it: Netlify rewrites the
-  form during deploy post-processing, which indicates the form was detected; the same happens on previews.
-- The Netlify CLI is not installed here and the Netlify account is held by someone other than Robert.
-  **No Netlify access was attempted.** No further live enquiries have been sent.
-**Blocker:** inspecting submissions, the spam tab and the notification recipient needs the Netlify account
-holder. The checklist for them, and who to ask, is in the website records directory
-(`outstanding-actions/`). Do not claim email delivery fixed without an end-to-end test that Robert confirms
-in his inbox after the account holder has checked.
+### Contact form text colour (PR #14) — root cause
+On all 1,026 service pages the form sits in a dark section with white text. The inputs are `bg-transparent` and set no colour of their own, so typed text **inherited white** and was white on the form's white card (contrast 1:1). Browser autofill paints its own dark text, which hid the defect for Name/Email. `/contact` and the hub sit in white sections and were fine. Fixed in `ModernContactForm.astro` (explicit dark text, `color-scheme: light`, autofill rule, label contrast #d97706 → #b45309, red border on an invalid typed value). Phone now has a UK/international pattern (7–15 digits, optional `+`, spaces/dots/hyphens/brackets; letters rejected), `autocomplete`/`inputmode`.
+**Astro gotcha:** a quoted attribute value silently loses its backslashes, which turned the pattern into nonsense. It is a `String.raw` constant (`PHONE_PATTERN`) passed as `pattern={PHONE_PATTERN}`. Keep it that way.
+Verified in a real browser on the live site: typed text ≥ 7:1, label ≥ 4.5:1, light and dark, desktop and phone widths, phone accepts/rejects as above. The `<form>` tag, hidden `form-name`, honeypot, `action` and the submit script are byte-identical on all 1,029 form pages. **No enquiry was submitted.** Real browser autofill could not be exercised (headless Chromium does not autofill).
 
-### `FIRE_DOORS_COMPLIANCE_HANDOVER.md` (untracked at the repo root) — not committed, moved or deleted
-A 5 Nov 2026 handover written in the **Fire Doors** repository for the agent working on this one; no copy
-exists in that repo. Six places here cite it by bare filename. Because this repository is PUBLIC it should not
-be committed here. Ownership and permanent location are for Robert to decide (details in the records
-directory); until then leave it untracked and **never `git add -A`** in this repo — stage explicit paths.
+### The "DB" check — cause established, removed (#8)
+`withastro/action-studio@main` ran Astro DB verification on pull requests and stopped with `@astrojs/db is required`. The project has no `db/`, no `@astrojs/db`, no `ASTRO_STUDIO_APP_TOKEN`, and nothing imports `astro:db`. It passed on push to `main` (did nothing), so only PRs failed. Revert #8 only if the integration is wanted (needs `@astrojs/db` and a token).
 
-### Records housekeeping
-The Desktop copy of the planning record and Search Console exports is identical to the records directory,
-and `seo-data/` is identical to its copy there. **Nothing was deleted; deletion needs Robert's explicit
-approval.** Details and the one unverified location are in the records directory.
+### Browser testing — the MCP browser tool is blocked, Playwright itself works
+The Playwright MCP tool returns `ERR_BLOCKED_BY_CLIENT`. The library is in the npx cache and browsers in `~/Library/Caches/ms-playwright`: run with `NODE_PATH=~/.npm/_npx/<hash containing playwright-core>/node_modules` and `chromium.launch({ executablePath: ~/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell })`; `devices['iPhone SE'|'iPhone 13'|'Pixel 7']` with touch for phone widths; `astro preview --host 127.0.0.1` or the live site. Checks used (recreate, do not assume a script exists): overflow on 11 key pages at 375/390/412/360 px; hero card clear of arrows on all three slides; one `tel:` format; mobile menu opens, not inert, hit-test lands in it, Services expands to 7 entries, a link navigates, close re-arms `inert` and page scrolling returns; desktop scroll icon clear of dots/arrows; form text/label contrast and phone validation (block POSTs with `page.route`). 42 + form checks pass on production. The §1a standing rule is satisfiable.
+
+### Process notes learned
+- **Never `git add -A`** in this repo; stage explicit paths or `git add -u`.
+- After a squash-merge a plain rebase of a stacked branch conflicts: use `git rebase --onto origin/main <old-base-ref> <branch>`, `git push --force-with-lease`, `gh pr edit N --base main`.
+- Netlify occasionally does not start a deploy preview after a retarget; closing/reopening did not help, an empty commit pushed to the branch did.
+
+### Contact form EMAIL delivery — STILL UNRESOLVED (urgent)
+A live test enquiry on 19 Nov showed the success banner but produced no email. From the repo: the form POSTs with `fetch()` to `/contact?success=true` and shows success when `response.ok`, which proves only that Netlify's edge answered 2xx/redirect — not that a submission was recorded, passed spam filtering or was emailed (Netlify gives spam-filtered posts an identical success response; the Fire Doors repo recorded this on 5 Nov). `src/pages/api/contact.ts` is an unused stub and is not built. Production HTML has no `data-netlify` attribute while the source has it: Netlify rewrites the form on deploy, which suggests it was detected. **Blocked:** the Netlify CLI is not installed and the account is held by someone other than Robert; no Netlify access was attempted and **no further live enquiries have been sent**. Inspecting submissions, the Spam tab and the notification recipient needs the account holder; the checklist is in the website records directory (`outstanding-actions/`). Do not claim delivery fixed without an end-to-end test confirmed in Robert's inbox after the account holder has checked.
+
+### Records and the old `FIRE_DOORS_COMPLIANCE_HANDOVER.md`
+That file (a 5 Nov handover written in the Fire Doors repo) is **no longer in this repo's working tree**: it was never committed, and on 20 Nov it was moved, checksum verified, to `coulsy-joinery-website-records/inbound-handovers-from-other-repos/` because this repository is PUBLIC. Comments in six source files still cite it by name; read it from the records directory. The Desktop duplicate of the planning record and Search Console exports was checked identical to the records copies and moved to the Trash; `~/Downloads` was not readable and its originals were left untouched.
 
 ### Left alone deliberately (flag, do not fix without a decision)
-- `contact.astro`: "I usually respond within a few hours during business days." (a soft response-time claim).
-- Steel-door page wording ("compliant fire exit doors", "safety and security compliance") and `FireStats`
-  "certified fire door assemblies": held with the Fire Doors coordination decision.
-- Roof, steel and garden page bodies (retirement/hold). The roof pages still say "extensions … new builds".
-- `constants/company.ts` trading name and the schema `alternateName` ("Coulsy Joinery & Small Build").
+- Steel-door page wording ("compliant fire exit doors", "safety and security compliance") and `FireStats` "certified fire door assemblies": held with the Fire Doors coordination decision.
+- Roof, steel and garden page bodies (retirement/hold); the roof pages still say "extensions … new builds".
+- `constants/company.ts` trading name and the schema `alternateName` ("Coulsy Joinery & Small Build"); `knowsAbout` "Bespoke Joinery" and `jobTitle` in `business.ts`.
 
 ---
 
