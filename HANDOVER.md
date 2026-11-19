@@ -1,6 +1,6 @@
 # Handover — start here
 
-**Last updated:** 19 November 2026
+**Last updated:** 20 November 2026
 **Read after:** `README.md`. Then `ARCHITECTURE.md` for strategy, `AUDIT_2026-07-13.md` for the audit record.
 
 > This repository has **no `docs/` directory** and no `00_START_HERE.md` / `01_PROJECT_STATUS.md`.
@@ -344,8 +344,11 @@ pattern and no `scrollIntoView`/focus call — read-only finding; see the row in
 building alterations and refurbishment, commercial property maintenance, subcontract joinery and kitchen
 installation. Success is qualified enquiries for profitable work, not traffic. Garden buildings are being
 retired; standalone single-door hanging is no longer advertised; "& Small Build" is phased out of website
-branding. Full planning record: `Coulsy Joinery SEO - 2026-11-19/Investigation report 2026-11-19/` on the
-owner's Desktop (outside this repo).
+branding. **Full planning record, Search Console exports and the current-position report live in the
+website records directory, outside this repo: `/Users/robertcoulson/Web Projects/coulsy-joinery-website-records/`**
+(authoritative; see its `README.md` and `handover/`). Never move that directory into this repository — it
+holds confidential analysis and this repository is PUBLIC. (This section previously pointed at a Desktop
+folder; the Desktop copy is a duplicate.)
 
 **Three squash-merged PRs, deployed in order and verified on production:**
 
@@ -405,6 +408,80 @@ town is within 26 miles, so today the radii change almost nothing (37–39 of 56
 regardless). Making radius decide which pages exist is a deferred change; Leeds (18.1 miles, the best
 town) would need an always-include list. Reducing a radius removes no URL, so backlinks and indexing are
 unaffected by the setting itself.
+
+---
+
+## 1g. 20 November 2026 session — changes PREPARED, not yet deployed (PRs #8–#12)
+
+**State when written: all five PRs are open and unmerged; nothing here is live.** Update this section when
+they are merged. The stacked PRs #9→#10→#11→#12 each have the previous PR's branch as base; retarget each
+to `main` after its predecessor merges (use `git rebase --onto origin/main <old-base> <branch>` — a plain
+rebase after a squash-merge conflicts).
+
+| PR | What | Notes |
+| --- | --- | --- |
+| #9 | Remove the Coulsy Code promotion | `WebDevFooter.astro`, its use in `Layout.astro`, `public/coulsycode_brand_pack/` deleted. Only the sub-footer block changes on any page. `COULSY_CODE_INTEGRATION_SUMMARY.md` kept as a historical record, with a superseded note. |
+| #10 | Credentials | MICWCI membership line in the service-page evidence panel, homepage "Why", About, contact, footer; `memberOf` on Robert's Person nodes (never `hasCredential`). One constant: `MEMBERSHIP` / `MEMBER_OF_NODE` in `constants/details.ts`. About's blanket "Qualified & Insured" replaced. |
+| #11 | Stop promoting steel doors and roofs | Cards removed from the All Services hub; door-hanging pages' steel sentence now points at Coulsy Fire Doors via `specialistUrl()` in `constants/specialists.ts`; garden/small-build remnants on About/FAQ; subcontract heading "Fully Certified" → "Paperwork Sorted". **No URL, canonical, robots tag, title, description or sitemap entry changed on any of the 1,036 pages.** Consequence: steel/cut-roof/truss families (171 URLs) are no longer reachable by a crawl from the homepage — only from their own town pages and the sitemap. |
+| #12 | Technical fixes | Hero scroll icon overlap; all `tel:` links = `DETAILS.PHONE_HREF` (`tel:+447544030486`); **a 16px sideways scroll on every gallery page at 375px (also live today) caused by the closed `#lightbox` sitting inside a transformed ancestor — it is now moved to `<body>` on load.** |
+| #8 | CI | Removes `.github/workflows/_studio.yml` (see below). Independent of the stack. |
+
+### The "DB" check — cause established
+`withastro/action-studio@main` runs Astro DB verification on pull requests and stops with
+`@astrojs/db is required`. This project has no `db/`, no `@astrojs/db`, no `ASTRO_STUDIO_APP_TOKEN`, and
+nothing imports `astro:db`. On push to `main` the action does nothing, which is why only PRs fail (every PR
+since 5 Nov 2026 → a failure email each time). It was the only workflow; `main` has no branch protection;
+real builds are Netlify's. #8 removes it. Revert #8 if the integration is ever wanted (needs `@astrojs/db`
+and a token).
+
+### Browser testing — it works, the MCP browser tool does not
+The Playwright MCP tool returns `ERR_BLOCKED_BY_CLIENT` for every URL. **Playwright itself works:** the
+library is in the npx cache and the browsers in `~/Library/Caches/ms-playwright`. Run with
+`NODE_PATH=~/.npm/_npx/<hash>/node_modules` (pick the dir containing `playwright-core`) and
+`chromium.launch({ executablePath: ~/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell })`
+(the library wants a newer shell build than is installed, hence the explicit path). Use `devices[...]` with
+touch for phone widths; `astro preview` on 127.0.0.1. The 42-check suite used for #12 (overflow on 11 pages,
+hero overlap, tel format, mobile menu open/expand/navigate/close/scroll, desktop dropdown) is in the
+session scratchpad and should be recreated rather than assumed to exist; its checks are listed in #12. The
+§1a standing rule (exercise the mobile menu in a real mobile browser) is now satisfiable.
+
+### Contact form — UNRESOLVED (tracing blocked)
+A live test enquiry ("TEST ENQUIRY - SEO review - please ignore", 19 Nov) showed the success banner but
+produced no email. **Established from the repository:**
+- The form POSTs with `fetch()` to the literal `action="/contact?success=true"` (urlencoded, `form-name=contact`,
+  honeypot `bot-field`) and shows the success banner when `response.ok`. **That proves only that Netlify's edge
+  returned a 2xx/redirect — not that a submission was recorded, passed spam filtering, or was emailed.**
+  Netlify returns an indistinguishable success to spam-filtered posts: the Fire Doors repo recorded
+  (5 Nov 2026) two diagnostic posts with byte-identical responses, both of which then arrived in the inbox,
+  so the spam theory was tested and did not hold there. Cause there was never confirmed either.
+- `src/pages/api/contact.ts` is a stub (`console.log`, "In a real implementation, you would send an email")
+  and is **not** used by the form; in static output it is not even built (`dist/api/` holds only `reviews`).
+- Production HTML has no `data-netlify` attribute while the source and the build have it: Netlify rewrites the
+  form during deploy post-processing, which indicates the form was detected; the same happens on previews.
+- The Netlify CLI is not installed here and the Netlify account is held by someone other than Robert.
+  **No Netlify access was attempted.** No further live enquiries have been sent.
+**Blocker:** inspecting submissions, the spam tab and the notification recipient needs the Netlify account
+holder. The checklist for them, and who to ask, is in the website records directory
+(`outstanding-actions/`). Do not claim email delivery fixed without an end-to-end test that Robert confirms
+in his inbox after the account holder has checked.
+
+### `FIRE_DOORS_COMPLIANCE_HANDOVER.md` (untracked at the repo root) — not committed, moved or deleted
+A 5 Nov 2026 handover written in the **Fire Doors** repository for the agent working on this one; no copy
+exists in that repo. Six places here cite it by bare filename. Because this repository is PUBLIC it should not
+be committed here. Ownership and permanent location are for Robert to decide (details in the records
+directory); until then leave it untracked and **never `git add -A`** in this repo — stage explicit paths.
+
+### Records housekeeping
+The Desktop copy of the planning record and Search Console exports is identical to the records directory,
+and `seo-data/` is identical to its copy there. **Nothing was deleted; deletion needs Robert's explicit
+approval.** Details and the one unverified location are in the records directory.
+
+### Left alone deliberately (flag, do not fix without a decision)
+- `contact.astro`: "I usually respond within a few hours during business days." (a soft response-time claim).
+- Steel-door page wording ("compliant fire exit doors", "safety and security compliance") and `FireStats`
+  "certified fire door assemblies": held with the Fire Doors coordination decision.
+- Roof, steel and garden page bodies (retirement/hold). The roof pages still say "extensions … new builds".
+- `constants/company.ts` trading name and the schema `alternateName` ("Coulsy Joinery & Small Build").
 
 ---
 
@@ -544,7 +621,7 @@ Windows; we are on macOS.
 | Item | Reference |
 | --- | --- |
 | **Deferred development queue (owner, 19 Nov 2026) — none started.** (1) Strengthen the principal **Joinery & Carpentry** service (nav → `general-joinery`; PR #3 only fixed its wording). (2) **Consolidate the overlapping general-joinery / joinery / joiner / carpenter families**, informed by `competitor-investigation.md`; Search Console shows several earn clicks in the same towns, so no URL is removed until this is explicitly approved. (3) Genuine completed-project **case studies** (Bailey Hague-style named, located write-ups were the pattern seen). (4) Make the **service radius** decide which town pages exist (see §1f). (5) **Enquiry qualification** — form fields (job type, property type, postcode, photos) and an enquiry log. (6) **Retire garden rooms/offices (114 URLs, plain 404) and accessible kitchens (57 → same-town kitchens, `301!` incl. `.html` variants)** after the Search Console **Links report** check; the kitchens page already carries the accessibility sentence plan. | §1f |
-| **Evidence still outstanding:** Search Console Links report (gates retirement); per-page query export; fresh Page-indexing export; Google Business Profile name (does it include "& Small Build"?); enquiry history (form submissions sit in an account Robert does not control — Kristian's — and enquiry emails need Robert's separate authorisation). | §1f |
+| **Evidence still outstanding:** Search Console Links report (gates retirement); per-page query export; fresh Page-indexing export; Google Business Profile name (does it include "& Small Build"?); enquiry history (form submissions sit in a Netlify account held by someone else, and enquiry emails need Robert's separate authorisation). | §1f |
 | **Insurance figures** — "£10m employers' liability" wording remains in `pageMeta.ts` and `compliance.astro` although there are no employees; re-verify all three published figures against the renewed policy. | §6 row above |
 | **⏳ Insurance renewal verification, due after 13 November 2026.** The published figures (£5m public/products liability, £10m employers' liability, £1m professional indemnity) were NOT changed in the 5 Nov 2026 compliance remediation — they are retained as the last-verified figures, not reconfirmed. Professional indemnity cover for independent fire-door inspection/assessment specifically was difficult to renew (see `FIRE_DOORS_COMPLIANCE_HANDOVER.md` §A). **Re-verify all three figures against the actual renewed policy once it completes, and correct any page where a figure has changed.** Not a deployment blocker. | `about/compliance.astro`, `about/qualifications.astro`, `about.astro`, `MainPage.astro` |
 | **Fire Doors' `ContactForm.astro` has the identical confirmation-timer bug fixed here in §1e** — `showBanner()` with an unconditional `setTimeout(..., 8000)` and no cancellation, plus no `scrollIntoView`/focus call. Read-only finding from inspecting that repository while fixing Joinery's copy; **this repository was not modified.** Needs its own fix in the `fire-doors` repo, following the same pattern as §1e. | `fire-doors` repo: `src/components/ContactForm.astro` |
