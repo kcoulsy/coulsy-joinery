@@ -19,28 +19,28 @@ import kitchenFitter from "../assets/images/kitchens/kitchen-fitter-domestic.jpg
 const slides = [
   {
     image: mouldingPlane,
-    text: "Welcome to Coulsy Joinery & Small Build",
-    subtitle: "Expert joinery services in York, Wetherby & Harrogate",
+    text: "Professional Joinery & Building Services",
+    subtitle: "Building alterations, refurbishment, commercial maintenance and subcontract joinery.",
     cta: {
-      text: "Our Services",
-      link: "/joinery-services",
-    },
-  },
-  {
-    image: kitchenFitter,
-    text: "Fitted Kitchens, Refurbs & Small Build Works",
-    subtitle: "Bespoke kitchens, joinery, and small building works",
-    cta: {
-      text: "Get a Quote",
+      text: "Discuss Your Project",
       link: "/contact",
     },
   },
   {
     image: timber20joinery,
-    text: "Bespoke Joinery, Skilled, Reliable Craftsmanship — Every Time",
-    subtitle: "Quality you can trust, delivered on time",
+    text: "Independent, time-served joiner and builder, in the trade since 1988.",
+    subtitle: "York, Wetherby, Harrogate, Leeds and surrounding areas.",
     cta: {
-      text: "Our Services",
+      text: "Discuss Your Project",
+      link: "/contact",
+    },
+  },
+  {
+    image: kitchenFitter,
+    text: "Kitchen Installation and Fitted Joinery",
+    subtitle: "Surveyed, specified, sourced and installed by the same joiner.",
+    cta: {
+      text: "Services",
       link: "/joinery-services",
     },
   },
@@ -49,7 +49,7 @@ const slides = [
 // Enhanced SEO optimization with personal voice preserved
 const seoData = {
   title:
-    "Coulsy Joinery - Professional Joinery Services in York | Bespoke Kitchens & Garden Offices",
+    "Joiner & Builder in York – Joinery & Refurbishment | Coulsy Joinery",
   // "heritage restoration" / "heritage joinery" removed from the homepage description and
   // keywords (5 Nov 2026) — the homepage does not display heritage work at all (it was
   // already demoted from the nav and homepage cards), so promoting it in the one meta
@@ -60,9 +60,9 @@ const seoData = {
   // not yet authorised. Do not extend this fix into pageMeta.ts on the strength of this
   // comment.
   description:
-    "Expert joinery services in York including bespoke kitchens, garden offices, and small building works. Family-run business with experience going back to 1988. Professional quotes available.",
+    "Family-run joinery and building business in York, in the trade since 1988: building alterations, refurbishment, commercial maintenance and subcontract joinery.",
   keywords:
-    "joinery York, bespoke kitchens, garden offices, kitchen installers, carpentry services, building contractors York, Robert Coulson joiner, local joiner York, qualified carpenter Yorkshire",
+    "joiner York, builder York, joinery, building alterations, refurbishment, commercial property maintenance, subcontract joinery, kitchen installation",
   ogImage: "/og-image.jpg",
   canonical: "https://coulsyjoinery.co.uk",
   structuredData: {
@@ -76,19 +76,46 @@ const seoData = {
     // 0.11 miles from York city centre — ~9.5 miles from the address printed beside them.
     ...BUSINESS_NODE,
     description:
-      "Professional joinery services in York including bespoke joinery, kitchen installations, garden offices, and small building works.",
-    areaServed: ["York", "Wetherby", "Harrogate", "Yorkshire"],
+      "Professional joinery and building services in York: joinery and carpentry, building alterations and refurbishment, commercial property maintenance, subcontract joinery and kitchen installation.",
+    areaServed: ["York", "Wetherby", "Harrogate", "Leeds", "Yorkshire"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Joinery Services",
+      name: "Joinery and Building Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Bespoke Joinery",
+            name: "Joinery and Carpentry",
             description:
-              "Made-to-measure joinery tailored to your space and style",
+              "Site joinery and carpentry for refurbishments, alterations and fit-outs",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Building Alterations and Refurbishment",
+            description:
+              "Alterations and refurbishment inside existing homes and business premises",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Commercial Property Maintenance",
+            description:
+              "Repairs and maintenance for shops, offices and other business premises",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Subcontract Joinery",
+            description:
+              "Site joinery for contractors and fit-out firms",
           },
         },
         {
@@ -97,20 +124,11 @@ const seoData = {
             "@type": "Service",
             name: "Kitchen Installation",
             description:
-              "Full kitchen installs tailored to your layout and finish",
+              "Kitchens surveyed, specified, sourced and installed",
           },
         },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Garden Offices",
-            description: "Timber-framed garden office installation",
-          },
-        },
-        // "Heritage Restoration" removed — Robert does not pursue heritage restoration
-        // leads (they are small rotten-timber repairs, not a service worth advertising).
-        // See the memory note; this is a business decision, not a wording fix.
+        // Garden buildings, bespoke joinery and heritage restoration are deliberately not listed:
+        // they are not services the business advertises. Owner decision, 19 Nov 2026.
       ],
     },
     foundingDate: "1989",
@@ -195,10 +213,10 @@ const seoData = {
     >
       <div>
         <h2 id="call-cta-heading" class="text-xl font-semibold text-brand-900">
-          Got a job in mind? Talk to Robert directly.
+          Got a project, or premises that need looking after? Talk to Robert directly.
         </h2>
         <p class="mt-1 text-brand-600">
-          No sales team, no call centre — you speak to the joiner doing the work.
+          No sales team, no call centre — you speak to the person doing the work.
         </p>
       </div>
       <div class="flex-shrink-0">
@@ -219,10 +237,9 @@ const seoData = {
   >
     <div class="container-wide">
       <div class="section-header animate-on-scroll">
-        <h2 class="section-title text-gradient">Our Services</h2>
+        <h2 class="section-title text-gradient">Services</h2>
         <p class="section-subtitle text-balance">
-          Expert joinery services including bespoke joinery, kitchen installations, 
-          garden offices, and small building works.
+          Joinery and carpentry, building alterations and refurbishment, commercial property maintenance, subcontract joinery and kitchen installation.
         </p>
       </div>
 
@@ -251,11 +268,10 @@ const seoData = {
         <h2
           class="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6 text-balance"
         >
-          Ready to Start Your Project?
+          Ready to Talk It Through?
         </h2>
         <p class="text-xl text-brand-100 mb-8 max-w-2xl mx-auto text-balance">
-          Whether it's a kitchen refit, garden office, or bespoke joinery work,
-          I'm here to help bring your project to life with quality craftsmanship and attention to detail.
+          Whether it's a refurbishment, an alteration to your premises, a kitchen installation or joinery on a contract, tell me what's involved and I'll tell you straight whether it's one for me.
         </p>
         <div
           class="flex flex-col sm:flex-row gap-4 justify-center items-center"
@@ -263,14 +279,14 @@ const seoData = {
           <a
             href="/contact"
             class="btn btn-secondary btn-lg hover-lift focus-ring"
-            aria-label="Get a professional quote for your joinery project"
+            aria-label="Discuss your project with Coulsy Joinery"
           >
-            Get Your Quote
+            Discuss Your Project
           </a>
           <a
             href="/joinery-services"
             class="btn btn-outline btn-lg hover-lift focus-ring border-white text-white hover:bg-white hover:text-brand-900"
-            aria-label="View all joinery services"
+            aria-label="View all services"
           >
             View All Services
           </a>
@@ -282,13 +298,8 @@ const seoData = {
   <!-- Testimonials Section with clean presentation -->
   <section class="section relative z-10 bg-neutral-50">
     <div class="container-wide">
-      <div class="section-header animate-on-scroll">
-        <h2 class="section-title">What Our Customers Say</h2>
-        <p class="section-subtitle text-balance">
-          Don't just take our word for it - hear from our satisfied customers
-          across Yorkshire.
-        </p>
-      </div>
+      {/* The Reviews component carries its own heading; a second one here duplicated it. */}
+      
 
       <div class="animate-on-scroll">
         <Reviews />

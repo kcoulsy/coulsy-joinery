@@ -8,9 +8,9 @@ import { BUSINESS_NODE, BUSINESS_REF } from "../constants/business";
 
 // SEO and structured data
 const pageTitle =
-  "Professional Joinery Services York | Bespoke Carpentry & Woodwork";
+  "Joinery & Building Services in York | Coulsy Joinery";
 const pageDescription =
-  "Expert joinery services in York and Yorkshire. From bespoke kitchens to heritage restoration, stud walls to garden offices. Joiner since 1988 in quality carpentry and joinery work.";
+  "Professional joinery and building services in York and across Yorkshire: joinery and carpentry, building alterations and refurbishment, commercial property maintenance, subcontract joinery and kitchen installation.";
 // const canonicalUrl = "https://coulsyjoinery.co.uk/joinery-services"; // Not used
 
 // Structured data for services page
@@ -24,7 +24,7 @@ const structuredData = {
     {
       "@type": "Service",
       "@id": "https://coulsyjoinery.co.uk/joinery-services#service",
-      name: "Professional Joinery Services",
+      name: "Professional Joinery & Building Services",
       description: pageDescription,
       url: "https://coulsyjoinery.co.uk/joinery-services",
       provider: BUSINESS_REF,
@@ -33,15 +33,42 @@ const structuredData = {
       ),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Joinery Services",
+    name: "Joinery and Building Services",
     itemListElement: [
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Bespoke Joinery",
+          name: "Joinery and Carpentry",
           description:
-            "Made-to-measure joinery tailored to your space and style",
+            "Site joinery and carpentry for refurbishments, alterations and fit-outs",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Building Alterations and Refurbishment",
+          description:
+            "Alterations and refurbishment inside existing homes and business premises",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Commercial Property Maintenance",
+          description:
+            "Repairs and maintenance for shops, offices and other business premises",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Subcontract Joinery",
+          description:
+            "Site joinery for contractors and fit-out firms",
         },
       },
       {
@@ -50,18 +77,11 @@ const structuredData = {
           "@type": "Service",
           name: "Kitchen Installation",
           description:
-            "Full kitchen installs tailored to your layout and finish",
+            "Kitchens surveyed, specified, sourced and installed",
         },
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Garden Offices",
-          description: "Custom-built insulated garden offices for home working",
-        },
-      },
-      // "Heritage Restoration" removed — see MainPage.astro; not an advertised service.
+      // Matches the primary service cards. Garden buildings, bespoke joinery and heritage
+      // restoration are deliberately not listed — see MainPage.astro.
         ],
       },
     },
@@ -93,7 +113,8 @@ const structuredData = {
       </div>
 
       <h1 class="text-3xl font-bold tracking-tight pb-4">
-        Professional Joinery Services in York & Yorkshire
+        Professional Joinery & Building Services in York & Yorkshire
+
       </h1>
 
       <p class="text-gray-700 text-lg mb-6">

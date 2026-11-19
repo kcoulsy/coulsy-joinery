@@ -2,15 +2,12 @@
 import { Image } from "astro:assets";
 import studWall from "../assets/images/stud-wall-new-build.jpeg";
 import mouldingPlane from "../assets/images/moulding_plane.png";
-import gardenOffice from "../assets/images/garden-offices/garden-office.jpeg";
-import gardenRooms from "../assets/images/garden-rooms/garden-rooms.jpeg";
 import kitchenInstallers from "../assets/images/Kitchen-Installers.jpg";
 import SubcontractImg from "../assets/images/sub-contract.jpg";
 import rooftop from "../assets/images/rooftop.jpg";
 import cutRoofHeader from "../assets/images/cut-roofs/cut-roof-header.jpg";
 import trussRoofImage from "../assets/images/truss-roofs/attic-trusses.jpg";
 import complianceImage from "../assets/images/compliance.jpeg";
-import accessibleKitchen from "../assets/images/accessible-kitchens/accessible-kitchen-main.jpg";
 import steelFireExit from "../assets/images/steel-exit-doors/Security-Fire-Exit-Door-510x510.jpg";
 import generalJoinery from "../assets/images/general-joinery/fencing-and-gates.jpg";
 import smallBuildImage from "../assets/images/small-build-services/small-building-works-glazed-office-800x600.jpg";
@@ -30,88 +27,83 @@ interface Props {
 
 const { variant = "primary" } = Astro.props;
 
-// Services ordered by SEO priority: high-value/high-volume services first, roofing services last
+// PRIMARY services: shown on the homepage and on the /joinery-services hub. These are the
+// services the business wants to be found and chosen for. Owner decision, 19 Nov 2026.
 const services = [
   {
-    title: "General Joinery",
+    title: "Joinery & Carpentry",
     href: "/joinery-services/general-joinery",
     image: generalJoinery,
-    alt: "General joinery services in York",
-    description: "Doors, floors, stairs, shelves, storage and all general joinery work.",
+    alt: "Joinery and carpentry in York",
+    description: "Internal joinery, floors, stairs and finishing work for refurbishments, alterations and fit-outs.",
     category: "Joinery",
   },
   {
-    title: "Fitted Kitchens",
-    href: "/joinery-services/kitchen-installers",
-    image: kitchenInstallers,
-    alt: "Fitted Kitchen and Installers York",
-    description: "Full kitchen installs tailored to your layout and finish.",
-    category: "Kitchens",
-  },
-  {
-    title: "Small Build Services",
+    title: "Building Alterations & Refurbishment",
     href: "/joinery-services/small-build-services",
     image: smallBuildImage,
-    alt: "Small build services including extensions and renovations in York",
-    description: "Extensions, renovations, and small construction projects of all sizes.",
+    alt: "Building alterations and refurbishment in York",
+    description: "Alterations and refurbishment inside existing homes and business premises — layouts changed, openings formed, rooms refitted.",
     category: "Building",
   },
   {
-    title: "Building Maintenance",
+    title: "Commercial Property Maintenance",
     href: "/joinery-services/building-maintenance",
     image: buildingMaintenanceImage,
-    alt: "Building maintenance and property upkeep services in York",
-    description: "Reliable building maintenance, repairs, and property upkeep services.",
-    category: "Building",
+    alt: "Commercial property maintenance in York",
+    description: "Repairs and maintenance for shops, offices and other business premises. Repeat and ongoing work welcome.",
+    category: "Commercial",
   },
   {
-    title: "Accessible Kitchens",
-    href: "/joinery-services/accessible-kitchen-installers",
-    image: accessibleKitchen,
-    alt: "Accessible kitchens York",
-    description: "Practical kitchen solutions designed for accessibility.",
-    category: "Specialist",
+    title: "Subcontract Joinery",
+    href: "/joinery-services/joinery-subcontractors",
+    image: SubcontractImg,
+    alt: "Subcontract joinery",
+    description: "Site joinery for contractors and fit-out firms, labour-only or supply-and-fix, including longer contracts.",
+    category: "Commercial",
   },
   {
-    title: "Bespoke Joinery",
+    title: "Stud Partitions",
+    href: "/joinery-services/stud-wall-partitioning",
+    image: studWall,
+    alt: "Stud partitions in York",
+    description: "Timber stud partitions and internal alterations for homes and commercial fit-outs.",
+    category: "Construction",
+  },
+  {
+    title: "Kitchen Installation",
+    href: "/joinery-services/kitchen-installers",
+    image: kitchenInstallers,
+    alt: "Kitchen installation in York",
+    description: "Kitchens surveyed, specified, sourced and installed.",
+    category: "Kitchens",
+  },
+];
+
+// SECONDARY services: kept live, indexed and reachable from the /joinery-services hub, but not
+// promoted on the homepage or in the navigation. Owner decision, 19 Nov 2026 — no URL is retired
+// by this. See ARCHITECTURE.md §1 and §3.
+//
+// DO NOT remove an entry from this list without giving its pages another way in. The hub link
+// here is each family's only route from the rest of the site: Door Hanging was once absent from
+// both this catalogue and the navbar, and its hub and all 56 town pages became unreachable. It
+// also carries the fire-door hand-off to Coulsy Fire Doors (see `CommonFaults.astro`).
+const secondaryServices = [
+  {
+    title: "Fitted & Architectural Joinery",
     href: "/joinery-services/bespoke-joinery",
     image: mouldingPlane,
-    alt: "Bespoke Joinery",
-    description: "Made-to-measure joinery tailored to your space and style.",
-    category: "Bespoke",
+    alt: "Fitted and architectural joinery",
+    description: "Fitted and architectural joinery — specified, sourced from specialist manufacturers and installed.",
+    category: "Joinery",
   },
   {
-    title: "Garden Offices",
-    href: "/joinery-services/garden-offices",
-    image: gardenOffice,
-    alt: "Timber-framed garden office installation in York",
-    description: "Custom-built insulated garden offices for home working and productivity, designed for comfort year-round.",
-    category: "Bespoke",
-  },
-  {
-    title: "Garden Rooms",
-    href: "/joinery-services/garden-rooms",
-    image: gardenRooms,
-    alt: "Bespoke garden room built with timber cladding in York",
-    description: "Made-to-measure garden rooms designed for leisure, hobbies, or guest space — fully insulated and tailored to your style.",
-    category: "Bespoke",
-  },
-  {
-    // Door Hanging was absent from BOTH this catalogue and the navbar, so its hub and all
-    // 56 geo pages were unreachable from anywhere on the site — a breadth-first crawl from
-    // the homepage reached 672 pages and never found it. Its only inbound links came from
-    // its own geo pages linking back to their own hub: a closed loop with no way in.
-    //
-    // It also happens to be where the fire-door hand-off to Coulsy Fire Doors lives (see
-    // `CommonFaults.astro`), so the bridge between the two sites sat on pages no visitor
-    // could navigate to. Placed beside Steel Fire Exit Doors to keep the door services
-    // together.
-    title: "Door Hanging",
+    title: "Doors and Frames",
     href: "/joinery-services/door-hanging",
     image: fireDoor,
-    alt: "Door hanging and fire door installation in York",
+    alt: "Door and fire door installation in York",
     description:
-      "Internal, external and certified fire doors, hung and fitted properly.",
+      "Door sets, frames and fire doors fitted as part of refurbishment, joinery and commercial maintenance work.",
     category: "Joinery",
   },
   {
@@ -120,22 +112,6 @@ const services = [
     image: steelFireExit,
     alt: "Steel fire exit and fire escape doors",
     description: "Robust, compliant fire exit doors for commercial spaces.",
-    category: "Commercial",
-  },
-  {
-    title: "Stud Walls",
-    href: "/joinery-services/stud-wall-partitioning",
-    image: studWall,
-    alt: "stud wall and partitioning installers in York",
-    description: "Room layouts adapted with solid timber studwork.",
-    category: "Construction",
-  },
-  {
-    title: "Subcontract Joinery",
-    href: "/joinery-services/joinery-subcontractors",
-    image: SubcontractImg,
-    alt: "Sub contract Joinery",
-    description: "Joinery labour and support services for larger projects.",
     category: "Commercial",
   },
   {
@@ -154,15 +130,8 @@ const services = [
     description: "Truss roof installation for domestic and commercial builds.",
     category: "Roofing",
   },
-];
-
-// Secondary services: kept live, indexed and reachable from the /joinery-services
-// hub, but never promoted on the homepage or in the navigation. Heritage sits here
-// because it holds real search authority we don't want to throw away, while being
-// work Robert does not want to attract. See ARCHITECTURE.md §1 and §3.
-const secondaryServices = [
   {
-    title: "Heritage Joinery",
+    title: "Period Property Joinery",
     href: "/joinery-services/heritage-restoration-joinery",
     image: heritage,
     alt: "Sash window and period timber repairs",
