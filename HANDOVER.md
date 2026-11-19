@@ -1,6 +1,6 @@
 # Handover — start here
 
-**Last updated:** 5 November 2026
+**Last updated:** 19 November 2026
 **Read after:** `README.md`. Then `ARCHITECTURE.md` for strategy, `AUDIT_2026-07-13.md` for the audit record.
 
 > This repository has **no `docs/` directory** and no `00_START_HERE.md` / `01_PROJECT_STATUS.md`.
@@ -13,7 +13,7 @@
 
 | | |
 | --- | --- |
-| **Last code change** | `7061a2e` (contact-form confirmation fix, §1e) / `4bf7716` (fire-door, compliance, insurance and contact-form remediation, §1d). Docs commits may sit on top. |
+| **Last code change** | `74503b5` (homepage, navigation and service cards, §1f) — preceded by `49f649c` (two service pages) and `25dde5c` (wording). Docs commits may sit on top. |
 | **Branch** | `main` |
 | **local main / origin/main** | **synchronised** — 0 ahead, 0 behind |
 | **Working tree** | **clean** |
@@ -338,6 +338,76 @@ pattern and no `scrollIntoView`/focus call — read-only finding; see the row in
 
 ---
 
+## 1f. Repositioning release — PRs #3, #4, #5 (`25dde5c`, `49f649c`, `74503b5`, 19 November 2026)
+
+**Owner direction (19 Nov 2026):** the site is repositioned around professional joinery and carpentry,
+building alterations and refurbishment, commercial property maintenance, subcontract joinery and kitchen
+installation. Success is qualified enquiries for profitable work, not traffic. Garden buildings are being
+retired; standalone single-door hanging is no longer advertised; "& Small Build" is phased out of website
+branding. Full planning record: `Coulsy Joinery SEO - 2026-11-19/Investigation report 2026-11-19/` on the
+owner's Desktop (outside this repo).
+
+**Three squash-merged PRs, deployed in order and verified on production:**
+
+- **#3 wording** — workshop/manufacturing, workforce and small-job wording removed; emergency call-out
+  and response-time statements replaced by *urgent commercial repairs, subject to availability* (no
+  response time, no public premium-rate statement); heritage repair invitations removed from the heritage
+  page, FAQ and shared town metadata; "Coulsy Joinery & Small Build" → "Coulsy Joinery" /
+  "Professional Joinery & Building Services". **All gallery photographs kept**; captions read
+  "… — Previous Work". Family-run and "Our Team" (Robert and Debbie) wording is accurate and stays.
+- **#4 two service pages** — `small-build-services` is now **Building Alterations & Refurbishment** and
+  `building-maintenance` is **Commercial Property Maintenance**; URLs, layout and the 56 town pages of each
+  are unchanged. `utils/pageMeta.ts` gained `SERVICE_DISPLAY_NAMES` / `SERVICE_DESCRIPTIONS`: a service can
+  now be renamed without changing its slug. **`formattedServiceName` stays slug-derived because pages
+  build breadcrumb hrefs from it — never build a link from `displayServiceName`.** These two families
+  emit no FAQ JSON-LD (the shared pool is written for domestic joinery). Loft conversions, extensions and
+  planning-application help are not promoted.
+- **#5 homepage, navigation, cards** — new homepage wording; the homepage has **one `<h1>`** (was three;
+  slides 2–3 use `<h2>`); Services navigation is a seven-entry data-only list; six primary cards, with
+  bespoke ("Fitted & Architectural Joinery"), door hanging ("Doors and Frames"), steel fire exit doors,
+  both roof families and heritage ("Period Property Joinery") on the **hub only** in
+  `OurServicesBody.astro`'s `secondaryServices`. **Do not remove an entry from that list without giving
+  its pages another way in** — it is each family's only link from the rest of the site.
+
+**Not changed, deliberately:** every service radius (see below), the Fire Doors components and
+`constants/specialists.ts`, the contact form, reviews, `constants/company.ts` (the statutory "trading as
+Coulsy Joinery & Small Build" disclosure, pending alignment of quotes/invoices) and the schema
+`alternateName` in `constants/business.ts`. The garden-offices, garden-rooms and accessible-kitchens
+families are **still live, indexed and in the sitemap** (114 + 57 URLs) but no longer linked from the
+navigation, cards or homepage.
+
+**Verification:** `astro check` 0 errors; 1,036 pages; sitemap 1,033 URLs, all 200 on production; homepage
+title/H1/navigation/cards as specified; one business `@id`; production robots allows indexing and pages
+carry `index, follow` with no `X-Robots-Tag`; all 57 door-hanging pages link to Coulsy Fire Doors; the
+production page scripts are byte-identical to the pre-release build. Each PR had a separate independent
+review of its diff; their findings were fixed before merge.
+
+**⚠️ Not verified in a browser:** the browser tool was blocked (`ERR_BLOCKED_BY_CLIENT`), so the mobile
+menu and the desktop Services dropdown were **not exercised**. The change is menu data only and the
+scripts are identical, so a regression is unlikely, but the standing rule in §1a still applies. With
+seven entries the dropdown renders as one narrow column (`Dropdown.astro` splits to two columns only above
+eight items); "Building Alterations & Refurbishment" and "Commercial Property Maintenance" probably wrap.
+Check once on a phone and a desktop.
+
+**The "DB" check fails on every PR** (`withastro/action-studio@main`, no token). It failed identically on
+the 5 November PR and is unrelated.
+
+### Radius mechanism — findings (19 Nov 2026), NOT changed
+
+Each service's radius is a hard-coded `const radius` in its own `NearbyAreas<Service>.astro` (joiner 20;
+accessible kitchens, carpenter, door hanging, general joinery, joinery, kitchens, stud walls 25; bespoke,
+garden ×2, heritage, subcontract, steel doors, both roofs 30; small build and building maintenance 35),
+measured as straight-line miles from one fixed point (`getNearbyLocations.ts`: 53.9655, −1.205). **It only
+filters the "nearby areas" links at the foot of a page (max eight).** It does not control route generation,
+the sitemap, indexability or navigation — every one of the 18 `[location]-*.astro` files builds all 56
+towns. `getLocationsWithinRadius` (`locations.ts`) was added in May 2025 and has never been called. Every
+town is within 26 miles, so today the radii change almost nothing (37–39 of 56 pages per family are linked
+regardless). Making radius decide which pages exist is a deferred change; Leeds (18.1 miles, the best
+town) would need an always-include list. Reducing a radius removes no URL, so backlinks and indexing are
+unaffected by the setting itself.
+
+---
+
 ## 2. Supplier slice — shipped (`42537a2`)
 
 - **Howdens, Magnet and DIY Kitchens logos removed** from the kitchens card. **No supplier logos
@@ -473,6 +543,9 @@ Windows; we are on macOS.
 
 | Item | Reference |
 | --- | --- |
+| **Deferred development queue (owner, 19 Nov 2026) — none started.** (1) Strengthen the principal **Joinery & Carpentry** service (nav → `general-joinery`; PR #3 only fixed its wording). (2) **Consolidate the overlapping general-joinery / joinery / joiner / carpenter families**, informed by `competitor-investigation.md`; Search Console shows several earn clicks in the same towns, so no URL is removed until this is explicitly approved. (3) Genuine completed-project **case studies** (Bailey Hague-style named, located write-ups were the pattern seen). (4) Make the **service radius** decide which town pages exist (see §1f). (5) **Enquiry qualification** — form fields (job type, property type, postcode, photos) and an enquiry log. (6) **Retire garden rooms/offices (114 URLs, plain 404) and accessible kitchens (57 → same-town kitchens, `301!` incl. `.html` variants)** after the Search Console **Links report** check; the kitchens page already carries the accessibility sentence plan. | §1f |
+| **Evidence still outstanding:** Search Console Links report (gates retirement); per-page query export; fresh Page-indexing export; Google Business Profile name (does it include "& Small Build"?); enquiry history (form submissions sit in an account Robert does not control — Kristian's — and enquiry emails need Robert's separate authorisation). | §1f |
+| **Insurance figures** — "£10m employers' liability" wording remains in `pageMeta.ts` and `compliance.astro` although there are no employees; re-verify all three published figures against the renewed policy. | §6 row above |
 | **⏳ Insurance renewal verification, due after 13 November 2026.** The published figures (£5m public/products liability, £10m employers' liability, £1m professional indemnity) were NOT changed in the 5 Nov 2026 compliance remediation — they are retained as the last-verified figures, not reconfirmed. Professional indemnity cover for independent fire-door inspection/assessment specifically was difficult to renew (see `FIRE_DOORS_COMPLIANCE_HANDOVER.md` §A). **Re-verify all three figures against the actual renewed policy once it completes, and correct any page where a figure has changed.** Not a deployment blocker. | `about/compliance.astro`, `about/qualifications.astro`, `about.astro`, `MainPage.astro` |
 | **Fire Doors' `ContactForm.astro` has the identical confirmation-timer bug fixed here in §1e** — `showBanner()` with an unconditional `setTimeout(..., 8000)` and no cancellation, plus no `scrollIntoView`/focus call. Read-only finding from inspecting that repository while fixing Joinery's copy; **this repository was not modified.** Needs its own fix in the `fire-doors` repo, following the same pattern as §1e. | `fire-doors` repo: `src/components/ContactForm.astro` |
 | **🔥 FIRE-DOOR INTENT — HANDED OVER TO THE FIRE DOORS REPO. This repo does NOT audit or redesign it (§5.2a).** 23 fire-door queries put **3,955 impressions** on the JOINERY site for **2 clicks** ("fire door replacement harrogate" sits at position **9.9**). **The fire-doors repository performs its own landing-page audit and makes its own decisions.** Joinery's only jobs: keep truthful INSTALLATION capability, and **do NOT strip fire-door language or redirect anything until that repo responds** — a unilateral purge could destroy intent it may want. | `ARCHITECTURE.md` §8d |
