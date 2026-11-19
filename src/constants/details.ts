@@ -28,6 +28,13 @@ export const MEMBER_OF_NODE = {
 
 export const DETAILS = {
     PHONE: "07544 030486",
+  /**
+   * The dialling form of PHONE, for `tel:` links. A `tel:` URI must not contain spaces, and the
+   * international form (+44, no leading 0) dials correctly from any handset or country.
+   * Display text keeps the spaced UK form above. Every `tel:` link uses this one value, so the
+   * links cannot drift apart again (they were a mix of "07544 030486" and "07544030486").
+   */
+  PHONE_HREF: "tel:+447544030486",
   
   EMAIL: "robert@coulsy.co.uk",
   FIRST_NAME: "Robert",

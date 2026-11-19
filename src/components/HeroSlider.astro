@@ -19,7 +19,7 @@ const { slides } = Astro.props;
 ---
 
 <div
-  class="relative overflow-hidden h-[80vh]"
+  class="relative overflow-hidden h-[80vh] min-h-[580px]"
   role="banner"
   aria-label="Hero image slider"
 >
@@ -49,8 +49,8 @@ const { slides } = Astro.props;
           />
           
           <!-- Enhanced overlay with gradient -->
-          <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 flex items-center justify-center">
-            <div class="glass rounded-2xl p-8 lg:p-12 max-w-5xl mx-4 shadow-2xl border border-white/10 animate-on-scroll">
+          <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 flex items-center justify-center pb-24 lg:pb-0">
+            <div class="glass rounded-2xl p-6 sm:p-8 lg:p-12 max-w-5xl mx-4 shadow-2xl border border-white/10 animate-on-scroll">
               {/* One <h1> per page: only the first slide carries it. The others use the same
                   classes on an <h2>, so the slides look identical. */}
               {index === 0 ? (
@@ -187,8 +187,10 @@ const { slides } = Astro.props;
     ))}
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+  <!-- Scroll indicator. Hidden on phones, where the slider arrows occupy the bottom centre, and
+       kept to the bottom-right on larger screens, so it never sits on the slide indicators or
+       the arrows (it used to overlap both). -->
+  <div class="absolute bottom-4 right-6 z-20 animate-bounce hidden lg:block">
     <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
       <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
     </div>
