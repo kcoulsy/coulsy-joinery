@@ -7,6 +7,7 @@ import ServiceHero from "../../components/ServiceHero.astro";
 import MeetRobertCard from "../../components/MeetRobertCard.astro";
 import ServiceFeatureCard from "../../components/ServiceFeatureCard.astro";
 import ServiceListCard from "../../components/ServiceListCard.astro";
+import { getSpecialist, specialistUrl } from "../../constants/specialists";
 
 // import NearbyAreas from "../../components/NearbyAreasList.astro";
 import NearbyAreas from "../../components/NearbyAreasDoorHanging.astro"; // this location is unique a specific for the service offered !! CHECK
@@ -128,13 +129,12 @@ const finalDescription =
                   )
                 }
                 <p>
-                  If you're specifically looking for a steel fire escape door,
-                  check out our
+                  If you're specifically looking for a steel fire exit door,
                   <a
-                    href="/joinery-services/steel-fire-exit-doors-installers"
+                    href={specialistUrl(getSpecialist("fire-doors"), "/steel-fire-exit-doors")}
                     class="font-semibold text-brand-600 hover:text-brand-700 transition-colors"
-                    >Steel Fire Exit Door Installer</a
-                  > service.
+                    >Coulsy Fire Doors</a
+                  > covers steel fire exit doors on its own website.
                 </p>
               </div>
 
